@@ -1,0 +1,45 @@
+# ignore cache folder
+/silverstripe-cache/
+
+# ignore all environment files
+_ss_environment.php
+
+# ignore build tools
+/tools/phing-metadata
+
+# ignore composer vendor folder
+/vendor/
+
+# Custon ignore by Dunatron
+\._*
+assets/
+_ss_environment.php
+tools/phing-metadata
+silverstripe-cache
+.buildpath
+.project
+.settings
+.idea
+.DS_Store
+vendor/
+.editorconfig
+install-frameworkmissing.html
+install.php
+silverstripe.log
+framework/
+cms/
+CONTRIBUTING.md
+Makefile
+README.md
+.DS_Store
+vendor/
+web.config
+themes/simple
+.htaccess
+.solr
+fulltextsearch/
+silverstripe-cache/
+sortablegridfield/
+gridfieldextensions/
+reports/
+siteconfig/
