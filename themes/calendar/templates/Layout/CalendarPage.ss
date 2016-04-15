@@ -11,7 +11,7 @@
 
     <div class="custom-calendar-wrap custom-calendar-full">
         <div class="custom-header clearfix" style="padding-top: 0px; padding-bottom: 0px;">
-            <h2>$Title  $CurrentMonth  <span><span>Week</span> | <a href="$AbsoluteBaseURL">Month</a></span></h2>
+            <h2>$Title  $currentMonth  <span><span>Week</span> | <a href="$AbsoluteBaseURL">Month</a></span></h2>
 
             <h3 class="custom-month-year">
                 <span><i class="fa fa-plus">
@@ -21,7 +21,7 @@
                 <span id="custom-year" class="custom-year"></span>
                 <nav>
 
-                    <a href="#"> <span id="custom-prev" class="custom-prev"> </span></a>
+                    <a href="$prevMonth"> <span id="custom-prev" class="custom-prev"> </span></a>
 
                     <span id="custom-next" class="custom-next"></span>
                     <span id="custom-current" class="custom-current" title="Got to current date"></span>
@@ -30,7 +30,11 @@
         </div>
         <!-- Substitute this calendar below for silverstripe variables, creating a calendar on the fly -->
         <div class="fc-calendar-container">
+            <%--$draw_calendar--%>
             $draw_calendar
+            $HelloForm
+
+
         </div>
     </div>
 

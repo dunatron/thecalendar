@@ -9,19 +9,13 @@ class CalendarPage extends Page
 {
     private static $db = array();
     private static $has_many = array(
-        'Events' => 'Event'
+
     );
-    private static $can_be_root = false;
+    private static $can_be_root = true;
     //Get CMS Fields for events to add on calendar page
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->addFieldToTab('Root.Events', GridField::create(
-            'Events',
-            'Events on this page',
-            $this->Events(),
-            GridFieldConfig_RecordEditor::create()
-        ));
         return $fields;
     }
     /**
@@ -34,6 +28,7 @@ class CalendarPage extends Page
     private $currentDate = null;
     private $daysInMonth = 0;
     private $naviHref = null;
+
 }
 class CalendarPage_Controller extends Page_Controller
 {
@@ -51,16 +46,52 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/jquery.calendario.js");
         Requirements::javascript($this->ThemeDir() . "js/modernizr.js");
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
+
+
+        // save a variable
+        $var = 3;
+        Session::set('MyVar', $var);
+
+        $m= date("m");
+        Session::set('Month', $m);
+
+        $y= date("Y");
+        Session::set('Year', $y);
     }
     private static $allowed_actions = array(
         'show',
         'CommentForm',
         'test'
     );
+
+
+
+    public function HelloForm() {
+        $var   = Session::get('MyVar'); // $var = 3 from init function
+
+        return $var;
+    }
+
+    public function doSayHello($data, Form $form) {
+        $form->sessionMessage('Hello '. $data['Name'], 'success');
+
+        return $this->redirectBack();
+    }
+
+    public function currentMonth(){
+        $var   = Session::get('Month'); // month session variable
+        return $var;
+    }
+    public function currentYear(){
+        $var = Session::get('Year'); // year session var
+        return $var;
+    }
     //Previous Month
     public function prevMonth()
     {
-
+//        $calendar = $this->draw_calendar(1);
+//        // Kinda
+//        return $calendar;
     }
     public function forwardMonth()
     {
@@ -68,9 +99,12 @@ class CalendarPage_Controller extends Page_Controller
         $cmonth + 1;
         return $this->redirectBack();
     }
-    function draw_calendar($month = '')
+    function draw_calendar($m='', $y='')
     //function draw_calendar()
     {
+
+        $m   = Session::get('Month'); // $var = 3 from init function
+
 
         if (isset($_GET['year'])) {
             if (isset($_GET['month'])) {
@@ -165,6 +199,16 @@ class CalendarPage_Controller extends Page_Controller
         for ($list_day = 1; $list_day <= $days_in_month; $list_day++):
             $calendar .= '<div>';
             $calendar .= '<span class="day-number" style="color: #FFF;margin-right: 5px;">' . $list_day . '</span></br>';
+
+            // store events by month then loop over month events
+            $calendar .= '<div class="event"><h1 style="color: #FFF">';
+            if($list_day == 4){
+                $calendar .= $list_day . '</h1></div>';
+            }
+            else {
+                $calendar .= '</h1></div>';
+            }
+
             //Pull out the events from the events Objetcs Page
             /*
             $getevents = $esql;//mysql_query("SELECT * FROM events") or die(mysql_error());
@@ -206,6 +250,9 @@ class CalendarPage_Controller extends Page_Controller
         $calendar .= '</div>';
         /* end calendar */
         /* all done, return result */
+
         return $calendar;
     }
+
+
 }

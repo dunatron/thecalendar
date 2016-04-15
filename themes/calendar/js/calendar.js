@@ -40,7 +40,7 @@ $(function() {
         '03-01-2015' : '<a href="#">testing</a><a href="#">testing two events</a>',
         '03-10-2015' : '<a href="#">testing</a><a href="#">testing two events</a><a href="#">testing two events</a><a href="#">testing two events</a>' +
             '<a href="#">testing two events</a><a href="#">testing two events</a><a href="#">testing two events</a>',
-        '02-27-2015' : '<a href="#" class="btn btn-info" role="button">Link Button</a>'
+        '04-27-2016' : '<a href="#" class="btn btn-info" role="button">Link Button</a>'
     } );
 
     // you can also add more data later on. As an example:
