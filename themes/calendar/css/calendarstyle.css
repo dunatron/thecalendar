@@ -1,6 +1,10 @@
 body {
-	background: #000000;
 
+    background: url(../images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cebe29', endColorstr='#89b4ff',GradientType=1 );
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
@@ -28,6 +32,7 @@ body {
 	padding: 20px 20px 10px 30px;
 	height: 50px;
 	position: relative;
+    z-index: 99999;
 }
 
 .custom-header h2,

@@ -75,8 +75,6 @@ class CalendarPage_Controller extends Page_Controller
         'test'
     );
 
-
-
     public function HelloForm() {
         $var   = Session::get('MyVar'); // $var = 3 from init function
 
@@ -221,7 +219,7 @@ class CalendarPage_Controller extends Page_Controller
         <h4 class="modal-title" id="myModalLabel">'.$e->Title.'</h4>
       </div>
       <div class="modal-body">
-        ...
+        '.$e->Description.'
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
