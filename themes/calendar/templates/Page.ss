@@ -33,10 +33,6 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <!-- Modernizer CSS -->
-    <script src="$ThemeDir/js/modernizr.custom.63321.js"></script>
-
-    <script type="text/javascript" src="$ThemeDir/js/ajaxstuff.js"></script>
 
     <!-- Google Analytics -->
     <script>
@@ -83,9 +79,10 @@
 </div>
 
 <!-- JAVASCRIPT -->
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/jquery.calendario.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/bootstrap.min.js"></script>
 
 <!-- EVENT DATA (stored as key values)
 --------------------------------------------------

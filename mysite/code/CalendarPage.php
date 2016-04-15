@@ -8,14 +8,25 @@
 class CalendarPage extends Page
 {
     private static $db = array();
-    private static $has_many = array(
 
+    private static $has_many = array(
+        'Events' => 'Event'
     );
     private static $can_be_root = true;
+
     //Get CMS Fields for events to add on calendar page
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+
+        $fields->addFieldToTab('Root.Events', GridField::create(
+            'Event',
+            'Events on this page',
+            $this->Events(),
+            GridFieldConfig_RecordEditor::create()
+        ));
+
+
         return $fields;
     }
     /**
@@ -79,7 +90,7 @@ class CalendarPage_Controller extends Page_Controller
     }
 
     public function currentMonth(){
-        $var   = Session::get('Month'); // month session variable
+        $var   = Session::get('Month'); // month session variable1
         return $var;
     }
     public function currentYear(){
@@ -99,48 +110,30 @@ class CalendarPage_Controller extends Page_Controller
         $cmonth + 1;
         return $this->redirectBack();
     }
+
+    public function getEvents(){
+        $events = Event::get()->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects
+        return $events;
+
+    }
     function draw_calendar($m='', $y='')
     //function draw_calendar()
     {
 
         $m   = Session::get('Month'); // $var = 3 from init function
+        $y = Session::get('Year');
+
+        // TODO: 01 to 1 bug or 1 to 01
+//        $events = $this->getEvents();
+//        foreach($events as $e){
+//            echo $e->EventDate;
+//
+//        }
 
 
-        if (isset($_GET['year'])) {
-            if (isset($_GET['month'])) {
-                $cmonth = $_GET['month'];
-                $cyear = $_GET['year'];
-                $monthname = "";
-                if ($cmonth == '01') $monthname = "Jan";
-                if ($cmonth == '02') $monthname = "Feb";
-                if ($cmonth == '03') $monthname = "Mar";
-                if ($cmonth == '04') $monthname = "Apr";
-                if ($cmonth == '05') $monthname = "May";
-                if ($cmonth == '06') $monthname = "Jun";
-                if ($cmonth == '07') $monthname = "Jul";
-                if ($cmonth == '08') $monthname = "Aug";
-                if ($cmonth == '09') $monthname = "Sep";
-                if ($cmonth == '10') $monthname = "Oct";
-                if ($cmonth == '11') $monthname = "Nov";
-                if ($cmonth == '12') $monthname = "Dec";
-            }
-        } else {
-            $cmonth = date("m");
-            $cyear = date("Y");
-            $monthname = "";
-            if ($cmonth == '01') $monthname = "Jan";
-            if ($cmonth == '02') $monthname = "Feb";
-            if ($cmonth == '03') $monthname = "Mar";
-            if ($cmonth == '04') $monthname = "Apr";
-            if ($cmonth == '05') $monthname = "May";
-            if ($cmonth == '06') $monthname = "Jun";
-            if ($cmonth == '07') $monthname = "Jul";
-            if ($cmonth == '08') $monthname = "Aug";
-            if ($cmonth == '09') $monthname = "Sep";
-            if ($cmonth == '10') $monthname = "Oct";
-            if ($cmonth == '11') $monthname = "Nov";
-            if ($cmonth == '12') $monthname = "Dec";
-        }
+        $cmonth = $m;
+        $cyear = $y;
+
         $month = $cmonth;
         $year = $cyear;
         //count days then store as days,weeks in the month
@@ -196,18 +189,59 @@ class CalendarPage_Controller extends Page_Controller
             $days_in_this_week++;
         endfor;
         /* keep going with days.... */
+        // GET THE EVENTS OBJECTS IN A DATALIST TO CALL OBJECT VARIABLEIS
+        $events = $this->getEvents();
         for ($list_day = 1; $list_day <= $days_in_month; $list_day++):
             $calendar .= '<div>';
             $calendar .= '<span class="day-number" style="color: #FFF;margin-right: 5px;">' . $list_day . '</span></br>';
 
+
+            $events = $this->getEvents();
+            $sqDate = $year .'-'. $month .'-'.$list_day;
+
+            foreach($events as $e){
+
+                if($sqDate == $e->EventDate){
+                    /**
+                     * Begin event button build
+                     */
+                    //var_dump($e); // memory test
+                    $calendar .= '<div class="event"><a href="#" style="color: #FFF">'.$e->Title.'</a></div>';
+
+                    $calendar .= '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
+                    '.$e->Title.'
+                    </button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-'.$e->ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">'.$e->Title.'</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>';
+
+
+                }
+                else {
+                    continue;
+                }
+
+            }
+
             // store events by month then loop over month events
-            $calendar .= '<div class="event"><h1 style="color: #FFF">';
-            if($list_day == 4){
-                $calendar .= $list_day . '</h1></div>';
-            }
-            else {
-                $calendar .= '</h1></div>';
-            }
+
+
 
             //Pull out the events from the events Objetcs Page
             /*
