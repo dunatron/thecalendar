@@ -8,7 +8,6 @@
 
 
 <div class="container">
-    hiii
 
     <div class="custom-calendar-wrap custom-calendar-full">
         <div class="custom-header clearfix" style="padding-top: 0px; padding-bottom: 0px;">

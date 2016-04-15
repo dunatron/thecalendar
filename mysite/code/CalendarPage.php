@@ -29,7 +29,7 @@ class CalendarPage extends Page
      */
     private $dayLabels = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
     private $currentYear = 0;
-    public $currentMonth = 0;
+    public $currentMonth = 1;
     private $currentDay = 0;
     private $currentDate = null;
     private $daysInMonth = 0;
@@ -60,9 +60,7 @@ class CalendarPage_Controller extends Page_Controller
     //Previous Month
     public function prevMonth()
     {
-        global $cmonth;
-        $cmonth - 1;
-        //return $this->redirectBack();
+
     }
     public function forwardMonth()
     {
@@ -70,9 +68,10 @@ class CalendarPage_Controller extends Page_Controller
         $cmonth + 1;
         return $this->redirectBack();
     }
-//    function draw_calendar($month, $year)
-    function draw_calendar()
+    function draw_calendar($month = '')
+    //function draw_calendar()
     {
+
         if (isset($_GET['year'])) {
             if (isset($_GET['month'])) {
                 $cmonth = $_GET['month'];
