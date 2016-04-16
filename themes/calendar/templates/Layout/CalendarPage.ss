@@ -3,7 +3,7 @@
 <% include CalendarNav %>
 
 
-<div class="container">
+<div class="container-calendar-wrapper">
 
     <div class="custom-calendar-wrap custom-calendar-full">
 

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1cd36c269979d86379780225e43d749c",
-    "content-hash": "1626c28f3500b54461eb041dbd9cdeb8",
+    "hash": "6fb89c1ab3445ab552693834e46a5742",
+    "content-hash": "ef440f7041be4b33d0361e59822f73e8",
     "packages": [
         {
             "name": "composer/installers",
@@ -106,42 +106,6 @@
                 "zikula"
             ],
             "time": "2016-04-13 19:46:30"
-        },
-        {
-            "name": "silverstripe-themes/simple",
-            "version": "3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe-themes/silverstripe-simple.git",
-                "reference": "3cf638c170e649b6b122504c8f62d6d8946b853c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe-themes/silverstripe-simple/zipball/3cf638c170e649b6b122504c8f62d6d8946b853c",
-                "reference": "3cf638c170e649b6b122504c8f62d6d8946b853c",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*",
-                "silverstripe/framework": ">=3.0"
-            },
-            "type": "silverstripe-theme",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sara Tušar (Innovaif)",
-                    "homepage": "http://www.saratusar.com"
-                }
-            ],
-            "description": "The SilverStripe simple theme (default SilverStripe 3 theme)",
-            "keywords": [
-                "silverstripe",
-                "theme"
-            ],
-            "time": "2015-04-09 03:18:37"
         },
         {
             "name": "silverstripe/cms",
@@ -342,6 +306,44 @@
                 "siteconfig"
             ],
             "time": "2016-02-24 03:06:04"
+        },
+        {
+            "name": "silverstripe/timepickerfield",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sheadawson/silverstripe-timepickerfield.git",
+                "reference": "3f889a2b0e81561f99c562f95a410207b6486086"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sheadawson/silverstripe-timepickerfield/zipball/3f889a2b0e81561f99c562f95a410207b6486086",
+                "reference": "3f889a2b0e81561f99c562f95a410207b6486086",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "silverstripe/framework": "3.*"
+            },
+            "replace": {
+                "silverstripe/timepickerfield": "*"
+            },
+            "type": "silverstripe-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Shea Dawson",
+                    "email": "shea@silverstripe.com.au"
+                }
+            ],
+            "description": "A time picker field for SilverStripe based on the jQuery UI Timepicker By François Gélinas http://fgelinas.com/code/timepicker/",
+            "homepage": "http://github.com/sheadawson/silverstripe-timepickerfield",
+            "keywords": [
+                "Forms",
+                "silverstripe",
+                "time"
+            ],
+            "time": "2014-07-24 12:10:22"
         }
     ],
     "packages-dev": [
@@ -706,6 +708,42 @@
                 "xunit"
             ],
             "time": "2013-01-13 10:24:48"
+        },
+        {
+            "name": "silverstripe-themes/simple",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe-themes/silverstripe-simple.git",
+                "reference": "3cf638c170e649b6b122504c8f62d6d8946b853c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe-themes/silverstripe-simple/zipball/3cf638c170e649b6b122504c8f62d6d8946b853c",
+                "reference": "3cf638c170e649b6b122504c8f62d6d8946b853c",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "silverstripe/framework": ">=3.0"
+            },
+            "type": "silverstripe-theme",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sara Tušar (Innovaif)",
+                    "homepage": "http://www.saratusar.com"
+                }
+            ],
+            "description": "The SilverStripe simple theme (default SilverStripe 3 theme)",
+            "keywords": [
+                "silverstripe",
+                "theme"
+            ],
+            "time": "2015-04-09 03:18:37"
         },
         {
             "name": "symfony/yaml",

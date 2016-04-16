@@ -50,6 +50,7 @@ class CalendarPage_Controller extends Page_Controller
         //CSS ASSETS
         Requirements::css($this->ThemeDir() . "/css/calendar.css");
         Requirements::css($this->ThemeDir() . "/css/demo.css");
+        Requirements::css($this->ThemeDir() . "/css/homepage.css");
         Requirements::css($this->ThemeDir() . "/css/calendarstyle.css");
         //JS ASSETS
         Requirements::javascript($this->ThemeDir() . "js/calendar.js");
@@ -72,20 +73,42 @@ class CalendarPage_Controller extends Page_Controller
     private static $allowed_actions = array(
         'show',
         'CommentForm',
-        'test'
+        'test',
+        'HelloForm'
     );
 
-    public function HelloForm() {
-        $var   = Session::get('MyVar'); // $var = 3 from init function
+    /**
+     * Create Add Event Form
+     */
+    public function CommentForm() {
+        $form = Form::create(
+            $this,
+            __FUNCTION__,
+            FieldList::create(
+                TextField::create('Name','')
+                    ->setAttribute('placeholder','Name*')
+                    ->addExtraClass('form-control'),
+                EmailField::create('Email','')
+                    ->setAttribute('placeholder','Email*')
+                    ->addExtraClass('form-control'),
+                TextareaField::create('Comment','')
+                    ->setAttribute('placeholder','Comment*')
+                    ->addExtraClass('form-control')
+            ),
+            FieldList::create(
+                FormAction::create('handleComment','Post Comment')
+                    ->setUseButtonTag(true)
+                    ->addExtraClass('btn btn-default-color btn-lg')
+            ),
+            RequiredFields::create('Name','Email','Comment')
+        );
 
-        return $var;
+        $form->addExtraClass('form-style');
+
+        return $form;
     }
 
-    public function doSayHello($data, Form $form) {
-        $form->sessionMessage('Hello '. $data['Name'], 'success');
 
-        return $this->redirectBack();
-    }
 
     public function currentMonth(){
         $var   = Session::get('Month'); // month session variable1

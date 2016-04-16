@@ -8,23 +8,30 @@
 class Event extends DataObject {
 
     private static $has_one = array(
-        'CalendarPage' => 'CalendarPage'
+        'CalendarPage' => 'CalendarPage',
+        'EventImage' => 'Image'
     );
 
     private static $db = array(
         'Title' => 'Varchar(100)',
-        'Description' => 'Text',
-        'EventDate' => 'Date'
+        'Description' => 'HTMLText',
+        'EventDate' => 'Date',
+        'StartTime' => 'Time',
+        'FinishTime' => 'Time',
+        'Type' => "Enum(array('Sport', 'Concert'))",
+
     );
 
     public function getCMSFields(){
         $fields = parent::getCMSFields();
 
         $fields->addFieldToTab('Root.Main', TextField::create('Title', 'Event Title:'));
-        $fields->addFieldToTab('Root.Main', TextField::create('Description', 'Description'));
+        $fields->addFieldToTab('Root.Main', HtmlEditorField::create('Description', 'Description'));
         $fields->addFieldToTab('Root.Main', DateField::create('EventDate', 'Date of the Event')
             ->setConfig('dateformat', 'dd-MM-yyyy')
             ->setConfig('showcalendar', true));
+        $fields->addFieldToTab('Root.Main', TimePickerField::create('StartTime'));
+        $fields->addFieldToTab('Root.Main', TimePickerField::create('FinishTime'));
 
         return $fields;
     }
