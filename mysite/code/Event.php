@@ -33,6 +33,11 @@ class Event extends DataObject {
         $fields->addFieldToTab('Root.Main', TimePickerField::create('StartTime'));
         $fields->addFieldToTab('Root.Main', TimePickerField::create('FinishTime'));
 
+        $fields->addFieldToTab('Root.Main', $eventImage = UploadField::create('EventImage'));
+        //Set allowed upload extensions
+        $eventImage->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
+        $eventImage->setFolderName('event-Images');
+
         return $fields;
     }
 

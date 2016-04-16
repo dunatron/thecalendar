@@ -9,6 +9,10 @@ class CalendarPage extends Page
 {
     private static $db = array();
 
+    private static $has_one = array(
+        'ClientLogo' => 'Image'
+    );
+
     private static $has_many = array(
         'Events' => 'Event'
     );
@@ -25,6 +29,11 @@ class CalendarPage extends Page
             $this->Events(),
             GridFieldConfig_RecordEditor::create()
         ));
+
+        $fields->addFieldToTab('Root.ClientLogo', $screenShot = UploadField::create('ClientLogo'));
+        //Set allowed upload extensions
+        $screenShot->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
+        $screenShot->setFolderName('Client-Logos');
 
 
         return $fields;
