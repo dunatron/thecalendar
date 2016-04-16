@@ -1,0 +1,42 @@
+.nav-bar-wrapper {
+
+
+  @media @min865 {
+    max-height: 50px;
+  }
+  z-index: 999999;
+
+  .date-wrapper {
+    z-index: 999999;
+  }
+
+  .logo-wrapper {
+    z-index: -999999;
+    text-align: center;
+  }
+
+  .controls-wrapper {
+    z-index: 999999;
+    margin-top: 20px;
+
+    .controls-prev-next {
+      display: inline-block;
+      padding: 0 20px 0 20px;
+      @media @min865 {
+        float: right;
+      }
+    }
+    .add-event {
+      display: inline-block;
+      padding: 0 20px 0 20px;
+      @media @min865 {
+        float: right;
+      }
+    }
+
+    @media @min865 {
+      float: right;
+    }
+  }
+
+}

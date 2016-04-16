@@ -227,9 +227,7 @@ class CalendarPage_Controller extends Page_Controller
                      * Begin event button build
                      */
                     //var_dump($e); // memory test
-                    $calendar .= '<div class="event"><a href="#" style="color: #FFF">'.$e->Title.'</a></div>';
-
-                    $calendar .= '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
+                    $calendar .= '<button type="button" class="btn happ_e_button" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
                     '.$e->Title.'
                     </button>
 
