@@ -118,6 +118,13 @@ class CalendarPage_Controller extends Page_Controller
     }
 
 
+    public function currentMonthName(){
+        $mthNum   = Session::get('Month'); // month session variable1
+        $dateObj = DateTime::createFromFormat('!m', $mthNum);
+        $mthName = $dateObj->format('F'); // April
+
+        return $mthName;
+    }
 
     public function currentMonth(){
         $var   = Session::get('Month'); // month session variable1
@@ -300,7 +307,7 @@ class CalendarPage_Controller extends Page_Controller
         /* finish the rest of the days in the week */
         if ($days_in_this_week < 8):
             for ($x = 1; $x <= (8 - $days_in_this_week); $x++):
-                $calendar .= '<div class="day-square"> </div>';
+                $calendar .= '<div> </div>';
             endfor;
         endif;
         /* final row */
