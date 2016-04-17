@@ -42,13 +42,13 @@
 <%--</div>--%>
 <div class="container-fluid">
     <div class="nav-bar-wrapper row">
-        <div class="date-wrapper col-md-4">
+        <div class="date-wrapper col-md-4 col-sm-4">
             <h2>$Title  $currentMonth  <span><span>Week</span> | <a href="$AbsoluteBaseURL">Month</a></span></h2>
         </div>
-        <div class="logo-wrapper col-md-4">
+        <div class="logo-wrapper col-md-4 col-sm-4">
             <img src="$ThemeDir/images/DCC_logo_tiny.png" class="img-responsive">
         </div>
-        <div class="controls-wrapper col-md-4">
+        <div class="controls-wrapper col-md-4 col-sm-4">
 
             <div class="controls-prev-next">
 

@@ -215,14 +215,13 @@ class CalendarPage_Controller extends Page_Controller
         $calendar .= '<div class="fc-row">';
         /* print "blank" days until the first of the current week */
         for ($x = 0; $x < $running_day; $x++):
-            $calendar .= '<div></div>';
+            $calendar .= '<div class="day-square"></div>';
             $days_in_this_week++;
         endfor;
         /* keep going with days.... */
         // GET THE EVENTS OBJECTS IN A DATALIST TO CALL OBJECT VARIABLEIS
-        $events = $this->getEvents();
         for ($list_day = 1; $list_day <= $days_in_month; $list_day++):
-            $calendar .= '<div>';
+            $calendar .= '<div class="day-square">';
             $calendar .= '<span class="day-number" style="color: #FFF;margin-right: 5px;">' . $list_day . '</span></br>';
 
 
@@ -301,7 +300,7 @@ class CalendarPage_Controller extends Page_Controller
         /* finish the rest of the days in the week */
         if ($days_in_this_week < 8):
             for ($x = 1; $x <= (8 - $days_in_this_week); $x++):
-                $calendar .= '<div> </div>';
+                $calendar .= '<div class="day-square"> </div>';
             endfor;
         endif;
         /* final row */
