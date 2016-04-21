@@ -19,38 +19,44 @@
           .fc-row {
             overflow: hidden;
 
-            .day-square {
-              overflow: auto;
-                .modal {
-                  display:  none;
-                  z-index: 99999999999;
-                  max-width: 100%;
+           .outer-square {
 
-                  .modal-dialog {
+             overflow: hidden;
 
-                    .modal-content {
+             .day-square {
+               overflow: hidden;
+               .modal {
+                 display:  none;
+                 z-index: 99999999999;
+                 max-width: 100%;
 
-                      max-height: 500px;
-                      overflow: scroll;
+                 .modal-dialog {
 
-                      .modal-header {
+                   .modal-content {
 
-                      }
 
-                      .modal-body {
+                     .modal-header {
 
-                      }
+                     }
 
-                      .modal-footer {
+                     .modal-body {
 
-                      }
+                     }
 
-                    }
+                     .modal-footer {
 
-                  }
-                }
+                     }
 
-            }
+                   }
+
+                 }
+               }
+
+
+             }
+
+           }
+
 
           }
 

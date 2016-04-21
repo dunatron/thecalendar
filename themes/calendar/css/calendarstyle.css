@@ -334,6 +334,11 @@ body {
         max-width: 70%;
         display: inline-block;
     }
+    .fc-calendar .fc-row > div > div.toggle-fade {
+        display: none;
+    }
+
+
 
     .fc-calendar .fc-row > div.fc-today {
         background: rgba(255, 255, 255, 0.2);

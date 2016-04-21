@@ -222,7 +222,7 @@ class CalendarPage_Controller extends Page_Controller
         $calendar .= '<div class="fc-row">';
         /* print "blank" days until the first of the current week */
         for ($x = 0; $x < $running_day; $x++):
-            $calendar .= '<div class="day-square"></div>';
+            $calendar .= '<div class="outer-square"></div> <div class="day-square"></div>';
             $days_in_this_week++;
         endfor;
         /* keep going with days.... */
@@ -247,7 +247,7 @@ class CalendarPage_Controller extends Page_Controller
                     </button>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal-'.$e->ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade toggle-fade" id="myModal-'.$e->ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

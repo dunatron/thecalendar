@@ -81,8 +81,11 @@
 <!-- JAVASCRIPT -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 <script type="text/javascript" src="$ThemeDir/js/jquery.calendario.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>
 
 <!-- EVENT DATA (stored as key values)
 --------------------------------------------------
@@ -97,6 +100,8 @@
  ---------------------------------
  -->
 <script type="text/javascript" src="$ThemeDir/js/calendar.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/jasney-bootstrap.js"></script>
+
 
 <!-- GENERATE CALENDAR
  ---------------------------------
