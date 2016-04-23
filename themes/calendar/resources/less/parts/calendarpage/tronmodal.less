@@ -70,8 +70,12 @@ body {
   bottom: 60px;
   width: 100%;
   font-weight: 300;
-  overflow: hidden;
+
   z-index: 9999999999;
+  overflow: auto;
+  @media @min1100 {
+    overflow: hidden;
+  }
 }
 
 .modal-footer {
