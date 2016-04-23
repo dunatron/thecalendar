@@ -331,7 +331,7 @@ body {
     .fc-calendar .fc-row > div > div {
         margin-top: 0px;
         padding-left: 0;
-        max-width: 70%;
+        max-width: 100%;
         display: inline-block;
     }
     .fc-calendar .fc-row > div > div.toggle-fade {
