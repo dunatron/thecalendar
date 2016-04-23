@@ -266,6 +266,7 @@ class CalendarPage_Controller extends Page_Controller
 </div>';
 
 
+
                 }
                 else {
                     continue;
