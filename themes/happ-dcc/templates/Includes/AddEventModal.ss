@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
 
-                $CommentForm
+                $AddEventForm
 
             </div>
             <div class="modal-footer">

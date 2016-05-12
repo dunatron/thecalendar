@@ -89,33 +89,78 @@ class CalendarPage_Controller extends Page_Controller
     /**
      * Create Add Event Form
      */
-    public function CommentForm() {
+    public function AddEventForm()
+    {
+
         $form = Form::create(
             $this,
             __FUNCTION__,
             FieldList::create(
                 TextField::create('Name','')
-                    ->setAttribute('placeholder','Name*')
-                    ->addExtraClass('form-control'),
+                    ->setAttribute('placeholder','Name')
+                    ->addExtraClass('onboard-form-element'),
                 EmailField::create('Email','')
-                    ->setAttribute('placeholder','Email*')
-                    ->addExtraClass('form-control'),
-                TextareaField::create('Comment','')
-                    ->setAttribute('placeholder','Comment*')
-                    ->addExtraClass('form-control')
+                    ->setAttribute('placeholder','Email')
+                    ->addExtraClass('onboard-form-element'),
+                TextField::create('Phone','')
+                    ->setAttribute('placeholder','Phone')
+                    ->addExtraClass('onboard-form-element'),
+                TextField::create('School','')
+                    ->setAttribute('placeholder','Field example')
+                    ->addExtraClass('onboard-form-element'),
+//                DropdownField::create('Module',
+//                    'Please Choose What Module your issue relates to',
+//                    Page::get("ModulePage")->map("ID", "Title", "Please Select"))
+//                    ->addExtraClass('onboard-form-element'),
+                TextareaField::create('Message','')
+                    ->setAttribute('placeholder','Your Message')
+                    ->addExtraClass('onboard-form-element')
+
+
             ),
             FieldList::create(
-                FormAction::create('handleComment','Post Comment')
+                FormAction::create('processAddEvent','Send')
                     ->setUseButtonTag(true)
-                    ->addExtraClass('btn btn-default-color btn-lg')
+                    ->addExtraClass('btn btn-lg')
             ),
-            RequiredFields::create('Name','Email','Comment')
+            RequiredFields::create('Name','Email','Phone')
         );
 
         $form->addExtraClass('form-style');
 
         return $form;
+
+
     }
+
+    public function proccessAddEvent($data, Form $form)
+    {
+        $email = new Email();
+
+        $email->setTo('heath.dunlop.hd@gmail.com');
+        $email->setFrom($data['Email']);
+        $email->setSubject("Contact Message from {$data["Name"]}");
+
+        $messageBody = "
+            <p><strong>Name:</strong> {$data['Name']}</p>
+            <p><strong>Email:</strong> {$data['Email']}</p>
+            <p><strong>Phone:</strong> {$data['Phone']}</p>
+            <p><strong>School:</strong> {$data['School']}</p>
+            <p><strong>Module:</strong> {$data['Module']}</p>
+            <p><strong>Message:</strong> {$data['Message']}</p>
+            ";
+
+        $email->setBody($messageBody);
+        $email->send();
+        return array(
+            'Content' => '<p>Thank you for your feedback.</p>',
+            'Form' => ''
+        );
+
+
+    }
+
+
 
 
     public function currentMonthName(){
