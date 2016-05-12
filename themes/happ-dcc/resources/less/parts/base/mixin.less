@@ -1,0 +1,61 @@
+// Animation effect and speed
+.animation_animation(@animation: all 0.3s ease-in) {
+  -o-transition: @animation;
+  -ms-transition: @animation;
+  -moz-transition: @animation;
+  -webkit-transition: @animation;
+  transition: @animation;
+}
+
+.link_animation() {
+  .animation_animation();
+}
+
+.button_animation() {
+  .animation_animation();
+}
+
+.transform_transform(@transform) {
+  -webkit-transform: @transform;
+  -ms-transform: @transform; // IE9 only
+  -o-transform: @transform;
+  -moz-transform: @transform;
+  transform: @transform;
+}
+
+.transform_style(@transform) {
+  -webkit-transform-style: @transform;
+  -moz-transform-style: @transform;
+  -ms-transform-style: @transform;
+  -o-transform-style: @transform;
+  transform-style: @transform;
+}
+
+// Style for p tag or general text
+.text() {
+  font-family: GustanMedium;
+  color: @color-p-job-details;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
+  text-transform: none;
+}
+
+.link(@bg, @front, @border, @hoverBg, @hoverFront, @hoverBorder) {
+  background-color: @bg;
+  border-color: @border;
+  color: @front;
+
+  &:visited {
+    background-color: @bg;
+    border-color: @border;
+    color: @front;
+  }
+
+  &:hover, &:focus {
+    background-color: @hoverBg;
+    border-color: @hoverBorder;
+    color: @hoverFront;
+  }
+}
