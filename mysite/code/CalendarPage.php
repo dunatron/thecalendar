@@ -287,9 +287,10 @@ class CalendarPage_Controller extends Page_Controller
                      * Begin event button build
                      */
                     //var_dump($e); // memory test
-                    $calendar .= '<button type="button" class="btn happ_e_button" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
+
+                    $calendar .= '<div class="event-btn"><a  class="happ_e_button" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
                     '.$e->Title.'
-                    </button>
+                    </a></div>
 
 <!-- Modal -->
 <div class="modal fade toggle-fade" id="myModal-'.$e->ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -309,6 +310,31 @@ class CalendarPage_Controller extends Page_Controller
     </div>
   </div>
 </div>';
+
+
+
+//                    $calendar .= '<button type="button" class="btn happ_e_button" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
+//                    '.$e->Title.'
+//                    </button>
+//
+//<!-- Modal -->
+//<div class="modal fade toggle-fade" id="myModal-'.$e->ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+//  <div class="modal-dialog" role="document">
+//    <div class="modal-content">
+//      <div class="modal-header">
+//        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+//        <h4 class="modal-title" id="myModalLabel">'.$e->Title.'</h4>
+//      </div>
+//      <div class="modal-body">
+//        '.$e->Description.'
+//      </div>
+//      <div class="modal-footer">
+//        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+//        <button type="button" class="btn btn-primary">Save changes</button>
+//      </div>
+//    </div>
+//  </div>
+//</div>';
 
 
 
