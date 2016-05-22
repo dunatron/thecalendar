@@ -46,9 +46,12 @@ body {
 
 .event-btn {
   margin: 0 !important;
-  border-top: 1px solid red;
-
-
+  border-top: 1px solid @color-event-btn-color;
+  &:hover, &:focus {
+    text-decoration: none;
+    background-color: @color-event-btn-color;
+    outline: none;
+  }
 }
 
 
