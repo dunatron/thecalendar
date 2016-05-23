@@ -33,6 +33,13 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+    <%-- DatePicker Style Dependencies --%>
+    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" />--%>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+
+
+
 
     <!-- Google Analytics -->
     <script>
@@ -79,33 +86,25 @@
 </div>
 
 <!-- JAVASCRIPT -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-<script type="text/javascript" src="$ThemeDir/js/jquery.calendario.js"></script>
+<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
+
+
+
+<%--<script type="text/javascript" src="$ThemeDir/js/jquery.calendario.js"></script>--%>
 <script type="text/javascript" src="$ThemeDir/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>--%>
 <script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>
-
-<!-- EVENT DATA (stored as key values)
---------------------------------------------------
--->
-<script type="text/javascript" src="$ThemeDir/js/data.js"></script>
-<script type="text/javascript" src="$ThemeDir/js/trondata.js"></script>
-<!-- EVENT DATA (stored as key values)
---------------------------------------------------
--->
+<%-- DATEPICKER JS DEPENDENCIES | NEED BOTH FILES--%>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/datepicker.js"></script>
 
 <!-- GENERATE CALENDAR
  ---------------------------------
  -->
 <script type="text/javascript" src="$ThemeDir/js/calendar.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/jasney-bootstrap.js"></script>
-
-
-<!-- GENERATE CALENDAR
- ---------------------------------
- -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 
 </body>

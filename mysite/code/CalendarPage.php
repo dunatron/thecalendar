@@ -83,7 +83,10 @@ class CalendarPage_Controller extends Page_Controller
         'show',
         'CommentForm',
         'test',
-        'HelloForm'
+        'HelloForm',
+        'AddEventForm',
+        'proccessAddEvent'
+
     );
 
     /**
@@ -96,17 +99,27 @@ class CalendarPage_Controller extends Page_Controller
             $this,
             __FUNCTION__,
             FieldList::create(
-                TextField::create('Name','')
+                TextField::create('Title','')
                     ->setAttribute('placeholder','Name')
                     ->addExtraClass('onboard-form-element'),
-                EmailField::create('Email','')
-                    ->setAttribute('placeholder','Email')
+                DateField::create('EventDate','')
+                    ->setAttribute('placeholder','Date')
+                    ->addExtraClass('onboard-form-element')
+                    ->setConfig('dateformat', 'dd-MM-yyyy')
+                    ->setConfig('showcalendar', true)
+                    ->setAttribute('id', 'event-date'),
+                TimePickerField::create('StartTime','')
+                    ->setAttribute('placeholder','Start Time')
                     ->addExtraClass('onboard-form-element'),
-                TextField::create('Phone','')
-                    ->setAttribute('placeholder','Phone')
+                TimePickerField::create('FinishTime','')
+                    ->setAttribute('placeholder','Finish Time')
                     ->addExtraClass('onboard-form-element'),
-                TextField::create('School','')
-                    ->setAttribute('placeholder','Field example')
+
+                TextField::create('Type','')
+                    ->setAttribute('placeholder','Type')
+                    ->addExtraClass('onboard-form-element'),
+                TextField::create('Location','')
+                    ->setAttribute('placeholder','Location')
                     ->addExtraClass('onboard-form-element'),
 //                DropdownField::create('Module',
 //                    'Please Choose What Module your issue relates to',
@@ -123,7 +136,7 @@ class CalendarPage_Controller extends Page_Controller
                     ->setUseButtonTag(true)
                     ->addExtraClass('btn btn-lg')
             ),
-            RequiredFields::create('Name','Email','Phone')
+            RequiredFields::create('Title','EventDate','StartTime')
         );
 
         $form->addExtraClass('form-style');
@@ -133,29 +146,24 @@ class CalendarPage_Controller extends Page_Controller
 
     }
 
-    public function proccessAddEvent($data, Form $form)
+    public function processAddEvent($data, $form)
     {
-        $email = new Email();
 
-        $email->setTo('heath.dunlop.hd@gmail.com');
-        $email->setFrom($data['Email']);
-        $email->setSubject("Contact Message from {$data["Name"]}");
+        $formdate = $data['EventDate'];
+        $transformdate = date("d-m-Y", strtotime($formdate));
 
-        $messageBody = "
-            <p><strong>Name:</strong> {$data['Name']}</p>
-            <p><strong>Email:</strong> {$data['Email']}</p>
-            <p><strong>Phone:</strong> {$data['Phone']}</p>
-            <p><strong>School:</strong> {$data['School']}</p>
-            <p><strong>Module:</strong> {$data['Module']}</p>
-            <p><strong>Message:</strong> {$data['Message']}</p>
-            ";
-
-        $email->setBody($messageBody);
-        $email->send();
-        return array(
-            'Content' => '<p>Thank you for your feedback.</p>',
-            'Form' => ''
-        );
+        $event = Event::create();
+        $event->Title = $data['Title'];
+        $event->EventDate = $transformdate;
+        $event->StartTime = $data['StartTime'];
+        $event->FinishTime = $data['FinishTime'];
+        $event->Type = $data['Type'];
+        $event->Location = $data['Location'];
+        $event->Message = $data['Message'];
+        $event->Title = $data['Title'];
+        $event->CalendarPageID = $this->ID;
+        $form->saveInto($event);
+        $event->write();
 
 
     }
