@@ -85,7 +85,7 @@ class CalendarPage_Controller extends Page_Controller
         'test',
         'HelloForm',
         'AddEventForm',
-        'proccessAddEvent'
+        'processAddEvent'
 
     );
 
