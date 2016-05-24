@@ -52,6 +52,20 @@ class CalendarPage extends Page
 }
 class CalendarPage_Controller extends Page_Controller
 {
+
+    public function index(SS_HTTPRequest $request) {
+        if(Director::is_ajax()) {
+            $m   = Session::get('Month');
+            $m--;
+            Session::set('Month', $m);
+            return $this->renderWith("CalendarPage");
+//            $this->draw_calendar();
+            //return "Ajax response!";
+        } else {
+            return Array();// execution as usual in this case...
+        }
+    }
+
     //Inject assets through controller
     public function init()
     {
@@ -88,6 +102,17 @@ class CalendarPage_Controller extends Page_Controller
         'processAddEvent'
 
     );
+
+//    public function index(SS_HTTPRequest $request) {
+//
+//        if($request->isAjax()) {
+//            return "Ajax response!";
+//        }
+//
+////        return array (
+////            'Results' => $paginatedProperties
+////        );
+//    }
 
     /**
      * Create Add Event Form
@@ -141,7 +166,10 @@ class CalendarPage_Controller extends Page_Controller
 
         $form->addExtraClass('form-style');
 
-        return $form;
+        //return $form;
+        $data = Session::get("FormData.{$form->getName()}.data");
+
+        return $data ? $form->loadDataFrom($data) : $form;
 
 
     }
@@ -166,12 +194,12 @@ class CalendarPage_Controller extends Page_Controller
 //        echo '<pre>';
 //        var_dump($event);
 //        die('made it to the end');
+        $form->sessionMessage('Thanks for adding an event ','good');
 
         return $this->redirectBack();
 
 
     }
-
 
 
 
@@ -194,6 +222,7 @@ class CalendarPage_Controller extends Page_Controller
     //Previous Month
     public function prevMonth()
     {
+        die("hello");
 //        $calendar = $this->draw_calendar(1);
 //        // Kinda
 //        return $calendar;
@@ -210,6 +239,9 @@ class CalendarPage_Controller extends Page_Controller
         return $events;
 
     }
+
+
+
     function draw_calendar($m='', $y='')
         //function draw_calendar()
     {

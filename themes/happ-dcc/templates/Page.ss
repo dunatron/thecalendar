@@ -93,19 +93,25 @@
 
 <%--<script type="text/javascript" src="$ThemeDir/js/jquery.calendario.js"></script>--%>
 <script type="text/javascript" src="$ThemeDir/js/bootstrap.min.js"></script>
-<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>--%>
-<script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>
+
 <%-- DATEPICKER JS DEPENDENCIES | NEED BOTH FILES--%>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/datepicker.js"></script>
 
+<%--NAVIGATION JS--%>
+<script type="text/javascript" src="$ThemeDir/js/navigation.js"></script>
+
 <!-- GENERATE CALENDAR
  ---------------------------------
  -->
-<script type="text/javascript" src="$ThemeDir/js/calendar.js"></script>
-<script type="text/javascript" src="$ThemeDir/js/jasney-bootstrap.js"></script>
+<%--<script type="text/javascript" src="$ThemeDir/js/calendar.js"></script>--%>
+<%--<script type="text/javascript" src="$ThemeDir/js/jasney-bootstrap.js"></script>--%>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>
 
 </body>
 </html>

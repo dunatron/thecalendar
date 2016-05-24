@@ -10,7 +10,8 @@
         <!-- Substitute this calendar below for silverstripe variables, creating a calendar on the fly -->
         <div class="fc-calendar-container">
             <%--$draw_calendar--%>
-            $draw_calendar
+            <%--$draw_calendar--%>
+            <% include RenderCalendar %>
 
 
         </div>

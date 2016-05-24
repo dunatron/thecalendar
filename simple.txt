@@ -1,0 +1,1 @@
+this is some simple text in a text file to demonstrate some ajax behaviour on a page
