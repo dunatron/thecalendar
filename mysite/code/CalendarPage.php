@@ -82,16 +82,18 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/modernizr.js");
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
 
+        if (!isset($_SESSION)) {
+//            @session_start();
+            $var = 3;
+            Session::set('MyVar', $var);
+            $m= date("m");
+            Session::set('Month', $m);
+            $y= date("Y");
+            Session::set('Year', $y);
+        }
 
-        // save a variable
-        $var = 3;
-        Session::set('MyVar', $var);
 
-        $m= date("m");
-        Session::set('Month', $m);
 
-        $y= date("Y");
-        Session::set('Year', $y);
     }
     private static $allowed_actions = array(
         'show',
@@ -103,16 +105,6 @@ class CalendarPage_Controller extends Page_Controller
 
     );
 
-//    public function index(SS_HTTPRequest $request) {
-//
-//        if($request->isAjax()) {
-//            return "Ajax response!";
-//        }
-//
-////        return array (
-////            'Results' => $paginatedProperties
-////        );
-//    }
 
     /**
      * Create Add Event Form
