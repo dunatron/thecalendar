@@ -105,7 +105,7 @@ class CalendarPage_Controller extends Page_Controller
                 DateField::create('EventDate','')
                     ->setAttribute('placeholder','Date')
                     ->addExtraClass('onboard-form-element')
-                    ->setConfig('dateformat', 'dd-MM-yyyy')
+                    ->setConfig('dateformat', 'MM-dd-yyyy')
                     ->setConfig('showcalendar', true)
                     ->setAttribute('id', 'event-date'),
                 TimePickerField::create('StartTime','')
@@ -155,15 +155,19 @@ class CalendarPage_Controller extends Page_Controller
         $event = Event::create();
         $event->Title = $data['Title'];
         $event->EventDate = $transformdate;
+//        $event->EventDate = $data['EventDate'];
         $event->StartTime = $data['StartTime'];
         $event->FinishTime = $data['FinishTime'];
         $event->Type = $data['Type'];
         $event->Location = $data['Location'];
         $event->Message = $data['Message'];
-        $event->Title = $data['Title'];
         $event->CalendarPageID = $this->ID;
-        $form->saveInto($event);
         $event->write();
+//        echo '<pre>';
+//        var_dump($event);
+//        die('made it to the end');
+
+        return $this->redirectBack();
 
 
     }
@@ -207,7 +211,7 @@ class CalendarPage_Controller extends Page_Controller
 
     }
     function draw_calendar($m='', $y='')
-    //function draw_calendar()
+        //function draw_calendar()
     {
 
         $m   = Session::get('Month'); // $var = 3 from init function
@@ -286,7 +290,19 @@ class CalendarPage_Controller extends Page_Controller
 
 
             $events = $this->getEvents();
-            $sqDate = $year .'-'. $month .'-'.$list_day;
+            if($list_day == 1){$convertday = "01";}
+            elseif($list_day == 2){$convertday = "02";}
+            elseif($list_day == 3){$convertday = "03";}
+            elseif($list_day == 4){$convertday = "04";}
+            elseif($list_day == 5){$convertday = "05";}
+            elseif($list_day == 6){$convertday = "06";}
+            elseif($list_day == 7){$convertday = "07";}
+            elseif($list_day == 8){$convertday = "08";}
+            elseif($list_day == 9){$convertday = "09";}
+            else {
+                $convertday = $list_day;
+            }
+            $sqDate = $year .'-'. $month .'-'.$convertday;
 
             foreach($events as $e){
 
