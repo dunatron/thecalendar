@@ -55,12 +55,28 @@ class CalendarPage_Controller extends Page_Controller
 
     public function index(SS_HTTPRequest $request) {
         if(Director::is_ajax()) {
+
             $m   = Session::get('Month');
+            var_dump("pre month ".$m);
             $m--;
+//            $m = $this->formatMonth($m);
+            if($m == 1){$m = "01";}
+            elseif($m == 2){$m = "02";}
+            elseif($m == 3){$m = "03";}
+            elseif($m == 4){$m = "04";}
+            elseif($m == 5){$m = "05";}
+            elseif($m == 6){$m = "06";}
+            elseif($m == 7){$m = "07";}
+            elseif($m == 8){$m = "08";}
+            elseif($m== 9){$m = "09";}
+            else {
+                $m = $m;
+            }
+            var_dump("post month ".$m);
             Session::set('Month', $m);
             //return $this->renderWith("CalendarPage");
-            //$this->draw_calendar();
-            return "Ajax response!";
+            $cal = $this->draw_calendar();
+            return $cal;
         } else {
             return Array();// execution as usual in this case...
         }
@@ -82,15 +98,15 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/modernizr.js");
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
 
-//        if (!isset($_SESSION)) {
-////            @session_start();
-//            $var = 3;
-//            Session::set('MyVar', $var);
-//            $m= date("m");
-//            Session::set('Month', $m);
-//            $y= date("Y");
-//            Session::set('Year', $y);
-//        }
+        if (!isset($_SESSION)) {
+//            @session_start();
+            $var = 3;
+            Session::set('MyVar', $var);
+            $m= date("m");
+            Session::set('Month', $m);
+            $y= date("Y");
+            Session::set('Year', $y);
+        }
         $var = 3;
         Session::set('MyVar', $var);
         $m= date("m");
@@ -111,11 +127,29 @@ class CalendarPage_Controller extends Page_Controller
 
     );
 
-    public function addBookmark(){
-        echo 'hello';
+    /**
+     * Format Month Method (if = 1 make it 01 etc...)
+     */
+    public function formatMonth($m ='')
+    {
+        $m = 3;
+
+        if($m == 1){$m = "01";}
+        elseif($m == 2){$m = "02";}
+        elseif($m == 3){$m = "03";}
+        elseif($m == 4){$m = "04";}
+        elseif($m == 5){$m = "05";}
+        elseif($m == 6){$m = "06";}
+        elseif($m == 7){$m = "07";}
+        elseif($m == 8){$m = "08";}
+        elseif($m== 9){$m = "09";}
+        else {
+            $m = $m;
+        }
+
+        return $m;
+
     }
-
-
 
 
     /**
@@ -260,7 +294,6 @@ class CalendarPage_Controller extends Page_Controller
 //
 //        }
 
-
         $cmonth = $m;
         $cyear = $y;
 
@@ -316,6 +349,10 @@ class CalendarPage_Controller extends Page_Controller
         /* print "blank" days until the first of the current week */
         for ($x = 0; $x < $running_day; $x++):
             $calendar .= '<div class="outer-square"></div> <div class="day-square"></div>';
+
+           //test
+            $test = 0;
+
             $days_in_this_week++;
         endfor;
         /* keep going with days.... */
@@ -371,33 +408,6 @@ class CalendarPage_Controller extends Page_Controller
   </div>
 </div>';
 
-
-
-//                    $calendar .= '<button type="button" class="btn happ_e_button" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
-//                    '.$e->Title.'
-//                    </button>
-//
-//<!-- Modal -->
-//<div class="modal fade toggle-fade" id="myModal-'.$e->ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-//  <div class="modal-dialog" role="document">
-//    <div class="modal-content">
-//      <div class="modal-header">
-//        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//        <h4 class="modal-title" id="myModalLabel">'.$e->Title.'</h4>
-//      </div>
-//      <div class="modal-body">
-//        '.$e->Description.'
-//      </div>
-//      <div class="modal-footer">
-//        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-//        <button type="button" class="btn btn-primary">Save changes</button>
-//      </div>
-//    </div>
-//  </div>
-//</div>';
-
-
-
                 }
                 else {
                     continue;
@@ -405,22 +415,6 @@ class CalendarPage_Controller extends Page_Controller
 
             }
 
-            // store events by month then loop over month events
-
-
-
-            //Pull out the events from the events Objetcs Page
-            /*
-            $getevents = $esql;//mysql_query("SELECT * FROM events") or die(mysql_error());
-            while($rowe = mysql_fetch_assoc($getevents)) {
-                $dateinp = $rowe['eventdate'];
-                $qtime  = strtotime($dateinp);
-                $qday   = date('d',$qtime);
-                $qmonth = date('m',$qtime);
-                $qyear  = date('Y',$qtime);
-                if($qday == $list_day && $qmonth == $month && $qyear == $year){$calendar.= "<a style='text-decoration:none;overflow:hidden;' rel='gallery' class='fancybox fancybox.iframe' title='' href='singleEvent.php?eid=".$rowe['id']."'>".$rowe['title']. "</a></br> ";}
-            }
-            */
             $calendar .= '<span class="fc-weekday">';
             $calendar .= '</span>';
             $calendar .= '</div>';
