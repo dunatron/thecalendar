@@ -32,7 +32,10 @@
 // Modal Body
 .modal-body {
   max-height: 800px;
-  overflow-y: hidden;
+  overflow-y: scroll;
+  @media @min960 {
+    overflow-y: hidden;
+  }
 
 }
 
