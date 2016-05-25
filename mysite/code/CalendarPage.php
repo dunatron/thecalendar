@@ -201,7 +201,10 @@ class CalendarPage_Controller extends Page_Controller
 //                    ->addExtraClass('onboard-form-element'),
                 TextareaField::create('Message','')
                     ->setAttribute('placeholder','Event Details')
+                    ->addExtraClass('add-event-form-element'),
+                FileField::create('EventImage')
                     ->addExtraClass('add-event-form-element')
+
 
 
             ),
@@ -225,6 +228,7 @@ class CalendarPage_Controller extends Page_Controller
 
     public function processAddEvent($data, $form)
     {
+        //ToDo add image to db->map it to Image
 
         $formdate = $data['EventDate'];
         $transformdate = date("d-m-Y", strtotime($formdate));
@@ -239,6 +243,11 @@ class CalendarPage_Controller extends Page_Controller
         $event->Location = $data['Location'];
         $event->Message = $data['Message'];
         $event->CalendarPageID = $this->ID;
+
+        //Proccess Image
+        $image = $data['EventImage'];
+
+
         $event->write();
 //        echo '<pre>';
 //        var_dump($event);
