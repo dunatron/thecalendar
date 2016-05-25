@@ -58,9 +58,9 @@ class CalendarPage_Controller extends Page_Controller
             $m   = Session::get('Month');
             $m--;
             Session::set('Month', $m);
-            return $this->renderWith("CalendarPage");
-//            $this->draw_calendar();
-            //return "Ajax response!";
+            //return $this->renderWith("CalendarPage");
+            //$this->draw_calendar();
+            return "Ajax response!";
         } else {
             return Array();// execution as usual in this case...
         }
@@ -82,15 +82,21 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/modernizr.js");
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
 
-        if (!isset($_SESSION)) {
-//            @session_start();
-            $var = 3;
-            Session::set('MyVar', $var);
-            $m= date("m");
-            Session::set('Month', $m);
-            $y= date("Y");
-            Session::set('Year', $y);
-        }
+//        if (!isset($_SESSION)) {
+////            @session_start();
+//            $var = 3;
+//            Session::set('MyVar', $var);
+//            $m= date("m");
+//            Session::set('Month', $m);
+//            $y= date("Y");
+//            Session::set('Year', $y);
+//        }
+        $var = 3;
+        Session::set('MyVar', $var);
+        $m= date("m");
+        Session::set('Month', $m);
+        $y= date("Y");
+        Session::set('Year', $y);
 
 
 
@@ -104,6 +110,12 @@ class CalendarPage_Controller extends Page_Controller
         'processAddEvent'
 
     );
+
+    public function addBookmark(){
+        echo 'hello';
+    }
+
+
 
 
     /**

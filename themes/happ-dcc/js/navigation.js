@@ -62,7 +62,7 @@ $('.calendarpage').on('click','#previous-month', function (e) {
     var url = $(this).attr('href');
     $.ajax(url)
         .done(function (response) {
-            $('.calendarpage').html(response);
+            $('.fc-calendar-container').html(response);
         })
         .fail (function (xhr) {
         alert('Error: ' + xhr.responseText);
