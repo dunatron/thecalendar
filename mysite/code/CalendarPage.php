@@ -54,12 +54,19 @@ class CalendarPage_Controller extends Page_Controller
 {
 
     public function index(SS_HTTPRequest $request) {
+        /**
+         * DO AJAX
+         */
         if(Director::is_ajax()) {
 
             $m   = Session::get('Month');
-            var_dump("pre month ".$m);
+            $y   = Session::get('Year');
+            echo '<pre>';
+//            var_dump("pre month ".$m);
+//            var_dump("pre Year ".$y);
             $m--;
-//            $m = $this->formatMonth($m);
+            //$m = $this->formatMonth($m);
+            if($m == 0){$y--; $m=12;}
             if($m == 1){$m = "01";}
             elseif($m == 2){$m = "02";}
             elseif($m == 3){$m = "03";}
@@ -72,8 +79,10 @@ class CalendarPage_Controller extends Page_Controller
             else {
                 $m = $m;
             }
-            var_dump("post month ".$m);
+//            var_dump("post month ".$m);
+//            var_dump("post Year ".$y);
             Session::set('Month', $m);
+            Session::set('Year', $y);
             //return $this->renderWith("CalendarPage");
             $cal = $this->draw_calendar();
             return $cal;
@@ -98,7 +107,7 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/modernizr.js");
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
 
-        if (!isset($_SESSION)) {
+        if (!isset($_SESSION['Month'])) {
 //            @session_start();
             $var = 3;
             Session::set('MyVar', $var);
@@ -107,12 +116,14 @@ class CalendarPage_Controller extends Page_Controller
             $y= date("Y");
             Session::set('Year', $y);
         }
-        $var = 3;
-        Session::set('MyVar', $var);
-        $m= date("m");
-        Session::set('Month', $m);
-        $y= date("Y");
-        Session::set('Year', $y);
+
+
+//        $var = 3;
+//        Session::set('MyVar', $var);
+//        $m= date("m");
+//        Session::set('Month', $m);
+//        $y= date("Y");
+//        Session::set('Year', $y);
 
 
 
@@ -164,45 +175,45 @@ class CalendarPage_Controller extends Page_Controller
             FieldList::create(
                 TextField::create('Title','')
                     ->setAttribute('placeholder','Name')
-                    ->addExtraClass('onboard-form-element'),
+                    ->addExtraClass('add-event-form-element'),
                 DateField::create('EventDate','')
                     ->setAttribute('placeholder','Date')
-                    ->addExtraClass('onboard-form-element')
+                    ->addExtraClass('add-event-form-element')
                     ->setConfig('dateformat', 'MM-dd-yyyy')
                     ->setConfig('showcalendar', true)
                     ->setAttribute('id', 'event-date'),
                 TimePickerField::create('StartTime','')
                     ->setAttribute('placeholder','Start Time')
-                    ->addExtraClass('onboard-form-element'),
+                    ->addExtraClass('add-event-form-element'),
                 TimePickerField::create('FinishTime','')
                     ->setAttribute('placeholder','Finish Time')
-                    ->addExtraClass('onboard-form-element'),
+                    ->addExtraClass('add-event-form-element'),
 
                 TextField::create('Type','')
                     ->setAttribute('placeholder','Type')
-                    ->addExtraClass('onboard-form-element'),
+                    ->addExtraClass('add-event-form-element'),
                 TextField::create('Location','')
                     ->setAttribute('placeholder','Location')
-                    ->addExtraClass('onboard-form-element'),
+                    ->addExtraClass('add-event-form-element'),
 //                DropdownField::create('Module',
 //                    'Please Choose What Module your issue relates to',
 //                    Page::get("ModulePage")->map("ID", "Title", "Please Select"))
 //                    ->addExtraClass('onboard-form-element'),
                 TextareaField::create('Message','')
-                    ->setAttribute('placeholder','Your Message')
-                    ->addExtraClass('onboard-form-element')
+                    ->setAttribute('placeholder','Event Details')
+                    ->addExtraClass('add-event-form-element')
 
 
             ),
             FieldList::create(
-                FormAction::create('processAddEvent','Send')
+                FormAction::create('processAddEvent','Apply To Add Event')
                     ->setUseButtonTag(true)
                     ->addExtraClass('btn btn-lg')
             ),
             RequiredFields::create('Title','EventDate','StartTime')
         );
 
-        $form->addExtraClass('form-style');
+        $form->addExtraClass('add-event-form');
 
         //return $form;
         $data = Session::get("FormData.{$form->getName()}.data");

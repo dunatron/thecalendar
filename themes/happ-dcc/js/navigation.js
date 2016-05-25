@@ -58,7 +58,7 @@
 
 $('.calendarpage').on('click','#previous-month', function (e) {
     e.preventDefault();
-    alert("Lol you want to view last months events? why?");
+//    alert("Lol you want to view last months events? why?");
     var url = $(this).attr('href');
     $.ajax(url)
         .done(function (response) {
