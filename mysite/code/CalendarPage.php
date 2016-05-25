@@ -61,7 +61,7 @@ class CalendarPage_Controller extends Page_Controller
 
             $m   = Session::get('Month');
             $y   = Session::get('Year');
-            echo '<pre>';
+//            echo '<pre>';
 //            var_dump("pre month ".$m);
 //            var_dump("pre Year ".$y);
             $m--;
