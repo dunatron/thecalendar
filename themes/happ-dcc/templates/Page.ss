@@ -20,8 +20,9 @@
     <%-- Copy Paste from old version, tidy--%>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="$ThemeDir/css/bootstrap.css" />
-    <link rel="shortcut icon" href="../favicon.ico">
+    <%--<link rel="shortcut icon" href="../favicon.ico">--%>
 
+    <link rel="icon" type="image/png" href="PNG_File_Full_URL_Here">
     <!-- Calendar CSS -->
     <link rel="stylesheet" type="text/css" href="$ThemeDir/css/calendar.css" />
 
