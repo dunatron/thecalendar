@@ -1,59 +1,80 @@
 /**
  * Created by Heath on 24/05/16.
  */
+var xmlHttp = createXmlHttpRequestObject();
+/**
+ *
+ *This object is the core of ajax, communicates with server and user computer
+ *
+ **/
+function createXmlHttpRequestObject() {
+    var xmlHttp;
 
+    // If a window is open in your browser is aware of this object
+    if(window.XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();
+    }else{
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");//you are IE
+    }
 
-//$("document").ready(function() {
-//    $("#previous-month").click(function() {
-//        console.log('heath');
-////        $("#content").load("CalendarPage/prevMonth");
-//        $.ajax("CalendarPage/prevMonth", function(data) {
-//            alert(data);
-//        });
-//    });
-//});
+    return xmlHttp;// this object is now usable by other functions
+}
 
+/**
+ *
+ * Handle the first thing that is loaded when we visit the page
+ *
+ **/
+function process(){
+    if(xmlHttp){
+        try{
+            xmlHttp.open("GET", "bacon.txt", true); //Configure connection settings with server
+            xmlHttp.onreadystatechange = handleServerResponse;
+            xmlHttp.send(null); //this connects with the server
+        }catch(e){
+            alert( e.toString() );
 
-//
-//$('.main').on('click','.pagination a', function (e) {
-//    e.preventDefault();
-//    var url = $(this).attr('href');
-//    $.ajax(url)
-//        .done(function (response) {
-//            $('.main').html(response);
-//        })
-//        .fail (function (xhr) {
-//        alert('Error: ' + xhr.responseText);
-//    });
-//});
+        }
+    }
+}
 
-//$('.fc-calendar').on('click','.pagination a', function (e) {
-//    e.preventDefault();
-//    var url = $(this).attr('href');
-//    $.ajax(url)
-//        .done(function (response) {
-//            $('.main').html(response);
-//        })
-//        .fail (function (xhr) {
-//        alert('Error: ' + xhr.responseText);
-//    });
-//});
+/**
+ *
+ * Handle server response
+ *
+ **/
+function handleServerResponse(){
+    theD = document.getElementById('theD');
+    if(xmlHttp.readyState==1){
+        theD.innerHTML += "status 1: server connection established <br />";
+    }else if(xmlHttp.readyState==2){
+        theD.innerHTML += "status 2: request received <br />";
+    }else if(xmlHttp.readyState==3){
+        theD.innerHTML += "status 3: request received <br />";
+    }else if(xmlHttp.readyState==4){
+        if(xmlHttp.status==200){
+            try{
 
+                text = xmlHttp.responseText;
+                theD.innerHTML += "Status 4: request is finished and response is ready <br/>";
+                theD.innerHTML += text;
+            }catch(e){
+                alert( e.toString() );
+            }
+        }else{
+            alert( xmlHttp.statusText );
+        }
+    }
+}
 
+// handle clickTron
+function clickPrev(){
+    alert("go to previous month");
+}
 
-//$("document").ready(function() {
-//    $("#previous-month").click(function() {
-//        console.log('heath');
-////        $("#content").load("CalendarPage/prevMonth");
-//        $.ajax("CalendarPage/prevMonth", function(data) {
-//            alert(data);
-//        });
-//    });
-//});
-
-//document.onclick = function() {
-//    alert("you clicked somewhere in the document");
-//}
+function clickNext(){
+    alert("go to next month");
+}
 
 
 $('.calendarpage').on('click','#previous-month', function (e) {
@@ -70,38 +91,8 @@ $('.calendarpage').on('click','#previous-month', function (e) {
 });
 
 
-//function prepareEventHandlers() {
-//
-//    var previousMonth = document.getElementById("previous-month");
-//
-//    previousMonth.onclick = function() {
-//        alert("Lol you want to view last months events? why?");
-//    }
-//}
-
 window.onload = function() {
     // prep anything we need to
     prepareEventHandlers();
 }
 
-//Simple Ajax example
-
-// 1: Create the request
-var myRequest;
-
-// feature check
-if (window.XMLHttpRequest) { // does it exist? we're in Firefox, Safari etc.
-    myRequest = new XMLHttpRequest();
-} else if (window.ActiveXObject) { //if not we're in IE
-    myRequest = new ActiveXObject("Microsoft.XMLHTTP");
-}
-
-// 2: create an event handler for our request to call back
-myRequest.onreadystatechange = function() {
-    console.log("we were called!");
-}
-
-// open and send it
-myRequest.open('GET', 'simple.txt', true);
-// any parameters?
-myRequest.send(null);

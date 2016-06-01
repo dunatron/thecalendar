@@ -55,9 +55,9 @@
 
             <div class="controls-prev-next">
 
-                <a class="" id="previous-month" href="#"><i class="fa fa-2x fa-long-arrow-left" aria-hidden="true"></i></a>
+                <a class="" id="previous-month" onclick="clickPrev()" href="#"><i class="fa fa-2x fa-long-arrow-left" aria-hidden="true"></i></a>
 
-                <a class="" id="#next-month" href=""><i class="fa fa-2x fa-long-arrow-right" aria-hidden="true"></i></a>
+                <a class="" id="#next-month" onclick="clickNext()" href=""><i class="fa fa-2x fa-long-arrow-right" aria-hidden="true"></i></a>
 
             </div>
 
