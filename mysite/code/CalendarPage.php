@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: heath
@@ -38,6 +39,7 @@ class CalendarPage extends Page
 
         return $fields;
     }
+
     /**
      * PROPERTY
      */
@@ -50,46 +52,60 @@ class CalendarPage extends Page
     private $naviHref = null;
 
 }
+
 class CalendarPage_Controller extends Page_Controller
 {
 
-    public function index(SS_HTTPRequest $request) {
-        /**
-         * DO AJAX
-         */
-        if(Director::is_ajax()) {
-
-            $m   = Session::get('Month');
-            $y   = Session::get('Year');
-//            echo '<pre>';
-//            var_dump("pre month ".$m);
-//            var_dump("pre Year ".$y);
-            $m--;
-            //$m = $this->formatMonth($m);
-            if($m == 0){$y--; $m=12;}
-            if($m == 1){$m = "01";}
-            elseif($m == 2){$m = "02";}
-            elseif($m == 3){$m = "03";}
-            elseif($m == 4){$m = "04";}
-            elseif($m == 5){$m = "05";}
-            elseif($m == 6){$m = "06";}
-            elseif($m == 7){$m = "07";}
-            elseif($m == 8){$m = "08";}
-            elseif($m== 9){$m = "09";}
-            else {
-                $m = $m;
-            }
-//            var_dump("post month ".$m);
-//            var_dump("post Year ".$y);
-            Session::set('Month', $m);
-            Session::set('Year', $y);
-            //return $this->renderWith("CalendarPage");
-            $cal = $this->draw_calendar();
-            return $cal;
-        } else {
-            return Array();// execution as usual in this case...
-        }
-    }
+//    public function index(SS_HTTPRequest $request)
+//    {
+//        /**
+//         * DO AJAX
+//         */
+//        if (Director::is_ajax()) {
+//
+//            $m = Session::get('Month');
+//            $y = Session::get('Year');
+////            echo '<pre>';
+////            var_dump("pre month ".$m);
+////            var_dump("pre Year ".$y);
+//            $m--;
+//            //$m = $this->formatMonth($m);
+//            if ($m == 0) {
+//                $y--;
+//                $m = 12;
+//            }
+//            if ($m == 1) {
+//                $m = "01";
+//            } elseif ($m == 2) {
+//                $m = "02";
+//            } elseif ($m == 3) {
+//                $m = "03";
+//            } elseif ($m == 4) {
+//                $m = "04";
+//            } elseif ($m == 5) {
+//                $m = "05";
+//            } elseif ($m == 6) {
+//                $m = "06";
+//            } elseif ($m == 7) {
+//                $m = "07";
+//            } elseif ($m == 8) {
+//                $m = "08";
+//            } elseif ($m == 9) {
+//                $m = "09";
+//            } else {
+//                $m = $m;
+//            }
+////            var_dump("post month ".$m);
+////            var_dump("post Year ".$y);
+//            Session::set('Month', $m);
+//            Session::set('Year', $y);
+//            //return $this->renderWith("CalendarPage");
+//            $cal = $this->draw_calendar();
+//            return $cal;
+//        } else {
+//            return Array(); // execution as usual in this case...
+//        }
+//    }
 
     //Inject assets through controller
     public function init()
@@ -108,26 +124,16 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
 
         if (!isset($_SESSION['Month'])) {
-//            @session_start();
+            //@session_start();
             $var = 3;
             Session::set('MyVar', $var);
-            $m= date("m");
+            $m = date("m");
             Session::set('Month', $m);
-            $y= date("Y");
+            $y = date("Y");
             Session::set('Year', $y);
         }
-
-
-//        $var = 3;
-//        Session::set('MyVar', $var);
-//        $m= date("m");
-//        Session::set('Month', $m);
-//        $y= date("Y");
-//        Session::set('Year', $y);
-
-
-
     }
+
     private static $allowed_actions = array(
         'show',
         'CommentForm',
@@ -136,40 +142,231 @@ class CalendarPage_Controller extends Page_Controller
         'AddEventForm',
         'processAddEvent',
         'testJax',
-        'jaxNextMonth'
+        'jaxNextMonth',
+        'jaxPreviousMonth',
+        'FMonthName',
+        'BMonthName',
+        'currentYear',
+        'currentMonthName',
+        'nextShortMonth',
+        'prevShortMonth'
 
     );
+
+    /**
+     * Format Month Names And Year
+     */
+
+    public function FMonthName()
+    {
+        $month = Session::get('Month');
+        return $month;
+    }
+
+    public function BMonthName()
+    {
+        $month = Session::get('Month');
+        return $month;
+    }
+
+    public function currentMonth()
+    {
+        $var = Session::get('Month'); // month session variable1
+        return $var;
+    }
+
+    public function currentYear()
+    {
+        $var = Session::get('Year'); // year session var
+        return $var;
+    }
+
+    public function currentMonthName()
+    {
+        $mthNum = Session::get('Month'); // month session variable1
+        $dateObj = DateTime::createFromFormat('!m', $mthNum);
+        $mthName = $dateObj->format('F'); // April
+
+        return $mthName;
+    }
+
+    /**
+     * @return string
+     * Short month name for previous month
+     */
+    public function prevShortMonth()
+    {
+        $mthNum = Session::get('Month'); // month session variable1
+        $mthNum--;
+        $dateObj = DateTime::createFromFormat('!m', $mthNum);
+        $mthName = $dateObj->format('F'); // April
+        if ($mthName == "January"){
+            $fMonthName = "Jan";
+        } elseif($mthName == "February") {
+            $fMonthName = "Jan";
+        }
+        elseif($mthName == "March") {
+            $fMonthName = "Mar";
+        }
+        elseif($mthName == "April") {
+            $fMonthName = "Apr";
+        }
+        elseif($mthName == "May") {
+            $fMonthName = "May";
+        }
+        elseif($mthName == "June") {
+            $fMonthName = "June";
+        }
+        elseif($mthName == "July") {
+            $fMonthName = "July";
+        }
+        elseif($mthName == "August") {
+            $fMonthName = "Aug";
+        }
+        elseif($mthName == "September") {
+            $fMonthName = "Sep";
+        }
+        elseif($mthName == "October") {
+            $fMonthName = "Oct";
+        }
+        elseif($mthName == "November") {
+            $fMonthName = "Nov";
+        }
+        elseif($mthName == "December") {
+            $fMonthName = "Dec";
+        }
+
+        return $fMonthName;
+    }
+
+
+    /**
+     * @return string
+     * Short month name for next month
+     */
+    public function nextShortMonth()
+    {
+        $mthNum = Session::get('Month'); // month session variable1
+        $mthNum++;
+        $dateObj = DateTime::createFromFormat('!m', $mthNum);
+        $mthName = $dateObj->format('F'); // April
+        if ($mthName == "January"){
+            $fMonthName = "Jan";
+        } elseif($mthName == "February") {
+            $fMonthName = "Jan";
+        }
+        elseif($mthName == "March") {
+            $fMonthName = "Mar";
+        }
+        elseif($mthName == "April") {
+            $fMonthName = "Apr";
+        }
+        elseif($mthName == "May") {
+            $fMonthName = "May";
+        }
+        elseif($mthName == "June") {
+            $fMonthName = "June";
+        }
+        elseif($mthName == "July") {
+            $fMonthName = "July";
+        }
+        elseif($mthName == "August") {
+            $fMonthName = "Aug";
+        }
+        elseif($mthName == "September") {
+            $fMonthName = "Sep";
+        }
+        elseif($mthName == "October") {
+            $fMonthName = "Oct";
+        }
+        elseif($mthName == "November") {
+            $fMonthName = "Nov";
+        }
+        elseif($mthName == "December") {
+            $fMonthName = "Dec";
+        }
+
+        return $fMonthName;
+    }
+
+    public function jaxPreviousMonth()
+    {
+        $m = Session::get('Month');
+        $y = Session::get('Year');
+        $m--;
+        if ($m == 0) {
+            $y--;
+            $m = 12;
+        }
+        if ($m == 1) {
+            $m = "01";
+        } elseif ($m == 2) {
+            $m = "02";
+        } elseif ($m == 3) {
+            $m = "03";
+        } elseif ($m == 4) {
+            $m = "04";
+        } elseif ($m == 5) {
+            $m = "05";
+        } elseif ($m == 6) {
+            $m = "06";
+        } elseif ($m == 7) {
+            $m = "07";
+        } elseif ($m == 8) {
+            $m = "08";
+        } elseif ($m == 9) {
+            $m = "09";
+        } else {
+            $m = $m;
+        }
+        Session::set('Month', $m);
+        Session::set('Year', $y);
+        $cal = $this->draw_calendar();
+        return $cal;
+    }
 
 
     public function jaxNextMonth()
     {
 
-        $m   = Session::get('Month');
-        $y   = Session::get('Year');
-//            echo '<pre>';
-//            var_dump("pre month ".$m);
-//            var_dump("pre Year ".$y);
+//        $initial = $this->init();
+//        parent::init($initial);
+
+        $m = Session::get('Month');
+        $y = Session::get('Year');
         $m++;
-        //$m = $this->formatMonth($m);
-        if($m == 0){$y--; $m=12;}
-        if($m == 1){$m = "01";}
-        elseif($m == 2){$m = "02";}
-        elseif($m == 3){$m = "03";}
-        elseif($m == 4){$m = "04";}
-        elseif($m == 5){$m = "05";}
-        elseif($m == 6){$m = "06";}
-        elseif($m == 7){$m = "07";}
-        elseif($m == 8){$m = "08";}
-        elseif($m== 9){$m = "09";}
-        else {
+
+        if ($m == 12) {
+            $y++;
+            $m = 1;
+        }
+        if ($m == 1) {
+            $m = "01";
+        } elseif ($m == 2) {
+            $m = "02";
+        } elseif ($m == 3) {
+            $m = "03";
+        } elseif ($m == 4) {
+            $m = "04";
+        } elseif ($m == 5) {
+            $m = "05";
+        } elseif ($m == 6) {
+            $m = "06";
+        } elseif ($m == 7) {
+            $m = "07";
+        } elseif ($m == 8) {
+            $m = "08";
+        } elseif ($m == 9) {
+            $m = "09";
+        } else {
             $m = $m;
         }
-//            var_dump("post month ".$m);
-//            var_dump("post Year ".$y);
+
         Session::set('Month', $m);
         Session::set('Year', $y);
-        //return $this->renderWith("CalendarPage");
+
         $cal = $this->draw_calendar();
+
         return $cal;
 
     }
@@ -184,20 +381,29 @@ class CalendarPage_Controller extends Page_Controller
     /**
      * Format Month Method (if = 1 make it 01 etc...)
      */
-    public function formatMonth($m ='')
+    public function formatMonth($m = '')
     {
         $m = 3;
 
-        if($m == 1){$m = "01";}
-        elseif($m == 2){$m = "02";}
-        elseif($m == 3){$m = "03";}
-        elseif($m == 4){$m = "04";}
-        elseif($m == 5){$m = "05";}
-        elseif($m == 6){$m = "06";}
-        elseif($m == 7){$m = "07";}
-        elseif($m == 8){$m = "08";}
-        elseif($m== 9){$m = "09";}
-        else {
+        if ($m == 1) {
+            $m = "01";
+        } elseif ($m == 2) {
+            $m = "02";
+        } elseif ($m == 3) {
+            $m = "03";
+        } elseif ($m == 4) {
+            $m = "04";
+        } elseif ($m == 5) {
+            $m = "05";
+        } elseif ($m == 6) {
+            $m = "06";
+        } elseif ($m == 7) {
+            $m = "07";
+        } elseif ($m == 8) {
+            $m = "08";
+        } elseif ($m == 9) {
+            $m = "09";
+        } else {
             $m = $m;
         }
 
@@ -216,52 +422,50 @@ class CalendarPage_Controller extends Page_Controller
             $this,
             __FUNCTION__,
             FieldList::create(
-                TextField::create('Title','')
-                    ->setAttribute('placeholder','Name')
+                TextField::create('Title', '')
+                    ->setAttribute('placeholder', 'Name')
                     ->addExtraClass('add-event-form-element'),
-                DateField::create('EventDate','')
-                    ->setAttribute('placeholder','Date')
+                DateField::create('EventDate', '')
+                    ->setAttribute('placeholder', 'Date')
                     ->addExtraClass('add-event-form-element')
                     ->setConfig('dateformat', 'MM-dd-yyyy')
                     ->setConfig('showcalendar', true)
                     ->setAttribute('id', 'event-date'),
-                TimePickerField::create('StartTime','')
-                    ->setAttribute('placeholder','Start Time')
+                TimePickerField::create('StartTime', '')
+                    ->setAttribute('placeholder', 'Start Time')
                     ->addExtraClass('add-event-form-element'),
-                TimePickerField::create('FinishTime','')
-                    ->setAttribute('placeholder','Finish Time')
+                TimePickerField::create('FinishTime', '')
+                    ->setAttribute('placeholder', 'Finish Time')
                     ->addExtraClass('add-event-form-element'),
 
-                TextField::create('Type','')
-                    ->setAttribute('placeholder','Type')
+                TextField::create('Type', '')
+                    ->setAttribute('placeholder', 'Type')
                     ->addExtraClass('add-event-form-element'),
-                TextField::create('Location','')
-                    ->setAttribute('placeholder','Location')
+                TextField::create('Location', '')
+                    ->setAttribute('placeholder', 'Location')
                     ->addExtraClass('add-event-form-element'),
 //                DropdownField::create('Module',
 //                    'Please Choose What Module your issue relates to',
 //                    Page::get("ModulePage")->map("ID", "Title", "Please Select"))
 //                    ->addExtraClass('onboard-form-element'),
-                TextareaField::create('Message','')
-                    ->setAttribute('placeholder','Event Details')
+                TextareaField::create('Message', '')
+                    ->setAttribute('placeholder', 'Event Details')
                     ->addExtraClass('add-event-form-element'),
                 FileField::create('EventImage')
                     ->addExtraClass('add-event-form-element')
 
 
-
             ),
             FieldList::create(
-                FormAction::create('processAddEvent','Apply To Add Event')
+                FormAction::create('processAddEvent', 'Apply To Add Event')
                     ->setUseButtonTag(true)
                     ->addExtraClass('btn btn-lg')
             ),
-            RequiredFields::create('Title','EventDate','StartTime')
+            RequiredFields::create('Title', 'EventDate', 'StartTime')
         );
 
         $form->addExtraClass('add-event-form');
 
-        //return $form;
         $data = Session::get("FormData.{$form->getName()}.data");
 
         return $data ? $form->loadDataFrom($data) : $form;
@@ -295,7 +499,7 @@ class CalendarPage_Controller extends Page_Controller
 //        echo '<pre>';
 //        var_dump($event);
 //        die('made it to the end');
-        $form->sessionMessage('Thanks for adding an event ','good');
+        $form->sessionMessage('Thanks for adding an event ', 'good');
 
         return $this->redirectBack();
 
@@ -304,58 +508,22 @@ class CalendarPage_Controller extends Page_Controller
 
 
 
-    public function currentMonthName(){
-        $mthNum   = Session::get('Month'); // month session variable1
-        $dateObj = DateTime::createFromFormat('!m', $mthNum);
-        $mthName = $dateObj->format('F'); // April
 
-        return $mthName;
-    }
 
-    public function currentMonth(){
-        $var   = Session::get('Month'); // month session variable1
-        return $var;
-    }
-    public function currentYear(){
-        $var = Session::get('Year'); // year session var
-        return $var;
-    }
-    //Previous Month
-    public function prevMonth()
+
+    public function getEvents()
     {
-        die("hello");
-//        $calendar = $this->draw_calendar(1);
-//        // Kinda
-//        return $calendar;
-    }
-    public function forwardMonth()
-    {
-        global $cmonth;
-        $cmonth + 1;
-        return $this->redirectBack();
-    }
-
-    public function getEvents(){
         $events = Event::get()->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects
         return $events;
 
     }
 
 
-
-    function draw_calendar($m='', $y='')
-        //function draw_calendar()
+    function draw_calendar($m = '', $y = '')
     {
 
-        $m   = Session::get('Month'); // $var = 3 from init function
+        $m = Session::get('Month'); // $var = 3 from init function
         $y = Session::get('Year');
-
-        // TODO: 01 to 1 bug or 1 to 01
-//        $events = $this->getEvents();
-//        foreach($events as $e){
-//            echo $e->EventDate;
-//
-//        }
 
         $cmonth = $m;
         $cyear = $y;
@@ -413,7 +581,7 @@ class CalendarPage_Controller extends Page_Controller
         for ($x = 0; $x < $running_day; $x++):
             $calendar .= '<div class="outer-square"></div> <div class="day-square"></div>';
 
-           //test
+            //test
             $test = 0;
 
             $days_in_this_week++;
@@ -426,42 +594,51 @@ class CalendarPage_Controller extends Page_Controller
 
 
             $events = $this->getEvents();
-            if($list_day == 1){$convertday = "01";}
-            elseif($list_day == 2){$convertday = "02";}
-            elseif($list_day == 3){$convertday = "03";}
-            elseif($list_day == 4){$convertday = "04";}
-            elseif($list_day == 5){$convertday = "05";}
-            elseif($list_day == 6){$convertday = "06";}
-            elseif($list_day == 7){$convertday = "07";}
-            elseif($list_day == 8){$convertday = "08";}
-            elseif($list_day == 9){$convertday = "09";}
-            else {
+            if ($list_day == 1) {
+                $convertday = "01";
+            } elseif ($list_day == 2) {
+                $convertday = "02";
+            } elseif ($list_day == 3) {
+                $convertday = "03";
+            } elseif ($list_day == 4) {
+                $convertday = "04";
+            } elseif ($list_day == 5) {
+                $convertday = "05";
+            } elseif ($list_day == 6) {
+                $convertday = "06";
+            } elseif ($list_day == 7) {
+                $convertday = "07";
+            } elseif ($list_day == 8) {
+                $convertday = "08";
+            } elseif ($list_day == 9) {
+                $convertday = "09";
+            } else {
                 $convertday = $list_day;
             }
-            $sqDate = $year .'-'. $month .'-'.$convertday;
+            $sqDate = $year . '-' . $month . '-' . $convertday;
 
-            foreach($events as $e){
+            foreach ($events as $e) {
 
-                if($sqDate == $e->EventDate){
+                if ($sqDate == $e->EventDate) {
                     /**
                      * Begin event button build
                      */
                     //var_dump($e); // memory test
 
-                    $calendar .= '<div class="event-btn"><a  class="happ_e_button" data-toggle="modal" data-target="#myModal-'.$e->ID.'">
-                    '.$e->Title.'
+                    $calendar .= '<div class="event-btn"><a  class="happ_e_button" data-toggle="modal" data-target="#myModal-' . $e->ID . '">
+                    ' . $e->Title . '
                     </a></div>
 
 <!-- Modal -->
-<div class="modal fade toggle-fade" id="myModal-'.$e->ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade toggle-fade" id="myModal-' . $e->ID . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">'.$e->Title.'</h4>
+        <h4 class="modal-title" id="myModalLabel">' . $e->Title . '</h4>
       </div>
       <div class="modal-body">
-        '.$e->Description.'
+        ' . $e->Description . '
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -471,8 +648,7 @@ class CalendarPage_Controller extends Page_Controller
   </div>
 </div>';
 
-                }
-                else {
+                } else {
                     continue;
                 }
 

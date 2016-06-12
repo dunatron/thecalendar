@@ -67,63 +67,119 @@ function handleServerResponse(){
     }
 }
 
-//handle clickTron
-//function clickPrev(){
-//    alert("go to previous month");
-//    var url = $(this).attr('href');
-//    alert(url);
-//    $.ajax(url)
-//        .done(function (response) {
-//            $('.fc-calendar-container').html(response);
-//        })
-//        .fail (function (xhr) {
-//        alert('Error: ' + xhr.responseText);
-//    });
-//}
-//
-//function clickNext(){
-//    alert("go to next month");
-//    var url = $(this).attr('href');
-//    alert(url);
-//    $.ajax(url)
-//        .done(function (response) {
-//            $('.fc-calendar-container').html(response);
-//        })
-//        .fail (function (xhr) {
-//        alert('Error: ' + xhr.responseText);
-//    });
-//}
-//
+/**
+ * OnClick Previous Month
+ */
+
 $('.calendarpage').on('click','#previous-month', function (e) {
     e.preventDefault();
-//    alert("Lol you want to view last months events? why?");
     var url = $(this).attr('href');
-    alert(url);
-    $.ajax(url)
+    // Replace calendar body
+    $.ajax(url+"/jaxPreviousMonth")
         .done(function (response) {
             $('.fc-calendar-container').html(response);
         })
         .fail (function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
+    // Replace Month Name
+    $.ajax(url+"/currentMonthName")
+        .done(function (response) {
+            $('.theMonth').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+    // Replace Year
+    $.ajax(url+"/currentYear")
+        .done(function (response) {
+            $('.theYear').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+
+    // Replace Next button short month
+    $.ajax(url+"/nextShortMonth")
+        .done(function (response) {
+            $('.short-next-text').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+
+    // Replace Previous button short month
+    $.ajax(url+"/prevShortMonth")
+        .done(function (response) {
+            $('.short-previous-text').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+
 });
+
+/**
+ * OnClick Next Month
+ */
 
 $('.calendarpage').on('click','#next-month', function (e) {
     e.preventDefault();
-//    alert("Lol you want to view last months events? why?");
     var url = $(this).attr('href');
-    $.ajax(url)
+
+    // Replace calendar body
+    $.ajax(url+"/jaxNextMonth")
         .done(function (response) {
             $('.fc-calendar-container').html(response);
         })
         .fail (function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
+
+    // Replace Month
+    $.ajax(url+"/currentMonthName")
+        .done(function (response) {
+            $('.theMonth').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+
+    // Replace Year
+    $.ajax(url+"/currentYear")
+        .done(function (response) {
+            $('.theYear').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+
+    // Replace Next button short month
+    $.ajax(url+"/nextShortMonth")
+        .done(function (response) {
+            $('.short-next-text').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+
+    // Replace Previous button short month
+    $.ajax(url+"/prevShortMonth")
+        .done(function (response) {
+            $('.short-previous-text').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+
+
+
 });
 
 
-window.onload = function() {
-    // prep anything we need to
-    prepareEventHandlers();
-}
+//window.onload = function() {
+//    // prep anything we need to
+//    prepareEventHandlers();
+//}
+
 

@@ -10,10 +10,23 @@
     z-index: 100;
     text-align: left;
     padding: 0 15px 0 40px;
+
+    .theMonth {
+      padding: 0 20px 0 0;
+      font-family: HelveticaNeue,Helvetica,sans-serif;
+      color:@color-dcc-blue;
+
+    }
+
+    .theYear {
+      font-family: HelveticaNeue,Helvetica,sans-serif;
+      color:@color-dcc-blue;
+    }
+
   }
 
   .logo-wrapper {
-    z-index: -999999;
+    z-index: 500;
     text-align: center;
     img {
       margin-top: 5px;
@@ -32,9 +45,29 @@
     margin-right: auto;
     margin-left: auto;
 
+
     .controls-prev-next {
       display: inline-block;
       padding: 0 20px 0 20px;
+      color: #042C5C;
+      a {
+        width: 150px;
+        color: #042C5C;
+        border: 3px solid #042C5C;
+        padding: 18px 8px 8px 8px;
+        margin: 5px;
+      }
+
+      #previous-month {
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+      }
+
+      #next-month {
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
       @media @min865 {
         float: right;
       }
