@@ -62,6 +62,7 @@
 </head>
 <body class="$ClassName.LowerCase">
 <!--[if lt IE 10]>
+
 <div class="chromeframe">
     <div class="row">
         <div class="col-lg-12">

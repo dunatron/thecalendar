@@ -134,9 +134,52 @@ class CalendarPage_Controller extends Page_Controller
         'test',
         'HelloForm',
         'AddEventForm',
-        'processAddEvent'
+        'processAddEvent',
+        'testJax',
+        'jaxNextMonth'
 
     );
+
+
+    public function jaxNextMonth()
+    {
+
+        $m   = Session::get('Month');
+        $y   = Session::get('Year');
+//            echo '<pre>';
+//            var_dump("pre month ".$m);
+//            var_dump("pre Year ".$y);
+        $m++;
+        //$m = $this->formatMonth($m);
+        if($m == 0){$y--; $m=12;}
+        if($m == 1){$m = "01";}
+        elseif($m == 2){$m = "02";}
+        elseif($m == 3){$m = "03";}
+        elseif($m == 4){$m = "04";}
+        elseif($m == 5){$m = "05";}
+        elseif($m == 6){$m = "06";}
+        elseif($m == 7){$m = "07";}
+        elseif($m == 8){$m = "08";}
+        elseif($m== 9){$m = "09";}
+        else {
+            $m = $m;
+        }
+//            var_dump("post month ".$m);
+//            var_dump("post Year ".$y);
+        Session::set('Month', $m);
+        Session::set('Year', $y);
+        //return $this->renderWith("CalendarPage");
+        $cal = $this->draw_calendar();
+        return $cal;
+
+    }
+
+    public function testJax()
+    {
+        $jax = "Hi this was jax method returning";
+        echo($jax);
+        return $jax;
+    }
 
     /**
      * Format Month Method (if = 1 make it 01 etc...)

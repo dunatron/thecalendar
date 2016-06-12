@@ -67,17 +67,48 @@ function handleServerResponse(){
     }
 }
 
-// handle clickTron
-function clickPrev(){
-    alert("go to previous month");
-}
-
-function clickNext(){
-    alert("go to next month");
-}
-
-
+//handle clickTron
+//function clickPrev(){
+//    alert("go to previous month");
+//    var url = $(this).attr('href');
+//    alert(url);
+//    $.ajax(url)
+//        .done(function (response) {
+//            $('.fc-calendar-container').html(response);
+//        })
+//        .fail (function (xhr) {
+//        alert('Error: ' + xhr.responseText);
+//    });
+//}
+//
+//function clickNext(){
+//    alert("go to next month");
+//    var url = $(this).attr('href');
+//    alert(url);
+//    $.ajax(url)
+//        .done(function (response) {
+//            $('.fc-calendar-container').html(response);
+//        })
+//        .fail (function (xhr) {
+//        alert('Error: ' + xhr.responseText);
+//    });
+//}
+//
 $('.calendarpage').on('click','#previous-month', function (e) {
+    e.preventDefault();
+//    alert("Lol you want to view last months events? why?");
+    var url = $(this).attr('href');
+    alert(url);
+    $.ajax(url)
+        .done(function (response) {
+            $('.fc-calendar-container').html(response);
+        })
+        .fail (function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+});
+
+$('.calendarpage').on('click','#next-month', function (e) {
     e.preventDefault();
 //    alert("Lol you want to view last months events? why?");
     var url = $(this).attr('href');
