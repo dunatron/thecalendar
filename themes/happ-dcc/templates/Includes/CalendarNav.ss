@@ -14,13 +14,13 @@
 
             <div class="controls-prev-next">
 
-                <a class="month-button" id="previous-month" onclick="clickPrev()" href="$AbsoluteBaseURL/home">
+                <a class="month-button" id="previous-month" href="$AbsoluteBaseURL/home">
                     <i class="fa fa-2x fa-arrow-circle-o-left" aria-hidden="true">
                         <span class="short-previous-text">$prevShortMonth</span>
                     </i>
                 </a>
 
-                <a class="month-button" id="next-month" onclick="clickNext()" href="$AbsoluteBaseURL/home">
+                <a class="month-button" id="next-month" href="$AbsoluteBaseURL/home">
                     <i class="fa fa-2x fa-arrow-circle-o-right" aria-hidden="true">
                         <span class="short-next-text">$nextShortMonth</span>
                     </i>
