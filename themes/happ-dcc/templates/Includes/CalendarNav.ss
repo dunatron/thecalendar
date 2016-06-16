@@ -8,7 +8,9 @@
             <h2><span class="theMonth">$currentMonthName</span><span class="theYear">$currentYear</span> </h2>
         </div>
         <div class="logo-wrapper col-md-4 col-sm-4">
-            <img src="$ThemeDir/images/DCC_logo_tiny.png" class="img-responsive">
+            <%--<a href="$AbsoluteBaseURL/home">--%>
+                <img src="$ThemeDir/images/DCC_logo_tiny.png" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates" class="img-responsive">
+            <%--</a>--%>
         </div>
         <div class="controls-wrapper col-md-4 col-sm-4">
 

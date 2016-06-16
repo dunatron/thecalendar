@@ -19,6 +19,7 @@ class Event extends DataObject {
         'StartTime' => 'Time',
         'FinishTime' => 'Time',
         'Type' => "Enum(array('Sport', 'Concert'))",
+        'Approved' => 'Boolean',
 
     );
 
@@ -32,6 +33,7 @@ class Event extends DataObject {
             ->setConfig('showcalendar', true));
         $fields->addFieldToTab('Root.Main', TimePickerField::create('StartTime'));
         $fields->addFieldToTab('Root.Main', TimePickerField::create('FinishTime'));
+        $fields->addFieldToTab('Root.Main', CheckboxField::create('Approved'));
 
         $fields->addFieldToTab('Root.Main', $eventImage = UploadField::create('EventImage'));
         //Set allowed upload extensions

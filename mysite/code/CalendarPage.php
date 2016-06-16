@@ -62,46 +62,7 @@ class CalendarPage_Controller extends Page_Controller
 //         * DO AJAX
 //         */
 //        if (Director::is_ajax()) {
-//
-//            $m = Session::get('Month');
-//            $y = Session::get('Year');
-////            echo '<pre>';
-////            var_dump("pre month ".$m);
-////            var_dump("pre Year ".$y);
-//            $m--;
-//            //$m = $this->formatMonth($m);
-//            if ($m == 0) {
-//                $y--;
-//                $m = 12;
-//            }
-//            if ($m == 1) {
-//                $m = "01";
-//            } elseif ($m == 2) {
-//                $m = "02";
-//            } elseif ($m == 3) {
-//                $m = "03";
-//            } elseif ($m == 4) {
-//                $m = "04";
-//            } elseif ($m == 5) {
-//                $m = "05";
-//            } elseif ($m == 6) {
-//                $m = "06";
-//            } elseif ($m == 7) {
-//                $m = "07";
-//            } elseif ($m == 8) {
-//                $m = "08";
-//            } elseif ($m == 9) {
-//                $m = "09";
-//            } else {
-//                $m = $m;
-//            }
-////            var_dump("post month ".$m);
-////            var_dump("post Year ".$y);
-//            Session::set('Month', $m);
-//            Session::set('Year', $y);
-//            //return $this->renderWith("CalendarPage");
-//            $cal = $this->draw_calendar();
-//            return $cal;
+
 //        } else {
 //            return Array(); // execution as usual in this case...
 //        }
@@ -149,14 +110,14 @@ class CalendarPage_Controller extends Page_Controller
         'currentYear',
         'currentMonthName',
         'nextShortMonth',
-        'prevShortMonth'
+        'prevShortMonth',
+        'resetCalendarDate'
 
     );
 
     /**
-     * Format Month Names And Year
+     * Format & return Month, Names & Year
      */
-
     public function FMonthName()
     {
         $month = Session::get('Month');
@@ -188,6 +149,18 @@ class CalendarPage_Controller extends Page_Controller
         $mthName = $dateObj->format('F'); // April
 
         return $mthName;
+    }
+
+    public function resetCalendarDate()
+    {
+
+        $m = date("m");
+        $y = date("Y");
+        Session::set('Month', $m);
+        Session::set('Year', $y);
+
+        $cal = $this->draw_calendar();
+        return $cal;
     }
 
     /**
@@ -476,10 +449,8 @@ class CalendarPage_Controller extends Page_Controller
     public function processAddEvent($data, $form)
     {
         //ToDo add image to db->map it to Image
-
         $formdate = $data['EventDate'];
         $transformdate = date("d-m-Y", strtotime($formdate));
-
         $event = Event::create();
         $event->Title = $data['Title'];
         $event->EventDate = $transformdate;
@@ -490,11 +461,8 @@ class CalendarPage_Controller extends Page_Controller
         $event->Location = $data['Location'];
         $event->Message = $data['Message'];
         $event->CalendarPageID = $this->ID;
-
         //Proccess Image
         $image = $data['EventImage'];
-
-
         $event->write();
 //        echo '<pre>';
 //        var_dump($event);
@@ -502,22 +470,37 @@ class CalendarPage_Controller extends Page_Controller
         $form->sessionMessage('Thanks for adding an event ', 'good');
 
         return $this->redirectBack();
-
-
     }
 
+    /**
+     * ToDo Query events by session month variable and test
+     */
 
-
-
-
-
+    /**
+     * @return DataList of Events to Render on Calendar
+     */
     public function getEvents()
     {
-        $events = Event::get()->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects
+        $events = Event::get()
+            ->where('Approved', 'TRUE')
+            ->where('')
+            ->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects
+
+
+//        // Read in Session Data
+//        $M = Session::get('Month');
+//        $Y = Session::get('Year');
+
+
+//        $sqlQuery = new SQLSelect();
+//
+//        $events = DB::prepared_query('SELECT FROM "Events" WHERE "month("$M"), year($Y)" = ?', array(0));
+
+
+
         return $events;
 
     }
-
 
     function draw_calendar($m = '', $y = '')
     {
@@ -651,7 +634,6 @@ class CalendarPage_Controller extends Page_Controller
                 } else {
                     continue;
                 }
-
             }
 
             $calendar .= '<span class="fc-weekday">';

@@ -11,9 +11,9 @@ function createXmlHttpRequestObject() {
     var xmlHttp;
 
     // If a window is open in your browser is aware of this object
-    if(window.XMLHttpRequest) {
+    if (window.XMLHttpRequest) {
         xmlHttp = new XMLHttpRequest();
-    }else{
+    } else {
         xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");//you are IE
     }
 
@@ -25,14 +25,14 @@ function createXmlHttpRequestObject() {
  * Handle the first thing that is loaded when we visit the page
  *
  **/
-function process(){
-    if(xmlHttp){
-        try{
+function process() {
+    if (xmlHttp) {
+        try {
             xmlHttp.open("GET", "bacon.txt", true); //Configure connection settings with server
             xmlHttp.onreadystatechange = handleServerResponse;
             xmlHttp.send(null); //this connects with the server
-        }catch(e){
-            alert( e.toString() );
+        } catch (e) {
+            alert(e.toString());
 
         }
     }
@@ -43,26 +43,26 @@ function process(){
  * Handle server response
  *
  **/
-function handleServerResponse(){
+function handleServerResponse() {
     theD = document.getElementById('theD');
-    if(xmlHttp.readyState==1){
+    if (xmlHttp.readyState == 1) {
         theD.innerHTML += "status 1: server connection established <br />";
-    }else if(xmlHttp.readyState==2){
+    } else if (xmlHttp.readyState == 2) {
         theD.innerHTML += "status 2: request received <br />";
-    }else if(xmlHttp.readyState==3){
+    } else if (xmlHttp.readyState == 3) {
         theD.innerHTML += "status 3: request received <br />";
-    }else if(xmlHttp.readyState==4){
-        if(xmlHttp.status==200){
-            try{
+    } else if (xmlHttp.readyState == 4) {
+        if (xmlHttp.status == 200) {
+            try {
 
                 text = xmlHttp.responseText;
                 theD.innerHTML += "Status 4: request is finished and response is ready <br/>";
                 theD.innerHTML += text;
-            }catch(e){
-                alert( e.toString() );
+            } catch (e) {
+                alert(e.toString());
             }
-        }else{
-            alert( xmlHttp.statusText );
+        } else {
+            alert(xmlHttp.statusText);
         }
     }
 }
@@ -70,110 +70,147 @@ function handleServerResponse(){
 /**
  * OnClick Previous Month
  */
-
-$('.calendarpage').on('click','#previous-month', function (e) {
+$('.calendarpage').on('click', '#previous-month', function (e) {
     e.preventDefault();
     var url = $(this).attr('href');
     // Replace calendar body
-    $.ajax(url+"/jaxPreviousMonth")
+    $.ajax(url + "/jaxPreviousMonth")
         .done(function (response) {
             $('.fc-calendar-container').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
     // Replace Month Name
-    $.ajax(url+"/currentMonthName")
+    $.ajax(url + "/currentMonthName")
         .done(function (response) {
             $('.theMonth').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
     // Replace Year
-    $.ajax(url+"/currentYear")
+    $.ajax(url + "/currentYear")
         .done(function (response) {
             $('.theYear').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
-
     // Replace Next button short month
-    $.ajax(url+"/nextShortMonth")
+    $.ajax(url + "/nextShortMonth")
         .done(function (response) {
             $('.short-next-text').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
-
     // Replace Previous button short month
-    $.ajax(url+"/prevShortMonth")
+    $.ajax(url + "/prevShortMonth")
         .done(function (response) {
             $('.short-previous-text').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
-
 });
 
 /**
  * OnClick Next Month
  */
 
-$('.calendarpage').on('click','#next-month', function (e) {
+$('.calendarpage').on('click', '#next-month', function (e) {
     e.preventDefault();
     var url = $(this).attr('href');
-
     // Replace calendar body
-    $.ajax(url+"/jaxNextMonth")
+    $.ajax(url + "/jaxNextMonth")
         .done(function (response) {
             $('.fc-calendar-container').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
-
     // Replace Month
-    $.ajax(url+"/currentMonthName")
+    $.ajax(url + "/currentMonthName")
         .done(function (response) {
             $('.theMonth').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
-
     // Replace Year
-    $.ajax(url+"/currentYear")
+    $.ajax(url + "/currentYear")
         .done(function (response) {
             $('.theYear').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
-
     // Replace Next button short month
-    $.ajax(url+"/nextShortMonth")
+    $.ajax(url + "/nextShortMonth")
         .done(function (response) {
             $('.short-next-text').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
-
     // Replace Previous button short month
-    $.ajax(url+"/prevShortMonth")
+    $.ajax(url + "/prevShortMonth")
         .done(function (response) {
             $('.short-previous-text').html(response);
         })
-        .fail (function (xhr) {
+        .fail(function (xhr) {
         alert('Error: ' + xhr.responseText);
     });
+});
 
 
-
+/**
+ * OnClick Next Month
+ */
+$('.calendarpage').on('click', '#reset-calendar-dates', function (e) {
+    e.preventDefault();
+    var url = $(this).attr('data-target');
+    // Replace calendar body
+    $.ajax(url + "/resetCalendarDate")
+        .done(function (response) {
+            $('.fc-calendar-container').html(response);
+        })
+        .fail(function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+    // Replace Month
+    $.ajax(url + "/currentMonthName")
+        .done(function (response) {
+            $('.theMonth').html(response);
+        })
+        .fail(function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+    // Replace Year
+    $.ajax(url + "/currentYear")
+        .done(function (response) {
+            $('.theYear').html(response);
+        })
+        .fail(function (xhr) {
+        alert('Error: ' + xhr.responseText);
+    });
+    // Replace Next button short month
+//    $.ajax(url + "/nextShortMonth")
+//        .done(function (response) {
+//            $('.short-next-text').html(response);
+//        })
+//        .fail(function (xhr) {
+//        alert('Error: ' + xhr.responseText);
+//    });
+//    // Replace Previous button short month
+//    $.ajax(url + "/prevShortMonth")
+//        .done(function (response) {
+//            $('.short-previous-text').html(response);
+//        })
+//        .fail(function (xhr) {
+//        alert('Error: ' + xhr.responseText);
+//    });
 });
 
 
