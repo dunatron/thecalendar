@@ -83,6 +83,7 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/jquery.calendario.js");
         Requirements::javascript($this->ThemeDir() . "js/modernizr.js");
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
+        Requirements::javascript($this->ThemeDir() . "js/datepicker.js");
 
         if (!isset($_SESSION['Month'])) {
             //@session_start();

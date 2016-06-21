@@ -5,6 +5,12 @@ $('#event-date input').datepicker({
     autoclose: true
 });
 
+// Close Datepicker when day is picked
+$('.calendarpage').on('click', '.day', function (e) {
+    $('.datepicker').css("display", "none");
+});
+
+
 $('#event-date input').on('show', function(e){
     console.debug('show', e.date, $(this).data('stickyDate'));
 
