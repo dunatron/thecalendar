@@ -11,6 +11,8 @@
                 <input class="timepicker timepicker-without-dropdown text-center" tabindex="0">
                 <input class="timepicker-dropdown timepicker-without-dropdown text-center" tabindex="0">
 
+                <% include happtimepicker %>
+
             </div>
             <div class="modal-footer">
 

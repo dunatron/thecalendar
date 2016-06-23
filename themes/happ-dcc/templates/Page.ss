@@ -113,6 +113,17 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
+<%-- Happ-Time-Picker --%>
+<script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jquery-ui.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/happ-timepicker/doc.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jtsage-datebox-4.0.0.bootstrap.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jtsage-datebox.lang.utf8.js"></script>
+
+
+
+
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>
