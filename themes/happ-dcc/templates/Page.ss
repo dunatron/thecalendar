@@ -38,6 +38,8 @@
     <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" />--%>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
 
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.css">
+
 
 
 
@@ -115,6 +117,9 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/formdimensions.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/trons-timepicker-interface.js"></script>
+
 <script type="text/javascript" src="$ThemeDir/js/datepicker.js"></script>
 
 </body>
