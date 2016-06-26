@@ -56,18 +56,6 @@ class CalendarPage extends Page
 class CalendarPage_Controller extends Page_Controller
 {
 
-//    public function index(SS_HTTPRequest $request)
-//    {
-//        /**
-//         * DO AJAX
-//         */
-//        if (Director::is_ajax()) {
-
-//        } else {
-//            return Array(); // execution as usual in this case...
-//        }
-//    }
-
     //Inject assets through controller
     public function init()
     {
@@ -122,12 +110,14 @@ class CalendarPage_Controller extends Page_Controller
     public function FMonthName()
     {
         $month = Session::get('Month');
+        $month++;
         return $month;
     }
 
     public function BMonthName()
     {
         $month = Session::get('Month');
+        $month--;
         return $month;
     }
 

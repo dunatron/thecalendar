@@ -70,7 +70,7 @@ function handleServerResponse() {
 /**
  * OnClick Previous Month
  */
-$('.calendarpage').on('click', '#previous-month', function (e) {
+$('#previous-month').on('click', function (e) {
     e.preventDefault();
     var url = $(this).attr('href');
     // Replace calendar body
@@ -98,7 +98,7 @@ $('.calendarpage').on('click', '#previous-month', function (e) {
         alert('Error: ' + xhr.responseText);
     });
     // Replace Next button short month
-    $.ajax(url + "/nextShortMonth")
+    $.ajax(url + "/BMonthName")
         .done(function (response) {
             $('.short-next-text').html(response);
         })
@@ -106,7 +106,7 @@ $('.calendarpage').on('click', '#previous-month', function (e) {
         alert('Error: ' + xhr.responseText);
     });
     // Replace Previous button short month
-    $.ajax(url + "/prevShortMonth")
+    $.ajax(url + "/FMonthName")
         .done(function (response) {
             $('.short-previous-text').html(response);
         })
@@ -168,7 +168,22 @@ $('.calendarpage').on('click', '#next-month', function (e) {
 /**
  * OnClick Next Month
  */
-$('.calendarpage').on('click', '#reset-calendar-dates', function (e) {
+
+// $('#next-month').on('click', function (e) {
+//     e.preventDefault();
+//     var url = $(this).attr('href');
+//     $('.fc-calendar-container').load(url + '/jaxNextMonth');
+//     $('.short-next-text').load(url + '/nextShortMonth');
+//     $('.short-previous-text').load(url + '/prevShortMonth');
+//     $('.theMonth').load(url + '/nextShortMonth');
+//     $('.theYear').load(url + '/currentYear');
+// });
+
+
+/**
+ * Reset Calendar Dates
+ */
+$('#reset-calendar-dates').on('click', function (e) {
     e.preventDefault();
     var url = $(this).attr('data-target');
     // Replace calendar body
@@ -196,21 +211,21 @@ $('.calendarpage').on('click', '#reset-calendar-dates', function (e) {
         alert('Error: ' + xhr.responseText);
     });
     // Replace Next button short month
-//    $.ajax(url + "/nextShortMonth")
-//        .done(function (response) {
-//            $('.short-next-text').html(response);
-//        })
-//        .fail(function (xhr) {
-//        alert('Error: ' + xhr.responseText);
-//    });
-//    // Replace Previous button short month
-//    $.ajax(url + "/prevShortMonth")
-//        .done(function (response) {
-//            $('.short-previous-text').html(response);
-//        })
-//        .fail(function (xhr) {
-//        alert('Error: ' + xhr.responseText);
-//    });
+   $.ajax(url + "/nextShortMonth")
+       .done(function (response) {
+           $('.short-next-text').html(response);
+       })
+       .fail(function (xhr) {
+       alert('Error: ' + xhr.responseText);
+   });
+   // Replace Previous button short month
+   $.ajax(url + "/prevShortMonth")
+       .done(function (response) {
+           $('.short-previous-text').html(response);
+       })
+       .fail(function (xhr) {
+       alert('Error: ' + xhr.responseText);
+   });
 });
 
 
