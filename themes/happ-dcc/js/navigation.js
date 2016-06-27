@@ -4,7 +4,8 @@
 var xmlHttp = createXmlHttpRequestObject();
 /**
  *
- *This object is the core of ajax, communicates with server and user computer
+ * This object is the core of ajax, communicates with server and user computer
+ * DO NOT REMOVE AJAX OBJECT
  *
  **/
 function createXmlHttpRequestObject() {
@@ -67,118 +68,6 @@ function handleServerResponse() {
     }
 }
 
-/**
- * OnClick Previous Month
- */
-$('#previous-month').on('click', function (e) {
-    e.preventDefault();
-    var url = $(this).attr('href');
-    // Replace calendar body
-    $.ajax(url + "/jaxPreviousMonth")
-        .done(function (response) {
-            $('.fc-calendar-container').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Month Name
-    $.ajax(url + "/currentMonthName")
-        .done(function (response) {
-            $('.theMonth').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Year
-    $.ajax(url + "/currentYear")
-        .done(function (response) {
-            $('.theYear').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Next button short month
-    $.ajax(url + "/BMonthName")
-        .done(function (response) {
-            $('.short-next-text').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Previous button short month
-    $.ajax(url + "/FMonthName")
-        .done(function (response) {
-            $('.short-previous-text').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-});
-
-/**
- * OnClick Next Month
- */
-
-$('.calendarpage').on('click', '#next-month', function (e) {
-    e.preventDefault();
-    var url = $(this).attr('href');
-    // Replace calendar body
-    $.ajax(url + "/jaxNextMonth")
-        .done(function (response) {
-            $('.fc-calendar-container').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Month
-    $.ajax(url + "/currentMonthName")
-        .done(function (response) {
-            $('.theMonth').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Year
-    $.ajax(url + "/currentYear")
-        .done(function (response) {
-            $('.theYear').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Next button short month
-    $.ajax(url + "/nextShortMonth")
-        .done(function (response) {
-            $('.short-next-text').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-    // Replace Previous button short month
-    $.ajax(url + "/prevShortMonth")
-        .done(function (response) {
-            $('.short-previous-text').html(response);
-        })
-        .fail(function (xhr) {
-        alert('Error: ' + xhr.responseText);
-    });
-});
-
-
-/**
- * OnClick Next Month
- */
-
-// $('#next-month').on('click', function (e) {
-//     e.preventDefault();
-//     var url = $(this).attr('href');
-//     $('.fc-calendar-container').load(url + '/jaxNextMonth');
-//     $('.short-next-text').load(url + '/nextShortMonth');
-//     $('.short-previous-text').load(url + '/prevShortMonth');
-//     $('.theMonth').load(url + '/nextShortMonth');
-//     $('.theYear').load(url + '/currentYear');
-// });
-
 
 /**
  * Reset Calendar Dates
@@ -228,11 +117,152 @@ $('#reset-calendar-dates').on('click', function (e) {
    });
 });
 
+/**
+ * Next Month Logic
+ */
+$('.calendarpage').on('click', '#next-month', function (e) {
+    var requestCallback = new MyRequestsCompleted({
+        numRequest: 5
+    });
+    var url = $(this).attr('href');
+    $.ajax({
+        url: url + '/jaxNextMonth',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.fc-calendar-container').html(response);
+                alert('Im the first callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/currentMonthName',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.theMonth').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/currentYear',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.theYear').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/nextShortMonth',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.short-next-text').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/prevShortMonth',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.short-previous-text').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+});
 
-//window.onload = function() {
-//    // prep anything we need to
-//    prepareEventHandlers();
-//}
+/**
+ * Previous Month Logic
+ */
+$('.calendarpage').on('click', '#previous-month', function (e) {
+    var requestCallback = new MyRequestsCompleted({
+        numRequest: 5
+    });
+    var url = $(this).attr('href');
+    $.ajax({
+        url: url + '/jaxPreviousMonth',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.fc-calendar-container').html(response);
+                alert('Im the first callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/currentMonthName',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.theMonth').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/currentYear',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.theYear').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/nextShortMonth',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.short-next-text').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+    $.ajax({
+        url: url + '/prevShortMonth',
+        success: function(data) {
+            requestCallback.addCallbackToQueue(true, function() {
+                $('.short-previous-text').html(response);
+                alert('Im the second callback');
+            });
+        }
+    });
+});
+
+
+var MyRequestsCompleted = (function() {
+    var numRequestToComplete,
+        requestsCompleted,
+        callBacks,
+        singleCallBack;
+
+    return function(options) {
+        if (!options) options = {};
+
+        numRequestToComplete = options.numRequest || 0;
+        requestsCompleted = options.requestsCompleted || 0;
+        callBacks = [];
+        var fireCallbacks = function () {
+            // alert("we're all complete");
+            for (var i = 0; i < callBacks.length; i++) callBacks[i]();
+        };
+        if (options.singleCallback) callBacks.push(options.singleCallback);
+
+
+
+        this.addCallbackToQueue = function(isComplete, callback) {
+            if (isComplete) requestsCompleted++;
+            if (callback) callBacks.push(callback);
+            if (requestsCompleted == numRequestToComplete) fireCallbacks();
+        };
+        this.requestComplete = function(isComplete) {
+            if (isComplete) requestsCompleted++;
+            if (requestsCompleted == numRequestToComplete) fireCallbacks();
+        };
+        this.setCallback = function(callback) {
+            callBacks.push(callBack);
+        };
+    };
+})();
+
 
 
 

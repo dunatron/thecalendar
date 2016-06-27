@@ -40,17 +40,6 @@ class CalendarPage extends Page
         return $fields;
     }
 
-    /**
-     * PROPERTY
-     */
-    private $dayLabels = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
-    private $currentYear = 0;
-    public $currentMonth = 1;
-    private $currentDay = 0;
-    private $currentDate = null;
-    private $daysInMonth = 0;
-    private $naviHref = null;
-
 }
 
 class CalendarPage_Controller extends Page_Controller
@@ -73,10 +62,9 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::javascript($this->ThemeDir() . "js/trondata.js");
         Requirements::javascript($this->ThemeDir() . "js/datepicker.js");
 
+        // If session is not set, get today's date and set year and month
         if (!isset($_SESSION['Month'])) {
             //@session_start();
-            $var = 3;
-            Session::set('MyVar', $var);
             $m = date("m");
             Session::set('Month', $m);
             $y = date("Y");
@@ -84,42 +72,19 @@ class CalendarPage_Controller extends Page_Controller
         }
     }
 
+    // Methods allowed to run on this controller
     private static $allowed_actions = array(
-        'show',
         'CommentForm',
-        'test',
-        'HelloForm',
         'AddEventForm',
         'processAddEvent',
-        'testJax',
         'jaxNextMonth',
         'jaxPreviousMonth',
-        'FMonthName',
-        'BMonthName',
         'currentYear',
         'currentMonthName',
         'nextShortMonth',
         'prevShortMonth',
         'resetCalendarDate'
-
     );
-
-    /**
-     * Format & return Month, Names & Year
-     */
-    public function FMonthName()
-    {
-        $month = Session::get('Month');
-        $month++;
-        return $month;
-    }
-
-    public function BMonthName()
-    {
-        $month = Session::get('Month');
-        $month--;
-        return $month;
-    }
 
     public function currentMonth()
     {
@@ -162,47 +127,9 @@ class CalendarPage_Controller extends Page_Controller
     {
         $mthNum = Session::get('Month'); // month session variable1
         $mthNum--;
-        $dateObj = DateTime::createFromFormat('!m', $mthNum);
-        $mthName = $dateObj->format('F'); // April
-        if ($mthName == "January"){
-            $fMonthName = "Jan";
-        } elseif($mthName == "February") {
-            $fMonthName = "Jan";
-        }
-        elseif($mthName == "March") {
-            $fMonthName = "Mar";
-        }
-        elseif($mthName == "April") {
-            $fMonthName = "Apr";
-        }
-        elseif($mthName == "May") {
-            $fMonthName = "May";
-        }
-        elseif($mthName == "June") {
-            $fMonthName = "June";
-        }
-        elseif($mthName == "July") {
-            $fMonthName = "July";
-        }
-        elseif($mthName == "August") {
-            $fMonthName = "Aug";
-        }
-        elseif($mthName == "September") {
-            $fMonthName = "Sep";
-        }
-        elseif($mthName == "October") {
-            $fMonthName = "Oct";
-        }
-        elseif($mthName == "November") {
-            $fMonthName = "Nov";
-        }
-        elseif($mthName == "December") {
-            $fMonthName = "Dec";
-        }
-
+        $fMonthName = $this->formatMonth($mthNum);
         return $fMonthName;
     }
-
 
     /**
      * @return string
@@ -212,99 +139,99 @@ class CalendarPage_Controller extends Page_Controller
     {
         $mthNum = Session::get('Month'); // month session variable1
         $mthNum++;
-        $dateObj = DateTime::createFromFormat('!m', $mthNum);
-        $mthName = $dateObj->format('F'); // April
-        if ($mthName == "January"){
-            $fMonthName = "Jan";
-        } elseif($mthName == "February") {
-            $fMonthName = "Jan";
-        }
-        elseif($mthName == "March") {
-            $fMonthName = "Mar";
-        }
-        elseif($mthName == "April") {
-            $fMonthName = "Apr";
-        }
-        elseif($mthName == "May") {
-            $fMonthName = "May";
-        }
-        elseif($mthName == "June") {
-            $fMonthName = "June";
-        }
-        elseif($mthName == "July") {
-            $fMonthName = "July";
-        }
-        elseif($mthName == "August") {
-            $fMonthName = "Aug";
-        }
-        elseif($mthName == "September") {
-            $fMonthName = "Sep";
-        }
-        elseif($mthName == "October") {
-            $fMonthName = "Oct";
-        }
-        elseif($mthName == "November") {
-            $fMonthName = "Nov";
-        }
-        elseif($mthName == "December") {
-            $fMonthName = "Dec";
-        }
-
+        $fMonthName = $this->formatMonth($mthNum);
         return $fMonthName;
     }
 
+    /**
+     * @return Calendar Body {previousMonth}
+     */
     public function jaxPreviousMonth()
     {
         $m = Session::get('Month');
-        $y = Session::get('Year');
+
         $m--;
+        $this->formatMonthNumber($m);
+
+        $cal = $this->draw_calendar();
+        return $cal;
+    }
+
+
+    /**
+     * @return Calendar Body {nextMonth}
+     */
+    public function jaxNextMonth()
+    {
+        $m = Session::get('Month');
+        $m++;
+        $this->formatMonthNumber($m);
+        $cal = $this->draw_calendar();
+        return $cal;
+    }
+
+    /**
+     * Format long month{April} to short month{Apr}
+     */
+    public function formatMonth($m = '')
+    {
+        $dateObj = DateTime::createFromFormat('!m', $m);
+        $LongMonth = $dateObj->format('F'); // April
+        $mthName = $LongMonth;
+        if ($mthName == "January"){
+            $mN = "Jan";
+        } elseif($mthName == "February") {
+            $mN = "Jan";
+        }
+        elseif($mthName == "March") {
+            $mN = "Mar";
+        }
+        elseif($mthName == "April") {
+            $mN = "Apr";
+        }
+        elseif($mthName == "May") {
+            $mN = "May";
+        }
+        elseif($mthName == "June") {
+            $mN = "June";
+        }
+        elseif($mthName == "July") {
+            $mN = "July";
+        }
+        elseif($mthName == "August") {
+            $mN = "Aug";
+        }
+        elseif($mthName == "September") {
+            $mN = "Sep";
+        }
+        elseif($mthName == "October") {
+            $mN = "Oct";
+        }
+        elseif($mthName == "November") {
+            $mN = "Nov";
+        }
+        elseif($mthName == "December") {
+            $mN = "Dec";
+        }
+        return $mN;
+    }
+
+    /**
+     * Format Month Number 2 = "02"
+     */
+    public function formatMonthNumber($m = '')
+    {
+        $y = Session::get('Year');
+
         if ($m == 0) {
             $y--;
             $m = 12;
         }
-        if ($m == 1) {
-            $m = "01";
-        } elseif ($m == 2) {
-            $m = "02";
-        } elseif ($m == 3) {
-            $m = "03";
-        } elseif ($m == 4) {
-            $m = "04";
-        } elseif ($m == 5) {
-            $m = "05";
-        } elseif ($m == 6) {
-            $m = "06";
-        } elseif ($m == 7) {
-            $m = "07";
-        } elseif ($m == 8) {
-            $m = "08";
-        } elseif ($m == 9) {
-            $m = "09";
-        } else {
-            $m = $m;
-        }
-        Session::set('Month', $m);
-        Session::set('Year', $y);
-        $cal = $this->draw_calendar();
-        return $cal;
-    }
-
-
-    public function jaxNextMonth()
-    {
-
-//        $initial = $this->init();
-//        parent::init($initial);
-
-        $m = Session::get('Month');
-        $y = Session::get('Year');
-        $m++;
-
-        if ($m == 12) {
+        elseif ($m == 13) {
             $y++;
             $m = 1;
         }
-        if ($m == 1) {
+        elseif ($m == 1) {
             $m = "01";
         } elseif ($m == 2) {
             $m = "02";
@@ -325,54 +252,9 @@ class CalendarPage_Controller extends Page_Controller
         } else {
             $m = $m;
         }
-
         Session::set('Month', $m);
         Session::set('Year', $y);
-
-        $cal = $this->draw_calendar();
-
-        return $cal;
-
-    }
-
-    public function testJax()
-    {
-        $jax = "Hi this was jax method returning";
-        echo($jax);
-        return $jax;
-    }
-
-    /**
-     * Format Month Method (if = 1 make it 01 etc...)
-     */
-    public function formatMonth($m = '')
-    {
-        $m = 3;
-
-        if ($m == 1) {
-            $m = "01";
-        } elseif ($m == 2) {
-            $m = "02";
-        } elseif ($m == 3) {
-            $m = "03";
-        } elseif ($m == 4) {
-            $m = "04";
-        } elseif ($m == 5) {
-            $m = "05";
-        } elseif ($m == 6) {
-            $m = "06";
-        } elseif ($m == 7) {
-            $m = "07";
-        } elseif ($m == 8) {
-            $m = "08";
-        } elseif ($m == 9) {
-            $m = "09";
-        } else {
-            $m = $m;
-        }
-
-        return $m;
-
+        return;
     }
 
 
@@ -445,12 +327,15 @@ class CalendarPage_Controller extends Page_Controller
         $event = Event::create();
         $event->Title = $data['Title'];
         $event->EventDate = $transformdate;
-//        $event->EventDate = $data['EventDate'];
+        //ToDO: format time
         $event->StartTime = $data['StartTime'];
         $event->FinishTime = $data['FinishTime'];
+        //ToDO: wire types to front
         $event->Type = $data['Type'];
+        //ToDO: setup google map coordinates
         $event->Location = $data['Location'];
         $event->Message = $data['Message'];
+        // Give the event this calendar ID
         $event->CalendarPageID = $this->ID;
         //Proccess Image
         $image = $data['EventImage'];
