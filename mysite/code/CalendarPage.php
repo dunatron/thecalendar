@@ -181,7 +181,7 @@ class CalendarPage_Controller extends Page_Controller
         if ($mthName == "January"){
             $mN = "Jan";
         } elseif($mthName == "February") {
-            $mN = "Jan";
+            $mN = "Feb";
         }
         elseif($mthName == "March") {
             $mN = "Mar";
@@ -229,7 +229,7 @@ class CalendarPage_Controller extends Page_Controller
         }
         elseif ($m == 13) {
             $y++;
-            $m = 1;
+            $m = "01";
         }
         elseif ($m == 1) {
             $m = "01";
