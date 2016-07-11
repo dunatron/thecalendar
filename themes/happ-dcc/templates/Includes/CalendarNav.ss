@@ -33,6 +33,7 @@
             <div class="add-event">
                 <a href="#" data-toggle="modal" data-target="#addEventModal"> <i class="fa fa-2x fa-plus-circle"></i></a>
                 <% include AddEventModal %>
+
             </div>
         </div>
     </div>

@@ -11,10 +11,15 @@
                 <input class="timepicker timepicker-without-dropdown text-center" tabindex="0">
                 <input class="timepicker-dropdown timepicker-without-dropdown text-center" tabindex="0">
 
-                <% include happtimepicker %>
+
+
+                <% include HappEventForm %>
+
+
 
             </div>
             <div class="modal-footer">
+
 
                 <img src="$ThemeDir/images/powered-by-happ.png" class="img-responsive powered-by-happ">
                 <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
@@ -22,4 +27,8 @@
             </div>
         </div>
     </div>
+
 </div>
+
+<%-- IMPORTANT | keep this modal down here to prevent modal further up in the code from scroll--%>
+<% include HappEventFinishModal %>
