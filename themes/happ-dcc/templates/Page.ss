@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#ee3e8b">
     <link rel="stylesheet" href="$ThemeDir/css/base-styles.css">
-    <link rel="stylesheet" href="$ThemeDir/css/style.css">
+    <%--<link rel="stylesheet" href="$ThemeDir/css/style.css">--%>
 
 
     <%-- Copy Paste from old version, tidy--%>
@@ -91,7 +91,7 @@
 
 <!-- JAVASCRIPT -->
 
-<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 
 

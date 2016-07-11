@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
 
-                $AddEventForm
+                <%--$AddEventForm--%>
                 <input class="timepicker timepicker-without-dropdown text-center" tabindex="0">
                 <input class="timepicker-dropdown timepicker-without-dropdown text-center" tabindex="0">
 
