@@ -83,7 +83,8 @@ class CalendarPage_Controller extends Page_Controller
         'currentMonthName',
         'nextShortMonth',
         'prevShortMonth',
-        'resetCalendarDate'
+        'resetCalendarDate',
+        'tronTest'
     );
 
     public function currentMonth()
@@ -346,6 +347,14 @@ class CalendarPage_Controller extends Page_Controller
         $form->sessionMessage('Thanks for adding an event ', 'good');
 
         return $this->redirectBack();
+    }
+
+    public function tronTest()
+    {
+        $e = Event::create();
+        $e->Title = $_POST['EventTitle'];
+        var_dump($e->Title);
+        die('tron is immortal');
     }
 
     /**

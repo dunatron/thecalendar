@@ -1,4 +1,4 @@
-<form class="form-horizontal">
+<form class="form-horizontal" action="$BaseHref/home/tronTest" method="POST">
     <fieldset>
 
         <!-- Form Name -->
