@@ -91,6 +91,9 @@
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-addon">Location</span>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#EventLocationModal">
+                        Launch demo modal
+                    </button></span>
                     <input id="EventLocation" name="EventLocation" class="form-control" placeholder="Event Location" type="text" required="">
                 </div>
                 <p class="help-block">start typing your location for the smart finder</p>

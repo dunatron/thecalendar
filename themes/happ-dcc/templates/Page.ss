@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="$ThemeDir/css/base-styles.css">
     <%--<link rel="stylesheet" href="$ThemeDir/css/style.css">--%>
 
-
     <%-- Copy Paste from old version, tidy--%>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="$ThemeDir/css/bootstrap.css" />
@@ -26,21 +25,8 @@
     <!-- Calendar CSS -->
     <link rel="stylesheet" type="text/css" href="$ThemeDir/css/calendar.css" />
 
-    <!-- Custom CSS (small tweaks) -->
-    <link rel="stylesheet" type="text/css" href="$ThemeDir/css/style.css" />
-
-    <link rel="stylesheet" type="text/css" href="$ThemeDir/css/custom_2.css" />
-
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-    <%-- DatePicker Style Dependencies --%>
-    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" />--%>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
-
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.css">
-
-
 
 
 
@@ -60,6 +46,15 @@
 
 
     <%--end old copy paste--%>
+
+    <style>
+
+        #map {
+            height: 600px;
+        }
+    </style>
+
+
 
 </head>
 <body class="$ClassName.LowerCase">
@@ -81,7 +76,27 @@
     <div class="$ClassName.LowerCase-menu-buffer"></div>
     <%-- above class is to compensate for the menu overlaying the content --%>
     <div class="site-content-wrapper">
-        $Layout
+        <%--$Layout--%>
+        <%-- PUTTING THE MAPS HERE THE AUTO COMPLETE WORKS | removing $Layout --%>
+        <input id="pac-input" class="controls" type="text"
+               placeholder="Enter a location">
+        <div id="type-selector" class="controls">
+            <input type="radio" name="type" id="changetype-all" checked="checked">
+            <label for="changetype-all">All</label>
+
+            <input type="radio" name="type" id="changetype-establishment">
+            <label for="changetype-establishment">Establishments</label>
+
+            <input type="radio" name="type" id="changetype-address">
+            <label for="changetype-address">Addresses</label>
+
+            <input type="radio" name="type" id="changetype-geocode">
+            <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="map"></div>
+
+        <input id="address" type="text" size="90" autocomplete="off">
+        <%-- PUTTING THE MAPS HERE THE AUTO COMPLETE WORKS --%>
         <% if $Form %>
             <div style="height: 100px;"></div>
             $Form
@@ -89,31 +104,79 @@
     </div>
 </div>
 
-
-
 <!-- JAVASCRIPT -->
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-
-
-<%--<script type="text/javascript" src="$ThemeDir/js/jquery.calendario.js"></script>--%>
+<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/bootstrap.min.js"></script>
 
-<%-- DATEPICKER JS DEPENDENCIES | NEED BOTH FILES--%>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="$ThemeDir/js/datepicker.js"></script>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #map {
+        height: 500px;
+    }
+    .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+    }
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+
+    .pac-container {
+        font-family: Roboto;
+    }
+
+    #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+    }
+
+    #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+</style>
 
 <%--NAVIGATION JS--%>
 <script type="text/javascript" src="$ThemeDir/js/navigation.js"></script>
 
-<!-- GENERATE CALENDAR
- ---------------------------------
- -->
-<%--<script type="text/javascript" src="$ThemeDir/js/calendar.js"></script>--%>
-<%--<script type="text/javascript" src="$ThemeDir/js/jasney-bootstrap.js"></script>--%>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="$ThemeDir/js/google-maps.js"></script>
+
+<%--  Google Maps  --%>
+<script>
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWVd4651hNv8mOn-RaHZdC166O82S-BbY&libraries=places&callback=initMap"
+        async defer></script>
 
 <%-- Happ-Time-Picker --%>
 <script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jquery-2.1.1.js"></script>
@@ -123,17 +186,12 @@
 <script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jtsage-datebox-4.0.0.bootstrap.min.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/happ-timepicker/jtsage-datebox.lang.utf8.js"></script>
 
-
-
-
-
+<%--  Scroll squares and hide scrollbar  --%>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>
+<%-- Resize the Forms--%>
 <script type="text/javascript" src="$ThemeDir/js/formdimensions.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.js"></script>
-<script type="text/javascript" src="$ThemeDir/js/trons-timepicker-interface.js"></script>
 
-<script type="text/javascript" src="$ThemeDir/js/datepicker.js"></script>
 
 </body>
 </html>

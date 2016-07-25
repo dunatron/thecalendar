@@ -13,13 +13,13 @@ class Event extends DataObject {
     );
 
     private static $db = array(
-        'Title' => 'Varchar(100)',
-        'Description' => 'HTMLText',
+        'EventTitle' => 'Varchar(100)',
+        'EventDescription' => 'HTMLText',
         'EventDate' => 'Date',
         'StartTime' => 'Time',
         'FinishTime' => 'Time',
         'Type' => "Enum(array('Sport', 'Concert'))",
-        'Approved' => 'Boolean',
+        'EventApproved' => 'Boolean',
 
     );
 

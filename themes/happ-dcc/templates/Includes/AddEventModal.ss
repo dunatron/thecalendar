@@ -15,6 +15,25 @@
 
                 <% include HappEventForm %>
 
+                <input id="pac-input" class="controls" type="text"
+                       placeholder="Enter a location">
+                <div id="type-selector" class="controls">
+                    <input type="radio" name="type" id="changetype-all" checked="checked">
+                    <label for="changetype-all">All</label>
+
+                    <input type="radio" name="type" id="changetype-establishment">
+                    <label for="changetype-establishment">Establishments</label>
+
+                    <input type="radio" name="type" id="changetype-address">
+                    <label for="changetype-address">Addresses</label>
+
+                    <input type="radio" name="type" id="changetype-geocode">
+                    <label for="changetype-geocode">Geocodes</label>
+                </div>
+                <div id="map"></div>
+
+                <input id="address" type="text" size="90" autocomplete="off">
+
 
 
             </div>
@@ -32,3 +51,4 @@
 
 <%-- IMPORTANT | keep this modal down here to prevent modal further up in the code from scroll--%>
 <% include HappEventFinishModal %>
+<% include HappEventLocationModal %>
