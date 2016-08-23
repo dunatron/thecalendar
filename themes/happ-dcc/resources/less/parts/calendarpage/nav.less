@@ -15,12 +15,14 @@
       padding: 0 20px 0 0;
       font-family: HelveticaNeue,Helvetica,sans-serif;
       color:@color-dcc-blue;
+      font-size: 24px;
 
     }
 
     .theYear {
       font-family: HelveticaNeue,Helvetica,sans-serif;
       color:@color-dcc-blue;
+      font-size: 24px;
     }
 
   }
@@ -50,26 +52,93 @@
       display: inline-block;
       padding: 0 20px 0 20px;
       color: #042C5C;
+      font-family: HelveticaNeue,Helvetica,sans-serif;
       a {
         width: 150px;
         color: #042C5C;
-        border: 3px solid #042C5C;
-        padding: 18px 8px 8px 8px;
+        padding: 0;
         margin: 5px;
+        position: relative;
         &:hover, &:focus {
           text-decoration: none;
         }
       }
 
-
+      // Left arrow (previous month)
       #previous-month {
         border-bottom-left-radius: 10px;
         border-top-left-radius: 10px;
+        span {
+          padding: 0 0 0 15px;
+          size: 0.2em;
+          position: relative;
+          font-size: 18px;
+          font-weight: 100;
+        }
+        span:before {
+          .show_psuedo();
+          top: 50%;
+          margin-top: -7px;
+          border-top: 1px solid @c_primary;
+          border-right: 1px solid @c_primary;
+          height: 15px;
+          width: 15px;
+          position: absolute;
+          left: 0;
+          transition: left 0.25s;
+          transform: rotate(225deg);
+        }
+        span:hover:before {
+          .show_psuedo();
+          top: 50%;
+          margin-top: -7px;
+          border-top: 1px solid @c_primary;
+          border-right: 1px solid @c_primary;
+          height: 15px;
+          width: 15px;
+          position: absolute;
+          transition: left 0.25s;
+          left: -5px;
+          transform: rotate(225deg);
+        }
       }
-
+      // Right arrow (next month)
       #next-month {
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
+        span {
+          padding: 0 15px 0 0;
+          size: 0.2em;
+          position: relative;
+          font-size: 18px;
+          font-weight: 100;
+        }
+        span:before {
+          .show_psuedo();
+          top: 50%;
+          margin-top: -7px;
+          border-top: 1px solid @c_primary;
+          border-right: 1px solid @c_primary;
+          height: 15px;
+          width: 15px;
+          position: absolute;
+          right: 0;
+          transform: rotate(45deg);
+          transition: right 0.25s;
+        }
+        span:hover:before {
+          .show_psuedo();
+          top: 50%;
+          margin-top: -7px;
+          border-top: 1px solid @c_primary;
+          border-right: 1px solid @c_primary;
+          height: 15px;
+          width: 15px;
+          position: absolute;
+          transition: right 0.25s;
+          right: -5px;
+          transform: rotate(45deg);
+        }
       }
 
       @media @min865 {
@@ -81,6 +150,10 @@
       padding: 0 20px 0 20px;
       @media @min865 {
         float: right;
+      }
+
+      img {
+        margin: 2px 0 0 0;
       }
 
       a {

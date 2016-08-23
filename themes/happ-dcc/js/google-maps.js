@@ -1,5 +1,5 @@
 /**
- * Created by Heath on 25/07/16.
+ * Created by Heath on 21/08/16.
  */
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -8,7 +8,7 @@ function initMap() {
     });
     var input = /** @type {!HTMLInputElement} */(
         document.getElementById('pac-input'));
-    
+
     var types = document.getElementById('type-selector');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
@@ -22,7 +22,7 @@ function initMap() {
         anchorPoint: new google.maps.Point(0, -29)
     });
 
-    autocomplete.addListener('place_changed', function() {
+    autocomplete.addListener('place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
         var place = autocomplete.getPlace();
@@ -65,7 +65,7 @@ function initMap() {
     // Autocomplete.
     function setupClickListener(id, types) {
         var radioButton = document.getElementById(id);
-        radioButton.addEventListener('click', function() {
+        radioButton.addEventListener('click', function () {
             autocomplete.setTypes(types);
         });
     }

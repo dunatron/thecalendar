@@ -1,5 +1,6 @@
 <%--<% include TopBar %>--%>
 
+<%-- Calendar nav is casuing the geolocation not to work--%>
 <% include CalendarNav %>
 
 
@@ -23,6 +24,7 @@
 
 
 </div><!-- /container -->
+
 
 
 <!-- Structure to use start -->

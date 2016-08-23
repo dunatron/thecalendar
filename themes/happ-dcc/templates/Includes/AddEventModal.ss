@@ -12,27 +12,28 @@
                 <input class="timepicker-dropdown timepicker-without-dropdown text-center" tabindex="0">
 
 
-
+                <button data-target="#us6-dialog" data-toggle="modal">Click hear to open dialog</button>
                 <% include HappEventForm %>
 
-                <input id="pac-input" class="controls" type="text"
-                       placeholder="Enter a location">
-                <div id="type-selector" class="controls">
-                    <input type="radio" name="type" id="changetype-all" checked="checked">
-                    <label for="changetype-all">All</label>
 
-                    <input type="radio" name="type" id="changetype-establishment">
-                    <label for="changetype-establishment">Establishments</label>
+                <%--<div class="location-wrapper">--%>
+                    <%--<input id="pac-input" class="controls" type="text"--%>
+                           <%--placeholder="Enter a location">--%>
+                    <%--<div id="type-selector" class="controls">--%>
+                        <%--<input type="radio" name="type" id="changetype-all" checked="checked">--%>
+                        <%--<label for="changetype-all">All</label>--%>
 
-                    <input type="radio" name="type" id="changetype-address">
-                    <label for="changetype-address">Addresses</label>
+                        <%--<input type="radio" name="type" id="changetype-establishment">--%>
+                        <%--<label for="changetype-establishment">Establishments</label>--%>
 
-                    <input type="radio" name="type" id="changetype-geocode">
-                    <label for="changetype-geocode">Geocodes</label>
-                </div>
-                <div id="map"></div>
+                        <%--<input type="radio" name="type" id="changetype-address">--%>
+                        <%--<label for="changetype-address">Addresses</label>--%>
 
-                <input id="address" type="text" size="90" autocomplete="off">
+                        <%--<input type="radio" name="type" id="changetype-geocode">--%>
+                        <%--<label for="changetype-geocode">Geocodes</label>--%>
+                    <%--</div>--%>
+                    <%--<div id="map"></div>--%>
+                <%--</div>--%>
 
 
 

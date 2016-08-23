@@ -7,6 +7,20 @@
   transition: @animation;
 }
 
+// Beats typing these rules out each time
+.show_psuedo() {
+  content: '';
+  display: block;
+}
+
+// Clearfix.
+.cf() {
+  &:after {
+    .show_psuedo();
+    clear: both;
+  }
+}
+
 .link_animation() {
   .animation_animation();
 }

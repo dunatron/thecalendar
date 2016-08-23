@@ -13,6 +13,9 @@
             </div>
         </div>
 
+        <%-- EVENT | LOCATION--%>
+        <% include PickLocation %>
+
         <!-- EventType | Select Multiple -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="EventType">Event Type</label>
@@ -25,7 +28,6 @@
                 </select>
             </div>
         </div>
-
         <!-- Description | Textarea -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="Description">Description</label>
@@ -33,11 +35,6 @@
                 <textarea class="form-control" id="Description" name="Description">event description...</textarea>
             </div>
         </div>
-
-
-
-
-
         <!-- EventDate | Prepended text-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="EventDate">Event Date</label>
@@ -49,7 +46,6 @@
                 <p class="help-block">event date, try our datepicker</p>
             </div>
         </div>
-
         <!-- EventStartTime | Prepended text-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="EventStartTime">Event Start Time</label>
@@ -61,7 +57,6 @@
                 <p class="help-block">use our time picker</p>
             </div>
         </div>
-
         <!-- EventFinishTime | Prepended text-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="EventFinishTime">Event Finish Time</label>
@@ -76,7 +71,6 @@
                 <p class="help-block">use our time picker via the icon</p>
             </div>
         </div>
-
         <!-- EventImage | File Button -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="EventImage">Event Image</label>
@@ -85,20 +79,6 @@
             </div>
         </div>
 
-        <!-- EventLocation | Prepended text-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="EventLocation">Event Location</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Location</span>
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#EventLocationModal">
-                        Launch demo modal
-                    </button></span>
-                    <input id="EventLocation" name="EventLocation" class="form-control" placeholder="Event Location" type="text" required="">
-                </div>
-                <p class="help-block">start typing your location for the smart finder</p>
-            </div>
-        </div>
 
         <!-- Button -->
         <div class="form-group">
