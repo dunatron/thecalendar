@@ -69,13 +69,13 @@
                 <p class="help-block">use our time picker via the icon</p>
             </div>
         </div>
-        <!-- EventImage | File Button -->
-        <div class="form-group">
-            <label class="control-label" for="EventImage">Event Image</label>
-            <div class="input-wrapper">
-                <input id="EventImage" name="EventImage" class="input-file" type="file">
-            </div>
-        </div>
+        <%--<!-- EventImage | File Button | TODO -->--%>
+        <%--<div class="form-group">--%>
+            <%--<label class="control-label" for="EventImage">Event Image</label>--%>
+            <%--<div class="input-wrapper">--%>
+                <%--<input id="EventImage" name="EventImage" class="input-file" type="file">--%>
+            <%--</div>--%>
+        <%--</div>--%>
 
 
         <!-- Button -->

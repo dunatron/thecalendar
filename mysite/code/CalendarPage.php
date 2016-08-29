@@ -262,32 +262,52 @@ class CalendarPage_Controller extends Page_Controller
     public function tronTest()
     {
         $e = Event::create();
+        // CalendarID (foreign key)
+        $e->CalendarPageID = $this->ID;
+        // EventTitle
         $e->EventTitle = $_POST['EventTitle'];
         // LocationText
-        $e->LocationLat = $_POST['LocationText'];
+        $e->LocationText = $_POST['addEventAddress'];
         //LocationLat
-        $e->LocationLat = $_POST['LocationLat'];
+        $e->LocationLat = $_POST['addEventLat'];
         //LocationLon
-        $e->LocationLat = $_POST['LocationLon'];
+        $e->LocationLon = $_POST['addEventLon'];
         //LocationRadius
-        $e->LocationLat = $_POST['LocationRadius'];
+        $e->LocationRadius = $_POST['addEventRadius'];
         //EventDescription
-        $e->LocationLat = $_POST['EventDescription'];
+        $e->EventDescription = $_POST['EventDescription'];
         //EventDate
-        $e->LocationLat = $_POST['EventDate'];
+        $e->EventDate = $_POST['EventDate'];
         //StartTime
-        $e->LocationLat = $_POST['StartTime'];
+        $e->StartTime = $_POST['EventStartTime'];
         //FinishTime
-        $e->LocationLat = $_POST['FinishTime'];
+        $e->FinishTime = $_POST['EventFinishTime'];
         //Type
-        $e->LocationLat = $_POST['LocationLat'];
+        //$e->Type = $_POST['EventType'];
         //EventApproved
-        $e->LocationLat = $_POST['LocationLat'];
-        $locationLatitude =  $_POST['addEventLat'];
-        $p = $_POST['EventTitle'];
-        var_dump($locationLatitude);
-        var_dump($e->EventTitle);
-        die('tron is immortal');
+        $e->EventApproved = false;
+        $e->write();
+
+        /*
+         * TEST UNIT
+         *
+        var_dump('Event Title' . $e->EventTitle . '</br>');
+        var_dump('Location Text' . $e->LocationText . '</br>');
+        var_dump('Location Lat' . $e->LocationLat . '</br>');
+        var_dump('Location Lon' . $e->LocationLon . '</br>');
+        var_dump('Location Radius' . $e->LocationRadius . '</br>');
+        var_dump('Event Description' . $e->EventDescription . '</br>');
+        var_dump('Event Date' . $e->EventDate . '</br>');
+        var_dump('Start Time' . $e->StartTime . '</br>');
+        var_dump('Finish Time' . $e->FinishTime . '</br>');
+        var_dump('Type' . '</br>');
+        var_dump('EventApproved' . $e->EventApproved . '</br>');
+        die('Hi dead man');
+        *
+        */
+
+        return $this->redirectBack();
+
     }
 
     /**
@@ -424,31 +444,7 @@ class CalendarPage_Controller extends Page_Controller
                     /**
                      * Begin event button build
                      */
-                    //var_dump($e); // memory test
-
-                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#myModal-' . $e->ID . '"><a  class="happ_e_button">
-                    ' . $e->EventTitle . '
-                    </a></div>
-
-<!-- Modal -->
-<div class="modal fade toggle-fade" id="myModal-' . $e->ID . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">' . $e->EventTitle . '</h4>
-      </div>
-      <div class="modal-body">
-        ' . $e->EventDescription . '
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>';
-
+                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#ApprovedEventModal" lat="'.$e->LocationLat.'" lon="'.$e->LocationLon.'" radius="'.$e->LocationRadius.'" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
                 } else {
                     continue;
                 }

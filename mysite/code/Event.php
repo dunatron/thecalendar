@@ -15,8 +15,8 @@ class Event extends DataObject {
     private static $db = array(
         'EventTitle' => 'Varchar(100)',
         'LocationText' => 'Text',
-        'LocationLat' => 'Decimal', // Find a better data type
-        'LocationLon' => 'Decimal',
+        'LocationLat' => 'Varchar(100)', // Find a better data type
+        'LocationLon' => 'Varchar(100)',
         'LocationRadius' => 'Int',
         'EventDescription' => 'HTMLText',
         'EventDate' => 'Date',

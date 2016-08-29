@@ -18,6 +18,11 @@
         </div>
     </div>
 
+    <%-- Approved Events Modal | AJax to get event id and render maps and data --%>
+
+    <% include ApprovedEventModal %>
+
+
     <!-- END CALENDAR -->
 
 </div>

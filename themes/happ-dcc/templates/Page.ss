@@ -60,6 +60,7 @@
 <script type="text/javascript" src="$ThemeDir/js/formdimensions.js"></script>
 <%-- Custom Google maps location picker | auto-fill | locationpicker plugin --%>
 <script src="$ThemeDir/js/locationpicker/location-picker-autofill.js"></script>
+<script src="$ThemeDir/js/approved/approved-event.js"></script>
 <script>
 
 </script>
