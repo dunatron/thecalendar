@@ -258,102 +258,35 @@ class CalendarPage_Controller extends Page_Controller
         return;
     }
 
-
-    /**
-     * Create Add Event Form
-     */
-    public function AddEventForm()
-    {
-
-        $form = Form::create(
-            $this,
-            __FUNCTION__,
-            FieldList::create(
-                TextField::create('Title', '')
-                    ->setAttribute('placeholder', 'Name')
-                    ->addExtraClass('add-event-form-element'),
-                DateField::create('EventDate', '')
-                    ->setAttribute('placeholder', 'Date')
-                    ->addExtraClass('add-event-form-element')
-                    ->setConfig('dateformat', 'MM-dd-yyyy')
-                    ->setConfig('showcalendar', true)
-                    ->setAttribute('id', 'event-date'),
-                TimePickerField::create('StartTime', '')
-                    ->setAttribute('placeholder', 'Start Time')
-                    ->addExtraClass('add-event-form-element'),
-                TimePickerField::create('FinishTime', '')
-                    ->setAttribute('placeholder', 'Finish Time')
-                    ->addExtraClass('add-event-form-element'),
-
-                TextField::create('Type', '')
-                    ->setAttribute('placeholder', 'Type')
-                    ->addExtraClass('add-event-form-element'),
-                TextField::create('Location', '')
-                    ->setAttribute('placeholder', 'Location')
-                    ->addExtraClass('add-event-form-element'),
-//                DropdownField::create('Module',
-//                    'Please Choose What Module your issue relates to',
-//                    Page::get("ModulePage")->map("ID", "Title", "Please Select"))
-//                    ->addExtraClass('onboard-form-element'),
-                TextareaField::create('Message', '')
-                    ->setAttribute('placeholder', 'Event Details')
-                    ->addExtraClass('add-event-form-element'),
-                FileField::create('EventImage')
-                    ->addExtraClass('add-event-form-element')
-
-
-            ),
-            FieldList::create(
-                FormAction::create('processAddEvent', 'Apply To Add Event')
-                    ->setUseButtonTag(true)
-                    ->addExtraClass('btn btn-lg')
-            ),
-            RequiredFields::create('Title', 'EventDate', 'StartTime')
-        );
-
-        $form->addExtraClass('add-event-form');
-
-        $data = Session::get("FormData.{$form->getName()}.data");
-
-        return $data ? $form->loadDataFrom($data) : $form;
-
-
-    }
-
-    public function processAddEvent($data, $form)
-    {
-        //ToDo add image to db->map it to Image
-        $formdate = $data['EventDate'];
-        $transformdate = date("d-m-Y", strtotime($formdate));
-        $event = Event::create();
-        $event->Title = $data['Title'];
-        $event->EventDate = $transformdate;
-        //ToDO: format time
-        $event->StartTime = $data['StartTime'];
-        $event->FinishTime = $data['FinishTime'];
-        //ToDO: wire types to front
-        $event->Type = $data['Type'];
-        //ToDO: setup google map coordinates
-        $event->Location = $data['Location'];
-        $event->Message = $data['Message'];
-        // Give the event this calendar ID
-        $event->CalendarPageID = $this->ID;
-        //Proccess Image
-        $image = $data['EventImage'];
-        $event->write();
-//        echo '<pre>';
-//        var_dump($event);
-//        die('made it to the end');
-        $form->sessionMessage('Thanks for adding an event ', 'good');
-
-        return $this->redirectBack();
-    }
-
+    
     public function tronTest()
     {
         $e = Event::create();
-        $e->Title = $_POST['EventTitle'];
-        var_dump($e->Title);
+        $e->EventTitle = $_POST['EventTitle'];
+        // LocationText
+        $e->LocationLat = $_POST['LocationText'];
+        //LocationLat
+        $e->LocationLat = $_POST['LocationLat'];
+        //LocationLon
+        $e->LocationLat = $_POST['LocationLon'];
+        //LocationRadius
+        $e->LocationLat = $_POST['LocationRadius'];
+        //EventDescription
+        $e->LocationLat = $_POST['EventDescription'];
+        //EventDate
+        $e->LocationLat = $_POST['EventDate'];
+        //StartTime
+        $e->LocationLat = $_POST['StartTime'];
+        //FinishTime
+        $e->LocationLat = $_POST['FinishTime'];
+        //Type
+        $e->LocationLat = $_POST['LocationLat'];
+        //EventApproved
+        $e->LocationLat = $_POST['LocationLat'];
+        $locationLatitude =  $_POST['addEventLat'];
+        $p = $_POST['EventTitle'];
+        var_dump($locationLatitude);
+        var_dump($e->EventTitle);
         die('tron is immortal');
     }
 
@@ -493,7 +426,7 @@ class CalendarPage_Controller extends Page_Controller
                      */
                     //var_dump($e); // memory test
 
-                    $calendar .= '<div class="event-btn"><a  class="happ_e_button" data-toggle="modal" data-target="#myModal-' . $e->ID . '">
+                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#myModal-' . $e->ID . '"><a  class="happ_e_button">
                     ' . $e->EventTitle . '
                     </a></div>
 

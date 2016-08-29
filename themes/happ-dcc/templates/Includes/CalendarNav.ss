@@ -19,18 +19,11 @@
                 </a>
             </div>
             <div class="add-event">
-
-                <%--<a href="#" data-toggle="modal" data-target="#addEventModal">--%>
-                <a data-toggle="modal" data-target="#us6-dialog">
+                <%-- Add Event --%>
+                <a data-toggle="modal" data-target="#AddHappEventModal">
                     <i class="fa fa-2x fa-plus-circle"></i>
                     <img src="$ThemeDir/svg/plus.svg"/>
                 </a>
-                <%--<button data-target="#us6-dialog" data-toggle="modal">Click hear to open dialog</button>--%>
-                <%--<% include AddEventModal %>--%>
-                <!-- Button trigger modal -->
-                <%--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalinModal">--%>
-                    <%--Launch demo modal--%>
-                <%--</button>--%>
             </div>
         </div>
     </div>

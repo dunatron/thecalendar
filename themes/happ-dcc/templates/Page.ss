@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <%-- Google Maps Dependencies --%>
     <script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyBWVd4651hNv8mOn-RaHZdC166O82S-BbY&sensor=false&libraries=places'></script>
     <script src="$ThemeDir/js/locationpicker/locationpicker.jquery.min.js"></script>
     <title>Simple example</title>
@@ -20,20 +21,7 @@
 </head>
 
 <body class="$ClassName.LowerCase">
-<!--[if lt IE 10]>
 
-<div class="chromeframe">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-warning text-center">
-                You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">
-                upgrade your browser</a>
-                to improve your experience.
-            </div>
-        </div>
-    </div>
-</div>
-<![endif]-->
 <div class="container-fluid" id="site-wrapper">
     <div class="$ClassName.LowerCase-menu-buffer"></div>
     <%-- above class is to compensate for the menu overlaying the content --%>
@@ -46,7 +34,7 @@
     </div>
 </div>
 
-    <% include LocationModal %>
+    <% include AddHappEventModal %>
 
 <!-- JAVASCRIPT -->
     <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
@@ -70,7 +58,11 @@
 <%--<script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>--%>
     <%-- Resize the Forms--%>
 <script type="text/javascript" src="$ThemeDir/js/formdimensions.js"></script>
+<%-- Custom Google maps location picker | auto-fill | locationpicker plugin --%>
+<script src="$ThemeDir/js/locationpicker/location-picker-autofill.js"></script>
+<script>
 
+</script>
 
 </body>
 

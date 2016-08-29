@@ -22,7 +22,6 @@ class TronsTask extends BuildTask {
             echo "Title: " . $e->Title . "</br>";
             echo "Created: " . $e->Created . "</br>";
             echo "Approved: " . $e->Approved . "</br>";
-
         }
 
     }
