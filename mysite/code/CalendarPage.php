@@ -84,8 +84,99 @@ class CalendarPage_Controller extends Page_Controller
         'nextShortMonth',
         'prevShortMonth',
         'resetCalendarDate',
-        'tronTest'
+        'tronTest',
+        'EventTitle',
+        'EventDescription',
+        'EventLocation',
+        'EventStartTime',
+        'EventFinishTime',
+        'EventDate'
     );
+
+    /**
+     * Ajax | Return EventTitle for event modal
+     */
+    public function EventTitle()
+    {
+        $EventTitle = 'I need an Id';
+        if (isset($_POST['EventID'])) {
+            $eventID = $_POST['EventID'];
+            $HappEvent = Event::get()->byID($eventID);
+            $EventTitle = $HappEvent->EventTitle;
+        }
+        return $EventTitle;
+    }
+
+    /**
+     * Ajax | Return EventDescription for event modal
+     */
+    public function EventDescription()
+    {
+        $EventDescription = 'I need an Id';
+        if (isset($_POST['EventID'])) {
+            $eventID = $_POST['EventID'];
+            $HappEvent = Event::get()->byID($eventID);
+            $EventDescription = $HappEvent->EventDescription;
+        }
+        return $EventDescription;
+    }
+
+    /**
+     * Ajax | Return EventLocation for event modal
+     */
+    public function EventLocation()
+    {
+        $EventLocation = 'I need an Id';
+        if (isset($_POST['EventID'])) {
+            $eventID = $_POST['EventID'];
+            $HappEvent = Event::get()->byID($eventID);
+            $EventLocation = $HappEvent->LocationText;
+        }
+        return $EventLocation;
+    }
+
+    /**
+     * Ajax | Return EventDate for event modal
+     */
+    public function EventDate()
+    {
+        $EventDate = 'I need an Id';
+        if (isset($_POST['EventID'])) {
+            $eventID = $_POST['EventID'];
+            $HappEvent = Event::get()->byID($eventID);
+            $EventDate = $HappEvent->EventDate;
+        }
+        return $EventDate;
+    }
+
+    /**
+     * Ajax | Return EventStartTime for event modal
+     */
+    public function EventStartTime()
+    {
+        $EventStartTime = 'I need an Id';
+        if (isset($_POST['EventID'])) {
+            $eventID = $_POST['EventID'];
+            $HappEvent = Event::get()->byID($eventID);
+            $EventStartTime = $HappEvent->StartTime;
+        }
+        return $EventStartTime;
+    }
+
+    /**
+     * Ajax | Return EventFinishTime for event modal
+     */
+    public function EventFinishTime()
+    {
+        $EventFinishTime = 'I need an Id';
+        if (isset($_POST['EventID'])) {
+            $eventID = $_POST['EventID'];
+            $HappEvent = Event::get()->byID($eventID);
+            $EventFinishTime = $HappEvent->FinishTime;
+        }
+        return $EventFinishTime;
+    }
+    
 
     public function currentMonth()
     {
@@ -179,39 +270,29 @@ class CalendarPage_Controller extends Page_Controller
         $dateObj = DateTime::createFromFormat('!m', $m);
         $LongMonth = $dateObj->format('F'); // April
         $mthName = $LongMonth;
-        if ($mthName == "January"){
+        if ($mthName == "January") {
             $mN = "Jan";
-        } elseif($mthName == "February") {
+        } elseif ($mthName == "February") {
             $mN = "Feb";
-        }
-        elseif($mthName == "March") {
+        } elseif ($mthName == "March") {
             $mN = "Mar";
-        }
-        elseif($mthName == "April") {
+        } elseif ($mthName == "April") {
             $mN = "Apr";
-        }
-        elseif($mthName == "May") {
+        } elseif ($mthName == "May") {
             $mN = "May";
-        }
-        elseif($mthName == "June") {
+        } elseif ($mthName == "June") {
             $mN = "June";
-        }
-        elseif($mthName == "July") {
+        } elseif ($mthName == "July") {
             $mN = "July";
-        }
-        elseif($mthName == "August") {
+        } elseif ($mthName == "August") {
             $mN = "Aug";
-        }
-        elseif($mthName == "September") {
+        } elseif ($mthName == "September") {
             $mN = "Sep";
-        }
-        elseif($mthName == "October") {
+        } elseif ($mthName == "October") {
             $mN = "Oct";
-        }
-        elseif($mthName == "November") {
+        } elseif ($mthName == "November") {
             $mN = "Nov";
-        }
-        elseif($mthName == "December") {
+        } elseif ($mthName == "December") {
             $mN = "Dec";
         }
         return $mN;
@@ -227,12 +308,10 @@ class CalendarPage_Controller extends Page_Controller
         if ($m == 0) {
             $y--;
             $m = 12;
-        }
-        elseif ($m == 13) {
+        } elseif ($m == 13) {
             $y++;
             $m = "01";
-        }
-        elseif ($m == 1) {
+        } elseif ($m == 1) {
             $m = "01";
         } elseif ($m == 2) {
             $m = "02";
@@ -258,7 +337,7 @@ class CalendarPage_Controller extends Page_Controller
         return;
     }
 
-    
+
     public function tronTest()
     {
         $e = Event::create();
@@ -333,7 +412,6 @@ class CalendarPage_Controller extends Page_Controller
 //        $sqlQuery = new SQLSelect();
 //
 //        $events = DB::prepared_query('SELECT FROM "Events" WHERE "month("$M"), year($Y)" = ?', array(0));
-
 
 
         return $events;
@@ -444,7 +522,7 @@ class CalendarPage_Controller extends Page_Controller
                     /**
                      * Begin event button build
                      */
-                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#ApprovedEventModal" lat="'.$e->LocationLat.'" lon="'.$e->LocationLon.'" radius="'.$e->LocationRadius.'" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
+                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#ApprovedEventModal" lat="' . $e->LocationLat . '" lon="' . $e->LocationLon . '" radius="' . $e->LocationRadius . '" EID="' . $e->ID . '" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
                 } else {
                     continue;
                 }

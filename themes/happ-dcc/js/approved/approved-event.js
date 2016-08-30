@@ -10,7 +10,7 @@
 // and thats it set this stuff on the controller
 
 
-$('.event-btn').on("click", function(){
+$('.event-btn').on("click", function () {
     var target = $(this).attr("data-target");
     var LATITUE = $(this).attr("lat");
     var LONGITUDE = $(this).attr("lon");
@@ -30,5 +30,71 @@ $('.event-btn').on("click", function(){
     $('#ApprovedEventModal').on('shown.bs.modal', function () {
         $('#eventMap1').locationpicker('autosize');
     });
+
+    /*
+     Generate event data for modal | AJAX
+     */
+    // Replace calendar body
+    var url = window.location.href;
+    var EVENTID = $(this).attr("eid");
+
+    // MAINURL = url + "home/TronsGrandTest";
+    MAINURL = url + 'home';
+    // Set EventTitle
+    $.ajax({
+       type:"POST",
+        url: MAINURL+'/EventTitle',
+        data: {EventID:EVENTID},
+        success:function (response){
+            $('.event-title').html(response);
+        }
+    });
+    // EventDescription
+    $.ajax({
+        type:"POST",
+        url: MAINURL+'/EventDescription',
+        data: {EventID:EVENTID},
+        success:function (response){
+            $('.event-description').html(response);
+        }
+    });
+    // EventLocation
+    $.ajax({
+        type:"POST",
+        url: MAINURL+'/EventLocation',
+        data: {EventID:EVENTID},
+        success:function (response){
+            $('.event-location').html(response);
+        }
+    });
+    // EventDate
+    $.ajax({
+        type:"POST",
+        url: MAINURL+'/EventDate',
+        data: {EventID:EVENTID},
+        success:function (response){
+            $('.event-date').html(response);
+        }
+    });
+    // EventStartTime
+    $.ajax({
+        type:"POST",
+        url: MAINURL+'/EventStartTime',
+        data: {EventID:EVENTID},
+        success:function (response){
+            $('.event-startTime').html(response);
+        }
+    });
+    //EventFinishTime
+    $.ajax({
+        type:"POST",
+        url: MAINURL+'/EventFinishTime',
+        data: {EventID:EVENTID},
+        success:function (response){
+            $('.event-finishTime').html(response);
+        }
+    });
+    
+
 });
 

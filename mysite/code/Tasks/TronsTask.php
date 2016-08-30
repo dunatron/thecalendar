@@ -21,6 +21,9 @@ class TronsTask extends BuildTask {
             echo "ID: " . $e->ID . "</br>";
             echo "Title: " . $e->Title . "</br>";
             echo "Created: " . $e->Created . "</br>";
+            echo "Location: " . $e->LocationText . "</br>";
+            echo "Lat: " . $e->LocationLat . "</br>";
+            echo "Lon: " . $e->LocationLon . "</br>";
             echo "Approved: " . $e->Approved . "</br>";
         }
 
