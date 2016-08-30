@@ -26,10 +26,6 @@ $('.event-btn').on("click", function () {
         enableAutocomplete: true,
         markerIcon: 'https://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
     });
-// Modal Dialog control | reference
-    $('#ApprovedEventModal').on('shown.bs.modal', function () {
-        $('#eventMap1').locationpicker('autosize');
-    });
 
     /*
      Generate event data for modal | AJAX
@@ -93,6 +89,10 @@ $('.event-btn').on("click", function () {
         success:function (response){
             $('.event-finishTime').html(response);
         }
+    });
+    // Modal Dialog control | reference
+    $('#ApprovedEventModal').on('shown.bs.modal', function () {
+        $('#eventMap1').locationpicker('autosize');
     });
     
 

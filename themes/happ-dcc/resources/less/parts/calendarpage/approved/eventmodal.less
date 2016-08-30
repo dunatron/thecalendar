@@ -1,0 +1,99 @@
+#ApprovedEventModal{
+
+  .modal-dialog {
+    max-width: 700px;
+    width: auto;
+    .modal-content {
+      border-radius: 0;
+      .modal-header {
+        padding: 0;
+
+        .close-btn {
+          float: right;
+          background-color: @color-happ-orange;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .event-title {
+          padding: 30px 30px 20px 30px;
+          font-family: @happ_base_ff;
+          font-size: 40px;
+          color: @color-happ-orange;
+        }
+
+      }
+      .modal-body {
+        overflow: hidden;
+        .event-startTime {
+          font-size: 24px;
+          font-family: @happ_base_ff;
+          padding: 0 0 0 40px;
+          margin: 10px 15px 10px 15px;
+          position: relative;
+          color: @c_modal_events;
+          display: inline-block;
+
+          &:before {
+            .show_psuedo();
+            background: url(../svg/stopwatch.svg) no-repeat;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0;
+          }
+        }
+        .event-finishTime {
+          font-size: 24px;
+          font-family: @happ_base_ff;
+          padding: 0 0 0 40px;
+          margin: 10px 15px 10px 15px;
+          position: relative;
+          display: inline-block;
+          color: @c_modal_events;
+          &:before {
+            .show_psuedo();
+            background: url(../svg/alarm.svg) no-repeat;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0;
+          }
+        }
+        .event-location {
+          font-size: 18px;
+          font-family: @happ_base_ff;
+          color: @c_modal_events;
+          padding: 0 0 0 18px;
+        }
+        .event-date {
+          font-size: 24px;
+          font-family: @happ_base_ff;
+          padding: 0 0 0 40px;
+          margin: 10px 15px 10px 15px;
+          position: relative;
+          display: inline-block;
+          color: @c_modal_events;
+          &:before {
+            .show_psuedo();
+            background: url(../svg/calendar.svg) no-repeat;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0;
+          }
+        }
+        .event-description {
+          padding: 20px 0;
+          font-size: 15px;
+          font-family: @happ_base_ff;
+        }
+
+      }
+      .modal-footer {
+
+      }
+    }
+  }
+}

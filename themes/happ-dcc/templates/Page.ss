@@ -57,7 +57,7 @@
 <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>--%>
 <%--<script type="text/javascript" src="$ThemeDir/js/hide-scrollbar.js"></script>--%>
     <%-- Resize the Forms--%>
-<script type="text/javascript" src="$ThemeDir/js/formdimensions.js"></script>
+<%--<script type="text/javascript" src="$ThemeDir/js/formdimensions.js"></script>--%>
 <%-- Custom Google maps location picker | auto-fill | locationpicker plugin --%>
 <script src="$ThemeDir/js/locationpicker/location-picker-autofill.js"></script>
 <script src="$ThemeDir/js/approved/approved-event.js"></script>
