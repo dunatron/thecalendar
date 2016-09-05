@@ -6,9 +6,28 @@
     .control-label {
       font-size: @label_fs;
       color: orange;
+      width: 100%;
     }
     .input-wrapper {
       color: darkgreen;
+      @import "fieldIcons";
+      input {
+        width: 100%;
+        float: left;
+        padding: 10px 10px 10px 40px;
+        font-size: 18px;
+        height: 50px;
+        &:focus {
+          border-radius: 0;
+        }
+      }
+      .form-control {
+        border-radius: 0;
+      }
+      select,textarea {
+        width: 80%;
+        float: left;
+      }
     }
 
   }
@@ -27,6 +46,7 @@
 
     }
     .location-details {
+      display: none;
       .control-label {
         font-size: @label_fs;
         color: purple;

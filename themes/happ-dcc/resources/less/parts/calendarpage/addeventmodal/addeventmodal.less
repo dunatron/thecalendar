@@ -1,17 +1,29 @@
 #AddHappEventModal {
   .modal-dialog {
-    max-width: 800px;
-    width: 100%;
+    max-width: 600px;
+    width: auto;
     .modal-content {
       .modal-header {
+        padding: 0;
+        .close-btn {
+          float: right;
+          background-color: @color-happ-orange;
+          &:hover {
+            cursor: pointer;
+          }
+        }
         .modal-title {
+          padding: 30px 30px 20px 30px;
           font-family: @happ_base_ff;
+          font-size: 40px;
+          color: @color-happ-orange;
           text-align: left;
         }
       }
       .modal-body {
         // Add event .less
         @import "addeventform.less";
+        padding: 30px;
       }
       .modal-footer {
 

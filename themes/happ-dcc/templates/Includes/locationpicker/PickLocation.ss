@@ -2,12 +2,14 @@
     <div class="form-group">
         <label class="control-label">Location:</label>
         <div class="input-wrapper">
+            <div class="input-icon" id="EventAddress-Icon"></div>
             <input type="text" class="form-control" id="addEventAddress" name="addEventAddress" />
         </div>
     </div>
     <div class="form-group">
         <label class="control-label">Radius:</label>
         <div class="input-wrapper">
+            <div class="input-icon" id="EventRadius-Icon"></div>
             <input type="text" class="form-control" id="addEventRadius" name="addEventRadius" />
         </div>
     </div>

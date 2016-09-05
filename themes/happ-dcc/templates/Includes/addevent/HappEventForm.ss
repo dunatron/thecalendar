@@ -5,6 +5,7 @@
         <div class="form-group">
             <label class="control-label" for="EventTitle">Event Title</label>
             <div class="input-wrapper">
+                <div class="input-icon" id="EventTitle-Icon"></div>
                 <input id="EventTitle" name="EventTitle" type="text" placeholder="Event Title" class="form-control" required="">
                 <span class="help-block">enter the title of the event</span>
             </div>
@@ -17,7 +18,9 @@
         <!-- EventType | Select Multiple -->
         <div class="form-group">
             <label class="control-label" for="EventType">Event Type</label>
+
             <div class="input-wrapper">
+                <div class="input-icon" id="EventType-Icon"></div>
                 <select id="EventType" name="EventType" class="form-control" multiple="multiple">
                     <option value="1">Sport</option>
                     <option value="2">Concert</option>
@@ -30,6 +33,7 @@
         <div class="form-group">
             <label class="control-label" for="Description">Description</label>
             <div class="input-wrapper">
+                <div class="input-icon" id="EventDescription-Icon"></div>
                 <textarea class="form-control" id="EventDescription" name="EventDescription">event description...</textarea>
             </div>
         </div>
@@ -38,7 +42,7 @@
             <label class="control-label" for="EventDate">Event Date</label>
             <div class="input-wrapper">
                 <div class="input-group">
-                    <span class="input-group-addon">Event Date</span>
+                    <div class="input-icon" id="EventDate-Icon"></div>
                     <input id="EventDate" name="EventDate" class="form-control" placeholder="Event Date" type="text" required="">
                 </div>
                 <p class="help-block">event date, try our datepicker</p>
@@ -49,7 +53,7 @@
             <label class="control-label" for="EventStartTime">Event Start Time</label>
             <div class="input-wrapper">
                 <div class="input-group">
-                    <span class="input-group-addon">S Time</span>
+                    <div class="input-icon" id="EventStartTime-Icon"></div>
                     <input id="EventStartTime" name="EventStartTime" class="form-control" placeholder="Event Start Time" type="text" required="">
                 </div>
                 <p class="help-block">use our time picker</p>
@@ -60,10 +64,7 @@
             <label class="control-label" for="EventFinishTime">Event Finish Time</label>
             <div class="input-wrapper">
                 <div class="input-group">
-                    <span class="input-group-addon"> <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#EventFinishModal">
-            Launch demo modal
-        </button></span>
+                    <div class="input-icon" id="EventFinishTime-Icon"></div>
                     <input id="EventFinishTime" name="EventFinishTime" class="form-control" placeholder="Event Finish Time" type="text" required="">
                 </div>
                 <p class="help-block">use our time picker via the icon</p>

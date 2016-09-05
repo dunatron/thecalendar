@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <%--<button type="button" class="close" ><span aria-hidden="true">&times;</span></button>--%>
                 <img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">
-                <div class="event-title">
+                <div class="modal-title">
                     <h1>EventTitle AJAX REPLACE</h1>
                 </div>
             </div>
