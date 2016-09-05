@@ -42,7 +42,7 @@ $('.event-btn').on("click", function () {
         url: MAINURL+'/EventTitle',
         data: {EventID:EVENTID},
         success:function (response){
-            $('.event-title').html(response);
+            $('.modal-title').html(response);
         }
     });
     // EventDescription

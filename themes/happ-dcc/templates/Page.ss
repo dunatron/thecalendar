@@ -13,6 +13,8 @@
     <script src="$ThemeDir/js/locationpicker/locationpicker.jquery.min.js"></script>
     <title>Simple example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%-- TODO NEW NEW https://www.youtube.com/watch?v=5w3fqtIPM8A | HIDDEN SCROLLBAR--%>
     <style>
         .pac-container {
             z-index: 99999;

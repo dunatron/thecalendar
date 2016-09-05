@@ -3,10 +3,14 @@
   //width: 20%;
   //height: 40px;
   float: left;
+  position: relative;
   &:before {
-    width: 40px;
-    height: 50px;
+    .show_psuedo();
+    width: 60px;
+    height: 60px;
     position: absolute;
+    top:8px;
+    left: 5px;
   }
 }
 
@@ -15,7 +19,6 @@
   position: relative;
 
   &:before {
-    .show_psuedo();
     background: url(../svg/title.svg) no-repeat;
   }
 }
@@ -23,7 +26,6 @@
 #EventAddress-Icon {
   background: url(../svg/location.svg) no-repeat;
   &:before {
-    .show_psuedo();
     background: url(../svg/location.svg) no-repeat;
   }
 }
@@ -31,27 +33,41 @@
 #EventRadius-Icon {
   background: url(../svg/radio-unchecked.svg) no-repeat;
   &:before {
-    .show_psuedo();
     background: url(../svg/radio-unchecked.svg) no-repeat;
   }
 }
 
 #EventType-Icon {
   background: url(../svg/price-tags.svg) no-repeat;
+  &:before {
+    background: url(../svg/price-tags.svg) no-repeat;
+  }
 }
 
 #EventDescription-Icon {
   background: url(../svg/file-text2.svg) no-repeat;
+  &:before {
+    background: url(../svg/file-text2.svg) no-repeat;
+  }
 }
 
 #EventDate-Icon {
   background: url(../svg/calendar.svg) no-repeat;
+  &:before {
+    background: url(../svg/calendar.svg) no-repeat;
+  }
 }
 
 #EventStartTime-Icon {
   background: url(../svg/stopwatch.svg) no-repeat;
+  &:before {
+    background: url(../svg/stopwatch.svg) no-repeat;
+  }
 }
 
 #EventFinishTime-Icon {
   background: url(../svg/alarm.svg) no-repeat;
+  &:before {
+    background: url(../svg/alarm.svg) no-repeat;
+  }
 }

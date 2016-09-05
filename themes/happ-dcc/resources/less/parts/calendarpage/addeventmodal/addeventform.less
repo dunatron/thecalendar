@@ -1,15 +1,17 @@
 .happ-add-event-form {
   font-family: @happ_base_ff;
-  border: 1px dashed rebeccapurple;
+  //border: 1px dashed rebeccapurple;
 
   .form-group {
     .control-label {
       font-size: @label_fs;
-      color: orange;
+      color: @color_charcoal;
       width: 100%;
+      margin: 20px 0 5px 0;
+      font-family: @font_GustanLight;
     }
     .input-wrapper {
-      color: darkgreen;
+      //color: darkgreen;
       @import "fieldIcons";
       input {
         width: 100%;
@@ -25,23 +27,34 @@
         border-radius: 0;
       }
       select,textarea {
-        width: 80%;
+        width: 100%;
         float: left;
+        font-size: 18px;
+        padding: 10px 10px 10px 40px;
       }
+      #EventType {
+        padding: 10px 10px 10px 50px;
+      }
+
+    }
+    .submit-form {
+      padding: 10px 60px;
+      margin-top: 20px;
+      font-family: @font_GustanLight;
     }
 
   }
 
   .happLocationPicker {
-    background-color: #00b3ee;
-    border: 1px dashed red;
+    //background-color: #00b3ee;
+    //border: 1px dashed red;
     .form-group {
       .control-label {
         font-size: @label_fs;
         color: orange;
       }
       .input-wrapper {
-        color: darkgreen;
+        //color: darkgreen;
       }
 
     }
@@ -49,10 +62,10 @@
       display: none;
       .control-label {
         font-size: @label_fs;
-        color: purple;
+        //color: purple;
       }
       .input-wrapper {
-        color: blue;
+        //color: blue;
       }
     }
   }

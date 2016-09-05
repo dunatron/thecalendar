@@ -6,8 +6,7 @@
             <label class="control-label" for="EventTitle">Event Title</label>
             <div class="input-wrapper">
                 <div class="input-icon" id="EventTitle-Icon"></div>
-                <input id="EventTitle" name="EventTitle" type="text" placeholder="Event Title" class="form-control" required="">
-                <span class="help-block">enter the title of the event</span>
+                <input id="EventTitle" name="EventTitle" type="text" placeholder="" class="form-control" required="">
             </div>
         </div>
 
@@ -34,7 +33,7 @@
             <label class="control-label" for="Description">Description</label>
             <div class="input-wrapper">
                 <div class="input-icon" id="EventDescription-Icon"></div>
-                <textarea class="form-control" id="EventDescription" name="EventDescription">event description...</textarea>
+                <textarea class="form-control" id="EventDescription" name="EventDescription"></textarea>
             </div>
         </div>
         <!-- EventDate | Prepended text-->
@@ -43,9 +42,8 @@
             <div class="input-wrapper">
                 <div class="input-group">
                     <div class="input-icon" id="EventDate-Icon"></div>
-                    <input id="EventDate" name="EventDate" class="form-control" placeholder="Event Date" type="text" required="">
+                    <input id="EventDate" name="EventDate" class="form-control" placeholder="" type="text" required="">
                 </div>
-                <p class="help-block">event date, try our datepicker</p>
             </div>
         </div>
         <!-- EventStartTime | Prepended text-->
@@ -54,9 +52,8 @@
             <div class="input-wrapper">
                 <div class="input-group">
                     <div class="input-icon" id="EventStartTime-Icon"></div>
-                    <input id="EventStartTime" name="EventStartTime" class="form-control" placeholder="Event Start Time" type="text" required="">
+                    <input id="EventStartTime" name="EventStartTime" class="form-control" placeholder="" type="text" required="">
                 </div>
-                <p class="help-block">use our time picker</p>
             </div>
         </div>
         <!-- EventFinishTime | Prepended text-->
@@ -65,9 +62,8 @@
             <div class="input-wrapper">
                 <div class="input-group">
                     <div class="input-icon" id="EventFinishTime-Icon"></div>
-                    <input id="EventFinishTime" name="EventFinishTime" class="form-control" placeholder="Event Finish Time" type="text" required="">
+                    <input id="EventFinishTime" name="EventFinishTime" class="form-control" placeholder="" type="text" required="">
                 </div>
-                <p class="help-block">use our time picker via the icon</p>
             </div>
         </div>
         <%--<!-- EventImage | File Button | TODO -->--%>
@@ -81,10 +77,7 @@
 
         <!-- Button -->
         <div class="form-group">
-            <label class="control-label" for="singlebutton">Single Button</label>
-            <div class="col-md-4">
-                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
-            </div>
+            <button id="SubmitHappEvent" name="SubmitHappEvent" class="happ_btn submit-form">Submit Event</button>
         </div>
 
     </fieldset>
