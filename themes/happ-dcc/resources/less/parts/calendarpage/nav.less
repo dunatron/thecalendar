@@ -1,8 +1,8 @@
 .nav-bar-wrapper {
-
+  overflow: hidden;
 
   @media @min865 {
-    max-height: 50px;
+    max-height: 60px;
   }
   z-index: 100;
 
@@ -11,13 +11,20 @@
     text-align: left;
     padding: 0 15px 0 40px;
     font-family: @font_GustanLight;
+    display: inline-block;
+    position: relative;
+
+
+    .full-date {
+      position: absolute;
+      top:-58px;
+    }
 
     .theMonth {
       padding: 0 20px 0 0;
       font-family: @font_GustanLight;
       color:@color-dcc-blue;
       font-size: 24px;
-
     }
 
     .theYear {
@@ -25,20 +32,36 @@
       color:@color-dcc-blue;
       font-size: 24px;
     }
+    @media @min865 {
+      min-width: 250px;
+    }
 
   }
 
   .logo-wrapper {
     z-index: 500;
     text-align: center;
+    display: block;
     img {
       margin-top: 5px;
       margin-right: auto;
       margin-left: auto;
       @media @min865 {
         max-height: 50px;
-
+        margin-left: 30px;
       }
+    }
+    @media @min865 {
+      display: inline-block;
+    }
+  }
+
+  .Event-Filter-Wrapper {
+    display: inline-block;
+    position: absolute;
+    @import "filter/filter";
+    @media @min865 {
+      top: 18px;
     }
   }
 
@@ -47,6 +70,7 @@
     margin-top: 15px;
     margin-right: auto;
     margin-left: auto;
+    display: inline-block;
 
 
     .controls-prev-next {

@@ -15,7 +15,8 @@ class CalendarPage extends Page
     );
 
     private static $has_many = array(
-        'Events' => 'Event'
+        'Events' => 'Event',
+        'Tags' => 'Tag'
     );
     private static $can_be_root = true;
 
@@ -28,6 +29,13 @@ class CalendarPage extends Page
             'Event',
             'Events on this page',
             $this->Events(),
+            GridFieldConfig_RecordEditor::create()
+        ));
+
+        $fields->addFieldToTab('Root.Tags', GridField::create(
+            'Tag',
+            'Tags on this calendar',
+            $this->Tags(),
             GridFieldConfig_RecordEditor::create()
         ));
 
@@ -54,6 +62,7 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::css($this->ThemeDir() . "/css/demo.css");
         Requirements::css($this->ThemeDir() . "/css/homepage.css");
         Requirements::css($this->ThemeDir() . "/css/calendarstyle.css");
+        Requirements::css($this->ThemeDir() . "/css/select2/select2.min.css");
         //JS ASSETS
         Requirements::javascript($this->ThemeDir() . "js/calendar.js");
         Requirements::javascript($this->ThemeDir() . "js/data.js");
@@ -92,6 +101,16 @@ class CalendarPage_Controller extends Page_Controller
         'EventFinishTime',
         'EventDate'
     );
+
+    /**
+     * Get Tags associated With Calendar
+     */
+    public function CalendarTags()
+    {
+        $tags = Tag::get();
+        return $tags;
+    }
+
 
     /**
      * Ajax | Return EventTitle for event modal
@@ -522,7 +541,7 @@ class CalendarPage_Controller extends Page_Controller
                     /**
                      * Begin event button build
                      */
-                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#ApprovedEventModal" lat="' . $e->LocationLat . '" lon="' . $e->LocationLon . '" radius="' . $e->LocationRadius . '" EID="' . $e->ID . '" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
+                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#ApprovedEventModal" lat="' . $e->LocationLat . '" lon="' . $e->LocationLon . '" radius="' . $e->LocationRadius . '" EID="' . $e->ID . '" data-tag="' .$e->EventTags . '" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
                 } else {
                     continue;
                 }

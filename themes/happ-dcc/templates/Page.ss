@@ -11,6 +11,9 @@
     <%-- Google Maps Dependencies --%>
     <script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyBWVd4651hNv8mOn-RaHZdC166O82S-BbY&sensor=false&libraries=places'></script>
     <script src="$ThemeDir/js/locationpicker/locationpicker.jquery.min.js"></script>
+    <%-- SELECT 2 --%>
+    <script src="$ThemeDir/js/select2/select2.full.min.js"></script>
+
     <title>Simple example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -63,6 +66,7 @@
 <%-- Custom Google maps location picker | auto-fill | locationpicker plugin --%>
 <script src="$ThemeDir/js/locationpicker/location-picker-autofill.js"></script>
 <script src="$ThemeDir/js/approved/approved-event.js"></script>
+<script src="$ThemeDir/js/select2/custom-select2.js"></script>
 <script>
 
 </script>

@@ -1,15 +1,17 @@
 <div class="container-fluid">
     <div class="nav-bar-wrapper row">
-        <div class="date-wrapper col-md-4 col-sm-4">
-            <h2><span class="theMonth">$currentMonthName</span><span class="theYear">$currentYear</span></h2>
-        </div>
-        <div class="logo-wrapper col-md-4 col-sm-4">
+
+        <div class="logo-wrapper">
             <%--<a href="$AbsoluteBaseURL/home">--%>
             <img src="$ThemeDir/images/DCC_logo_tiny.png" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"
                  class="img-responsive">
             <%--</a>--%>
         </div>
-        <div class="controls-wrapper col-md-4 col-sm-4">
+        <div class="date-wrapper">
+            <h2 class="full-date"><span class="theMonth">$currentMonthName</span><span class="theYear">$currentYear</span></h2>
+        </div>
+        <% include EventFilter %>
+        <div class="controls-wrapper">
             <div class="controls-prev-next">
                 <a class="month-button" id="previous-month" href="$AbsoluteBaseURL/home">
                     <span class="short-previous-text">$prevShortMonth</span>

@@ -12,6 +12,12 @@ class Event extends DataObject {
         'EventImage' => 'Image'
     );
 
+    private static $summary_fields = array(
+        'EventTitle' => 'EventTitle',
+        'LocationText' => 'LocationText',
+        'EventDate' => 'EventDate'
+    );
+
     private static $db = array(
         'EventTitle' => 'Varchar(100)',
         'LocationText' => 'Text',
@@ -22,8 +28,8 @@ class Event extends DataObject {
         'EventDate' => 'Date',
         'StartTime' => 'Time',
         'FinishTime' => 'Time',
-        'Type' => "Enum(array('Sport', 'Concert'))",
         'EventApproved' => 'Boolean',
+        'EventTags' => 'Text'
     );
 
     public function getCMSFields(){
@@ -56,6 +62,21 @@ class Event extends DataObject {
         // EventDescription
         $fields->addFieldToTab('Root.Main', HtmlEditorField::create('EventDescription', 'Description')
         ->setDescription('The real description field'));
+
+        // Tags
+//        $fields->addFieldToTab('Root.Main', new DropdownField(
+//           'EventTags',
+//            'Choose A Tag',
+//            DataObject::get("Tag")->map("ID", "Title", "Please Select")
+//        ));
+
+        $fields->addFieldToTab('Root.Main', new DropdownField(
+            'EventTags',
+            'Choose A Tag',
+            Tag::get()->map('ID', 'Title')->toArray(),
+            null,
+            true
+        ));
 
 
         $fields->addFieldToTab('Root.Main', $eventImage = UploadField::create('EventImage'));
