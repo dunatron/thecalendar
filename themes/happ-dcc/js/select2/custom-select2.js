@@ -9,11 +9,13 @@ var tagsDropdown = $('#tag-drop-down').select2({
  * When A tag(filter) has been selected do stuff
  * 1. get children of selection (select2-selection__rendered)
  */
+
+
 tagsDropdown.on("select2:select", function (e) {
    console.log("A tag was selected");
 
-    var filterTAGS = [];
-    var filterValues = [];
+    var filterTAGS = []; // All tags from the calendar
+    var filterValues = []; // selected filter tags
 
     //select2-selection__rendered
     var tagsHolder = $('.select2-selection__rendered');
@@ -29,21 +31,21 @@ tagsDropdown.on("select2:select", function (e) {
     getFilterTags();
 
     var relatedTagIDS = realatedList.children().each(function () {
-        $tagTitle = $(this).attr("data-title");
-        $tagID = $(this).attr("data-tag");
-        // if(jQuery.inArray($tagTitle, filterTAGS) ==1) {
-        //     console.log('ITS VERY TRUE');
-        // }
-        if($.inArray(filterTAGS, $tagTitle)) {
-            filterValues.push($tagID);
-            console.log("SURELY");
+        var tagTitle = $(this).attr("data-title");
+        var tagID = $(this).attr("data-tag");
+
+        if(jQuery.inArray(tagTitle, filterTAGS)!='-1') {
+            console.log("IN THE ARRAY");
+            filterValues.push(tagID);
+
+        } else {
+            console.log("NOT IN ARRAY");
         }
 
-        console.log($tagTitle);
     });
 
-    console.log(filterTAGS);
-    console.log(filterValues);
+    console.log('filter tags' + filterTAGS);
+    console.log('filter values' + filterValues);
 
 });
 
