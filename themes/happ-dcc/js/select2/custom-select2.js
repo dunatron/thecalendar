@@ -60,10 +60,12 @@ tagsDropdown.on("select2:select", function (e) {
                 console.log("SHOW EVENTS");
                 // append show event OR AND remove hide-event class
                 $(this).removeClass('hide-event');
+                $(this).addClass('show-event');
 
             } else {
                 console.log("NOT IN ARRAY");
                 $(this).addClass('hide-event');
+                $(this).removeClass('show-event');
             }
         });
     }
@@ -127,10 +129,12 @@ tagsDropdown.on("select2:unselect", function (e) {
                 console.log("SHOW EVENTS");
                 // append show event OR AND remove hide-event class
                 $(this).removeClass('hide-event');
+                $(this).addClass('show-event');
 
             } else {
                 console.log("NOT IN ARRAY");
                 $(this).addClass('hide-event');
+                $(this).removeClass('show-event');
             }
         });
     }
@@ -141,6 +145,7 @@ tagsDropdown.on("select2:unselect", function (e) {
         var events = $('.event-btn');
         jQuery.each(events, function () {
             events.removeClass('hide-event');
+            events.addClass('show-event');
             //alert(events);
         });
         // alert("time to show all the events again cgump");

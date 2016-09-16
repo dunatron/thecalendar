@@ -58,6 +58,9 @@ body {
 
 
 .event-btn {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity .70s linear;
   font-family: @font_GustanLight;
   margin: 0 !important;
   border-top: 1px solid @color-event-btn-color;
@@ -77,6 +80,13 @@ body {
   //display: none;
   visibility: hidden;
   opacity: 0;
+  transition: visibility 1s, opacity .70s linear;
+}
+
+.show-event {
+  //display: none;
+  visibility: visible;
+  opacity: 1;
   transition: visibility 1s, opacity .70s linear;
 }
 
