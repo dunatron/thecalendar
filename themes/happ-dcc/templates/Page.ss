@@ -14,7 +14,21 @@
     <%-- SELECT 2 --%>
     <script src="$ThemeDir/js/select2/select2.full.min.js"></script>
 
-    <title>Simple example</title>
+    <title>Happ | $SiteConfig.Title</title>
+
+
+    <%-- Favicons --%>
+    <link rel="shortcut icon" href="$ThemeDir/favicons/favicon.ico" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="$ThemeDir/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="$ThemeDir/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="$ThemeDir/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="$ThemeDir/favicons/manifest.json">
+    <link rel="mask-icon" href="$ThemeDir/favicons/safari-pinned-tab.svg" color="#FC6636">
+    <meta name="theme-color" content="#ffffff">
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%-- TODO NEW NEW https://www.youtube.com/watch?v=5w3fqtIPM8A | HIDDEN SCROLLBAR--%>
