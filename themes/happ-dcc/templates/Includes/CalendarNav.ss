@@ -12,7 +12,7 @@
         </div>
         <div class="filter-wrapper">
             <a class="filter-modal-btn" data-toggle="modal" data-target="#FilterModal">
-                filter modal btn
+                <img src="$ThemeDir/svg/filter.svg">
             </a>
             <% include FilterModal %>
 
