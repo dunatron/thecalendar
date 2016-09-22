@@ -54,6 +54,7 @@
 </div>
 
     <% include AddHappEventModal %>
+    <%--<% include FilterModal %>--%>
 
 <!-- JAVASCRIPT -->
     <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
@@ -81,6 +82,7 @@
 <script src="$ThemeDir/js/locationpicker/location-picker-autofill.js"></script>
 <script src="$ThemeDir/js/approved/approved-event.js"></script>
 <script src="$ThemeDir/js/select2/custom-select2.js"></script>
+<script src="$ThemeDir/js/modals/filtermodal.js"></script>
 <script>
 
 </script>

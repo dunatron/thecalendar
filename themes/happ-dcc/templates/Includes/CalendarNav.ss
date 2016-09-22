@@ -10,7 +10,15 @@
         <div class="date-wrapper">
             <h2 class="full-date"><span class="theMonth">$currentMonthName</span><span class="theYear">$currentYear</span></h2>
         </div>
-        <% include EventFilter %>
+        <div class="filter-wrapper">
+            <a class="filter-modal-btn" data-toggle="modal" data-target="#FilterModal">
+                filter modal btn
+            </a>
+            <% include FilterModal %>
+
+            <%--<% include EventFilter %>--%>
+        </div>
+
         <div class="controls-wrapper">
             <div class="controls-prev-next">
                 <a class="month-button" id="previous-month" href="$AbsoluteBaseURL/home">

@@ -2,20 +2,14 @@
   font-family: @font_GustanLight;
   .form-group {
     .dropdown-label {
-      position: relative;
-      width: 50px;
-      &:before {
-        .show_psuedo();
-        width: 60px;
-        height: 60px;
-        position: absolute;
-        top:-16px;
-        left: 5px;
-        background: url(../svg/filter.svg) no-repeat;
-      }
+
     }
     .select2-container {
-      max-height: 60px;
+      //max-height: 60px;
+      @media @min1200 {
+        max-height: none;
+
+      }
       //overflow-y: scroll;
       overflow: hidden;
       width: 300px !important;
@@ -26,6 +20,7 @@
 
       .select2-selection--multiple {
         border-radius: 0;
+        border-color: @c_happ_orange;
         .select2-selection__rendered {
           .select2-selection__choice {
             //background-color: #e4e4e4;
