@@ -567,8 +567,8 @@ class CalendarPage_Controller extends Page_Controller
         if ($days_in_this_week < 8):
             $nextMonthDay = 1;
             for ($x = 1; $x <= (8 - $days_in_this_week); $x++):
-                $calendar .= '<div class="day-square last-month-wrap">';
-                $calendar .= '<span class="day-number last-month last-month-'.$nextMonthDay.'" style="">' . $nextMonthDay . '</span></br>';
+                $calendar .= '<div class="day-square next-month-wrap">';
+                $calendar .= '<span class="day-number next-month next-month-'.$nextMonthDay.'" style="">' . $nextMonthDay . '</span></br>';
                 $calendar .= '</div>';
                 $nextMonthDay++;
             endfor;
