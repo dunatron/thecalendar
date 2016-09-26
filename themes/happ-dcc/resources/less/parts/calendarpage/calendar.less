@@ -10,6 +10,20 @@
     .fc-calendar-container {
 
       .fc-calendar {
+        //background: rgba(255,255,255,.1);
+        //width: auto;
+        //top: 10px;
+        //bottom: 20px;
+        //left: 20px;
+        //right: 20px;
+        //height: auto;
+        //border-radius: 20px;
+        //position: absolute;
+        @media @min880 {
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
 
         // Calendar Head
         .fc-head {
@@ -22,6 +36,9 @@
 
         // Calendar Body
         .fc-body {
+          @media @min880 {
+            padding: 10px 0 20px 0;
+          }
 
           .fc-row {
             overflow: hidden;
@@ -57,9 +74,9 @@
                    position: absolute;
                    margin-top: 0;
                    height: inherit;
-                   right: -20px;
+                   right: -10px;
                    width: 100%;
-                   padding-right: 20px;
+                   padding-right: 10px;
                  }
 
                }
