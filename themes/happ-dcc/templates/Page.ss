@@ -54,6 +54,7 @@
 </div>
 
     <% include AddHappEventModal %>
+    <% include FilterModal %>
     <%--<% include FilterModal %>--%>
 
 <!-- JAVASCRIPT -->

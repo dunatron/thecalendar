@@ -14,7 +14,7 @@
             <a class="filter-modal-btn" data-toggle="modal" data-target="#FilterModal">
                 <img src="$ThemeDir/svg/filter.svg">
             </a>
-            <% include FilterModal %>
+
 
             <%--<% include EventFilter %>--%>
         </div>

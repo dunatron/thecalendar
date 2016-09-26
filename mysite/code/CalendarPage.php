@@ -154,6 +154,7 @@ class CalendarPage_Controller extends Page_Controller
         return $EventLocation;
     }
 
+
     /**
      * Ajax | Return EventDate for event modal
      */
@@ -496,12 +497,12 @@ class CalendarPage_Controller extends Page_Controller
         /* row for week one */
         $calendar .= '<div class="fc-row">';
         /* print "blank" days until the first of the current week */
+        $lastMonthDay = 1; // used for below function render last months days
         for ($x = 0; $x < $running_day; $x++):
-            $calendar .= '<div class="outer-square"></div> <div class="day-square"></div>';
-
-            //test
-            $test = 0;
-
+            $calendar .= '<div class="day-square last-month-wrap">';
+            $calendar .= '<span class="day-number last-month last-month-'.$lastMonthDay.'" style="">' . $lastMonthDay . '</span></br>';
+            $calendar .= '</div>';
+            $lastMonthDay++;
             $days_in_this_week++;
         endfor;
         /* keep going with days.... */
@@ -564,8 +565,12 @@ class CalendarPage_Controller extends Page_Controller
         endfor;
         /* finish the rest of the days in the week */
         if ($days_in_this_week < 8):
+            $nextMonthDay = 1;
             for ($x = 1; $x <= (8 - $days_in_this_week); $x++):
-                $calendar .= '<div> </div>';
+                $calendar .= '<div class="day-square last-month-wrap">';
+                $calendar .= '<span class="day-number last-month last-month-'.$nextMonthDay.'" style="">' . $nextMonthDay . '</span></br>';
+                $calendar .= '</div>';
+                $nextMonthDay++;
             endfor;
         endif;
         /* final row */
