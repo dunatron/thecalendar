@@ -509,6 +509,7 @@ class CalendarPage_Controller extends Page_Controller
         // GET THE EVENTS OBJECTS IN A DATALIST TO CALL OBJECT VARIABLEIS
         for ($list_day = 1; $list_day <= $days_in_month; $list_day++):
             $calendar .= '<div class="day-square">';
+            $calendar .= '<div class="tron-inner-square">';
             $calendar .= '<span class="day-number" style="">' . $list_day . '</span></br>';
 
 
@@ -550,6 +551,7 @@ class CalendarPage_Controller extends Page_Controller
 
             $calendar .= '<span class="fc-weekday">';
             $calendar .= '</span>';
+            $calendar .= '</div>';
             $calendar .= '</div>';
             if ($running_day == 6):
                 $calendar .= '</div>';

@@ -47,6 +47,22 @@
 
                overflow: hidden;
                color: purple;
+
+               .tron-inner-square {
+                 .day-number {
+                   color: fade(@color-dcc-blue, 60%);
+                 }
+                 @media @min880 {
+                   overflow-y: scroll;
+                   position: absolute;
+                   margin-top: 0;
+                   height: inherit;
+                   right: -20px;
+                   width: 100%;
+                   padding-right: 20px;
+                 }
+
+               }
                .modal {
                  display:  none;
                  z-index: 99999999999;
