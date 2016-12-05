@@ -26,7 +26,24 @@ class Page_Controller extends ContentController {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
+	    'SteppedEventForm',
+        'finished'
 	);
+
+    public function SteppedEventForm()
+    {
+        $EventForm = new SteppedEventForm($this, 'SteppedEventForm');
+        return $EventForm;
+    }
+
+    public function finished()
+    {
+        return array(
+            'Title' => 'Thank you for your submission',
+            'Content' => '<p>You have submitted an Event</p>',
+            'SessionMessage' => 'Thank-you for your event submission'
+        );
+    }
 
 	public function init() {
 		parent::init();

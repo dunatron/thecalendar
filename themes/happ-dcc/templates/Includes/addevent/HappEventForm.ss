@@ -1,3 +1,12 @@
+
+<% if $SteppedEventForm %>
+    <% with $SteppedEventForm %>
+        <% include MultiFormProgressList %>
+    <% end_with %>
+    $SteppedEventForm
+<% end_if %>
+
+
 <form class="happ-add-event-form" action="$BaseHref/home/tronTest" method="POST">
     <fieldset>
 

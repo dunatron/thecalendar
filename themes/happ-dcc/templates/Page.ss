@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <head lang="en">
@@ -40,6 +40,8 @@
 </head>
 
 <body class="$ClassName.LowerCase">
+$Message
+$SessionMessage
 
 <div class="container-fluid" id="site-wrapper">
     <div class="$ClassName.LowerCase-menu-buffer"></div>
