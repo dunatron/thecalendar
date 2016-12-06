@@ -18,17 +18,19 @@ class SteppedEventForm extends MultiForm
             "SessionID = {$this->session->ID}"
         );
 
+        Session::set('ModalCheck', 0);
+        $pageID = Session::get('CALID');
+
         $event = new Event();
-        var_dump($data);
 
         foreach ($steps as $step)
         {
             $data = $step->loadData();
+            $event->CalendarPageID = $pageID;
             $event->update($data);
             $event->write();
             // Shows the step data (unserialized by loadData)
-            var_dump(Debug::show($step->loadData()));
-            //Debug::show($step->loadData());
+            //var_dump(Debug::show($step->loadData()));
         }
         //die('see above steps');
 

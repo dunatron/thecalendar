@@ -76,7 +76,12 @@ class CalendarPage_Controller extends Page_Controller
         if(!isset($_SESSION['ModalCheck'])){
             Session::set('ModalCheck', 0);
         }
+        if(!isset($_SESSION['CALID'])){
+            Session::set('CALID', $this->CalendarID());
+        }
+
     }
+
 
     // Methods allowed to run on this controller
     private static $allowed_actions = array(
@@ -98,6 +103,11 @@ class CalendarPage_Controller extends Page_Controller
         'EventFinishTime',
         'EventDate'
     );
+
+    public function CalendarID()
+    {
+        return $this->ID;
+    }
 
     /**
      * Get Tags associated With Calendar

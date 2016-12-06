@@ -29,6 +29,7 @@ class EventFormLocationStep extends MultiFormStep
             $locRadius,
             $map
         );
+        
     }
 
     public function getValidator()
