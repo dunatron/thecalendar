@@ -22,7 +22,8 @@ class EventFormDateTimeStep extends MultiFormStep
 //            $finishTime
 //        );
 
-        $date = new TextField('EventDate', 'Date of the event');
+        $date = new DateField('EventDate', 'Date of the event');
+        $date->setConfig('dateformat', 'dd-MM-yyyy');
 
         return new FieldList(
             $date

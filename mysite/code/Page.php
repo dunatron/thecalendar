@@ -39,8 +39,9 @@ class Page_Controller extends ContentController {
 
     public function CloseModal()
     {
-        var_dump('Calling the close modal');
-        die();
+        $m = 'Add Event';
+        Session::set('ModalCheck', 0);
+        return $m;
     }
 
     public function ModalState()

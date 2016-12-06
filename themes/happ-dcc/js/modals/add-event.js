@@ -3,81 +3,49 @@
  */
 
 
-// $(nextBtn).on('click', function(e){
-//
-//     e.preventDefault();
-//
-//     var url = window.location.href;
-//
-//     // MAINURL = url + "home/TronsGrandTest";
-//     MAINURL = url;
-//     // Set EventTitle
-//     $.ajax({
-//         type:"POST",
-//         url: MAINURL+'home/next',
-//         success:function (response){
-//             $('#SteppedEventForm_SteppedEventForm').html(response);
-//         }
-//     });
-//
-//     console.log('tried some ajax');
-//
-// });
-
-// On page reload check what state the modal is in
-
-// $( document ).ready(function() {
-//     var nextBtn = $('#SteppedEventForm_SteppedEventForm_action_next'),
-//         closeBtn = $('.close-btn'),
-//         modalState = $('.modal-checker');
-//     console.log( "ready!" );
-//     if($(modalState).attr('modal-state') == 0){
-//         console.log('Modal state is set tp 0');
-//         $('#AddHappEventModal').modal('show');
-//     } else {
-//         console.log('Modal state is set tp 1');
-//     }
-// });
-
 $(window).load(function(){
     var nextBtn = $('#SteppedEventForm_SteppedEventForm_action_next'),
-        closeBtn = $('.close-btn'),
-        modalState = $('.modal-checker');
-    console.log( "ready!" );
-    if($(modalState).attr('modal-state') == 0){
-        console.log('Modal state is set tp 0');
-        $('#AddHappEventModal').modal('show');
-    } else {
-        console.log('Modal state is set tp 1');
-    }
-});
+        modalState = $('.modal-checker'),
+        eventModal = $('#AddHappEventModal');
 
-// $(window).bind('beforeunload',function(){
-//
-//     //save info somewhere
-//
-//     return 'are you sure you want to leave?';
-//
-// });
+    $(eventModal).on('hidden.bs.modal', function (e) {
+        console.log('close btn has been triggered by bootstrap');
+        var url = $('#siteBaseUrl').attr('href');
 
-
-
-
-$(closeBtn).on('click', function(){
-    console.log('close btn has been triggered');
-    var url = window.location.href;
-
-    // MAINURL = url + "home/TronsGrandTest";
-    MAINURL = url;
-    // Set EventTitle
-    $.ajax({
-        type:"POST",
-        url: MAINURL+'home/CloseModal',
-        success:function (response){
-            // $('#SteppedEventForm_SteppedEventForm').html(response);
-            $('#SteppedEventForm_SteppedEventForm').html(response);
-        }
+        // MAINURL = url + "home/TronsGrandTest";
+        MAINURL = url;
+        // Set EventTitle
+        $.ajax({
+            type:"POST",
+            url: url+'home/CloseModal',
+            success:function (response){
+                // $('#SteppedEventForm_SteppedEventForm').html(response);
+                $('#modal-status').html(response);
+            }
+        });
     });
+
+
+    if($(modalState).attr('modal-state') == 1){
+        console.log('Modal state is set tp 1');
+        $(eventModal).modal('show');
+    } else {
+        console.log('Modal state is set tp 0');
+    }
+
+    $(eventModal).on('show.bs.modal', function (e) {
+        console.log('giding the event modal when it is close... set session back to 0 champ')
+    });
+
+    $(eventModal).on('shown.bs.modal', function (e) {
+        // do something...
+        console.log('giding the event modal when it is close... set session back to 0 champ')
+    });
+
 });
+
+
+
+
 
 

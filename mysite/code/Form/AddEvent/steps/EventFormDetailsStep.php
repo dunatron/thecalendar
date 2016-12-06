@@ -34,6 +34,7 @@ class EventFormDetailsStep extends MultiFormStep
 
     public function getNextStep()
     {
+        $s = Session::set('ModalCheck', 1);
         $data = $this->loadData();
         if(@$data['HasTickets'] == 1){
             return 'EventFormTicketStep';

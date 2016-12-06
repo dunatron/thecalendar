@@ -256,6 +256,7 @@ class CalendarPage_Controller extends Page_Controller
      */
     public function jaxPreviousMonth()
     {
+        Session::set('ModalCheck', 0);
         $m = Session::get('Month');
 
         $m--;
@@ -271,6 +272,7 @@ class CalendarPage_Controller extends Page_Controller
      */
     public function jaxNextMonth()
     {
+        Session::set('ModalCheck', 0);
         $m = Session::get('Month');
         $m++;
         $this->formatMonthNumber($m);
@@ -495,7 +497,7 @@ class CalendarPage_Controller extends Page_Controller
         $lastMonthDay = 1; // used for below function render last months days
         for ($x = 0; $x < $running_day; $x++):
             $calendar .= '<div class="day-square last-month-wrap">';
-            $calendar .= '<span class="day-number last-month last-month-'.$lastMonthDay.'" style="">' . $lastMonthDay . '</span></br>';
+            $calendar .= '<span class="day-number last-month last-month-'.$lastMonthDay.'" style="">' . '</span></br>';
             $calendar .= '</div>';
             $lastMonthDay++;
             $days_in_this_week++;

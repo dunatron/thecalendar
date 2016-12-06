@@ -20,11 +20,14 @@ class EventFormLocationStep extends MultiFormStep
         $locRadius = new HiddenField('LocationRadius', 'Radius of the event');
         $locRadius->setAttribute('id', 'addEventRadius');
 
+        $map = new LiteralField('googleMap', '<div id="eventMap" style="width: 100%; height: 400px;"></div>');
+
         return new FieldList(
             $locationField,
             $locLat,
             $locLong,
-            $locRadius
+            $locRadius,
+            $map
         );
     }
 

@@ -31,8 +31,8 @@
     $Message
     $SessionMessage
 <div class="modal-checker" modal-state="$ModalState">
-
 </div>
+
 
 <div class="container-fluid" id="site-wrapper">
     <div class="$ClassName.LowerCase-menu-buffer"></div>

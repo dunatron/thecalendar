@@ -3,8 +3,10 @@
 
         <div class="logo-wrapper">
             <%--<a href="$AbsoluteBaseURL/home">--%>
-            <img src="$ThemeDir/images/DCC_logo_tiny.png" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"
-                 class="img-responsive">
+            <a href="$AbsoluteBaseURL" id="siteBaseUrl">
+                <img src="$ThemeDir/images/DCC_logo_tiny.png" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"
+                     class="img-responsive">
+            </a>
             <%--</a>--%>
         </div>
         <div class="date-wrapper">
