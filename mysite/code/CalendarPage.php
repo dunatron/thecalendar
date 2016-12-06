@@ -63,13 +63,6 @@ class CalendarPage_Controller extends Page_Controller
         Requirements::css($this->ThemeDir() . "/css/homepage.css");
         Requirements::css($this->ThemeDir() . "/css/calendarstyle.css");
         Requirements::css($this->ThemeDir() . "/css/select2/select2.min.css");
-        //JS ASSETS
-        Requirements::javascript($this->ThemeDir() . "js/calendar.js");
-        Requirements::javascript($this->ThemeDir() . "js/data.js");
-        Requirements::javascript($this->ThemeDir() . "js/jquery.calendario.js");
-        Requirements::javascript($this->ThemeDir() . "js/modernizr.js");
-        Requirements::javascript($this->ThemeDir() . "js/trondata.js");
-        Requirements::javascript($this->ThemeDir() . "js/datepicker.js");
 
         // If session is not set, get today's date and set year and month
         if (!isset($_SESSION['Month'])) {
@@ -78,6 +71,10 @@ class CalendarPage_Controller extends Page_Controller
             Session::set('Month', $m);
             $y = date("Y");
             Session::set('Year', $y);
+        }
+        // Check if module session is active, if not set initialise the session variable and set it to 0
+        if(!isset($_SESSION['ModalCheck'])){
+            Session::set('ModalCheck', 0);
         }
     }
 
@@ -110,7 +107,6 @@ class CalendarPage_Controller extends Page_Controller
         $tags = Tag::get();
         return $tags;
     }
-
 
     /**
      * Ajax | Return EventTitle for event modal
@@ -356,7 +352,6 @@ class CalendarPage_Controller extends Page_Controller
         Session::set('Year', $y);
         return;
     }
-
 
     public function tronTest()
     {

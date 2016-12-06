@@ -11,15 +11,23 @@ class EventFormDateTimeStep extends MultiFormStep
 
     public function getFields()
     {
-        $date = new DateField('EventDate', 'Date of the event');
-        $date->setConfig('showcalendar', true);
-        $date->setConfig('dateformat', 'dd-MM-yyyy');
-        $startTime = new TimePickerField('StartTime', 'Event start time');
-        $finishTime = new TimePickerField('FinishTime', 'Event finish time');
+//        $date = new DateField('EventDate', 'Date of the event');
+//        $date->setConfig('showcalendar', true);
+//        $date->setConfig('dateformat', 'dd-MM-yyyy');
+//        $startTime = new TimePickerField('StartTime', 'Event start time');
+//        $finishTime = new TimePickerField('FinishTime', 'Event finish time');
+//        return new FieldList(
+//            $date,
+//            $startTime,
+//            $finishTime
+//        );
+
+        $date = new TextField('EventDate', 'Date of the event');
+
         return new FieldList(
-            $date,
-            $startTime,
-            $finishTime
+            $date
         );
+
+
     }
 }

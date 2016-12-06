@@ -34,7 +34,6 @@ function process() {
             xmlHttp.send(null); //this connects with the server
         } catch (e) {
             alert(e.toString());
-
         }
     }
 }

@@ -7,7 +7,7 @@
  */
 class EventFormTicketStep extends MultiFormStep
 {
-    public static $next_steps = 'EventFormLocationStep';
+    public static $next_steps = 'EventFormDateTimeStep';
 
     public function getFields()
     {
