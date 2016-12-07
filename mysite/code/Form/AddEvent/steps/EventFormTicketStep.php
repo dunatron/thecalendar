@@ -31,4 +31,15 @@ class EventFormTicketStep extends MultiFormStep
         );
     }
 
+    public function getNextStep()
+    {
+        $s = Session::set('ModalCheck', 1);
+        $data = $this->loadData();
+        if(@$data['AccessType'] == 5){
+            return 'EventFormTicketWebsiteStep';
+        } else {
+            return 'EventFormDateTimeStep';
+        }
+    }
+
 }
