@@ -11,9 +11,23 @@ class EventFormTicketStep extends MultiFormStep
 
     public function getFields()
     {
-        $restrictions = TextField::create('Restriction', 'restrictions for ticket purchase');
+
+        $restrictions = new DropdownField(
+            'Restriction',
+            'Restrictions for event',
+            EventRestriction::get()->map('ID', 'Description')->toArray(),
+            null,
+            true
+        );
+
+        $acc = new AccessTypeArray();
+        $acc->getAccessValues();
+
+        $access = $acc->getAccessValues();
+
         return new FieldList(
-           $restrictions
+           $restrictions,
+            $access
         );
     }
 

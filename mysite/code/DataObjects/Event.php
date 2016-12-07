@@ -12,6 +12,10 @@ class Event extends DataObject {
         'EventImage' => 'Image'
     );
 
+    private static $has_many = array(
+        'Tickets' => 'Ticket',
+    );
+
     private static $summary_fields = array(
         'EventTitle' => 'EventTitle',
         'LocationText' => 'LocationText',
@@ -20,6 +24,7 @@ class Event extends DataObject {
 
     private static $db = array(
         'EventTitle' => 'Varchar(100)',
+        'EventVenue' => 'Varchar(100)',
         'LocationText' => 'Text',
         'LocationLat' => 'Varchar(100)', // Find a better data type
         'LocationLon' => 'Varchar(100)',
@@ -29,7 +34,11 @@ class Event extends DataObject {
         'StartTime' => 'Time',
         'FinishTime' => 'Time',
         'EventApproved' => 'Boolean',
-        'EventTags' => 'Text'
+        'EventTags' => 'Text',
+        'TicketWebsite' => 'Text',
+        'TicketPhone' => 'Varchar(30)',
+        'Restriction' => 'Text',
+        'AccessType' => 'Text',
     );
 
     public function getCMSFields(){
@@ -38,6 +47,9 @@ class Event extends DataObject {
         // EventTitle
         $fields->addFieldToTab('Root.Main', TextField::create('EventTitle', 'Event Title:')
             ->setDescription('e.g <strong>Little johnys bakeoff</strong>'));
+        //EventVenue
+        $fields->addFieldToTab('Root.Main', TextField::create('EventTitle', 'Event Title:')
+            ->setDescription('e.g <strong>Entertainment Centre</strong>'));
         // LocationText
         $fields->addFieldToTab('Root.Main', TextField::create('LocationText', 'Event Location:')
             ->setDescription('e.g <strong>182 Bowmar Rd, Waimumu 9774, New Zealand</strong>'));
@@ -59,17 +71,12 @@ class Event extends DataObject {
         $fields->addFieldToTab('Root.Main', TimePickerField::create('FinishTime'));
         // Type
         $fields->addFieldToTab('Root.Main', CheckboxField::create('EventApproved', 'Event Approved'));
-        // EventDescription
-        $fields->addFieldToTab('Root.Main', HtmlEditorField::create('EventDescription', 'Description')
-        ->setDescription('The real description field'));
+
+        $fields->addFieldToTab('Root.Main', TextField::create('TicketWebsite', 'Ticket Website'));
+
+        $fields->addFieldToTab('Root.Main', TextField::create('TicketPhone', 'Ticket Phone'));
 
         // Tags
-//        $fields->addFieldToTab('Root.Main', new DropdownField(
-//           'EventTags',
-//            'Choose A Tag',
-//            DataObject::get("Tag")->map("ID", "Title", "Please Select")
-//        ));
-
         $fields->addFieldToTab('Root.Main', new DropdownField(
             'EventTags',
             'Choose A Tag',
@@ -78,11 +85,27 @@ class Event extends DataObject {
             true
         ));
 
+        // Restrictions
+        $fields->addFieldToTab('Root.Main', new DropdownField(
+            'Restriction',
+            'Choose A Restriction Type',
+            EventRestriction::get()->map('ID', 'Description')->toArray(),
+            null,
+            true
+        ));
+
+        // Access Type
+        $acc = new AccessTypeArray();
+        $fields->addFieldToTab('Root.Main', $acc->getAccessValues());
 
         $fields->addFieldToTab('Root.Main', $eventImage = UploadField::create('EventImage'));
         //Set allowed upload extensions
         $eventImage->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
         $eventImage->setFolderName('event-Images');
+
+        // EventDescription
+        $fields->addFieldToTab('Root.Main', HtmlEditorField::create('EventDescription', 'Description')
+        ->setDescription('The real description field'));
 
         return $fields;
     }
