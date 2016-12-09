@@ -86,6 +86,8 @@ class Event extends DataObject {
         $fields->addFieldToTab('Root.Main', DateField::create('EventDate', 'Date of the Event')
             ->setConfig('dateformat', 'dd-MM-yyyy')
             ->setConfig('showcalendar', true));
+        // Event Month
+        $fields->addFieldToTab('Root.Main', ReadonlyField::create('EventMonth', 'Month generated from picking date'));
         // StartTime
         $fields->addFieldToTab('Root.Main', TimePickerField::create('StartTime'));
         // FinishTime

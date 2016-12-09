@@ -20,7 +20,7 @@ class EventAdmin extends ModelAdmin
     /**
      * @var string
      */
-    private static $menu_title = "Event's";
+    private static $menu_title = "Events";
 
     public function getList()
     {

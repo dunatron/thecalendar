@@ -437,20 +437,14 @@ class CalendarPage_Controller extends Page_Controller
      */
     public function getEvents()
     {
+        $currentMonth = Session::get('Month');
+        $currentYear = Session::get('Year');
         $events = Event::get()
             ->where('EventApproved', 'TRUE')
-            ->where('')
-            ->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects
-
-
-//        // Read in Session Data
-//        $M = Session::get('Month');
-//        $Y = Session::get('Year');
-
-
-//        $sqlQuery = new SQLSelect();
-//
-//        $events = DB::prepared_query('SELECT FROM "Events" WHERE "month("$M"), year($Y)" = ?', array(0));
+            ->filter(array(
+                'EventDate:PartialMatch' => '%'.$currentYear.'-'.$currentMonth.'-%'
+            ))
+            ->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects]
 
 
         return $events;
