@@ -1,20 +1,19 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: admin
- * Date: 8/12/16
- * Time: 1:38 PM
+ * Date: 9/12/16
+ * Time: 1:20 PM
  */
-class ExampleEvents extends BuildTask
+class ExampleEventsYear extends BuildTask
 {
-    protected $title = 'Example Events';
+    protected $title = 'Example Events Year Populate';
 
-    protected $description = 'Task to populate the current Month with example events';
+    protected $description = 'Task to populate the current Year with 1200 example events';
 
     public function run($request)
     {
-        for($i = 0; $i <= 100; $i++)
+        for($i = 0; $i <= 1200; $i++)
         {
             $e = new Event();
             $e->EventTitle = $this->generateRandomString();
@@ -44,7 +43,7 @@ class ExampleEvents extends BuildTask
         // Random Day
         $day= mt_rand(1, 28);
 
-        $randomDate = $currYear . "-" . $currMonth . "-" . $day;
+        $randomDate = $currYear . "-" . $month . "-" . $day;
 
         return $randomDate;
     }

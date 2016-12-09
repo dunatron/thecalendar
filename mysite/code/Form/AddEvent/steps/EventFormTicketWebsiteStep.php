@@ -11,7 +11,7 @@ class EventFormTicketWebsiteStep extends MultiFormStep
 
     public function getFields()
     {
-        $website = new TextField('TicketWebsite', 'Tiicket website');
+        $website = new TextField('TicketWebsite', 'Ticket website');
         $phone = new TextField('TicketPhone', 'ticket provider website');
 
         return new FieldList(
