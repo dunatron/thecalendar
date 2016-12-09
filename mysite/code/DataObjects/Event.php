@@ -18,9 +18,22 @@ class Event extends DataObject {
 
     private static $summary_fields = array(
         'EventTitle' => 'EventTitle',
+        'EventVenue'    =>  'EventVenue',
         'LocationText' => 'LocationText',
-        'EventDate' => 'EventDate'
+        'EventDate' => 'EventDate',
+        'IsApproved' => 'Approved status'
     );
+
+    public function getIsApproved()
+    {
+        $check = '';
+        if($this->EventApproved == 1){
+            $check = 'Yes';
+        }else {
+            $check = 'No';
+        }
+        return $check;
+    }
 
     private static $db = array(
         'EventTitle' => 'Varchar(100)',
@@ -43,7 +56,10 @@ class Event extends DataObject {
 
     private static $searchable_fields = array(
         'EventTitle',
-        'EventApproved'
+        'EventDate',
+        'EventApproved',
+        'EventVenue',
+        'LocationText'
     );
 
     public function getCMSFields(){
@@ -53,7 +69,7 @@ class Event extends DataObject {
         $fields->addFieldToTab('Root.Main', TextField::create('EventTitle', 'Event Title:')
             ->setDescription('e.g <strong>Little johnys bakeoff</strong>'));
         //EventVenue
-        $fields->addFieldToTab('Root.Main', TextField::create('EventTitle', 'Event Title:')
+        $fields->addFieldToTab('Root.Main', TextField::create('EventVenue', 'Event Venue:')
             ->setDescription('e.g <strong>Entertainment Centre</strong>'));
         // LocationText
         $fields->addFieldToTab('Root.Main', TextField::create('LocationText', 'Event Location:')

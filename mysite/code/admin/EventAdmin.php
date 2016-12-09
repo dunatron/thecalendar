@@ -15,7 +15,7 @@ class EventAdmin extends ModelAdmin
     /**
      * @var string
      */
-    private static $url_segment = "Events-awaiting-approval";
+    private static $url_segment = "calendar-events";
 
     /**
      * @var string
@@ -29,6 +29,17 @@ class EventAdmin extends ModelAdmin
 //            $list = $list->exclude('EventApproved', 1);
 //        }
         return $list;
+    }
+
+    public function getIsApproved()
+    {
+        $check = '';
+        if($this->EventApproved == 1){
+            $check = 'Yes';
+        }else {
+            $check = 'No';
+        }
+        return $check;
     }
 
     /**
@@ -49,8 +60,10 @@ class EventAdmin extends ModelAdmin
         $config->getComponentByType('GridFieldDataColumns')
             ->setDisplayFields(array(
                 'EventTitle'  => 'EventTitle',
+                'EventVenue'    =>  'EventVenue',
+                'LocationText' => 'LocationText',
                 'EventDate' => 'EventDate',
-                'EventApproved' => 'EventApproved'
+                'IsApproved' => 'EventApproved'
             ));
 
         return $form;
