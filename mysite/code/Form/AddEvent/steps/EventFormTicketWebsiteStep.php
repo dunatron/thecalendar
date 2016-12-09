@@ -20,5 +20,13 @@ class EventFormTicketWebsiteStep extends MultiFormStep
         );
     }
 
+    public function getValidator()
+    {
+        return new RequiredFields(array(
+            'TicketWebsite',
+            'TicketPhone'
+        ));
+    }
+
 
 }

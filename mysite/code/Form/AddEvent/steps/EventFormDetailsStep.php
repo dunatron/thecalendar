@@ -12,15 +12,22 @@ class EventFormDetailsStep extends MultiFormStep
 
     public function getFields()
     {
+        $title  = TextField::create('EventTitle', 'Title of the Event');
+        $desc   = TextField::create('EventDescription', 'description of the event');
+        $ticket = CheckboxField::create('HasTickets', 'Check if event has tickets');
+        $tags   = MultiValueCheckboxField::create(
+            'EventTags',
+            'Check relevant Tags',
+            Tag::get()->map('ID', 'Title')->toArray(),
+            null,
+            true
+        );
+
         return new FieldList(
-            new TextField('EventTitle', 'Title of the event'),
-            new TextField('EventDescription', 'description of the event'),
-            new CheckboxField('HasTickets', 'check if event has tickets'),
-            new MultiValueCheckboxField('EventTags',
-                'Choose A Tag',
-                Tag::get()->map('ID', 'Title')->toArray(),
-                null,
-                true)
+            $title,
+            $desc,
+            $ticket,
+            $tags
         );
     }
 

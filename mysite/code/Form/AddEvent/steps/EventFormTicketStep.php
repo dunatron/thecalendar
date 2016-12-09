@@ -31,6 +31,14 @@ class EventFormTicketStep extends MultiFormStep
         );
     }
 
+    public function getValidator()
+    {
+        return new RequiredFields(array(
+            'Restriction',
+            'AccessType'
+        ));
+    }
+
     public function getNextStep()
     {
         $s = Session::set('ModalCheck', 1);

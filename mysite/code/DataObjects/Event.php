@@ -41,6 +41,11 @@ class Event extends DataObject {
         'AccessType' => 'Text',
     );
 
+    private static $searchable_fields = array(
+        'EventTitle',
+        'EventApproved'
+    );
+
     public function getCMSFields(){
         $fields = parent::getCMSFields();
 
