@@ -28,8 +28,65 @@ class Page_Controller extends ContentController {
 	private static $allowed_actions = array (
 	    'SteppedEventForm',
         'finished',
-        'CloseModal'
+        'CloseModal',
+        'HappEventForm'
 	);
+
+    public function HappEventForm()
+    {
+        // Details Fields
+        $detailsStart = LiteralField::create('DetailsStart', '<div id="details-step">');
+        $title  = TextField::create('EventTitle', 'Title of the Event');
+        $desc   = TextField::create('EventDescription', 'description of the event');
+        $ticket = CheckboxField::create('HasTickets', 'Check if event has tickets')->setAttribute('id', 'hasTickets');
+        $tags   = MultiValueCheckboxField::create(
+            'EventTags',
+            'Check relevant Tags',
+            Tag::get()->map('ID', 'Title')->toArray(),
+            null,
+            true
+        );
+        $detailsNext = LiteralField::create('detailsNextBtn', '<input type="button" id="detailsNextBtn">');
+        $detailsEnd = LiteralField::create('DetailsEnd', '</div>');
+
+        // Ticket Step
+        $ticketStart = LiteralField::create('TicketStart', '<div id="ticket-step" class="field-hidden">');
+        $restrictions = DropdownField::create('Restriction',
+            'Restrictions for event',
+            EventRestriction::get()->map('ID', 'Description')->toArray(),
+            null,
+            true
+        );
+
+        $acc = new AccessTypeArray();
+        $acc->getAccessValues();
+
+        $access = $acc->getAccessValues();
+        $ticketEnd = LiteralField::create('TicketEnd', '</div>');
+
+        $fields = new FieldList(
+            $detailsStart,
+            $title,
+            $desc,
+            $ticket,
+            $tags,
+            $detailsNext,
+            $detailsEnd,
+            $ticketStart,
+            $restrictions,
+            $access,
+            $ticketEnd
+        );
+
+
+
+        $actions = new FieldList(
+
+        );
+
+        $form = new Form($this, 'HappEventForm', $fields, $actions);
+        return $form;
+    }
 
     public function SteppedEventForm()
     {
@@ -78,9 +135,7 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() . "/js/approved/approved-event.js");
         Requirements::javascript($this->ThemeDir() . "/js/select2/custom-select2.js");
         Requirements::javascript($this->ThemeDir() . "/js/modals/add-event.js");
-
-
-
+        Requirements::javascript($this->ThemeDir() . "/js/add-event/add-happ-event.js");
 	}
 
 }
