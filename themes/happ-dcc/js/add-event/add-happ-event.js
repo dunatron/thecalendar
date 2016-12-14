@@ -15,7 +15,10 @@ $(document).ready(function () {
         TicketWebNextBtn = $('#ticketWebNext'),
         LocationWrapper = $('#location-step'),
         LocationBack    =   $('#locationBack'),
-        LocationNext    =   $('#locationNext');
+        LocationNext    =   $('#locationNext'),
+        DateWrapper =   $('#date-step'),
+        DateBack    =   $('#dateBack'),
+        SubmitBtn   =   $('#submitHappEvent');
 
 
 
@@ -67,6 +70,18 @@ $(document).ready(function () {
         }
     });
 
+    $(LocationNext).on('click', function(){
+        hideLocationStep();
+        showDateStep();
+        showSubmitBtn();
+    });
+
+    $(DateBack).on('click', function(){
+        hideSubmitBtn();
+        hideDateStep();
+        showLocationStep();
+    });
+
     function showDetailsStep() {
         $(DetailsWrapper).removeClass('field-hidden');
     }
@@ -97,5 +112,21 @@ $(document).ready(function () {
 
     function hideLocationStep() {
         $(LocationWrapper).addClass('field-hidden');
+    }
+
+    function showDateStep() {
+        $(DateWrapper).removeClass('field-hidden');
+    }
+
+    function hideDateStep(){
+        $(DateWrapper).addClass('field-hidden');
+    }
+
+    function hideSubmitBtn() {
+        $(SubmitBtn).addClass('field-hidden');
+    }
+
+    function showSubmitBtn() {
+        $(SubmitBtn).removeClass('field-hidden');
     }
 });

@@ -85,9 +85,6 @@ class CalendarPage_Controller extends Page_Controller
             Session::set('Year', $y);
         }
         // Check if module session is active, if not set initialise the session variable and set it to 0
-        if(!isset($_SESSION['ModalCheck'])){
-            Session::set('ModalCheck', 0);
-        }
         if(!isset($_SESSION['CALID'])){
             Session::set('CALID', $this->CalendarID());
         }

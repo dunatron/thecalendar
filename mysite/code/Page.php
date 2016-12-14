@@ -26,9 +26,6 @@ class Page_Controller extends ContentController {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
-	    'SteppedEventForm',
-        'finished',
-        'CloseModal',
         'HappEventForm'
 	);
 
@@ -85,6 +82,15 @@ class Page_Controller extends ContentController {
         $locationNext = LiteralField::create('LocationNext', '<input type="button" id="locationNext">');
         $locationEnd = LiteralField::create('LocationEnd', '</div>');
 
+        // Date Step
+        $dateStart = LiteralField::create('DateStart', '<div id="date-step" class="field-hidden">');
+        $date = DateField::create('EventDate', 'Date of the event')->setConfig('dateformat', 'dd-MM-yyyy')->setAttribute('type', 'date');
+        $startTime = TextField::create('StartTime', 'Event start time')->setAttribute('type', 'time');
+        $finishTime = TextField::create('FinishTime', 'Event finish time')->setAttribute('type', 'time');
+        $dateBack = LiteralField::create('DateBack', '<input type="button" id="dateBack">');
+
+        $dateEnd = LiteralField::create('DateEnd', '</div>');
+
         $fields = new FieldList(
             $detailsStart,
             $title,
@@ -113,45 +119,48 @@ class Page_Controller extends ContentController {
             $map,
             $locationBack,
             $locationNext,
-            $locationEnd
+            $locationEnd,
+            $dateStart,
+            $date,
+            $startTime,
+            $finishTime,
+            $dateBack,
+            $dateEnd
         );
 
 
 
         $actions = new FieldList(
-
+             FormAction::create('processHappEvent', 'Submit')->addExtraClass('field-hidden')->setAttribute('id', 'submitHappEvent')
         );
 
         $form = new Form($this, 'HappEventForm', $fields, $actions);
         return $form;
     }
 
-    public function SteppedEventForm()
-    {
-        $EventForm = new SteppedEventForm($this, 'SteppedEventForm');
-        return $EventForm;
-    }
+    public function processHappEvent($data, $form) {
 
-    public function CloseModal()
-    {
-        $m = 'Add Event';
-        Session::set('ModalCheck', 0);
-        return $m;
-    }
+        $tagIDS = [];
+        $tags = $data['EventTags'];
 
-    public function ModalState()
-    {
-        $s = Session::get('ModalCheck');
-        return $s;
-    }
+        foreach ($tags as $key => $value){
+            array_push($tagIDS, $value);
+        }
+        $tagsAsString = implode(",", $tagIDS);
 
-    public function finished()
-    {
-        return array(
-            'Title' => 'Thank you for your submission',
-            'Content' => '<p>You have submitted an Event</p>',
-            'SessionMessage' => 'Thank-you for your event submission'
-        );
+        $pageID = Session::get('CALID');
+        $event = new Event();
+
+        $event->update($data);
+        $event->EventTags = $tagsAsString;
+        $event->CalendarPageID = $pageID;
+        $event->write();
+
+        // Using the Form instance you can get / set status such as error messages.
+        $form->sessionMessage("Successful!", 'good');
+
+        // After dealing with the data you can redirect the user back.
+        return $this->redirectBack();
     }
 
 	public function init() {
@@ -172,7 +181,6 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() . "/js/locationpicker/location-picker-autofill.js");
         Requirements::javascript($this->ThemeDir() . "/js/approved/approved-event.js");
         Requirements::javascript($this->ThemeDir() . "/js/select2/custom-select2.js");
-        Requirements::javascript($this->ThemeDir() . "/js/modals/add-event.js");
         Requirements::javascript($this->ThemeDir() . "/js/add-event/add-happ-event.js");
 	}
 
