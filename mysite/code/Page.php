@@ -174,13 +174,11 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() . "/js/bootstrap-3.0.3.min.js");
         Requirements::javascript('http://maps.google.com/maps/api/js?key=AIzaSyBWVd4651hNv8mOn-RaHZdC166O82S-BbY&sensor=false&libraries=places');
         Requirements::javascript($this->ThemeDir() . "/js/locationpicker/locationpicker.jquery.min.js");
-        Requirements::javascript($this->ThemeDir() . "/js/modals/add-event.js");
 
         Requirements::set_force_js_to_bottom(true);
         Requirements::javascript($this->ThemeDir() . "/js/navigation.js");
         Requirements::javascript($this->ThemeDir() . "/js/locationpicker/location-picker-autofill.js");
         Requirements::javascript($this->ThemeDir() . "/js/approved/approved-event.js");
-        Requirements::javascript($this->ThemeDir() . "/js/select2/custom-select2.js");
         Requirements::javascript($this->ThemeDir() . "/js/add-event/add-happ-event.js");
 	}
 

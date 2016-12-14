@@ -2,6 +2,11 @@
  * Created by Heath on 28/08/16.
  */
 // eventMap | div element
+var EventLat    =   $('#addEventLat'),
+    EventLon    =   $('#addEventLon'),
+    EventRadius =   $('#addEventRadius'),
+    EventAddress=   $('#addEventAddress');
+
 $('#eventMap').locationpicker({
     location: {
         latitude: -45.8751791,
@@ -9,10 +14,10 @@ $('#eventMap').locationpicker({
     },
     radius: 300,
     inputBinding: {
-        latitudeInput: $('#addEventLat'),
-        longitudeInput: $('#addEventLon'),
-        radiusInput: $('#addEventRadius'),
-        locationNameInput: $('#addEventAddress')
+        latitudeInput: $(EventLat),
+        longitudeInput: $(EventLon),
+        radiusInput: $(EventRadius),
+        locationNameInput: $(EventAddress)
     },
     enableAutocomplete: true,
     markerIcon: 'https://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
@@ -29,10 +34,10 @@ $('#addEventMap').locationpicker({
     },
     radius: 300,
     inputBinding: {
-        latitudeInput: $('#addEventLat'),
-        longitudeInput: $('#addEventLon'),
-        radiusInput: $('#addEventRadius'),
-        locationNameInput: $('#addEventAddress')
+        latitudeInput: $(EventLat),
+        longitudeInput: $(EventLon),
+        radiusInput: $(EventRadius),
+        locationNameInput: $(EventAddress)
     },
     enableAutocomplete: true,
     markerIcon: 'https://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
