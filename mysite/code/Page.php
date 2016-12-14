@@ -60,9 +60,30 @@ class Page_Controller extends ContentController {
 
         $acc = new AccessTypeArray();
         $acc->getAccessValues();
+        $ticketBack = LiteralField::create('ticketBackBtn', '<input type="button" id="ticketBackBtn">');
+        $ticketNext = LiteralField::create('ticketNextBtn', '<input type="button" id="ticketNextBtn">');
 
         $access = $acc->getAccessValues();
         $ticketEnd = LiteralField::create('TicketEnd', '</div>');
+
+        // Ticket Website (Option 5 is selected for radio option field)
+        $ticWebStart = LiteralField::create('TicWebStart', '<div id="ticket-web-step" class="field-hidden">');
+        $website = TextField::create('TicketWebsite', 'Ticket website');
+        $phone = TextField::create('TicketPhone', 'Ticket provider phone number');
+        $ticketWebBack = LiteralField::create('ticketWebBack', '<input type="button" id="ticketWebBack">');
+        $ticketWebNext = LiteralField::create('ticketWebNext', '<input type="button" id="ticketWebNext">');
+        $ticWebEnd = LiteralField::create('TicWebEnd', '</div>');
+
+        // Location Step
+        $locationStart = LiteralField::create('LocationStart', '<div id="location-step" class="field-hidden">');
+        $locationField = TextField::create('LocationText')->setAttribute('id', 'addEventAddress');
+        $locLat = HiddenField::create('LocationLat', 'Location Latitude')->setAttribute('id', 'addEventLat');
+        $locLong = HiddenField::create('LocationLon', 'Location Longitude')->setAttribute('id', 'addEventLon');
+        $locRadius = HiddenField::create('LocationRadius', 'Radius of the event')->setAttribute('id', 'addEventRadius');
+        $map = LiteralField::create('googleMap', '<div id="addEventMap" style="width: 100%; height: 400px;"></div>');
+        $locationBack = LiteralField::create('LocationBack', '<input type="button" id="locationBack">');
+        $locationNext = LiteralField::create('LocationNext', '<input type="button" id="locationNext">');
+        $locationEnd = LiteralField::create('LocationEnd', '</div>');
 
         $fields = new FieldList(
             $detailsStart,
@@ -75,7 +96,24 @@ class Page_Controller extends ContentController {
             $ticketStart,
             $restrictions,
             $access,
-            $ticketEnd
+            $ticketBack,
+            $ticketNext,
+            $ticketEnd,
+            $ticWebStart,
+            $website,
+            $phone,
+            $ticketWebBack,
+            $ticketWebNext,
+            $ticWebEnd,
+            $locationStart,
+            $locationField,
+            $locLat,
+            $locLong,
+            $locRadius,
+            $map,
+            $locationBack,
+            $locationNext,
+            $locationEnd
         );
 
 
