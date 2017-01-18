@@ -32,7 +32,7 @@ class Page_Controller extends ContentController {
     public function HappEventForm()
     {
         // Details Fields
-        $detailsStart = LiteralField::create('DetailsStart', '<div id="details-step">');
+        $detailsStart = LiteralField::create('DetailsStart', '<div id="details-step" class="form-step">');
         $title  = TextField::create('EventTitle', 'Title of the Event');
         $desc   = TextField::create('EventDescription', 'description of the event');
         $ticket = CheckboxField::create('HasTickets', 'Check if event has tickets')->setAttribute('id', 'hasTickets');
@@ -47,7 +47,7 @@ class Page_Controller extends ContentController {
         $detailsEnd = LiteralField::create('DetailsEnd', '</div>');
 
         // Ticket Step
-        $ticketStart = LiteralField::create('TicketStart', '<div id="ticket-step" class="field-hidden">');
+        $ticketStart = LiteralField::create('TicketStart', '<div id="ticket-step" class="form-step field-hidden">');
         $restrictions = DropdownField::create('Restriction',
             'Restrictions for event',
             EventRestriction::get()->map('ID', 'Description')->toArray(),
@@ -64,7 +64,7 @@ class Page_Controller extends ContentController {
         $ticketEnd = LiteralField::create('TicketEnd', '</div>');
 
         // Ticket Website (Option 5 is selected for radio option field)
-        $ticWebStart = LiteralField::create('TicWebStart', '<div id="ticket-web-step" class="field-hidden">');
+        $ticWebStart = LiteralField::create('TicWebStart', '<div id="ticket-web-step" class="form-step field-hidden">');
         $website = TextField::create('TicketWebsite', 'Ticket website');
         $phone = TextField::create('TicketPhone', 'Ticket provider phone number');
         $ticketWebBack = LiteralField::create('ticketWebBack', '<input type="button" id="ticketWebBack">');
@@ -72,7 +72,7 @@ class Page_Controller extends ContentController {
         $ticWebEnd = LiteralField::create('TicWebEnd', '</div>');
 
         // Location Step
-        $locationStart = LiteralField::create('LocationStart', '<div id="location-step" class="field-hidden">');
+        $locationStart = LiteralField::create('LocationStart', '<div id="location-step" class="form-step field-hidden">');
         $locationField = TextField::create('LocationText')->setAttribute('id', 'addEventAddress');
         $locLat = HiddenField::create('LocationLat', 'Location Latitude')->setAttribute('id', 'addEventLat');
         $locLong = HiddenField::create('LocationLon', 'Location Longitude')->setAttribute('id', 'addEventLon');
@@ -83,7 +83,7 @@ class Page_Controller extends ContentController {
         $locationEnd = LiteralField::create('LocationEnd', '</div>');
 
         // Date Step
-        $dateStart = LiteralField::create('DateStart', '<div id="date-step" class="field-hidden">');
+        $dateStart = LiteralField::create('DateStart', '<div id="date-step" class="form-step field-hidden">');
         $date = DateField::create('EventDate', 'Date of the event')->setConfig('dateformat', 'dd-MM-yyyy')->setAttribute('type', 'date');
         $startTime = TextField::create('StartTime', 'Event start time')->setAttribute('type', 'time');
         $finishTime = TextField::create('FinishTime', 'Event finish time')->setAttribute('type', 'time');
@@ -134,7 +134,8 @@ class Page_Controller extends ContentController {
              FormAction::create('processHappEvent', 'Submit')->addExtraClass('field-hidden')->setAttribute('id', 'submitHappEvent')
         );
 
-        $form = new Form($this, 'HappEventForm', $fields, $actions);
+//        $form = new Form($this, 'HappEventForm', $fields, $actions);
+        $form = Form::create($this, 'HappEventForm', $fields, $actions)->addExtraClass('happ-add-event-form');
         return $form;
     }
 

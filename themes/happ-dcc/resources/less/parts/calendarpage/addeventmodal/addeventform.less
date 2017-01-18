@@ -2,72 +2,65 @@
   font-family: @happ_base_ff;
   //border: 1px dashed rebeccapurple;
 
-  .form-group {
-    .control-label {
-      font-size: @label_fs;
-      color: @color_charcoal;
-      width: 100%;
-      margin: 20px 0 5px 0;
-      font-family: @font_GustanLight;
-    }
-    .input-wrapper {
-      //color: darkgreen;
-      @import "fieldIcons";
-      input {
-        width: 100%;
-        float: left;
-        padding: 10px 10px 10px 40px;
-        font-size: 18px;
-        height: 50px;
-        &:focus {
-          border-radius: 0;
+  fieldset{
+
+  }
+
+  .form-step{
+
+  }
+
+  #details-step{
+
+    #EventTags{
+      .middleColumn {
+        #Form_HappEventForm_EventTags {
+          padding: 0;
+          li {
+            display: inline-block;
+            height: 100px;
+            width: 166px;
+            border: 1px solid lightgrey;
+            margin-bottom: 5px;
+            margin-right: 0px;
+            .checkbox {
+              display: none;
+            }
+            label {
+              padding-top: 20px;
+              text-align: center;
+              display: block;
+              height: 100%;
+              width: 100%;
+            }
+          }
+          .tag-selected {
+            background-color: @c_happ_orange;
+             label {
+               color: white;
+             }
+          }
         }
       }
-      .form-control {
-        border-radius: 0;
-      }
-      select,textarea {
-        width: 100%;
-        float: left;
-        font-size: 18px;
-        padding: 10px 10px 10px 40px;
-      }
-      #EventType {
-        padding: 10px 10px 10px 50px;
-      }
 
-    }
-    .submit-form {
-      padding: 10px 60px;
-      margin-top: 20px;
-      font-family: @font_GustanLight;
     }
 
   }
 
-  .happLocationPicker {
-    //background-color: #00b3ee;
-    //border: 1px dashed red;
-    .form-group {
-      .control-label {
-        font-size: @color_charcoal;
-        color: orange;
-      }
-      .input-wrapper {
-        //color: darkgreen;
-      }
+  #ticket-step{
 
-    }
-    .location-details {
-      display: none;
-      .control-label {
-        font-size: @label_fs;
-        //color: purple;
-      }
-      .input-wrapper {
-        //color: blue;
-      }
-    }
+  }
+
+  #ticket-web-step{
+
+  }
+
+  #location-step{
+
+  }
+
+  #date-step {
+
   }
 
 }

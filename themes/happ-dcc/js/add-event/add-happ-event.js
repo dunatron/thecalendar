@@ -24,6 +24,7 @@ $(document).ready(function () {
 
     $(DetailsNext).on('click', function () {
         if ($(TicketCheck).is(':checked')) {
+
             showTicketStep();
             hideDetailsStep();
         } else {
@@ -129,4 +130,13 @@ $(document).ready(function () {
     function showSubmitBtn() {
         $(SubmitBtn).removeClass('field-hidden');
     }
+
+
+    //Details Tags step
+    $('.checkbox').on('click', function(){
+        $(this).parent().toggleClass('tag-selected');
+    });
+
+
+
 });
