@@ -24,7 +24,7 @@ $('#eventMap').locationpicker({
 });
 // Modal Dialog control | reference
 $('#AddHappEventModal').on('shown.bs.modal', function () {
-    $('#eventMap').locationpicker('autosize');
+    $('#addEventMap').locationpicker('autosize');
 });
 
 $('#addEventMap').locationpicker({

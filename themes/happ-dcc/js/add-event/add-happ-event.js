@@ -109,6 +109,7 @@ $(document).ready(function () {
 
     function showLocationStep() {
         $(LocationWrapper).removeClass('field-hidden');
+        showMap();
     }
 
     function hideLocationStep() {
@@ -129,6 +130,11 @@ $(document).ready(function () {
 
     function showSubmitBtn() {
         $(SubmitBtn).removeClass('field-hidden');
+    }
+
+
+    function showMap() {
+        $('#addEventMap').locationpicker('autosize');
     }
 
 
