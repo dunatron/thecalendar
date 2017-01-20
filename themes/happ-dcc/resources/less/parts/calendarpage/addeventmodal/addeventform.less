@@ -2,66 +2,111 @@
   font-family: @happ_base_ff;
   //border: 1px dashed rebeccapurple;
 
-  fieldset{
+  fieldset {
 
   }
 
-  .form-step{
+  .Actions {
+    text-align: center;
+    .action {
 
+    }
   }
 
-  #details-step{
+  .form-step {
 
-    #EventTags{
-      .middleColumn {
-        #Form_HappEventForm_EventTags {
-          padding: 0;
-          li {
-            display: inline-block;
-            height: 100px;
-            width: 166px;
-            border: 1px solid lightgrey;
-            margin-bottom: 5px;
-            margin-right: 0px;
-            .checkbox {
-              display: none;
-            }
-            label {
-              padding-top: 20px;
-              text-align: center;
-              display: block;
-              height: 100%;
-              width: 100%;
-            }
-          }
-          .tag-selected {
-            background-color: @c_happ_orange;
-             label {
-               color: white;
-             }
-          }
-        }
+    .field {
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid lightgray;
+      input {
+        width: 100%;
+        max-width: 336px;
+        height: 60px;
+        font-size: 20px;
+        padding: 15px;
+        font-family: @font_GustanLight;
+      }
+
+      textarea {
+        width: 100%;
+        max-width: 336px;
+        height: 200px;
+        font-size: 20px;
+        padding: 15px;
+        font-family: @font_GustanLight;
+      }
+
+      label {
+        font-family: @font_GustanLight;
+        font-weight: 100;
+        font-size: 18px;
+      }
+    }
+
+    .add-event-controls {
+      margin-top: 20px;
+      text-align: right;
+    }
+    .add-event-next {
+      padding-left: 15px;
+      margin-top: 20px;
+      size: 0.2em;
+      position: relative;
+      height: 50px;
+      width: 100px;
+      display: inline-block;
+      margin-left: 15px;
+      &:after {
+        .show_psuedo();
+        border-top: 1px solid red;
+        border-right: 1px solid red;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 8px;
+        right: 35px;
+        transform: rotate(45deg);
+      }
+      span {
+        position: absolute;
+        bottom: 15px;
+        left: 0;
       }
 
     }
-
+    .add-event-back {
+      padding-left: 15px;
+      margin-top: 20px;
+      size: 0.2em;
+      position: relative;
+      height: 50px;
+      width: 100px;
+      display: inline-block;
+      margin-right: 15px;
+      &:after {
+        .show_psuedo();
+        border-top: 1px solid red;
+        border-left: 1px solid red;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 8px;
+        left: 35px;
+        transform: rotate(-45deg);
+      }
+      span {
+        position: absolute;
+        bottom: 15px;
+        right: 0;
+      }
+    }
   }
 
-  #ticket-step{
-
-  }
-
-  #ticket-web-step{
-
-  }
-
-  #location-step{
-
-  }
-
-  #date-step {
-
-  }
+  @import "steps/details-step";
+  @import "steps/ticket-step";
+  @import "steps/ticket-web-step";
+  @import "steps/location-step";
+  @import "steps/date-step";
 
 }
-

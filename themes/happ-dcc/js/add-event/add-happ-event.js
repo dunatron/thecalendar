@@ -132,8 +132,19 @@ $(document).ready(function () {
     }
 
 
+
+    // //Details Tags step
+    // $('.checkbox').on('click', function(){
+    //     $(this).parent().toggleClass('tag-selected');
+    // });
     //Details Tags step
-    $('.checkbox').on('click', function(){
+    $("input[name*='EventTags']").on('click', function(){
+        $(this).parent().toggleClass('tag-selected');
+    });
+
+    // If details step has tickets
+
+    $("input[name*='HasTickets']").on('click', function(){
         $(this).parent().toggleClass('tag-selected');
     });
 

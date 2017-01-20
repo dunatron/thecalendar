@@ -34,7 +34,7 @@ class Page_Controller extends ContentController {
         // Details Fields
         $detailsStart = LiteralField::create('DetailsStart', '<div id="details-step" class="form-step">');
         $title  = TextField::create('EventTitle', 'Title of the Event');
-        $desc   = TextField::create('EventDescription', 'description of the event');
+        $desc   = TextareaField::create('EventDescription', 'description of the event');
         $ticket = CheckboxField::create('HasTickets', 'Check if event has tickets')->setAttribute('id', 'hasTickets');
         $tags   = MultiValueCheckboxField::create(
             'EventTags',
@@ -43,7 +43,7 @@ class Page_Controller extends ContentController {
             null,
             true
         );
-        $detailsNext = LiteralField::create('detailsNextBtn', '<input type="button" id="detailsNextBtn">');
+        $detailsNext = LiteralField::create('detailsNextBtn', '<div class="add-event-controls"><div id="detailsNextBtn" class="add-event-next"><span>next</span></div></div>');
         $detailsEnd = LiteralField::create('DetailsEnd', '</div>');
 
         // Ticket Step
@@ -57,8 +57,8 @@ class Page_Controller extends ContentController {
 
         $acc = new AccessTypeArray();
         $acc->getAccessValues();
-        $ticketBack = LiteralField::create('ticketBackBtn', '<input type="button" id="ticketBackBtn">');
-        $ticketNext = LiteralField::create('ticketNextBtn', '<input type="button" id="ticketNextBtn">');
+        $ticketBack = LiteralField::create('ticketBackBtn', '<div class="add-event-controls"> <div id="ticketBackBtn" class="add-event-back"><span>back</span></div>');
+        $ticketNext = LiteralField::create('ticketNextBtn', '<div id="ticketNextBtn" class="add-event-next"><span>next</span></div></div>');
 
         $access = $acc->getAccessValues();
         $ticketEnd = LiteralField::create('TicketEnd', '</div>');
@@ -67,8 +67,8 @@ class Page_Controller extends ContentController {
         $ticWebStart = LiteralField::create('TicWebStart', '<div id="ticket-web-step" class="form-step field-hidden">');
         $website = TextField::create('TicketWebsite', 'Ticket website');
         $phone = TextField::create('TicketPhone', 'Ticket provider phone number');
-        $ticketWebBack = LiteralField::create('ticketWebBack', '<input type="button" id="ticketWebBack">');
-        $ticketWebNext = LiteralField::create('ticketWebNext', '<input type="button" id="ticketWebNext">');
+        $ticketWebBack = LiteralField::create('ticketWebBack', '<div class="add-event-controls"><div id="ticketWebBack" class="add-event-back"><span>back</span></div>');
+        $ticketWebNext = LiteralField::create('ticketWebNext', '<div id="ticketWebNext" class="add-event-next"><span>next</span></div></div>');
         $ticWebEnd = LiteralField::create('TicWebEnd', '</div>');
 
         // Location Step
@@ -78,8 +78,8 @@ class Page_Controller extends ContentController {
         $locLong = HiddenField::create('LocationLon', 'Location Longitude')->setAttribute('id', 'addEventLon');
         $locRadius = HiddenField::create('LocationRadius', 'Radius of the event')->setAttribute('id', 'addEventRadius');
         $map = LiteralField::create('googleMap', '<div id="addEventMap" style="width: 100%; height: 400px;"></div>');
-        $locationBack = LiteralField::create('LocationBack', '<input type="button" id="locationBack">');
-        $locationNext = LiteralField::create('LocationNext', '<input type="button" id="locationNext">');
+        $locationBack = LiteralField::create('LocationBack', '<div class="add-event-controls"><div id="locationBack" class="add-event-back"><span>back</span></div>');
+        $locationNext = LiteralField::create('LocationNext', '<div id="locationNext" class="add-event-next"><span>next</span></div></div>');
         $locationEnd = LiteralField::create('LocationEnd', '</div>');
 
         // Date Step
@@ -87,7 +87,7 @@ class Page_Controller extends ContentController {
         $date = DateField::create('EventDate', 'Date of the event')->setConfig('dateformat', 'dd-MM-yyyy')->setAttribute('type', 'date');
         $startTime = TextField::create('StartTime', 'Event start time')->setAttribute('type', 'time');
         $finishTime = TextField::create('FinishTime', 'Event finish time')->setAttribute('type', 'time');
-        $dateBack = LiteralField::create('DateBack', '<input type="button" id="dateBack">');
+        $dateBack = LiteralField::create('DateBack', '<div class="add-event-controls"><div id="dateBack" class="add-event-back"><span>back</span></div></div>');
 
         $dateEnd = LiteralField::create('DateEnd', '</div>');
 
@@ -131,7 +131,7 @@ class Page_Controller extends ContentController {
 
 
         $actions = new FieldList(
-             FormAction::create('processHappEvent', 'Submit')->addExtraClass('field-hidden')->setAttribute('id', 'submitHappEvent')
+             FormAction::create('processHappEvent', 'Submit')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'submitHappEvent')
         );
 
 //        $form = new Form($this, 'HappEventForm', $fields, $actions);
