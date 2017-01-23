@@ -59,14 +59,22 @@
       margin-left: 15px;
       &:after {
         .show_psuedo();
-        border-top: 1px solid red;
-        border-right: 1px solid red;
+        .animation_animation(@animation: all 0.3s ease-out);
+        border-top: 1px solid @c_happ_orange;
+        border-right: 1px solid @c_happ_orange;
         height: 30px;
         width: 30px;
         position: absolute;
         top: 8px;
-        right: 35px;
+        right: 50px;
         transform: rotate(45deg);
+      }
+      &:hover {
+        cursor: pointer;
+      }
+      &:hover:after {
+        right: 30px;
+        .animation_animation(@animation: all 0.3s ease-out);
       }
       span {
         position: absolute;
@@ -86,14 +94,22 @@
       margin-right: 15px;
       &:after {
         .show_psuedo();
-        border-top: 1px solid red;
-        border-left: 1px solid red;
+        .animation_animation(@animation: all 0.3s ease-out);
+        border-top: 1px solid @c_happ_orange;
+        border-left: 1px solid @c_happ_orange;
         height: 30px;
         width: 30px;
         position: absolute;
         top: 8px;
-        left: 35px;
+        left: 50px;
         transform: rotate(-45deg);
+      }
+      &:hover {
+        cursor: pointer;
+      }
+      &:hover:after {
+        left: 30px;
+        .animation_animation(@animation: all 0.3s ease-out);
       }
       span {
         position: absolute;
