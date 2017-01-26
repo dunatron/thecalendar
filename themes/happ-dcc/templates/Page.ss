@@ -19,6 +19,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="$ThemeDir/css/wicked-time-picker.min.css">
+
     <%-- TODO NEW NEW https://www.youtube.com/watch?v=5w3fqtIPM8A | HIDDEN SCROLLBAR--%>
     <style>
         .pac-container {
@@ -48,10 +50,6 @@
 
     <% include AddHappEventModal %>
     <% include FilterModal %>
-
-<script>
-
-</script>
 
 </body>
 
