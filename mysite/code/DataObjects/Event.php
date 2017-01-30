@@ -13,10 +13,7 @@ class Event extends DataObject {
 
     private static $has_many = array(
         'Tickets' => 'Ticket',
-    );
-
-    private static $many_many = array(
-        'EventImages'    => 'HappImage'
+        'EventImages'  =>  'EventImage'
     );
 
     private static $summary_fields = array(
@@ -55,6 +52,7 @@ class Event extends DataObject {
         'TicketPhone' => 'Varchar(30)',
         'Restriction' => 'Text',
         'AccessType' => 'Text',
+        'IsEventFindaEvent' =>  'Boolean'
     );
 
     private static $searchable_fields = array(
@@ -124,6 +122,10 @@ class Event extends DataObject {
         $acc = new AccessTypeArray();
         $fields->addFieldToTab('Root.Main', $acc->getAccessValues());
 
+//        $fields->addFieldToTab('Root.EventImages', $eventImages = UploadField::create('EventImages'));
+//        //Set allowed upload extensions
+//        $eventImages->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
+//        $eventImages->setFolderName('event-Images');
         $fields->addFieldToTab('Root.EventImages', $eventImages = UploadField::create('EventImages'));
         //Set allowed upload extensions
         $eventImages->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
@@ -138,8 +140,8 @@ class Event extends DataObject {
 
 }
 
-class HappImage extends Image{
-    public static $many_many = array(
+class EventImage extends Image {
+    public static $has_one = array(
         'Event' =>  'Event'
     );
 }

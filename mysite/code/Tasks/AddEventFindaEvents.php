@@ -15,7 +15,11 @@ class AddEventFindaEvents extends BuildTask
 
     public $apiUserPass = '78nvbw7qn29x';
 
-    public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=2';
+//    public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=10';
+//    public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=10&,session:(timezone,datetime_start)&q=concert&order=popularity';
+
+    // 20 is the max amount of events we can pull in
+    public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
 
     public function run($request)
     {
@@ -26,48 +30,51 @@ class AddEventFindaEvents extends BuildTask
 
         $collection = json_decode($return);
 
-        // Iterate over the events and their image transforms echoing out the event
-        // name and the image transform URLs
-//        foreach ($collection->events as $event) {
-//            // echo the name field
-//            echo '================================================================';
-//            echo '<h1>'.$event->name . '</h1>';
-//            echo '<h2>'.$event->description. '</h2>';
-//
-//            // iterate over the images collection of images
-//            foreach ($event->images->images as $image) {
-//                echo '<h3>'.$image->id . "</h3>";
-//                // iterate over the transforms collection of transforms
-//                foreach ($image->transforms->transforms as $transform) {
-//                    echo $transform->url . "\n";
-//                }
-//            }
-//        }
 
+        $count = 0;
         foreach ($collection->events as $event) {
+            $count++;
             // echo the name field
             $newEvent = Event::create();
 
             $newEvent->EventTitle = $event->name;
             $newEvent->EventDescription = $event->description;
+            $newEvent->CalendarPageID = 1;
             $newEvent->EventApproved = 1;
-            //$newEvent->EventDate = new DateTime();
+            $newEvent->IsEventFindaEvent = 1;
+
+            // Event Date
+            $newEvent->EventDate = $event->datetime_start;
+            // Start Time
+            $newEvent->StartTime = $event->datetime_start;
 
             $newEvent->write();
+            echo '<h1>'.$count.'</h1>';
+
 
             // iterate over the images collection of images
             foreach ($event->images->images as $image) {
+
                 echo '<h3>'.$image->id . "</h3>";
                 // iterate over the transforms collection of transforms
                 foreach ($image->transforms->transforms as $transform) {
-                    $file = HappImage::create();
+                    $file = EventImage::create();
+
                     $rawFileName = $transform->url;
+                    // filename
                     $fileName = substr($rawFileName, 0, strpos($rawFileName, "?"));
                     $file->fileName = $fileName;
+                    // associate file with event
+                    $file->EventID = $newEvent->ID;
+                    //$file->EventID = $newEvent;
+                    echo $fileName;
                     $file->write();
+
                     echo $transform->url . "\n";
                 }
             }
+
+
         }
 
 

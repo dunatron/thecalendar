@@ -138,10 +138,17 @@ class CalendarPage_Controller extends Page_Controller
 
             $assocImages = $HappEvent->EventImages();
         }
-//        return $assocImages;
+
         $data = new ArrayData(array(
             'EventTitle'  =>  $HappEvent->EventTitle,
             'EventDescription'  => $HappEvent->EventDescription,
+            'EventVenue'    =>  $HappEvent->EventVenue,
+            'LocationText'  =>  $HappEvent->LocationText,
+            'EventDate' =>  $HappEvent->EventDate,
+            'StartTime' =>  $HappEvent->StartTime,
+            'FinishTime'    =>  $HappEvent->FinishTime,
+            'TicketWebsite' =>  $HappEvent->TicketWebsite,
+            'TicketPhone'   =>  $HappEvent->TicketPhone,
             'EventImages'  => $assocImages,
 
         ));
