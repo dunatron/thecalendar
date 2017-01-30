@@ -93,10 +93,10 @@ $('.event-btn').on("click", function () {
     //EventImages
     $.ajax({
         type:"POST",
-        url: MAINURL+'/associatedEventImages',
+        url: MAINURL+'/associatedEventData',
         data: {EventID:EVENTID},
         success:function (response){
-            $('.event-assocImages').html(response);
+            $('.event-assocData').html(response);
         }
     });
     // Modal Dialog control | reference

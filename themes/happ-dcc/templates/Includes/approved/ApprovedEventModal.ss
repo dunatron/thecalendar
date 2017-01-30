@@ -15,7 +15,7 @@
                 <div class="event-date"></div>
                 <div class="event-location"></div>
                 <div class="event-description"></div>
-                <div class="event-assocImages">ok</div>
+                <div class="event-assocData">Data will load here</div>
                 <% include ApprovedEventMap %>
 
             </div>

@@ -1,6 +1,6 @@
-<h1>$Name</h1>
-<p>Now loop over all our data</p>
-<% loop $myImages %>
+<h1>$EventTitle</h1>
+<p>$EventDescription</p>
+<% loop $EventImages %>
     $Title
     <img src="$URL" class="img-responsive">
 <% end_loop %>
