@@ -19,6 +19,8 @@ class AddEventFindaEvents extends BuildTask
 //    public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=10&,session:(timezone,datetime_start)&q=concert&order=popularity';
 
     // 20 is the max amount of events we can pull in
+    //public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
+
     public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
 
     public function run($request)
@@ -59,7 +61,7 @@ class AddEventFindaEvents extends BuildTask
                 // iterate over the transforms collection of transforms
                 foreach ($image->transforms->transforms as $transform) {
                     $file = EventImage::create();
-
+                    // ToDo | try 27 elseif
                     $rawFileName = $transform->url;
                     // filename
                     $fileName = substr($rawFileName, 0, strpos($rawFileName, "?"));
@@ -68,6 +70,9 @@ class AddEventFindaEvents extends BuildTask
                     $file->EventID = $newEvent->ID;
                     //$file->EventID = $newEvent;
                     echo $fileName;
+                    $boss = $transform->transformation_id;
+
+                    echo '<p style="color:red;">'.$boss.'</p>';
                     $file->write();
 
                     echo $transform->url . "\n";
