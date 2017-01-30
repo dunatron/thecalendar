@@ -85,8 +85,8 @@ class Page_Controller extends ContentController {
         // Date Step
         $dateStart = LiteralField::create('DateStart', '<div id="date-step" class="form-step field-hidden">');
         $date = DateField::create('EventDate', 'Date of the event')->setConfig('dateformat', 'dd-MM-yyyy')->setAttribute('type', 'date');
-        $startTime = TextField::create('StartTime', 'Event start time')->setAttribute('type', 'time');
-        $finishTime = TextField::create('FinishTime', 'Event finish time')->setAttribute('type', 'time');
+        $startTime = TextField::create('StartTime', 'Event start time')->addExtraClass('timepicker');
+        $finishTime = TextField::create('FinishTime', 'Event finish time')->addExtraClass('timepicker');
         $dateBack = LiteralField::create('DateBack', '<div class="add-event-controls"><div id="dateBack" class="add-event-back"><span>back</span></div></div>');
 
         $dateEnd = LiteralField::create('DateEnd', '</div>');

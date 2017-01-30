@@ -110,7 +110,8 @@ class CalendarPage_Controller extends Page_Controller
         'EventLocation',
         'EventStartTime',
         'EventFinishTime',
-        'EventDate'
+        'EventDate',
+        'associatedEventImages'
     );
 
     public function CalendarID()
@@ -125,6 +126,24 @@ class CalendarPage_Controller extends Page_Controller
     {
         $tags = Tag::get();
         return $tags;
+    }
+
+
+    public function associatedEventImages()
+    {
+        $EventTitle = 'I need an Id';
+        if (isset($_POST['EventID'])) {
+            $eventID = $_POST['EventID'];
+            $HappEvent = Event::get()->byID($eventID);
+
+            $assocImages = $HappEvent->EventImages();
+        }
+//        return $assocImages;
+        $data = new ArrayData(array(
+            'Name'  =>  'heyheyoooo',
+            'myImages'  => $assocImages
+        ));
+        echo $data->renderWith('Tron_data');
     }
 
     /**

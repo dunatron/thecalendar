@@ -8,12 +8,15 @@
 class Event extends DataObject {
 
     private static $has_one = array(
-        'CalendarPage' => 'CalendarPage',
-        'EventImage' => 'Image'
+        'CalendarPage' => 'CalendarPage'
     );
 
     private static $has_many = array(
         'Tickets' => 'Ticket',
+    );
+
+    private static $many_many = array(
+        'EventImages'    => 'HappImage'
     );
 
     private static $summary_fields = array(
@@ -121,10 +124,10 @@ class Event extends DataObject {
         $acc = new AccessTypeArray();
         $fields->addFieldToTab('Root.Main', $acc->getAccessValues());
 
-        $fields->addFieldToTab('Root.Main', $eventImage = UploadField::create('EventImage'));
+        $fields->addFieldToTab('Root.EventImages', $eventImages = UploadField::create('EventImages'));
         //Set allowed upload extensions
-        $eventImage->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
-        $eventImage->setFolderName('event-Images');
+        $eventImages->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
+        $eventImages->setFolderName('event-Images');
 
         // EventDescription
         $fields->addFieldToTab('Root.Main', HtmlEditorField::create('EventDescription', 'Description')
@@ -133,4 +136,10 @@ class Event extends DataObject {
         return $fields;
     }
 
+}
+
+class HappImage extends Image{
+    public static $many_many = array(
+        'Event' =>  'Event'
+    );
 }

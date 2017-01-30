@@ -1,6 +1,6 @@
 var options = {
     title: 'Happ Timepicker',
-    clearable: true
+    clearable: false
 }
 
 

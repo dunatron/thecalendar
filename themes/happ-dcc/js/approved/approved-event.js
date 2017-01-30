@@ -90,6 +90,15 @@ $('.event-btn').on("click", function () {
             $('.event-finishTime').html(response);
         }
     });
+    //EventImages
+    $.ajax({
+        type:"POST",
+        url: MAINURL+'/associatedEventImages',
+        data: {EventID:EVENTID},
+        success:function (response){
+            $('.event-assocImages').html(response);
+        }
+    });
     // Modal Dialog control | reference
     $('#ApprovedEventModal').on('shown.bs.modal', function () {
         $('#eventMap1').locationpicker('autosize');

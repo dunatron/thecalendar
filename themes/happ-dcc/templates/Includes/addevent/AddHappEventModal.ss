@@ -8,8 +8,6 @@
             </div>
             <div class="modal-body">
                 <%-- Add Event | Form --%>
-                <input type="text" name="timepicker" class="timepicker"/>
-                <div style="height: 100px; width: 100px; background-color: red;" class="pciker-two"></div>
                 <% include HappEventForm %>
             </div>
             <%--<div class="modal-footer">--%>
