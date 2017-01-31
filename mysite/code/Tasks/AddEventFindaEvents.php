@@ -26,14 +26,17 @@ class AddEventFindaEvents extends BuildTask
     //public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
 
     //public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
-//    public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity&location=126';
-    public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
+    public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity&location=126';
+    //public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
 
+    /*
+     * Generate number of api calls needed. Page has 20 events/rows
+     */
     public function getOffsetPages($collection)
     {
         $count = $collection->{'@attributes'}->count;
-        echo '<p>Event Count:'.$count.'</p>';
-        $offset = $count/20;
+        echo '<p>Event Count:' . $count . '</p>';
+        $offset = $count / 20;
         $ceiling = ceil($offset);
         return $ceiling;
     }
@@ -42,17 +45,17 @@ class AddEventFindaEvents extends BuildTask
     {
         foreach ($collection->events as $event) {
 
-            echo '<p>'.$event->id.'</p>';
+            echo '<p>' . $event->id . '</p>';
             // Check if we have this event already
             if (Event::get_by_finda_id('Event', $event->id) == false) {
                 //create a new event
                 $newEvent = Event::create();
                 $newEvent->EventFindaID = $event->id;
-                echo '<p style="color:green;">'.$event->name.' created</p>';
+                echo '<p style="color:green;">' . $event->name . ' created</p>';
             } else {
                 //receive and update existing event
                 $newEvent = Event::get_by_finda_id('Event', $event->id);
-                echo '<p style="color:orange;">'.$event->name.' updated</p>';
+                echo '<p style="color:orange;">' . $event->name . ' updated</p>';
             }
 
             $newEvent->EventTitle = $event->name;
@@ -76,26 +79,25 @@ class AddEventFindaEvents extends BuildTask
             // Finish Time
             $newEvent->FinishTime = $event->datetime_end;
 
-            // Try store website if we have one.
-//            if(!empty($event->web_sites)){
-////                $newEvent->TicketWebsite = $event->web_sites->web_site->url;
-//                foreach ($event->web_sites as $site){
-////                    echo '<pre>';
-////                    var_export($site, true);
-////                    echo '</pre>';
-//                    echo '<pre>';
-//                    var_dump($site);
-//                    echo '</pre>';
-//                    //echo $site['url'];
-//                }
-//            }
+
+            // Try store website if we have one. (just get the first site)
+            if (!empty($event->web_sites->web_sites)) {
+                $newEvent->TicketWebsite = $event->web_sites->web_sites[0]->url;
+            }
+
 
             $newEvent->write();
 
-            // iterate over the images collection of images
+            $images = $event->images->images;
+            $eventID = $newEvent->ID;
+            // ToDo create check if is new image. If not dont run store images function
+            $storeImage = $this->storeEventImage($images, $eventID);
+
+            // Store 1 Image per event
+            //iterate over the images collection of images
 //            foreach ($event->images->images as $image) {
 //
-//                echo '<h3>'.$image->id . "</h3>";
+//                echo '<h3>' . $image->id . "</h3>";
 //                // iterate over the transforms collection of transforms
 //                foreach ($image->transforms->transforms as $transform) {
 //                    $file = EventImage::create();
@@ -110,7 +112,7 @@ class AddEventFindaEvents extends BuildTask
 //                    echo $fileName;
 //                    $boss = $transform->transformation_id;
 //
-//                    echo '<p style="color:red;">'.$boss.'</p>';
+//                    echo '<p style="color:red;">' . $boss . '</p>';
 //                    $file->write();
 //
 //                    echo $transform->url . "\n";
@@ -120,6 +122,70 @@ class AddEventFindaEvents extends BuildTask
         }
     }
 
+    public function storeEventImage($images, $eventID)
+    {
+        foreach ($images as $image) {
+
+            echo '<h3>' . $image->id . "</h3>";
+            // iterate over the transforms collection of transforms
+            foreach ($image->transforms->transforms as $transform) {
+
+                $checkImageExists = $this->checkRemoteFile($transform->url);
+                if($checkImageExists == true){
+                    echo '<p>Image exists</p>';
+
+                    // ToDo | try 27 elseif
+                    $rawFileName = $transform->url;
+                    if(strpos($rawFileName, '?') !== false){
+                        $fileName = substr($rawFileName, 0, strpos($rawFileName, "?"));
+                    } else {
+                        $fileName = $rawFileName;
+                    }
+
+                    if(!empty($fileName) ){
+                        $file = EventImage::create();
+                        $file->Filename = $fileName;
+
+                        // associate file with event
+                        $file->EventID = $eventID;
+
+                        $file->write();
+                    }
+
+
+                    echo $transform->url . "\n";
+                }else {
+                    echo '<p>No Image</p>';
+                }
+
+
+            }
+        }
+        return;
+    }
+
+    public function checkRemoteFile($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$url);
+        // don't download content
+        curl_setopt($ch, CURLOPT_NOBODY, 1);
+        curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        if(curl_exec($ch)!==FALSE)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    /*
+     * Default collection i.e 20 rows, no offset
+     */
     public function getCollection()
     {
         $process = curl_init($this->apiURL);
@@ -131,6 +197,9 @@ class AddEventFindaEvents extends BuildTask
         return $collection;
     }
 
+    /*
+     * Generate a collection from query input
+     */
     public function dynamicCollection($query)
     {
         $process = curl_init($query);
@@ -142,11 +211,14 @@ class AddEventFindaEvents extends BuildTask
         return $collection;
     }
 
+    /*
+     * Dynamic query which will add the offset vale
+     */
     public function dynaQuery($count)
     {
-        $addOffset = $count*20;
-        $rawQuery=$this->apiURL;
-        $query = $rawQuery .= '&offset='.$addOffset;
+        $addOffset = $count * 20;
+        $rawQuery = $this->apiURL;
+        $query = $rawQuery .= '&offset=' . $addOffset;
         return $query;
     }
 
@@ -156,9 +228,9 @@ class AddEventFindaEvents extends BuildTask
         $collection = $this->getCollection();
         $offset = $this->getOffsetPages($collection);
 
-        echo '<h1>'.$offset.'</h1>';
+        echo '<h1>' . $offset . '</h1>';
 
-        for($i=0; $i<=$offset; $i++){
+        for ($i = 0; $i <= $offset; $i++) {
             //echo $i;
             $query = $this->dynaQuery($i);
             $c = $this->dynamicCollection($query);
@@ -173,7 +245,7 @@ class AddEventFindaEvents extends BuildTask
 
         $saveEvents = $this->StoreEvents($collection);
 
-        echo '<pre>'.var_export($offset, true).'</pre>';
+        echo '<pre>' . var_export($offset, true) . '</pre>';
 //        echo '<pre>'.var_export($collection->{'@attributes'}->count, true).'</pre>';
 //        echo '<pre>'.var_export($totalEvents['@attributes'], true).'</pre>';
 
@@ -212,8 +284,6 @@ class AddEventFindaEvents extends BuildTask
      * This guy is pulling 20 events from the Otago region with dunedin as its child which has id of 126
      * http://api.eventfinda.co.nz/v2/events.xml?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity&location=126
      */
-
-
 
 
 }
