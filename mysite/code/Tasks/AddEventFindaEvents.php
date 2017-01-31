@@ -26,35 +26,33 @@ class AddEventFindaEvents extends BuildTask
     //public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
 
     //public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
-    public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity&location=126';
+//    public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity&location=126';
+    public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
 
-    public function run($request)
+    public function getOffsetPages($collection)
     {
-        $process = curl_init($this->apiURL);
-        curl_setopt($process, CURLOPT_USERPWD, $this->apiUserName . ":" . $this->apiUserPass);
-        curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
-        $return = curl_exec($process);
+        $count = $collection->{'@attributes'}->count;
+        echo '<p>Event Count:'.$count.'</p>';
+        $offset = $count/20;
+        $ceiling = ceil($offset);
+        return $ceiling;
+    }
 
-        $collection = json_decode($return);
-
-
-        echo '<pre>'.var_export($collection->{'@attributes'}->count, true).'</pre>';
-//        echo '<pre>'.var_export($totalEvents['@attributes'], true).'</pre>';
-
-        //echo '<pre>'.var_export($totalEvents[1], true).'</pre>';
-
-        die();
-
+    public function StoreEvents($collection)
+    {
         foreach ($collection->events as $event) {
 
+            echo '<p>'.$event->id.'</p>';
             // Check if we have this event already
             if (Event::get_by_finda_id('Event', $event->id) == false) {
                 //create a new event
                 $newEvent = Event::create();
                 $newEvent->EventFindaID = $event->id;
+                echo '<p style="color:green;">'.$event->name.' created</p>';
             } else {
                 //receive and update existing event
                 $newEvent = Event::get_by_finda_id('Event', $event->id);
+                echo '<p style="color:orange;">'.$event->name.' updated</p>';
             }
 
             $newEvent->EventTitle = $event->name;
@@ -79,18 +77,18 @@ class AddEventFindaEvents extends BuildTask
             $newEvent->FinishTime = $event->datetime_end;
 
             // Try store website if we have one.
-            if(!empty($event->web_sites)){
-//                $newEvent->TicketWebsite = $event->web_sites->web_site->url;
-                foreach ($event->web_sites as $site){
+//            if(!empty($event->web_sites)){
+////                $newEvent->TicketWebsite = $event->web_sites->web_site->url;
+//                foreach ($event->web_sites as $site){
+////                    echo '<pre>';
+////                    var_export($site, true);
+////                    echo '</pre>';
 //                    echo '<pre>';
-//                    var_export($site, true);
+//                    var_dump($site);
 //                    echo '</pre>';
-                    echo '<pre>';
-                    var_dump($site);
-                    echo '</pre>';
-                    //echo $site['url'];
-                }
-            }
+//                    //echo $site['url'];
+//                }
+//            }
 
             $newEvent->write();
 
@@ -119,9 +117,67 @@ class AddEventFindaEvents extends BuildTask
 //                }
 //            }
 
+        }
+    }
 
+    public function getCollection()
+    {
+        $process = curl_init($this->apiURL);
+        curl_setopt($process, CURLOPT_USERPWD, $this->apiUserName . ":" . $this->apiUserPass);
+        curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
+        $return = curl_exec($process);
+
+        $collection = json_decode($return);
+        return $collection;
+    }
+
+    public function dynamicCollection($query)
+    {
+        $process = curl_init($query);
+        curl_setopt($process, CURLOPT_USERPWD, $this->apiUserName . ":" . $this->apiUserPass);
+        curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
+        $return = curl_exec($process);
+
+        $collection = json_decode($return);
+        return $collection;
+    }
+
+    public function dynaQuery($count)
+    {
+        $addOffset = $count*20;
+        $rawQuery=$this->apiURL;
+        $query = $rawQuery .= '&offset='.$addOffset;
+        return $query;
+    }
+
+    public function run($request)
+    {
+
+        $collection = $this->getCollection();
+        $offset = $this->getOffsetPages($collection);
+
+        echo '<h1>'.$offset.'</h1>';
+
+        for($i=0; $i<=$offset; $i++){
+            //echo $i;
+            $query = $this->dynaQuery($i);
+            $c = $this->dynamicCollection($query);
+//            var_dump($collection);
+//            die();
+            $saveCollection = $this->StoreEvents($c);
+            //echo '<p>'.$query.'</p>';
+            //die();
         }
 
+        die();
+
+        $saveEvents = $this->StoreEvents($collection);
+
+        echo '<pre>'.var_export($offset, true).'</pre>';
+//        echo '<pre>'.var_export($collection->{'@attributes'}->count, true).'</pre>';
+//        echo '<pre>'.var_export($totalEvents['@attributes'], true).'</pre>';
+
+        //echo '<pre>'.var_export($totalEvents[1], true).'</pre>';
 
     }
 
