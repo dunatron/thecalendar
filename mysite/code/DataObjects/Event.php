@@ -52,7 +52,8 @@ class Event extends DataObject {
         'TicketPhone' => 'Varchar(30)',
         'Restriction' => 'Text',
         'AccessType' => 'Text',
-        'IsEventFindaEvent' =>  'Boolean'
+        'IsEventFindaEvent' =>  'Boolean',
+        'EventFindaID'  =>  'Int'
     );
 
     private static $searchable_fields = array(
@@ -136,6 +137,25 @@ class Event extends DataObject {
         ->setDescription('The real description field'));
 
         return $fields;
+    }
+
+    public static function get_by_finda_id($callerClass, $id, $cache = true) {
+        if(!is_numeric($id)) {
+            user_error("DataObject::get_by_finda_id passed a non-numeric ID #$id", E_USER_WARNING);
+        }
+
+        // Check filter column
+        if(is_subclass_of($callerClass, 'DataObject')) {
+            $baseClass = ClassInfo::baseDataClass($callerClass);
+            $column = "\"$baseClass\".\"EventFindaID\"";
+        } else{
+            // This simpler code will be used by non-DataObject classes that implement DataObjectInterface
+            $column = '"EventFindaID"';
+        }
+        $column = '"EventFindaID"';
+
+        // Relegate to get_one
+        return DataObject::get_one($callerClass, array($column => $id), $cache);
     }
 
 }
