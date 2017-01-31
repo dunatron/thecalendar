@@ -8,6 +8,9 @@
  */
 class AddEventFindaEvents extends BuildTask
 {
+    // Guide for array conversion ->http://array.include-once.org/
+    // Guide for array conversion ->http://array.include-once.org/
+
     protected $title = 'Add event finda events';
 
     protected $description = 'populate happ database with event finda events';
@@ -35,17 +38,11 @@ class AddEventFindaEvents extends BuildTask
         $collection = json_decode($return);
 
 
-        echo '<pre>'.var_export($return, true).'</pre>';
+        echo '<pre>'.var_export($collection->{'@attributes'}->count, true).'</pre>';
 //        echo '<pre>'.var_export($totalEvents['@attributes'], true).'</pre>';
 
         //echo '<pre>'.var_export($totalEvents[1], true).'</pre>';
 
-        die();
-
-        foreach ($totalEvents['@attributes'] as $element){
-            //echo 'pid: ' . $element['count'] . '<br />';
-            echo 'hello';
-        }
         die();
 
         foreach ($collection->events as $event) {
