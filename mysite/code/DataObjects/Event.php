@@ -53,7 +53,8 @@ class Event extends DataObject {
         'Restriction' => 'Text',
         'AccessType' => 'Text',
         'IsEventFindaEvent' =>  'Boolean',
-        'EventFindaID'  =>  'Int'
+        'EventFindaID'  =>  'Int',
+        'EventFindaURL' =>  'Text'
     );
 
     private static $searchable_fields = array(

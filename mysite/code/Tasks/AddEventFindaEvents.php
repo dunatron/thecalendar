@@ -61,6 +61,7 @@ class AddEventFindaEvents extends BuildTask
             }
 
             $newEvent->EventTitle = $event->name;
+            $newEvent->EventFindaURL = $event->url;
             $newEvent->EventDescription = $event->description;
             $newEvent->CalendarPageID = 1;
             $newEvent->EventApproved = 1;
