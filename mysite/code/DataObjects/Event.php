@@ -160,7 +160,12 @@ class Event extends DataObject {
 
 }
 
-class EventImage extends Image {
+class EventImage extends Image
+{
+    static $db=array(
+        'transformation_id' => 'int'
+    );
+
     public static $has_one = array(
         'Event' =>  'Event'
     );

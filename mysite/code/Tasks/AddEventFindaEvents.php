@@ -49,12 +49,14 @@ class AddEventFindaEvents extends BuildTask
             // Check if we have this event already
             if (Event::get_by_finda_id('Event', $event->id) == false) {
                 //create a new event
+                $isNewEvent = true;
                 $newEvent = Event::create();
                 $newEvent->EventFindaID = $event->id;
                 echo '<p style="color:green;">' . $event->name . ' created</p>';
             } else {
                 //receive and update existing event
                 $newEvent = Event::get_by_finda_id('Event', $event->id);
+                $isNewEvent = false;
                 echo '<p style="color:orange;">' . $event->name . ' updated</p>';
             }
 
@@ -86,42 +88,23 @@ class AddEventFindaEvents extends BuildTask
             }
 
 
-            $newEvent->write();
+            $newEvent->write(); // Must write event before we store image(or we dont know the events id)
 
-            $images = $event->images->images;
-            $eventID = $newEvent->ID;
-            // ToDo create check if is new image. If not dont run store images function
-            $storeImage = $this->storeEventImage($images, $eventID);
-
-            // Store 1 Image per event
-            //iterate over the images collection of images
-//            foreach ($event->images->images as $image) {
-//
-//                echo '<h3>' . $image->id . "</h3>";
-//                // iterate over the transforms collection of transforms
-//                foreach ($image->transforms->transforms as $transform) {
-//                    $file = EventImage::create();
-//                    // ToDo | try 27 elseif
-//                    $rawFileName = $transform->url;
-//                    // filename
-//                    $fileName = substr($rawFileName, 0, strpos($rawFileName, "?"));
-//                    $file->fileName = $fileName;
-//                    // associate file with event
-//                    $file->EventID = $newEvent->ID;
-//                    //$file->EventID = $newEvent;
-//                    echo $fileName;
-//                    $boss = $transform->transformation_id;
-//
-//                    echo '<p style="color:red;">' . $boss . '</p>';
-//                    $file->write();
-//
-//                    echo $transform->url . "\n";
-//                }
-//            }
+            if($isNewEvent == true){
+                $images = $event->images->images;
+                $eventID = $newEvent->ID;
+                // ToDo create check if is new image. If not dont run store images function
+                $storeImage = $this->storeEventImage($images, $eventID);
+            }else {
+                continue;
+            }
 
         }
     }
 
+    /*
+     * stores parsed images into event with the parsed id
+     */
     public function storeEventImage($images, $eventID)
     {
         foreach ($images as $image) {
@@ -145,13 +128,15 @@ class AddEventFindaEvents extends BuildTask
                     if(!empty($fileName) ){
                         $file = EventImage::create();
                         $file->Filename = $fileName;
+                        $string = 'event-finda-img-';
+                        $file->Name = $string .= $fileName;
+                        $file->transformation_id = $transform->transformation_id;
 
                         // associate file with event
                         $file->EventID = $eventID;
 
                         $file->write();
                     }
-
 
                     echo $transform->url . "\n";
                 }else {
@@ -224,33 +209,17 @@ class AddEventFindaEvents extends BuildTask
 
     public function run($request)
     {
-
         $collection = $this->getCollection();
         $offset = $this->getOffsetPages($collection);
 
         echo '<h1>' . $offset . '</h1>';
 
         for ($i = 0; $i <= $offset; $i++) {
-            //echo $i;
             $query = $this->dynaQuery($i);
             $c = $this->dynamicCollection($query);
-//            var_dump($collection);
-//            die();
             $saveCollection = $this->StoreEvents($c);
-            //echo '<p>'.$query.'</p>';
-            //die();
         }
-
-        die();
-
-        $saveEvents = $this->StoreEvents($collection);
-
-        echo '<pre>' . var_export($offset, true) . '</pre>';
-//        echo '<pre>'.var_export($collection->{'@attributes'}->count, true).'</pre>';
-//        echo '<pre>'.var_export($totalEvents['@attributes'], true).'</pre>';
-
-        //echo '<pre>'.var_export($totalEvents[1], true).'</pre>';
-
+        echo '<h1 style="color:green;">Events all stored/updated'.'</h1>';
     }
 
     /**
