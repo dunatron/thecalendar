@@ -82,12 +82,10 @@ class AddEventFindaEvents extends BuildTask
             // Finish Time
             $newEvent->FinishTime = $event->datetime_end;
 
-
             // Try store website if we have one. (just get the first site)
             if (!empty($event->web_sites->web_sites)) {
                 $newEvent->TicketWebsite = $event->web_sites->web_sites[0]->url;
             }
-
 
             $newEvent->write(); // Must write event before we store image(or we dont know the events id)
 
@@ -95,9 +93,10 @@ class AddEventFindaEvents extends BuildTask
                 $images = $event->images->images;
                 $eventID = $newEvent->ID;
                 // ToDo create check if is new image. If not dont run store images function
-                $storeImage = $this->storeEventImage($images, $eventID);
+                //$storeImage = $this->storeEventImage($images, $eventID);
+                $this->storeEventImage($images, $eventID);
             }else {
-                continue;
+                //continue;
             }
 
         }
@@ -114,7 +113,7 @@ class AddEventFindaEvents extends BuildTask
             // iterate over the transforms collection of transforms
             foreach ($image->transforms->transforms as $transform) {
 
-                $checkImageExists = $this->checkRemoteFile($transform->url);
+                $checkImageExists = $this->checkRemoteFile($transform->url); //returns true or false
                 if($checkImageExists == true){
                     echo '<p>Image exists</p>';
 
@@ -128,10 +127,14 @@ class AddEventFindaEvents extends BuildTask
 
                     if(!empty($fileName) ){
                         $file = EventImage::create();
+
+                        $file->Name = 'eventFinda-Img';
                         $file->Filename = $fileName;
-                        $string = 'event-finda-img-';
-                        $file->Name = $string .= $fileName;
+
                         $file->transformation_id = $transform->transformation_id;
+
+                        Debug::show($file->Name);
+                        Debug::show($file->Filename);
 
                         // associate file with event
                         $file->EventID = $eventID;
@@ -139,7 +142,6 @@ class AddEventFindaEvents extends BuildTask
                         $file->write();
                     }
 
-                    echo $transform->url . "\n";
                 }else {
                     echo '<p>No Image</p>';
                 }
@@ -150,6 +152,9 @@ class AddEventFindaEvents extends BuildTask
         return;
     }
 
+    /*
+     * Check if image exists via header, i.e it wont download the file
+     */
     public function checkRemoteFile($url)
     {
         $ch = curl_init();
@@ -218,7 +223,7 @@ class AddEventFindaEvents extends BuildTask
         for ($i = 0; $i <= $offset; $i++) {
             $query = $this->dynaQuery($i);
             $c = $this->dynamicCollection($query);
-            $saveCollection = $this->StoreEvents($c);
+            $this->StoreEvents($c);
         }
         echo '<h1 style="color:green;">Events all stored/updated'.'</h1>';
     }
