@@ -19,15 +19,21 @@ class AddEventFindaEvents extends BuildTask
 
     public $apiUserPass = '78nvbw7qn29x';
 
-//    public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=10';
-//    public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=10&,session:(timezone,datetime_start)&q=concert&order=popularity';
 
-    // 20 is the max amount of events we can pull in
-    //public  $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
+
+
+    //public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity&location=126';
+
 
     //public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
-    public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity&location=126';
-    //public $apiURL = 'http://api.eventfinda.co.nz/v2/events.json?rows=20&session:(timezone,datetime_start)&q=concert&order=popularity';
+    public function apiURL()
+    {
+        $conf = SiteConfig::current_site_config();
+        $baseQ = $conf->BaseQuery;
+        $locationQ = $conf->LocationQuery;
+        $Query = $baseQ .= $locationQ;
+        return $Query;
+    }
 
     /*
      * Generate number of api calls needed. Page has 20 events/rows
@@ -179,7 +185,7 @@ class AddEventFindaEvents extends BuildTask
      */
     public function getCollection()
     {
-        $process = curl_init($this->apiURL);
+        $process = curl_init($this->apiURL());
         curl_setopt($process, CURLOPT_USERPWD, $this->apiUserName . ":" . $this->apiUserPass);
         curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
         $return = curl_exec($process);
@@ -208,13 +214,14 @@ class AddEventFindaEvents extends BuildTask
     public function dynaQuery($count)
     {
         $addOffset = $count * 20;
-        $rawQuery = $this->apiURL;
+        $rawQuery = $this->apiURL();
         $query = $rawQuery .= '&offset=' . $addOffset;
         return $query;
     }
 
     public function run($request)
     {
+        $this->apiURL();
         $collection = $this->getCollection();
         $offset = $this->getOffsetPages($collection);
 
