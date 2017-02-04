@@ -20,7 +20,7 @@ $('#eventMap').locationpicker({
         locationNameInput: $(EventAddress)
     },
     enableAutocomplete: true,
-    markerIcon: 'https://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
+    markerIcon: 'http://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
 });
 // Modal Dialog control | reference
 $('#AddHappEventModal').on('shown.bs.modal', function () {
@@ -40,5 +40,5 @@ $('#addEventMap').locationpicker({
         locationNameInput: $(EventAddress)
     },
     enableAutocomplete: true,
-    markerIcon: 'https://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
+    markerIcon: 'http://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
 });
