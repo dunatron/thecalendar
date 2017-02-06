@@ -24,7 +24,7 @@ $('.event-btn').on("click", function () {
         },
         radius: RADIUS,
         enableAutocomplete: true,
-        markerIcon: 'https://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png'
+        markerIcon: 'assets/site/svg/location.svg'
     });
 
     /*
