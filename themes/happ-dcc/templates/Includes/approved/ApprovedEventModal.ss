@@ -10,11 +10,11 @@
                 </div>
             </div>
             <div class="modal-body">
-                <p class="event-startTime"></p>
-                <div class="event-finishTime"></div>
-                <div class="event-date"></div>
-                <div class="event-location"></div>
-                <div class="event-description"></div>
+                <%--<p class="event-startTime"></p>--%>
+                <%--<div class="event-finishTime"></div>--%>
+                <%--<div class="event-date"></div>--%>
+                <%--<div class="event-location"></div>--%>
+                <%--<div class="event-description"></div>--%>
                 <div class="event-assocData">Data will load here</div>
                 <% include ApprovedEventMap %>
 

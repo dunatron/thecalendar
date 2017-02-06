@@ -20,7 +20,7 @@ $('#eventMap').locationpicker({
         locationNameInput: $(EventAddress)
     },
     enableAutocomplete: true,
-    markerIcon: 'assets/site/svg/location.svg'
+    markerIcon: 'mysite/images/svg/location.svg'
 });
 // Modal Dialog control | reference
 $('#AddHappEventModal').on('shown.bs.modal', function () {
@@ -40,5 +40,5 @@ $('#addEventMap').locationpicker({
         locationNameInput: $(EventAddress)
     },
     enableAutocomplete: true,
-    markerIcon: 'assets/site/svg/location.svg'
+    markerIcon: 'mysite/images/svg/location.svg'
 });

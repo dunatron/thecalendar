@@ -24,7 +24,7 @@ $('.event-btn').on("click", function () {
         },
         radius: RADIUS,
         enableAutocomplete: true,
-        markerIcon: 'assets/site/svg/location.svg'
+        markerIcon: 'mysite/images/svg/location.svg'
     });
 
     /*
