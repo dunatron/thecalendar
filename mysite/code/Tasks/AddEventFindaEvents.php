@@ -113,47 +113,56 @@ class AddEventFindaEvents extends BuildTask
      */
     public function storeEventImage($images, $eventID)
     {
-        foreach ($images as $image) {
 
+        foreach ($images as $image) {
+            $file = EventImage::create();
             echo '<h3>' . $image->id . "</h3>";
             // iterate over the transforms collection of transforms
+            $imageQuality=0;
+            $currQuality=0;
             foreach ($image->transforms->transforms as $transform) {
-
-                $checkImageExists = $this->checkRemoteFile($transform->url); //returns true or false
-                if($checkImageExists == true){
-                    echo '<p>Image exists</p>';
-
-                    // ToDo | try 27 elseif
-                    $rawFileName = $transform->url;
-                    if(strpos($rawFileName, '?') !== false){
-                        $fileName = substr($rawFileName, 0, strpos($rawFileName, "?"));
-                    } else {
-                        $fileName = $rawFileName;
-                    }
-
-                    if(!empty($fileName) ){
-                        $file = EventImage::create();
-
-                        $file->Name = 'eventFinda-Img';
-                        $file->Filename = $fileName;
-
-                        $file->transformation_id = $transform->transformation_id;
-
-                        Debug::show($file->Name);
-                        Debug::show($file->Filename);
-
-                        // associate file with event
-                        $file->EventID = $eventID;
-
-                        $file->write();
-                    }
-
-                }else {
-                    echo '<p>No Image</p>';
+                if($transform->transformation_id == 7){
+                    $currQuality=5;
+                }elseif($transform->transformation_id == 27) {
+                    $currQuality=4;
                 }
+                elseif($transform->transformation_id == 8) {
+                    $currQuality=3;
+                }
+                elseif($transform->transformation_id == 2) {
+                    $currQuality=2;
+                }
+                elseif($transform->transformation_id == 15) {
+                    $currQuality=1;
+                }
+                if($currQuality > $imageQuality){
+                    $imageQuality = $currQuality;
+                    $checkImageExists = $this->checkRemoteFile($transform->url); //returns true or false
+                    if($checkImageExists == true){
+                        echo '<p>Image exists</p>';
+                        // ToDo | try 27 elseif
+                        $rawFileName = $transform->url;
+                        if(strpos($rawFileName, '?') !== false){
+                            $fileName = substr($rawFileName, 0, strpos($rawFileName, "?"));
+                        } else {
+                            $fileName = $rawFileName;
+                        }
+                        if(!empty($fileName) ){
+                            $file->Name = 'eventFinda-Img';
+                            $file->Filename = $fileName;
+                            $file->transformation_id = $transform->transformation_id;
+                            Debug::show($file->Name);
+                            Debug::show($file->Filename);
+                            // associate file with event
+                            $file->EventID = $eventID;
+                        }
 
-
+                    }else {
+                        echo '<p>No Image</p>';
+                    }
+                }
             }
+            $file->write();
         }
         return;
     }

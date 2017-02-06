@@ -138,17 +138,25 @@ class CalendarPage_Controller extends Page_Controller
 
             $assocImages = $HappEvent->EventImages();
         }
+        $date = new DateTime($HappEvent->EventDate);
+//        $dateFormat = $date->format('Y-m-d H:i:s');
+        $dateFormat = $date->format('d M Y');
+        $startTime = new DateTime($HappEvent->StartTime);
+        $startTimeFormat = $startTime->format('h:i a');
+        $finishTime = new DateTime($HappEvent->FinishTime);
+        $finishTimeFormat = $finishTime->format('h:i a');
 
         $data = new ArrayData(array(
             'EventTitle'  =>  $HappEvent->EventTitle,
             'EventDescription'  => $HappEvent->EventDescription,
             'EventVenue'    =>  $HappEvent->EventVenue,
             'LocationText'  =>  $HappEvent->LocationText,
-            'EventDate' =>  $HappEvent->EventDate,
-            'StartTime' =>  $HappEvent->StartTime,
-            'FinishTime'    =>  $HappEvent->FinishTime,
+            'EventDate' =>  $dateFormat,
+            'StartTime' =>  $startTimeFormat,
+            'FinishTime'    =>  $finishTimeFormat,
             'TicketWebsite' =>  $HappEvent->TicketWebsite,
             'TicketPhone'   =>  $HappEvent->TicketPhone,
+            'EventFindaURL' =>  $HappEvent->EventFindaURL,
             'EventImages'  => $assocImages,
 
         ));
