@@ -132,58 +132,132 @@ $(document).ready(function () {
     /**
      * Next Month Logic
      */
+    // $('.calendarpage').on('click', '#next-month', function (e) {
+    //     e.preventDefault();
+    //     ajaxIsLoading();
+    //     var requestCallback = new MyRequestsCompleted({
+    //         numRequest: 5
+    //     });
+    //     var url = $(this).attr('href');
+    //     $.ajax({
+    //         url: url + '/jaxNextMonth',
+    //         success: function (data) {
+    //             requestCallback.addCallbackToQueue(true, function () {
+    //                 $('.fc-calendar-container').html(data);
+    //                 //console.log(data);
+    //             });
+    //         }
+    //     });
+    //     $.ajax({
+    //         url: url + '/currentMonthName',
+    //         success: function (data) {
+    //             requestCallback.addCallbackToQueue(true, function () {
+    //                 $('.theMonth').html(data);
+    //                 console.log(data);
+    //             });
+    //         }
+    //     });
+    //     $.ajax({
+    //         url: url + '/currentYear',
+    //         success: function (data) {
+    //             requestCallback.addCallbackToQueue(true, function () {
+    //                 $('.theYear').html(data);
+    //                 console.log(data);
+    //             });
+    //         }
+    //     });
+    //     $.ajax({
+    //         url: url + '/nextShortMonth',
+    //         success: function (data) {
+    //             requestCallback.addCallbackToQueue(true, function () {
+    //                 $('.short-next-text').html(data);
+    //                 console.log(data);
+    //             });
+    //         }
+    //     });
+    //     $.ajax({
+    //         url: url + '/prevShortMonth',
+    //         success: function (data) {
+    //             requestCallback.addCallbackToQueue(true, function () {
+    //                 $('.short-previous-text').html(data);
+    //                 console.log(data);
+    //             });
+    //         }
+    //     });
+    // });
     $('.calendarpage').on('click', '#next-month', function (e) {
         e.preventDefault();
         ajaxIsLoading();
-        var requestCallback = new MyRequestsCompleted({
-            numRequest: 5
-        });
+
         var url = $(this).attr('href');
         $.ajax({
+            type:"POST",
             url: url + '/jaxNextMonth',
-            success: function (data) {
-                requestCallback.addCallbackToQueue(true, function () {
-                    $('.fc-calendar-container').html(data);
-                    //alert('Im the first callback');
-                });
+            success: function (response) {
+                $('.fc-calendar-container').html(response);
+                console.log(response);
+            },
+            complete: function(){
+                doMonth();
             }
         });
-        $.ajax({
-            url: url + '/currentMonthName',
-            success: function (data) {
-                requestCallback.addCallbackToQueue(true, function () {
-                    $('.theMonth').html(data);
-                    //alert('Im the second callback');
-                });
-            }
-        });
-        $.ajax({
-            url: url + '/currentYear',
-            success: function (data) {
-                requestCallback.addCallbackToQueue(true, function () {
-                    $('.theYear').html(data);
-                    //alert('Im the second callback');
-                });
-            }
-        });
-        $.ajax({
-            url: url + '/nextShortMonth',
-            success: function (data) {
-                requestCallback.addCallbackToQueue(true, function () {
-                    $('.short-next-text').html(data);
-                    //alert('Im the second callback');
-                });
-            }
-        });
-        $.ajax({
-            url: url + '/prevShortMonth',
-            success: function (data) {
-                requestCallback.addCallbackToQueue(true, function () {
-                    $('.short-previous-text').html(data);
-                    //alert('Im the second callback');
-                });
-            }
-        });
+
+        function doMonth(){
+            $.ajax({
+                type:"POST",
+                url: url + '/currentMonthName',
+                success: function (response) {
+                    $('.theMonth').html(response);
+                    console.log(response);
+                },
+                complete: function(){
+                    doYear();
+                }
+            });
+        }
+
+        function doYear(){
+            $.ajax({
+                type:"POST",
+                url: url + '/currentYear',
+                success: function (response) {
+                    $('.theYear').html(response);
+                    console.log(response);
+                },
+                complete: function(){
+                    doNextMonth();
+                }
+            });
+        }
+
+        function doNextMonth(){
+            $.ajax({
+                type:"POST",
+                url: url + '/nextShortMonth',
+                success: function (response) {
+                    $('.short-next-text').html(response);
+                    console.log(response);
+                },
+                complete: function(){
+                    doPrevMonth();
+                }
+            });
+        }
+
+        function doPrevMonth(){
+            $.ajax({
+                type:"POST",
+                url: url + '/prevShortMonth',
+                success: function (response) {
+                    $('.short-previous-text').html(response);
+                    console.log(response);
+                },
+                complete: function(){
+                    ajaxFinishedLoading();
+                }
+            });
+        }
+
     });
 
     /**
