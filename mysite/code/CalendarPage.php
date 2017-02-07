@@ -111,7 +111,8 @@ class CalendarPage_Controller extends Page_Controller
         'EventStartTime',
         'EventFinishTime',
         'EventDate',
-        'associatedEventData'
+        'associatedEventData',
+        'resetApprovedModal'
     );
 
     public function CalendarID()
@@ -163,6 +164,12 @@ class CalendarPage_Controller extends Page_Controller
         echo $data->renderWith('Tron_data');
     }
 
+    public function resetApprovedModal()
+    {
+        $html = '<div class="ajax-loader"><div class="ajax-load-icon"></div> </div>';
+        return $html;
+    }
+
     /**
      * Ajax | Return EventTitle for event modal
      */
@@ -176,78 +183,6 @@ class CalendarPage_Controller extends Page_Controller
         }
         return $EventTitle;
     }
-
-    /**
-     * Ajax | Return EventDescription for event modal
-     */
-    public function EventDescription()
-    {
-        $EventDescription = 'I need an Id';
-        if (isset($_POST['EventID'])) {
-            $eventID = $_POST['EventID'];
-            $HappEvent = Event::get()->byID($eventID);
-            $EventDescription = $HappEvent->EventDescription;
-        }
-        return $EventDescription;
-    }
-
-    /**
-     * Ajax | Return EventLocation for event modal
-     */
-    public function EventLocation()
-    {
-        $EventLocation = 'I need an Id';
-        if (isset($_POST['EventID'])) {
-            $eventID = $_POST['EventID'];
-            $HappEvent = Event::get()->byID($eventID);
-            $EventLocation = $HappEvent->LocationText;
-        }
-        return $EventLocation;
-    }
-
-
-    /**
-     * Ajax | Return EventDate for event modal
-     */
-    public function EventDate()
-    {
-        $EventDate = 'I need an Id';
-        if (isset($_POST['EventID'])) {
-            $eventID = $_POST['EventID'];
-            $HappEvent = Event::get()->byID($eventID);
-            $EventDate = $HappEvent->EventDate;
-        }
-        return $EventDate;
-    }
-
-    /**
-     * Ajax | Return EventStartTime for event modal
-     */
-    public function EventStartTime()
-    {
-        $EventStartTime = 'I need an Id';
-        if (isset($_POST['EventID'])) {
-            $eventID = $_POST['EventID'];
-            $HappEvent = Event::get()->byID($eventID);
-            $EventStartTime = $HappEvent->StartTime;
-        }
-        return $EventStartTime;
-    }
-
-    /**
-     * Ajax | Return EventFinishTime for event modal
-     */
-    public function EventFinishTime()
-    {
-        $EventFinishTime = 'I need an Id';
-        if (isset($_POST['EventID'])) {
-            $eventID = $_POST['EventID'];
-            $HappEvent = Event::get()->byID($eventID);
-            $EventFinishTime = $HappEvent->FinishTime;
-        }
-        return $EventFinishTime;
-    }
-    
 
     public function currentMonth()
     {
@@ -279,6 +214,7 @@ class CalendarPage_Controller extends Page_Controller
         Session::set('Year', $y);
 
         $cal = $this->draw_calendar();
+        $this->reAddScripts();
         return $cal;
     }
 
@@ -318,6 +254,7 @@ class CalendarPage_Controller extends Page_Controller
         $this->formatMonthNumber($m);
 
         $cal = $this->draw_calendar();
+        $this->reAddScripts();
         return $cal;
     }
 
@@ -332,6 +269,7 @@ class CalendarPage_Controller extends Page_Controller
         $m++;
         $this->formatMonthNumber($m);
         $cal = $this->draw_calendar();
+        $this->reAddScripts();
         return $cal;
     }
 
@@ -341,34 +279,8 @@ class CalendarPage_Controller extends Page_Controller
     public function formatMonth($m = '')
     {
         $dateObj = DateTime::createFromFormat('!m', $m);
-        $LongMonth = $dateObj->format('F'); // April
-        $mthName = $LongMonth;
-        if ($mthName == "January") {
-            $mN = "Jan";
-        } elseif ($mthName == "February") {
-            $mN = "Feb";
-        } elseif ($mthName == "March") {
-            $mN = "Mar";
-        } elseif ($mthName == "April") {
-            $mN = "Apr";
-        } elseif ($mthName == "May") {
-            $mN = "May";
-        } elseif ($mthName == "June") {
-            $mN = "June";
-        } elseif ($mthName == "July") {
-            $mN = "July";
-        } elseif ($mthName == "August") {
-            $mN = "Aug";
-        } elseif ($mthName == "September") {
-            $mN = "Sep";
-        } elseif ($mthName == "October") {
-            $mN = "Oct";
-        } elseif ($mthName == "November") {
-            $mN = "Nov";
-        } elseif ($mthName == "December") {
-            $mN = "Dec";
-        }
-        return $mN;
+        $shortMonth = $dateObj->format('M'); // April
+        return $shortMonth;
     }
 
     /**
@@ -410,56 +322,11 @@ class CalendarPage_Controller extends Page_Controller
         return;
     }
 
-    public function tronTest()
-    {
-        $e = Event::create();
-        // CalendarID (foreign key)
-        $e->CalendarPageID = $this->ID;
-        // EventTitle
-        $e->EventTitle = $_POST['EventTitle'];
-        // LocationText
-        $e->LocationText = $_POST['addEventAddress'];
-        //LocationLat
-        $e->LocationLat = $_POST['addEventLat'];
-        //LocationLon
-        $e->LocationLon = $_POST['addEventLon'];
-        //LocationRadius
-        $e->LocationRadius = $_POST['addEventRadius'];
-        //EventDescription
-        $e->EventDescription = $_POST['EventDescription'];
-        //EventDate
-        $e->EventDate = $_POST['EventDate'];
-        //StartTime
-        $e->StartTime = $_POST['EventStartTime'];
-        //FinishTime
-        $e->FinishTime = $_POST['EventFinishTime'];
-        //Type
-        //$e->Type = $_POST['EventType'];
-        //EventApproved
-        $e->EventApproved = false;
-        $e->write();
-
-        /*
-         * TEST UNIT
-         *
-        var_dump('Event Title' . $e->EventTitle . '</br>');
-        var_dump('Location Text' . $e->LocationText . '</br>');
-        var_dump('Location Lat' . $e->LocationLat . '</br>');
-        var_dump('Location Lon' . $e->LocationLon . '</br>');
-        var_dump('Location Radius' . $e->LocationRadius . '</br>');
-        var_dump('Event Description' . $e->EventDescription . '</br>');
-        var_dump('Event Date' . $e->EventDate . '</br>');
-        var_dump('Start Time' . $e->StartTime . '</br>');
-        var_dump('Finish Time' . $e->FinishTime . '</br>');
-        var_dump('Type' . '</br>');
-        var_dump('EventApproved' . $e->EventApproved . '</br>');
-        die('Hi dead man');
-        *
-        */
-
-        return $this->redirectBack();
-
-    }
+   public function reAddScripts()
+   {
+       echo '<script src="'.$this->ThemeDir() .'/js/approved/approved-event.js"></script>';
+       return;
+   }
 
     /**
      * ToDo Query events by session month variable and test
@@ -629,6 +496,8 @@ class CalendarPage_Controller extends Page_Controller
         $calendar .= '</div>';
         /* end calendar */
         /* all done, return result */
+        //$calendar.= '<script src="'.$this->ThemeDir() .'/js/locationpicker/locationpicker.jquery.min.js"></script>';
+        //$this->ThemeDir() . "/js/locationpicker/locationpicker.jquery.min.js"
 
         return $calendar;
     }

@@ -104,6 +104,41 @@ body {
   background-color: transparent;
 }
 
+.ajax-loader {
+  .ajax-load-icon {
+    background: url('../images/loader/ajax-loader.svg') no-repeat;
+    height: 175px;
+    width: 175px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.ajax-page-load {
+  z-index: 99999;
+  background-color: rgba(255,255,255,0.92);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 25%;
+  opacity: 1;
+  transition: all 0.5s;
+}
+.ajax-is-loading {
+
+}
+.ajax-not-loading {
+  z-index: -9999;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.ajax-load-message {
+  text-align: center;
+  top: -30px;
+  position: relative;
+
+}
+
 
 .custom-calendar-full {
   position: absolute;

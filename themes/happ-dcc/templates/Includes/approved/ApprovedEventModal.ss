@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
 
-                <div class="event-assocData">Loading Data...</div>
+                <div class="event-assocData"><div class="ajax-loader"><div class="ajax-load-icon"></div> </div> </div>
                 <% include ApprovedEventMap %>
 
             </div>

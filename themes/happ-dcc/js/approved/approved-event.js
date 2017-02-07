@@ -8,7 +8,9 @@
 
 // Onclick(event) get attributes e.g. assign lat on lon back on controller
 // and thats it set this stuff on the controller
-
+var url = window.location.href;
+// MAINURL = url + "home/TronsGrandTest";
+MAINURL = url + 'home';
 
 $('.event-btn').on("click", function () {
     var target = $(this).attr("data-target");
@@ -27,15 +29,8 @@ $('.event-btn').on("click", function () {
         markerIcon: 'mysite/images/svg/location.svg'
     });
 
-    /*
-     Generate event data for modal | AJAX
-     */
-    // Replace calendar body
-    var url = window.location.href;
     var EVENTID = $(this).attr("eid");
 
-    // MAINURL = url + "home/TronsGrandTest";
-    MAINURL = url + 'home';
     // Set EventTitle
     $.ajax({
        type:"POST",
@@ -43,51 +38,6 @@ $('.event-btn').on("click", function () {
         data: {EventID:EVENTID},
         success:function (response){
             $('.modal-title').html(response);
-        }
-    });
-    // EventDescription
-    $.ajax({
-        type:"POST",
-        url: MAINURL+'/EventDescription',
-        data: {EventID:EVENTID},
-        success:function (response){
-            $('.event-description').html(response);
-        }
-    });
-    // EventLocation
-    $.ajax({
-        type:"POST",
-        url: MAINURL+'/EventLocation',
-        data: {EventID:EVENTID},
-        success:function (response){
-            $('.event-location').html(response);
-        }
-    });
-    // EventDate
-    $.ajax({
-        type:"POST",
-        url: MAINURL+'/EventDate',
-        data: {EventID:EVENTID},
-        success:function (response){
-            $('.event-date').html(response);
-        }
-    });
-    // EventStartTime
-    $.ajax({
-        type:"POST",
-        url: MAINURL+'/EventStartTime',
-        data: {EventID:EVENTID},
-        success:function (response){
-            $('.event-startTime').html(response);
-        }
-    });
-    //EventFinishTime
-    $.ajax({
-        type:"POST",
-        url: MAINURL+'/EventFinishTime',
-        data: {EventID:EVENTID},
-        success:function (response){
-            $('.event-finishTime').html(response);
         }
     });
     //EventImages
@@ -103,7 +53,16 @@ $('.event-btn').on("click", function () {
     $('#ApprovedEventModal').on('shown.bs.modal', function () {
         $('#eventMap1').locationpicker('autosize');
     });
-    
 
+});
+
+$('#ApprovedEventModal').on('hidden.bs.modal', function () {
+    $.ajax({
+        type:"POST",
+        url: MAINURL+'/resetApprovedModal',
+        success:function (response){
+            $('.event-assocData').html(response);
+        }
+    });
 });
 
