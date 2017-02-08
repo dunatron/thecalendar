@@ -84,6 +84,7 @@ $(document).ready(function () {
         // Replace calendar body
         $.ajax({
             url: url + '/resetCalendarDate',
+            async: false,
             success: function (data) {
                 requestCallback.addCallbackToQueue(true, function () {
                     $('.fc-calendar-container').html(data);
@@ -272,12 +273,14 @@ $(document).ready(function () {
         var url = $(this).attr('href');
         $.ajax({
             url: url + '/jaxPreviousMonth',
+            async: false, // Wait for this to finish before running anymore code
             success: function (data) {
                 requestCallback.addCallbackToQueue(true, function () {
                     $('.fc-calendar-container').html(data);
                     //alert('Im the first callback');
                 });
-            }
+            },
+
         });
         $.ajax({
             url: url + '/currentMonthName',
