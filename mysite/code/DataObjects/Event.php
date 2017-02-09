@@ -41,7 +41,7 @@ class Event extends DataObject {
         'LocationText' => 'Text',
         'LocationLat' => 'Varchar(100)', // Find a better data type
         'LocationLon' => 'Varchar(100)',
-        'LocationRadius' => 'Int',
+        //'LocationRadius' => 'Int',
         'EventDescription' => 'HTMLText',
         'EventDate' => 'Date',
         'StartTime' => 'Time',
@@ -69,38 +69,50 @@ class Event extends DataObject {
         $fields = parent::getCMSFields();
 
         // EventTitle
-        $fields->addFieldToTab('Root.Main', TextField::create('EventTitle', 'Event Title:')
+        $fields->addFieldToTab('Root.Main', TextField::create('EventTitle', 'Title:')
             ->setDescription('e.g <strong>Little johnys bakeoff</strong>'));
         //EventVenue
-        $fields->addFieldToTab('Root.Main', TextField::create('EventVenue', 'Event Venue:')
+        $fields->addFieldToTab('Root.Main', TextField::create('EventVenue', 'Venue:')
             ->setDescription('e.g <strong>Entertainment Centre</strong>'));
         // LocationText
-        $fields->addFieldToTab('Root.Main', TextField::create('LocationText', 'Event Location:')
+        $fields->addFieldToTab('Root.Main', TextField::create('LocationText', 'Location:')
             ->setDescription('e.g <strong>182 Bowmar Rd, Waimumu 9774, New Zealand</strong>'));
         // LocationLat
-        $fields->addFieldToTab('Root.Main', NumericField::create('LocationLat', 'Event location Latitude:')
+        $fields->addFieldToTab('Root.Main', NumericField::create('LocationLat', 'Location latitude:')
             ->setDescription('e.g <strong>-46.1326615</strong>'));
         // LocationLon
-        $fields->addFieldToTab('Root.Main', NumericField::create('LocationLon', 'Event location Longitude:')
+        $fields->addFieldToTab('Root.Main', NumericField::create('LocationLon', 'Location longitude:')
             ->setDescription('e.g <strong>168.89592100000004</strong>'));
         // LocationRadius
-        $fields->addFieldToTab('Root.Main', NumericField::create('LocationRadius', 'Event location Radius:'));
+        //$fields->addFieldToTab('Root.Main', NumericField::create('LocationRadius', 'Event location Radius:'));
         // EventDate
-        $fields->addFieldToTab('Root.Main', DateField::create('EventDate', 'Date of the Event')
+        $fields->addFieldToTab('Root.Main', DateField::create('EventDate', 'Date')
             ->setConfig('dateformat', 'dd-MM-yyyy')
-            ->setConfig('showcalendar', true));
-        // Event Month
-        $fields->addFieldToTab('Root.Main', ReadonlyField::create('EventMonth', 'Month generated from picking date'));
+            ->setConfig('showcalendar', true)
+            ->setDescription('Date for the event'));
         // StartTime
-        $fields->addFieldToTab('Root.Main', TimePickerField::create('StartTime'));
+        $fields->addFieldToTab('Root.Main', TimePickerField::create('StartTime')
+            ->setDescription('Start time for the event'));
+
         // FinishTime
-        $fields->addFieldToTab('Root.Main', TimePickerField::create('FinishTime'));
+        $fields->addFieldToTab('Root.Main', TimePickerField::create('FinishTime')
+            ->setDescription('Finish time for the event'));
+
         // Type
-        $fields->addFieldToTab('Root.Main', CheckboxField::create('EventApproved', 'Event Approved'));
+        $fields->addFieldToTab('Root.Main', CheckboxField::create('EventApproved', 'Event Approved')
+            ->setDescription('Check to display this event on the calendar'));
 
-        $fields->addFieldToTab('Root.Main', TextField::create('TicketWebsite', 'Ticket Website'));
+        // Ticket website
+        $fields->addFieldToTab('Root.Main', TextField::create('TicketWebsite', 'Ticket Website')
+            ->setDescription('URL where tickets for this event can be purchased from'));
 
-        $fields->addFieldToTab('Root.Main', TextField::create('TicketPhone', 'Ticket Phone'));
+        // Ticket phone
+        $fields->addFieldToTab('Root.Main', TextField::create('TicketPhone', 'Ticket Phone')
+            ->setDescription('Number to call to buy tickets'));
+
+        // EventDescription
+        $fields->addFieldToTab('Root.Main', HtmlEditorField::create('EventDescription', 'Description')
+            ->setDescription('The real description field'));
 
         // Tags
         $fields->addFieldToTab('Root.Main', new DropdownField(
@@ -124,18 +136,23 @@ class Event extends DataObject {
         $acc = new AccessTypeArray();
         $fields->addFieldToTab('Root.Main', $acc->getAccessValues());
 
-//        $fields->addFieldToTab('Root.EventImages', $eventImages = UploadField::create('EventImages'));
-//        //Set allowed upload extensions
-//        $eventImages->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
-//        $eventImages->setFolderName('event-Images');
+        // IsEventFindaEvent
+        $fields->addFieldToTab('Root.EventFinda', CheckboxField::create('IsEventFindaEvent', 'Is EventFinda Event')
+            ->setDescription('Leave this checked if event has come from event finda'));
+
+        // EventFindaID
+        $fields->addFieldToTab('Root.EventFinda', TextField::create('EventFindaID', 'Id for event finda'));
+
+        // EventFindaURL
+        $fields->addFieldToTab('Root.EventFinda', TextField::create('EventFindaURL', 'Absolute url for event')
+            ->setDescription('If this event was generated by event finda this field will contain a value'));
+
+
+
         $fields->addFieldToTab('Root.EventImages', $eventImages = UploadField::create('EventImages'));
         //Set allowed upload extensions
         $eventImages->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
         $eventImages->setFolderName('event-Images');
-
-        // EventDescription
-        $fields->addFieldToTab('Root.Main', HtmlEditorField::create('EventDescription', 'Description')
-        ->setDescription('The real description field'));
 
         return $fields;
     }

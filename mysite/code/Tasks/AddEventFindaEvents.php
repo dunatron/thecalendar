@@ -95,17 +95,118 @@ class AddEventFindaEvents extends BuildTask
 
             $newEvent->write(); // Must write event before we store image(or we dont know the events id)
 
+            /**
+             * Run only when event is new to our db
+             * Check for new Tag
+             * Store Images
+             * Check for new EventRestriction
+             */
             if($isNewEvent == true){
                 $images = $event->images->images;
                 $eventID = $newEvent->ID;
                 // ToDo create check if is new image. If not dont run store images function
                 //$storeImage = $this->storeEventImage($images, $eventID);
                 $this->storeEventImage($images, $eventID);
+
+                // Check for tags
+                if(isset ($event->category)){
+                    $checkTag = $this->checkTag($event->category->name);
+                    var_dump($checkTag->check);
+                    if($checkTag->check == true){
+                        $this->createTag($checkTag->tag);
+                    } else {
+                        continue;
+                    }
+                }
+                // Check for restrictions
+                if (isset ($event->restrictions)){
+                    $checkRestriction = $this->checkRestriction($event->restrictions);
+                    if($checkRestriction->check == true){
+                        $this->createRestriction($checkRestriction->restriction);
+                    } else {
+                        continue;
+                    }
+                }
+
             }else {
                 //continue;
             }
-
         }
+    }
+
+    // Check if tag is in the db
+    public function checkTag($tag)
+    {
+        $tagToCheck = $tag;
+        $dbTags = Tag::get();
+        $tagArray = array();
+        foreach ($dbTags as $t){
+            array_push($tagArray, $t->Title);
+        }
+
+        if (in_array($tagToCheck, $tagArray)){
+            echo ('Tag is already in db');
+            $data = new ArrayData(array(
+                'check' => false
+            ));
+        } else {
+            echo ('we must add the tag');
+            echo($tagToCheck);
+            $data = new ArrayData(array(
+               'check' => true,
+                'tag'   => $tagToCheck
+            ));
+        }
+        return $data;
+
+    }
+
+    public function createTag($tagName)
+    {
+        $t = Tag::create();
+        $t->Title = $tagName;
+        $t->CalendarPageID = 1;
+        $t->write();
+        echo ('New Tag: '.$t->Title.' has been created <br />');
+        return;
+    }
+
+    /*
+     * check if restriction is in database
+     */
+    public function checkRestriction($restriction)
+    {
+        $restrictionToCheck = $restriction;
+        $dbRestrictions = EventRestriction::get();
+        $restrictionArray = array();
+        foreach ($dbRestrictions as $r){
+            array_push($restrictionArray, $r->Description);
+        }
+
+        if (in_array($restrictionToCheck, $restrictionArray)){
+            $data = new ArrayData(array(
+                'check' =>  false
+            ));
+        } else {
+            $data = new ArrayData(array(
+                'check' =>  true,
+                'restriction'   =>  $restrictionToCheck
+            ));
+        }
+        return $data;
+    }
+
+    /**
+     * Create A restriction Tag
+     */
+    public function createRestriction($restriction)
+    {
+        $r = EventRestriction::create();
+        $r->Description = $restriction;
+        $r->CalendarPageID = 1;
+        $r->write();
+        echo ('New Restriction: '.$r->Description.' has been created <br />');
+        return;
     }
 
     /*
