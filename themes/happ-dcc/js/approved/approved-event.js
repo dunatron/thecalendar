@@ -52,11 +52,13 @@ $('.event-btn').on("click", function () {
     // Modal Dialog control | reference
     $('#ApprovedEventModal').on('shown.bs.modal', function () {
         $('#eventMap1').locationpicker('autosize');
+        $('html').addClass('modal-open');
     });
 
 });
 
 $('#ApprovedEventModal').on('hidden.bs.modal', function () {
+    $('html').removeClass('modal-open');
     $.ajax({
         type:"POST",
         url: MAINURL+'/resetApprovedModal',

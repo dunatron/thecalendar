@@ -36,7 +36,8 @@
 
         // Calendar Body
         .fc-body {
-          @media @min880 {
+          padding: 0;
+          @media @min865 {
             padding: 10px 0 20px 0;
           }
 
@@ -53,13 +54,16 @@
               outline: none;
               text-decoration: none;
               padding: 6px 4px 0 4px;
-              font-size: 13px;
+              font-size: 16px;
               text-transform: none;
               white-space: normal;
               &:hover, &:focus {
                 text-decoration: none;
                 background-color: transparent;
                 outline: none;
+              }
+              @media @min865 {
+                font-size: 14px;
               }
             }
 
@@ -70,9 +74,13 @@
                color: purple;
 
                .tron-inner-square {
+                 max-width: 100%;
                  .day-number {
                    color: fade(@color-dcc-blue, 100%);
-                   font-size: 14px;
+                   font-size: 18px;
+                   @media @min865 {
+                     font-size: 16px;
+                   }
                  }
                  @media @min880 {
                    overflow-y: scroll;

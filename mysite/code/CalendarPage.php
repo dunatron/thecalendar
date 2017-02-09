@@ -317,6 +317,8 @@ class CalendarPage_Controller extends Page_Controller
         } else {
             $m = $m;
         }
+        //Debug::show($m);
+        var_dump($m);
         Session::set('Month', $m);
         Session::set('Year', $y);
         return;

@@ -1,6 +1,7 @@
 .nav-bar-wrapper {
   overflow: hidden;
   height: 200px;
+  position: relative;
 
   @media @min865 {
     max-height: 60px;
@@ -17,8 +18,7 @@
 
 
     .full-date {
-      position: absolute;
-      top:-46px;
+      position: relative;
       @media @min865 {
         top:-58px;
       }
@@ -62,7 +62,8 @@
   .logo-wrapper {
     z-index: 500;
     text-align: center;
-    display: block;
+    display: inline-block;
+    padding-right: 30px;
     img {
       margin-top: 5px;
       margin-right: auto;
@@ -91,10 +92,15 @@
 
   .controls-wrapper {
     z-index: 50;
-    margin-top: 15px;
+    margin-top: 18px;
     margin-right: auto;
     margin-left: auto;
     display: inline-block;
+    padding-left: 18px;
+    @media @min865 {
+      margin-right: 65px;
+      float: right;
+    }
 
     .controls-prev-next {
       display: inline-block;
@@ -116,7 +122,7 @@
       #previous-month {
         border-bottom-left-radius: 10px;
         border-top-left-radius: 10px;
-        top:36px;
+        top:0;
         @media @min865 {
           top: 0;
         }
@@ -158,7 +164,7 @@
       #next-month {
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
-        top:36px;
+        top:0;
         @media @min865 {
           top: 0;
         }
@@ -214,10 +220,11 @@
 
       a {
         color:@color-dcc-blue;
-        top: 125px;
+        top: 16px;
         position: absolute;
+        right: 16px;
         @media @min865 {
-          top: 14px;
+          top: 16px;
         }
         &:hover {
           cursor: pointer;
@@ -226,9 +233,7 @@
       }
     }
 
-    @media @min865 {
-      float: right;
-    }
+
   }
 
 }

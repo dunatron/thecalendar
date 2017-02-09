@@ -30,7 +30,7 @@
 
 </div><!-- /container -->
 
-
+<% include AddHappEventModal %>
 
 <!-- Structure to use start -->
 

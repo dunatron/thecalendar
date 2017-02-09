@@ -49,9 +49,6 @@
     </div>
 </div>
 
-    <% include AddHappEventModal %>
-    <% include FilterModal %>
-
 </body>
 
 </html>

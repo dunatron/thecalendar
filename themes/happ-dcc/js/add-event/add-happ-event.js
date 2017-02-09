@@ -18,7 +18,8 @@ $(document).ready(function () {
         LocationNext    =   $('#locationNext'),
         DateWrapper =   $('#date-step'),
         DateBack    =   $('#dateBack'),
-        SubmitBtn   =   $('#submitHappEvent');
+        SubmitBtn   =   $('#submitHappEvent'),
+        addEventModal = $('#AddHappEventModal');
 
 
 
@@ -154,6 +155,13 @@ $(document).ready(function () {
         $(this).parent().toggleClass('tag-selected');
     });
 
+    $(addEventModal).on('shown.bs.modal', function () {
+        $('#eventMap1').locationpicker('autosize');
+        $('html').addClass('modal-open');
+    });
 
+    $(addEventModal).on('hidden.bs.modal', function () {
+        $('html').removeClass('modal-open');
+    });
 
 });
