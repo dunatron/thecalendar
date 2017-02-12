@@ -2,7 +2,7 @@
 
   .custom-calendar-wrap {
     z-index: 100;
-    @media @min865 {
+    @media @min880 {
       z-index: -50;
     }
 
@@ -37,7 +37,7 @@
         // Calendar Body
         .fc-body {
           padding: 0;
-          @media @min865 {
+          @media @min880 {
             padding: 10px 0 20px 0;
           }
 
@@ -62,7 +62,7 @@
                 background-color: transparent;
                 outline: none;
               }
-              @media @min865 {
+              @media @min880 {
                 font-size: 14px;
               }
             }
@@ -75,18 +75,21 @@
                  max-width: 100%;
                  .events-day-wrapper {
                    padding: 0;
-                   @media @min865 {
+                   @media @min880 {
                      padding: 30px 0 0 0;
                    }
                  }
                  .opaque-head {
-                   @media @min865 {
+
+                   @media @min880 {
+                     padding: 20px 0 0 0;
                      height: 30px;
                      width: 100%;
                      position: fixed;
                      background-color: rgba(255,255,255,0.8);
                      z-index: 10;
                    }
+
                  }
                  .day-number {
                    .show_psuedo();
@@ -99,7 +102,7 @@
                    text-align: center;
                    padding: 0;
                    z-index: 50;
-                   @media @min865 {
+                   @media @min880 {
                      font-size: 19px;
                      position: fixed;
                      background-color: rgba(255,255,255,0.95);
