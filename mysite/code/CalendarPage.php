@@ -424,7 +424,7 @@ class CalendarPage_Controller extends Page_Controller
         for ($list_day = 1; $list_day <= $days_in_month; $list_day++):
             $calendar .= '<div class="day-square">';
             $calendar .= '<div class="tron-inner-square">';
-            $calendar .= '<span class="day-number" style="">' . $list_day . '</span></br>';
+            $calendar .= '<span class="day-number" style="">' . $list_day . '</span>';
 
 
             $events = $this->getEvents();
@@ -451,6 +451,8 @@ class CalendarPage_Controller extends Page_Controller
             }
             $sqDate = $year . '-' . $month . '-' . $convertday;
 
+            $calendar .= '<div class="opaque-head"></div>';
+            $calendar .= '<div class="events-day-wrapper">';
             foreach ($events as $e) {
 
                 if ($sqDate == $e->EventDate) {
@@ -462,6 +464,7 @@ class CalendarPage_Controller extends Page_Controller
                     continue;
                 }
             }
+            $calendar .= '</div>';//close events-day-wrapper
 
             $calendar .= '<span class="fc-weekday">';
             $calendar .= '</span>';

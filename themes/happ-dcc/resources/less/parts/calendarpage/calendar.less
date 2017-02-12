@@ -68,18 +68,45 @@
             }
 
              .day-square {
-
-
                overflow: hidden;
-               color: purple;
+               z-index: 100;
 
                .tron-inner-square {
                  max-width: 100%;
-                 .day-number {
-                   color: fade(@color-dcc-blue, 100%);
-                   font-size: 18px;
+                 .events-day-wrapper {
+                   padding: 0;
                    @media @min865 {
-                     font-size: 16px;
+                     padding: 30px 0 0 0;
+                   }
+                 }
+                 .opaque-head {
+                   @media @min865 {
+                     height: 30px;
+                     width: 100%;
+                     position: fixed;
+                     background-color: rgba(255,255,255,0.8);
+                     z-index: 10;
+                   }
+                 }
+                 .day-number {
+                   .show_psuedo();
+                   color: fade(@color-dcc-blue, 100%);
+                   font-size: 19px;
+                   height: 30px;
+                   width: 30px;
+                   border: 1px solid rgba(252,102,54,.6);
+                   border-radius: 30px;
+                   text-align: center;
+                   padding: 0;
+                   z-index: 50;
+                   @media @min865 {
+                     font-size: 19px;
+                     position: fixed;
+                     background-color: rgba(255,255,255,0.95);
+                   }
+                   &:after {
+                     .show_psuedo();
+                     background-color: rgba(255,255,255,0.85);
                    }
                  }
                  @media @min880 {
