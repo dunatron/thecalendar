@@ -409,7 +409,7 @@ class CalendarPage_Controller extends Page_Controller
         /* start body fc-body */
         $calendar .= '<div class="fc-body">';
         /* row for week one */
-        $calendar .= '<div class="fc-row">';
+        $calendar .= '<div class="fc-row 1">';
         /* print "blank" days until the first of the current week */
         $lastMonthDay = 1; // used for below function render last months days
         for ($x = 0; $x < $running_day; $x++):
@@ -473,7 +473,7 @@ class CalendarPage_Controller extends Page_Controller
             if ($running_day == 6):
                 $calendar .= '</div>';
                 if (($day_counter + 1) != $days_in_month):
-                    $calendar .= '<div class="fc-row">';
+                    $calendar .= '<div class="fc-row 2">';
                 endif;
                 $running_day = -1;
                 $days_in_this_week = 0;

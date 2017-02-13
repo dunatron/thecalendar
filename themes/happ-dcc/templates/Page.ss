@@ -3,6 +3,8 @@
 
 <head lang="en">
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-store" />
+
 
     <title>Happ | $SiteConfig.Title</title>
 
