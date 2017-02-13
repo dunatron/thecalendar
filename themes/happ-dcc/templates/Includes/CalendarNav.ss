@@ -1,11 +1,26 @@
 <div class="container-fluid">
     <div class="nav-bar-wrapper row">
 
+
         <div class="logo-wrapper">
             <%--<a href="$AbsoluteBaseURL/home">--%>
             <a href="$AbsoluteBaseURL" id="siteBaseUrl">
-                <img src="$ThemeDir/images/DCC_logo_tiny.png" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"
-                     class="img-responsive">
+
+                <% with $SiteConfig.HappLogo.SetHeight(50) %>
+                    <img src="$URL" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"
+                         class="img-responsive">
+                <% end_with %>
+            </a>
+            <%--</a>--%>
+        </div>
+
+        <div class="logo-wrapper">
+            <%--<a href="$AbsoluteBaseURL/home">--%>
+            <a href="$AbsoluteBaseURL" id="siteBaseUrl">
+                <% with $SiteConfig.ClientLogo.SetHeight(50) %>
+                    <img src="$URL" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"
+                         class="img-responsive">
+                <% end_with %>
             </a>
             <%--</a>--%>
         </div>

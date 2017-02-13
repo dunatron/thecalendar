@@ -13,3 +13,4 @@ SSViewer:
 SiteConfig:
   extensions:
     - EventFindaExtension
+    - HappSiteConfig

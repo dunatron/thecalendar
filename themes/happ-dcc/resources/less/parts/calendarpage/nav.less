@@ -1,6 +1,10 @@
 .nav-bar-wrapper {
+  height: 250px;
+  @media @min525 {
+    height: 200px;
+  }
   overflow: hidden;
-  height: 200px;
+
   position: relative;
 
   @media @min865 {
@@ -28,13 +32,13 @@
     .theMonth {
       padding: 0 20px 0 0;
       font-family: @font_GustanLight;
-      color:@color-dcc-blue;
+      color:@c_month;
       font-size: 24px;
     }
 
     .theYear {
       font-family: @font_GustanLight;
-      color:@color-dcc-blue;
+      color:@c_year;
       font-size: 24px;
     }
     @media @min865 {
@@ -105,11 +109,11 @@
     .controls-prev-next {
       display: inline-block;
       padding: 0 20px 0 20px;
-      color: #042C5C;
+      color: @c_controls;
       font-family: @font_GustanLight;
       a {
         width: 150px;
-        color: #042C5C;
+        color: @c_controls;
         padding: 0;
         margin: 5px;
         position: relative;
@@ -137,8 +141,8 @@
           .show_psuedo();
           top: 50%;
           margin-top: -7px;
-          border-top: 1px solid @c_primary;
-          border-right: 1px solid @c_primary;
+          border-top: 1px solid @c_controls;
+          border-right: 1px solid @c_controls;
           height: 15px;
           width: 15px;
           position: absolute;
@@ -150,8 +154,8 @@
           .show_psuedo();
           top: 50%;
           margin-top: -7px;
-          border-top: 1px solid @c_primary;
-          border-right: 1px solid @c_primary;
+          border-top: 1px solid @c_controls;
+          border-right: 1px solid @c_controls;
           height: 15px;
           width: 15px;
           position: absolute;
@@ -179,8 +183,8 @@
           .show_psuedo();
           top: 50%;
           margin-top: -7px;
-          border-top: 1px solid @c_primary;
-          border-right: 1px solid @c_primary;
+          border-top: 1px solid @c_controls;
+          border-right: 1px solid @c_controls;
           height: 15px;
           width: 15px;
           position: absolute;
@@ -192,8 +196,8 @@
           .show_psuedo();
           top: 50%;
           margin-top: -7px;
-          border-top: 1px solid @c_primary;
-          border-right: 1px solid @c_primary;
+          border-top: 1px solid @c_controls;
+          border-right: 1px solid @c_controls;
           height: 15px;
           width: 15px;
           position: absolute;
