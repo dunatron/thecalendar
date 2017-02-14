@@ -134,6 +134,10 @@ class Page_Controller extends ContentController {
              FormAction::create('processHappEvent', 'Submit')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'submitHappEvent')
         );
 
+        $actions->push(
+            ResetFormAction::create('ClearAction', 'Clear')
+        );
+
 //        $form = new Form($this, 'HappEventForm', $fields, $actions);
         $form = Form::create($this, 'HappEventForm', $fields, $actions)->addExtraClass('happ-add-event-form');
         return $form;

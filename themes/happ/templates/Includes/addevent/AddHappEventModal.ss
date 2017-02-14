@@ -7,6 +7,8 @@
                 <h4 class="modal-title">Add Happ Event</h4>
             </div>
             <div class="modal-body">
+                <%-- Continue form | this form will decide if we reset the form or not --%>
+                    <% include ContinueAddEventForm %>
                 <%-- Add Event | Form --%>
                 <% include HappEventForm %>
             </div>
