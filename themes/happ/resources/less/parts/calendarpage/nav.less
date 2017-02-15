@@ -1,8 +1,14 @@
 .nav-bar-wrapper {
-  height: 250px;
+  height: 350px;
   background: @c_nav_banner;
+  @media @min400 {
+    height: 320px;
+  }
+  @media @min460 {
+    height: 250px;
+  }
   @media @min525 {
-    height: 200px;
+    height: 250px;
   }
   overflow: hidden;
 
@@ -73,10 +79,12 @@
     display: inline-block;
     width: 100%;
     float: left;
+    margin-top: 20px;
     @media @min460 {
       width: 100%;
     }
     @media @min865 {
+      margin-top: 0;
       display: inline-block;
       width: 33.333%;
       float: left;
@@ -119,14 +127,26 @@
     //background: url() no - repeat center center;
     height: 60px;
     position: relative;
+    width: 220px;
     img {
       position: absolute;
       margin: auto;
       top: 0;
-      left: 10px;
+      left: 20px;
       bottom: 0;
     }
     @media @min865 {
+      width: 33.333%;
+      img {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        left: 10px;
+        bottom: 0;
+      }
+    }
+    @media @min1100 {
+      width: 185px;
     }
     @media @min1400 {
       width: 220px;
@@ -307,21 +327,8 @@
 
   }
 
-  .events-control-wrapper {
+  @import "nav/events-controls.less";
 
-    @media @min865 {
-      width: 23.3333%;
-      display: inline-block;
-      float: left;
-    }
-    @media @min1100 {
-      width: 33.3333%;
-    }
-    @media @min1400 {
-      width: 33.3333%;
-      display: inline-block;
-      float: left;
-    }
-  }
+
 
 }

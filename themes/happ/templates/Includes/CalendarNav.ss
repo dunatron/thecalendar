@@ -41,12 +41,27 @@
             </div>
         </div>
         <div class="events-control-wrapper">
-            <div class="add-event">
-                <%-- Add Event --%>
-                <a data-toggle="modal" data-target="#AddHappEventModal">
-                    <i class="fa fa-2x fa-plus-circle"></i>
-                    <img src="$ThemeDir/svg/plus.svg"/>
-                </a>
+            <div class="events-inner-wrap">
+                <div class="add-event">
+                    <%-- Add Event --%>
+                    <a data-toggle="modal" data-target="#AddHappEventModal">
+                        <span>Add event</span>
+                        <img src="$ThemeDir/svg/plus.svg"/>
+                    </a>
+                </div>
+                <div class="search-event">
+                    <a data-toggle="modal" data-target="#AddHappEventModal">
+                        <span>Search</span>
+                        <img src="$ThemeDir/svg/plus.svg"/>
+                    </a>
+                </div>
+                <div class="filter-events">
+                    <%-- Add Event --%>
+                    <a data-toggle="modal" data-target="#AddHappEventModal">
+                        <span>Filter</span>
+                        <img src="$ThemeDir/svg/plus.svg"/>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
