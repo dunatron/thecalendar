@@ -5,9 +5,12 @@
     height: 320px;
   }
   @media @min460 {
-    height: 250px;
+    height: 320px;
   }
   @media @min525 {
+    height: 320px;
+  }
+  @media @min600 {
     height: 250px;
   }
   overflow: hidden;
@@ -99,19 +102,23 @@
     text-align: center;
     display: inline-block;
     padding-right: 30px;
-    width: 50%;
+    width: 100%;
     float: left;
     img {
-      margin-top: 5px;
+      margin-top: 15px;
       margin-right: auto;
-      margin-left: 40px;
+      margin-left: auto;
       @media @min865 {
         max-height: 50px;
+        margin-top: 5px;
         margin-left: 30px;
       }
       &:hover {
         cursor: pointer;
       }
+    }
+    @media @min600 {
+      width:50%;
     }
     @media @min865 {
       display: inline-block;
@@ -150,6 +157,12 @@
     }
     @media @min1400 {
       width: 220px;
+    }
+  }
+
+  .client-logo {
+    @media @min600 {
+
     }
   }
 

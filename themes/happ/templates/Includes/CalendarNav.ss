@@ -15,7 +15,7 @@
                 <%--</a>--%>
             </div>
 
-            <div class="logo-wrapper">
+            <div class="logo-wrapper client-logo">
                 <%--<a href="$AbsoluteBaseURL/home">--%>
                 <a href="$AbsoluteBaseURL" id="siteBaseUrl">
                     <% with $SiteConfig.ClientLogo.SetHeight(50) %>
