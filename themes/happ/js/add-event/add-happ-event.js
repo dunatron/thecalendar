@@ -19,7 +19,11 @@ $(document).ready(function () {
         DateWrapper =   $('#date-step'),
         DateBack    =   $('#dateBack'),
         SubmitBtn   =   $('#submitHappEvent'),
-        addEventModal = $('#AddHappEventModal');
+        addEventModal = $('#AddHappEventModal'),
+        continueAddEventOverlay = $('.continue-add-event-overlay'),
+        clearFormBtn    = $('#Form_HappEventForm_action_ClearAction'),
+        resetFormBtn    = $('#reset-add-event'),
+        continueFormBtn = $('#continue-add-event');
 
 
 
@@ -138,6 +142,41 @@ $(document).ready(function () {
         $('#addEventMap').locationpicker('autosize');
     }
 
+    // Continue overlay functions
+    function hideContinueOverlay(){
+        $(continueAddEventOverlay).addClass('hide-continue-options');
+        $(continueAddEventOverlay).removeClass('show-continue-options');
+    }
+
+    function showContinueOverlay() {
+        $(continueAddEventOverlay).addClass('show-continue-options');
+        $(continueAddEventOverlay).removeClass('hide-continue-options');
+    }
+
+    // wipe/reset form
+    $(resetFormBtn).on('click', function(){
+        resetAddEventForm();
+    });
+    //Continue form where user left off
+    $(continueFormBtn).on('click', function(){
+        resumeAddEventForm();
+    });
+
+    function resumeAddEventForm(){
+        hideContinueOverlay();
+    }
+
+    function resetAddEventForm()
+    {
+        $(clearFormBtn).trigger('click');
+        hideSubmitBtn();
+        hideDateStep();
+        hideLocationStep();
+        hideTicketWebsiteStep();
+        showDetailsStep();
+        hideContinueOverlay();
+    }
+
 
 
     // //Details Tags step
@@ -162,6 +201,7 @@ $(document).ready(function () {
 
     $(addEventModal).on('hidden.bs.modal', function () {
         $('html').removeClass('modal-open');
+        showContinueOverlay();
     });
 
 });
