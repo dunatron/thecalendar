@@ -22,6 +22,7 @@
     display: inline-block;
     position: relative;
     min-width: 0;
+    top: 5px;
     @media @min865 {
       min-width: 0;
       top: 5px;
@@ -70,6 +71,19 @@
 
   .logos-wrapper {
     display: inline-block;
+    width: 100%;
+    float: left;
+    @media @min460 {
+      width: 100%;
+    }
+    @media @min865 {
+      display: inline-block;
+      width: 33.333%;
+      float: left;
+    }
+    @media @min1400 {
+
+    }
   }
 
   .logo-wrapper {
@@ -77,6 +91,8 @@
     text-align: center;
     display: inline-block;
     padding-right: 30px;
+    width: 50%;
+    float: left;
     img {
       margin-top: 5px;
       margin-right: auto;
@@ -91,6 +107,29 @@
     }
     @media @min865 {
       display: inline-block;
+      width: 50%;
+      float: left;
+    }
+    @media @min1400 {
+
+    }
+  }
+
+  .happ-logo {
+    //background: url() no - repeat center center;
+    height: 60px;
+    position: relative;
+    img {
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+    }
+    @media @min865 {
+    }
+    @media @min1400 {
+      width: 220px;
     }
   }
 
@@ -105,13 +144,27 @@
 
   .controls-wrapper {
     z-index: 50;
-    margin-top: 18px;
+    margin-top: 8px;
     margin-right: auto;
     margin-left: auto;
     display: inline-block;
-    padding: 0 0 13px 18px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
     @media @min865 {
-      margin:0;
+      width: 43.3333%;
+      display: inline-block;
+      float: left;
+      text-align: center;
+    }
+    @media @min1100 {
+      width: 33.3333%;
+    }
+    @media @min1400 {
+      width: 33.3333%;
+      display: inline-block;
+      float: left;
+      text-align: center;
     }
 
     .controls-prev-next {
@@ -119,6 +172,15 @@
       padding: 0 20px 0 20px;
       color: @c_controls_name;
       font-family: @font_GustanLight;
+
+      @media @min865 {
+
+      }
+
+      @media @min1400 {
+        float: none;
+      }
+
       a {
         width: 150px;
         color: @c_controls_name;
@@ -215,9 +277,6 @@
         }
       }
 
-      @media @min865 {
-        float: right;
-      }
     }
     .add-event {
       display: inline-block;
@@ -246,6 +305,23 @@
     }
 
 
+  }
+
+  .events-control-wrapper {
+
+    @media @min865 {
+      width: 23.3333%;
+      display: inline-block;
+      float: left;
+    }
+    @media @min1100 {
+      width: 33.3333%;
+    }
+    @media @min1400 {
+      width: 33.3333%;
+      display: inline-block;
+      float: left;
+    }
   }
 
 }

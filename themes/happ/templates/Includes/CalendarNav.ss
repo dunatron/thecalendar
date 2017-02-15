@@ -3,7 +3,7 @@
 
 
         <div class="logos-wrapper">
-            <div class="logo-wrapper">
+            <div class="logo-wrapper happ-logo" style="background: url() no-repeat center center;">
                 <%--<a href="$AbsoluteBaseURL/home">--%>
                 <a href="$AbsoluteBaseURL" id="siteBaseUrl">
 
@@ -39,6 +39,8 @@
                     <span class="short-next-text">$nextShortMonth</span>
                 </a>
             </div>
+        </div>
+        <div class="events-control-wrapper">
             <div class="add-event">
                 <%-- Add Event --%>
                 <a data-toggle="modal" data-target="#AddHappEventModal">
