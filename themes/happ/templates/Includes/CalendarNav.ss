@@ -3,14 +3,15 @@
 
 
         <div class="logos-wrapper">
-            <div class="logo-wrapper happ-logo" style="background: url() no-repeat center center;">
+            <div class="logo-wrapper happ-logo">
                 <%--<a href="$AbsoluteBaseURL/home">--%>
                 <a href="$AbsoluteBaseURL" id="siteBaseUrl">
 
-                    <% with $SiteConfig.HappLogo.SetHeight(50) %>
-                        <img src="$URL" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"
-                             class="img-responsive">
-                    <% end_with %>
+                    <%--<% with $SiteConfig.HappLogo.SetHeight(50) %>--%>
+                        <%--<img src="$URL" data-target="$AbsoluteBaseURL/home" id="reset-calendar-dates"--%>
+                             <%--class="img-responsive">--%>
+                    <%--<% end_with %>--%>
+                    <% include HappLogoSVG %>
                 </a>
                 <%--</a>--%>
             </div>
