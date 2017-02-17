@@ -9,11 +9,24 @@
     .modal-content {
       border-radius: 0;
       height: 100%;
-      border-bottom: 1px solid @c_orange_main;
+      //border-bottom: 1px solid @c_orange_main;
+      border: none;
     }
 
     .modal-body {
       height: 100%;
+      padding: 0;
+    }
+  }
+  .close-btn {
+    background-color: @c_orange_main;
+    position: absolute;
+    //top:0;
+    left: 0;
+    z-index: 9999;
+    @media @min865 {
+      height: 60px;
+      //top:10px;
     }
   }
 }

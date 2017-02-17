@@ -10,7 +10,7 @@
                            <option class="realTags" value="$ID" data-tag="$ID" data-title="$Title"><a href="#">$Title</a></option>
                        <% end_loop %>
                    </select>
-                   <a class="search-section-submit" id="viewAllEvents">View All</a>
+                   <%--<a class="search-section-submit" id="viewAllEvents">View All</a>--%>
                </div>
            </div>
        </form>

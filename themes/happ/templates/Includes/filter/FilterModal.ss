@@ -2,6 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
+                <img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">
                 <% include EventFilter %>
             </div>
         </div>
