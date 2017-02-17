@@ -123,9 +123,16 @@ class AddEventFindaEvents extends BuildTask
                 if (isset ($event->restrictions)){
                     $checkRestriction = $this->checkRestriction($event->restrictions);
                     if($checkRestriction->check == false){
-                        $this->createRestriction($checkRestriction->restriction);
+                        $restrictionID = $this->createRestriction($checkRestriction->restriction);
+                    } else {
+                        $restrictions = EventRestriction::get()->filter(array(
+                            "Description"   => $checkRestriction->restriction
+                        ));
+                        foreach ($restrictions as $r){
+                            $restrictionID = $r->ID;
+                        }
                     }
-                    $newEvent->Restriction =  $checkRestriction->tag;
+                    $newEvent->Restriction =  $restrictionID;
                     $newEvent->write();
                 }
 
@@ -186,7 +193,8 @@ class AddEventFindaEvents extends BuildTask
 
         if (in_array($restrictionToCheck, $restrictionArray)){
             $data = new ArrayData(array(
-                'check' =>  true
+                'check' =>  true,
+                'restriction'   =>  $restrictionToCheck
             ));
         } else {
             $data = new ArrayData(array(
@@ -206,7 +214,7 @@ class AddEventFindaEvents extends BuildTask
         $r->Description = $restriction;
         $r->write();
         echo ('New Restriction: '.$r->Description.' has been created <br />');
-        return;
+        return $r->ID;
     }
 
     /*
