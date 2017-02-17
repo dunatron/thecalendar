@@ -58,13 +58,14 @@
                 </div>
                 <div class="filter-events">
                     <%-- Add Event --%>
-                    <a data-toggle="modal" data-target="#AddHappEventModal">
+                    <a data-toggle="modal" data-target="#FilterModal">
                         <span>Filter</span>
                         <img src="$ThemeDir/svg/plus.svg"/>
                     </a>
                 </div>
             </div>
         </div>
+        <% include FilterModal %>
     </div>
 </div>
 

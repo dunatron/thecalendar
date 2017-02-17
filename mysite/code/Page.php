@@ -172,6 +172,7 @@ class Page_Controller extends ContentController {
 		parent::init();
         Requirements::clear();
         Requirements::css($this->ThemeDir() . "/css/base-styles.css");
+        Requirements::css($this->ThemeDir() . "/css/select2/select2.min.css");
         Requirements::set_write_js_to_body(false);
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
@@ -184,8 +185,6 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() . "/js/svglogo/svg-core.min.js");
         Requirements::javascript($this->ThemeDir() . "/js/svglogo/happ-svg.js");
 
-        // Wicked timepicker css
-//        Requirements::css($this->ThemeDir() . "/css/wicked-time-picker.min.css");
 
         Requirements::set_force_js_to_bottom(true);
         Requirements::javascript($this->ThemeDir() . "/js/navigation.js");
@@ -195,6 +194,9 @@ class Page_Controller extends ContentController {
         // wicked time picker | https://github.com/ericjgagnon/wickedpicker | http://ericjgagnon.github.io/wickedpicker
         Requirements::javascript($this->ThemeDir() . "/js/timepicker/wicked-time-picker-core.min.js");
         Requirements::javascript($this->ThemeDir() . "/js/timepicker/time-picker.js");
+        // Filter | using select2
+        Requirements::javascript($this->ThemeDir() . "/js/filter/select2.min.js");
+        Requirements::javascript($this->ThemeDir() . "/js/filter/filter.js");
 	}
 
 }

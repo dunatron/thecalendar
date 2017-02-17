@@ -14,42 +14,13 @@ class CalendarPage extends Page
         'ClientLogo' => 'Image'
     );
 
-    private static $has_many = array(
-//        'Events' => 'Event',
-//        'Tags' => 'Tag',
-//        'Restrictions' => 'EventRestriction',
-//        'AccessTypes' => 'EventAccess'
-    );
+    private static $has_many = array();
     private static $can_be_root = true;
 
     //Get CMS Fields for events to add on calendar page
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-
-//        // Events on this calendar
-//        $fields->addFieldToTab('Root.Events', GridField::create(
-//            'Event',
-//            'Events on this page',
-//            $this->Events(),
-//            GridFieldConfig_RecordEditor::create()
-//        ));
-//
-//        // Tags for calendar
-//        $fields->addFieldToTab('Root.Tags', GridField::create(
-//            'Tag',
-//            'Tags on this calendar',
-//            $this->Tags(),
-//            GridFieldConfig_RecordEditor::create()
-//        ));
-//
-//        // Restrictions for calendar
-//        $fields->addFieldToTab('Root.Restrictions', GridField::create(
-//            'EventRestriction',
-//            'Restrictions on this calendar',
-//            $this->Restrictions(),
-//            GridFieldConfig_RecordEditor::create()
-//        ));
 
         $fields->addFieldToTab('Root.ClientLogo', $screenShot = UploadField::create('ClientLogo'));
         //Set allowed upload extensions
