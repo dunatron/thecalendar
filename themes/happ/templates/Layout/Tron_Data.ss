@@ -36,6 +36,14 @@
         <% end_if %>
     </div>
 <% end_if %>
-<% loop $EventImages %>
-    <img src="$fileName" class="img-responsive event-img">
-<% end_loop %>
+<% if $EventImages %>
+    <% loop $EventImages %>
+        <img src="$fileName" class="img-responsive event-img">
+    <% end_loop %>
+<% end_if %>
+<% if $EventFindaImages %>
+    <% loop $EventFindaImages %>
+        <img src="$URL" class="img-responsive event-img">
+    <% end_loop %>
+<% end_if %>
+

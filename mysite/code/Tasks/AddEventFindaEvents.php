@@ -112,20 +112,21 @@ class AddEventFindaEvents extends BuildTask
                 if(isset ($event->category)){
                     $checkTag = $this->checkTag($event->category->name);
                     var_dump($checkTag->check);
-                    if($checkTag->check == true){
+                    if($checkTag->check == false){
                         $this->createTag($checkTag->tag);
-                    } else {
-                        continue;
                     }
+                    $newEvent->EventTags =  $checkTag->tag;
+                    $newEvent->write();
+
                 }
                 // Check for restrictions
                 if (isset ($event->restrictions)){
                     $checkRestriction = $this->checkRestriction($event->restrictions);
-                    if($checkRestriction->check == true){
+                    if($checkRestriction->check == false){
                         $this->createRestriction($checkRestriction->restriction);
-                    } else {
-                        continue;
                     }
+                    $newEvent->Restriction =  $checkRestriction->tag;
+                    $newEvent->write();
                 }
 
             }else {
@@ -147,13 +148,14 @@ class AddEventFindaEvents extends BuildTask
         if (in_array($tagToCheck, $tagArray)){
             echo ('Tag is already in db');
             $data = new ArrayData(array(
-                'check' => false
+                'check' => true,
+                'tag'   => $tagToCheck
             ));
         } else {
             echo ('we must add the tag');
             echo($tagToCheck);
             $data = new ArrayData(array(
-               'check' => true,
+               'check' => false,
                 'tag'   => $tagToCheck
             ));
         }
@@ -165,7 +167,6 @@ class AddEventFindaEvents extends BuildTask
     {
         $t = Tag::create();
         $t->Title = $tagName;
-        $t->CalendarPageID = 1;
         $t->write();
         echo ('New Tag: '.$t->Title.' has been created <br />');
         return;
@@ -185,11 +186,11 @@ class AddEventFindaEvents extends BuildTask
 
         if (in_array($restrictionToCheck, $restrictionArray)){
             $data = new ArrayData(array(
-                'check' =>  false
+                'check' =>  true
             ));
         } else {
             $data = new ArrayData(array(
-                'check' =>  true,
+                'check' =>  false,
                 'restriction'   =>  $restrictionToCheck
             ));
         }
@@ -203,7 +204,6 @@ class AddEventFindaEvents extends BuildTask
     {
         $r = EventRestriction::create();
         $r->Description = $restriction;
-        $r->CalendarPageID = 1;
         $r->write();
         echo ('New Restriction: '.$r->Description.' has been created <br />');
         return;
@@ -216,7 +216,7 @@ class AddEventFindaEvents extends BuildTask
     {
 
         foreach ($images as $image) {
-            $file = EventImage::create();
+            $file = EventFindaImage::create();
             echo '<h3>' . $image->id . "</h3>";
             // iterate over the transforms collection of transforms
             $imageQuality=0;
@@ -249,8 +249,8 @@ class AddEventFindaEvents extends BuildTask
                             $fileName = $rawFileName;
                         }
                         if(!empty($fileName) ){
-                            $file->Name = 'eventFinda-Img';
-                            $file->Filename = $fileName;
+                            $file->Title = 'eventFinda-Img';
+                            $file->URL = $fileName;
                             $file->transformation_id = $transform->transformation_id;
                             Debug::show($file->Name);
                             Debug::show($file->Filename);

@@ -138,6 +138,7 @@ class CalendarPage_Controller extends Page_Controller
             $HappEvent = Event::get()->byID($eventID);
 
             $assocImages = $HappEvent->EventImages();
+            $findaImages = $HappEvent->EventFindaImages();
         }
         $date = new DateTime($HappEvent->EventDate);
 //        $dateFormat = $date->format('Y-m-d H:i:s');
@@ -159,6 +160,7 @@ class CalendarPage_Controller extends Page_Controller
             'TicketPhone'   =>  $HappEvent->TicketPhone,
             'EventFindaURL' =>  $HappEvent->EventFindaURL,
             'EventImages'  => $assocImages,
+            'EventFindaImages'  =>  $findaImages
 
         ));
         echo $data->renderWith('Tron_data');

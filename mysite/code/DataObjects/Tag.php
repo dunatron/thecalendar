@@ -8,9 +8,7 @@
 class Tag extends DataObject
 {
 
-    private static $has_one = array(
-        'CalendarPage' => 'CalendarPage',
-    ); 
+    private static $has_one = array();
     
     private static $db = array(
         'Title' => 'Varchar(20)',
