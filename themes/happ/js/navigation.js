@@ -4,6 +4,7 @@
 $(document).ready(function () {
     var xmlHttp = createXmlHttpRequestObject(),
         ajaxPageLoad = $('.ajax-page-load'),
+        searchModal = $('#SearchModal'),
         happSearchBtn = $('#searchHappEvents');
 
     /**
@@ -93,12 +94,18 @@ $(document).ready(function () {
             },
             complete: function(){
                 ajaxFinishedLoading();
-                console.log('completed fetching search data');
             }
         });
     });
 
+    $(searchModal).on('shown.bs.modal', function () {
+        $('html').addClass('modal-open');
+    });
 
+    $(searchModal).on('hidden.bs.modal', function () {
+        $('html').removeClass('modal-open');
+    });
+    
     /**
      * Reset Calendar Dates
      */
