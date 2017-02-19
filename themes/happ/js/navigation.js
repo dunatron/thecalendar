@@ -3,7 +3,8 @@
  */
 $(document).ready(function () {
     var xmlHttp = createXmlHttpRequestObject(),
-        ajaxPageLoad = $('.ajax-page-load');
+        ajaxPageLoad = $('.ajax-page-load'),
+        happSearchBtn = $('#searchHappEvents');
 
     /**
      *
@@ -69,6 +70,33 @@ $(document).ready(function () {
             }
         }
     }
+
+    /**
+     * Happ Search
+     */
+    $(happSearchBtn).on('click', function(e){
+        e.preventDefault();
+        ajaxIsLoading();
+
+        var browserurl =   window.location.href,
+            url = browserurl +'home',
+            Keyword = $('#Form_HappSearchForm_keyword').val();
+
+        //alert(url);
+        $.ajax({
+            type:"POST",
+            url: url + '/searchHappEvents',
+            data: {Keyword:Keyword},
+            success: function (response) {
+                $('.search-results-wrapper').html(response);
+                console.log(response);
+            },
+            complete: function(){
+                ajaxFinishedLoading();
+                console.log('completed fetching search data');
+            }
+        });
+    });
 
 
     /**
@@ -194,6 +222,7 @@ $(document).ready(function () {
         $.ajax({
             type:"POST",
             url: url + '/jaxNextMonth',
+
             success: function (response) {
                 $('.fc-calendar-container').html(response);
                 console.log(response);

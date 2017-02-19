@@ -83,7 +83,8 @@ class CalendarPage_Controller extends Page_Controller
         'EventFinishTime',
         'EventDate',
         'associatedEventData',
-        'resetApprovedModal'
+        'resetApprovedModal',
+//        'searchHappEvents'
     );
 
     public function CalendarID()
@@ -324,6 +325,11 @@ class CalendarPage_Controller extends Page_Controller
         return $events;
 
     }
+
+//    public function searchHappEvents() {
+//        $html = '<h1>Happ search results g</h1>';
+//        return $html;
+//    }
 
     function draw_calendar($m = '', $y = '')
     {

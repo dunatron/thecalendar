@@ -8,7 +8,9 @@
                 </div>
             </div>
             <div class="modal-body">
-                <h1>Search Modal body</h1>
+                <div class="search-results-wrapper">
+                    <h1>Search results</h1>
+                </div>
             </div>
         </div>
         <!-- /.modal-content -->

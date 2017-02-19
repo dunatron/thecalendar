@@ -214,29 +214,29 @@ class Page_Controller extends ContentController {
         return $form;
     }
 
-    public function searchHappEvents($data, $form) {
-
-        $tagIDS = [];
-        $tags = $data['EventTags'];
-
-        foreach ($tags as $key => $value){
-            array_push($tagIDS, $value);
+    public function searchHappEvents() {
+        if(isset($_POST['Keyword'])){
+            $keyword = $_POST['Keyword'];
+        }else {
+            $keyword ='You searched for nothing';
         }
-        $tagsAsString = implode(",", $tagIDS);
 
-        $pageID = Session::get('CALID');
-        $event = new Event();
+        $events = Event::get()
+            ->where('EventApproved', 'TRUE')
+            ->filter(array(
+                'EventTitle:PartialMatch' => $keyword
+            ))
+            ->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects]
+        $data = new ArrayData(array(
+            'Keyword'   =>  $keyword,
+            'Results'  =>  $events,
+        ));
+        // Must re-add the script
+        //echo '<script src="'.$this->ThemeDir() .'/js/approved/approved-event.js"></script>';
+        echo $data->renderWith('Search_Results');
 
-        $event->update($data);
-        $event->EventTags = $tagsAsString;
-        $event->CalendarPageID = $pageID;
-        $event->write();
 
-        // Using the Form instance you can get / set status such as error messages.
-        $form->sessionMessage("Successful!", 'good');
-
-        // After dealing with the data you can redirect the user back.
-        return $this->redirectBack();
     }
+
 
 }
