@@ -226,7 +226,7 @@ class Page_Controller extends ContentController {
             ->filter(array(
                 'SearchFields:fulltext' => $keyword
             ))
-            ->sort('EventDate', 'ASC');
+            ->sort('ABS(UNIX_TIMESTAMP() - UNIX_TIMESTAMP(EventDate))');
 
         $data = ArrayData::create(array(
             'Keyword'   =>  $keyword,
