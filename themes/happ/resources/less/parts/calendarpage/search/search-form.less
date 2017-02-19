@@ -1,0 +1,38 @@
+#Form_HappSearchForm {
+  height: 60px;
+  position: relative;
+  .message {
+
+  }
+  fieldset {
+    #Form_HappSearchForm_keyword_Holder {
+      label {
+        display: none;
+      }
+      .middleColumn {
+        width: 100%;
+        height: 60px;
+        #Form_HappSearchForm_keyword {
+          width: 100%;
+          height: 60px;
+          padding: 5px 98px 5px 5px;
+          font-size: 26px;
+          &:focus, &:hover &:active, &:visited {
+            outline: none;
+          }
+          @media @min865 {
+            padding: 5px 98px 5px 10px;
+          }
+        }
+      }
+    }
+  }
+  .Actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    #searchHappEvents {
+      height: 60px;
+    }
+  }
+}

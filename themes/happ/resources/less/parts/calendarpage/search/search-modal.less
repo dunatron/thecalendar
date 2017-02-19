@@ -1,0 +1,59 @@
+#SearchModal {
+  position: absolute;
+  z-index: 200;
+  .modal-dialog {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    border: none;
+
+    .modal-content {
+      border-radius: 0;
+      height: 100%;
+      //border-bottom: 1px solid @c_orange_main;
+      border: none;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .modal-head {
+      height: 60px;
+      position: relative;
+      .search-wrapper {
+        padding-left: 60px;
+        height: 60px;
+        border: none;
+        @media @min865 {
+          padding-left: 60px;
+          height: 60px;
+          border: none;
+        }
+        @import "search-form.less";
+      }
+    }
+
+    .modal-body {
+      height: 100%;
+      padding: 0;
+      background-color: rgba(255,255,255, 0.95);
+      max-height: none;
+      @media @min865 {
+        overflow: hidden;
+        background-color: rgba(255,255,255, 0.95);
+      }
+
+    }
+  }
+  .close-btn {
+    background-color: @c_orange_main;
+    position: absolute;
+    //top:0;
+    left: 0;
+    z-index: 9999;
+    height: 60px;
+    @media @min865 {
+      height: 60px;
+      //top:10px;
+    }
+  }
+}

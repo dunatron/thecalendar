@@ -51,7 +51,7 @@
                     </a>
                 </div>
                 <div class="search-event">
-                    <a data-toggle="modal" data-target="#AddHappEventModal">
+                    <a data-toggle="modal" data-target="#SearchModal">
                         <span>Search</span>
                         <img src="$ThemeDir/svg/plus.svg"/>
                     </a>

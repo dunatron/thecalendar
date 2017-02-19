@@ -31,6 +31,7 @@
 </div><!-- /container -->
 
 <% include AddHappEventModal %>
+<% include SearchModal %>
 
 <!-- Structure to use start -->
 

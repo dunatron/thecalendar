@@ -9,4 +9,6 @@ $(FilterModal).modal({
     show:false
 });
 
-$(FilterTagsHolder).select2();
+$(FilterTagsHolder).select2({
+    placeholder: "Filter..."
+});
