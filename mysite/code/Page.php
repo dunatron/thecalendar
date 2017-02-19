@@ -226,7 +226,8 @@ class Page_Controller extends ContentController {
             ->filter(array(
                 'EventTitle:PartialMatch' => $keyword
             ))
-            ->sort('EventDate', 'ASC'); // returns a 'DataList' containing all the 'Event' objects]
+            ->sort('EventDate', 'ASC')
+        ->limit(10); // returns a 'DataList' containing all the 'Event' objects]
         $data = new ArrayData(array(
             'Keyword'   =>  $keyword,
             'Results'  =>  $events,
