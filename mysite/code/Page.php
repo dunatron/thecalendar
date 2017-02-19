@@ -26,7 +26,9 @@ class Page_Controller extends ContentController {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
-        'HappEventForm'
+        'HappEventForm', 
+        'HappSearchForm',
+        'searchHappEvents'
 	);
 
     public function HappEventForm()
@@ -198,5 +200,43 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() . "/js/filter/select2.min.js");
         Requirements::javascript($this->ThemeDir() . "/js/filter/filter.js");
 	}
+
+    public function HappSearchForm() {
+        $searchField = TextField::create('keyword', 'Keyword search')->setAttribute('placeholder', 'Key-word search...');
+        $fields = FieldList::create(
+            $searchField
+        );
+        $actions = FieldList::create(
+            FormAction::create('searchHappEvents', 'Search')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'searchHappEvents')
+        );
+
+        $form = Form::create($this, 'HappSearchForm', $fields, $actions)->addExtraClass('happ-search-form');
+        return $form;
+    }
+
+    public function searchHappEvents($data, $form) {
+
+        $tagIDS = [];
+        $tags = $data['EventTags'];
+
+        foreach ($tags as $key => $value){
+            array_push($tagIDS, $value);
+        }
+        $tagsAsString = implode(",", $tagIDS);
+
+        $pageID = Session::get('CALID');
+        $event = new Event();
+
+        $event->update($data);
+        $event->EventTags = $tagsAsString;
+        $event->CalendarPageID = $pageID;
+        $event->write();
+
+        // Using the Form instance you can get / set status such as error messages.
+        $form->sessionMessage("Successful!", 'good');
+
+        // After dealing with the data you can redirect the user back.
+        return $this->redirectBack();
+    }
 
 }
