@@ -224,20 +224,17 @@ class Page_Controller extends ContentController {
         $events = Event::get()
             ->where('EventApproved', 'TRUE')
             ->filter(array(
-                'EventTitle:PartialMatch' => $keyword
+                'SearchFields:fulltext' => $keyword
             ))
-            ->sort('EventDate', 'ASC')
-        ->limit(10); // returns a 'DataList' containing all the 'Event' objects]
-        $data = new ArrayData(array(
+            ->sort('EventDate', 'ASC');
+
+        $data = ArrayData::create(array(
             'Keyword'   =>  $keyword,
             'Results'  =>  $events,
         ));
-        // Must re-add the script
-        //echo '<script src="'.$this->ThemeDir() .'/js/approved/approved-event.js"></script>';
+
         echo $data->renderWith('Search_Results');
 
-
     }
-
 
 }

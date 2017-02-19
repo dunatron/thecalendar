@@ -7,6 +7,18 @@
  */
 class Event extends DataObject {
 
+    private static $create_table_options = array(
+        'MySQLDatabase' =>  'ENGINE=MyISAM'
+    );
+
+    private static $indexes = array(
+        'SearchFields'  =>  array(
+            'type'  =>  'fulltext',
+            'name'  =>  'SearchFields',
+            'value' =>  '"EventTitle", "EventDescription"',
+        )
+    );
+
     private static $has_one = array();
 
     private static $has_many = array(
