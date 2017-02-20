@@ -45,11 +45,11 @@ function applyFilter(){
         // seperate eventTags string by delimeter | then do array loop
         if(!$.inArray(eventTags, currentTagArray)){
             console.log('WE have found ONE');
-            $(this).addClass('hide-event');
-            $(this).removeClass('show-event');
-        } else {
             $(this).removeClass('hide-event');
             $(this).addClass('show-event');
+        } else {
+            $(this).addClass('hide-event');
+            $(this).removeClass('show-event');
         }
         //console.log(eventTags + myCount++);
 
