@@ -52,13 +52,13 @@ $('.event-btn').on("click", function () {
     // Modal Dialog control | reference
     $('#ApprovedEventModal').on('shown.bs.modal', function () {
         $('#eventMap1').locationpicker('autosize');
-        $('html').addClass('modal-open');
+        modalIsOpen();
     });
 
 });
 
 $('#ApprovedEventModal').on('hidden.bs.modal', function () {
-    $('html').removeClass('modal-open');
+    modalIsClosed();
     $.ajax({
         type:"POST",
         url: MAINURL+'/resetApprovedModal',
@@ -67,4 +67,17 @@ $('#ApprovedEventModal').on('hidden.bs.modal', function () {
         }
     });
 });
+
+function modalIsOpen() {
+    $('html').addClass('modal-open');
+}
+
+function modalIsClosed() {
+    // Check if search modal is open
+    if($('#SearchModal').hasClass('in')){
+
+    }else {
+        $('html').removeClass('modal-open');
+    }
+}
 

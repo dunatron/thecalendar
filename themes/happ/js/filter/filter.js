@@ -77,7 +77,4 @@ function applyFilter(){
             $(this).addClass('show-event');
         });
     }
-
-
-
 }
