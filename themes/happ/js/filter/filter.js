@@ -8,7 +8,8 @@ var FilterTagsHolder = $('.RealTagsHolder'),
 
 $(FilterModal).modal({
     backdrop: false,
-    show:false
+    show:false,
+    label:false
 });
 
 $(FilterTagsHolder).select2({

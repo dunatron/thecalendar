@@ -13,6 +13,21 @@
       border: none;
     }
 
+    .modal-head{
+      height: 60px;
+      position: relative;
+      .search-wrapper {
+        padding-left: 60px;
+        height: 60px;
+        border: none;
+        @media @min865 {
+          padding-left: 60px;
+          height: 60px;
+          border: none;
+        }
+      }
+    }
+
     .modal-body {
       height: 100%;
       padding: 0;
@@ -25,6 +40,7 @@
     //top:0;
     left: 0;
     z-index: 9999;
+    height: 60px;
     @media @min865 {
       height: 60px;
       //top:10px;
