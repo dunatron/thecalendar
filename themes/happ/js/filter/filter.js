@@ -20,11 +20,20 @@ $(FilterTagsHolder).on('select2:select', function(){
     currentTags();
     console.log(currentTagArray);
     applyFilter();
+    $(this).addClass('Filter-Selected')
 });
 
 $(FilterTagsHolder).on('select2:unselect', function(){
     currentTags();
     console.log(currentTagArray);
+});
+
+$(FilterTagsHolder).on('select2:open', function(){
+    $(this).addClass('picking-filter-tags');
+});
+
+$(FilterTagsHolder).on('select2:closing', function(){
+    $(this).removeClass('picking-filter-tags');
 });
 
 function currentTags(){
