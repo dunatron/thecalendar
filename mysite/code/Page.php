@@ -165,9 +165,12 @@ class Page_Controller extends ContentController {
 //        Requirements::css($this->ThemeDir() . "/css/calendar.css");
         Requirements::javascript($this->ThemeDir() . "/js/jquery-1.10.2.min.js");
         Requirements::javascript($this->ThemeDir() . "/js/bootstrap-3.0.3.min.js");
+        Requirements::javascript($this->ThemeDir() . "/js/filter/select2.min.js");
         Requirements::javascript('http://maps.google.com/maps/api/js?key=AIzaSyBWVd4651hNv8mOn-RaHZdC166O82S-BbY&sensor=false&libraries=places');
         Requirements::javascript($this->ThemeDir() . "/js/locationpicker/locationpicker.jquery.min.js");
-        Requirements::javascript($this->ThemeDir() . "/js/locationpicker/locationpicker.jquery.min.js");
+
+        // Scroll Reveal | https://github.com/jlmakes/scrollreveal
+        Requirements::javascript('https://unpkg.com/scrollreveal/dist/scrollreveal.min.js');
         Requirements::javascript($this->ThemeDir() . "/js/svglogo/svg-core.min.js");
         Requirements::javascript($this->ThemeDir() . "/js/svglogo/happ-svg.js");
 
@@ -181,8 +184,7 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() . "/js/timepicker/wicked-time-picker-core.min.js");
         Requirements::javascript($this->ThemeDir() . "/js/timepicker/time-picker.js");
         // Filter | using select2
-        Requirements::javascript($this->ThemeDir() . "/js/filter/select2.min.js");
-        Requirements::javascript($this->ThemeDir() . "/js/filter/filter.js");
+        //Requirements::javascript($this->ThemeDir() . "/js/filter/filter.js");
 	}
 
     public function HappSearchForm() {
