@@ -165,62 +165,6 @@ $(document).ready(function () {
         });
     });
 
-    /**
-     * Next Month Logic
-     */
-    // $('.calendarpage').on('click', '#next-month', function (e) {
-    //     e.preventDefault();
-    //     ajaxIsLoading();
-    //     var requestCallback = new MyRequestsCompleted({
-    //         numRequest: 5
-    //     });
-    //     var url = $(this).attr('href');
-    //     $.ajax({
-    //         url: url + '/jaxNextMonth',
-    //         success: function (data) {
-    //             requestCallback.addCallbackToQueue(true, function () {
-    //                 $('.fc-calendar-container').html(data);
-    //                 //console.log(data);
-    //             });
-    //         }
-    //     });
-    //     $.ajax({
-    //         url: url + '/currentMonthName',
-    //         success: function (data) {
-    //             requestCallback.addCallbackToQueue(true, function () {
-    //                 $('.theMonth').html(data);
-    //                 console.log(data);
-    //             });
-    //         }
-    //     });
-    //     $.ajax({
-    //         url: url + '/currentYear',
-    //         success: function (data) {
-    //             requestCallback.addCallbackToQueue(true, function () {
-    //                 $('.theYear').html(data);
-    //                 console.log(data);
-    //             });
-    //         }
-    //     });
-    //     $.ajax({
-    //         url: url + '/nextShortMonth',
-    //         success: function (data) {
-    //             requestCallback.addCallbackToQueue(true, function () {
-    //                 $('.short-next-text').html(data);
-    //                 console.log(data);
-    //             });
-    //         }
-    //     });
-    //     $.ajax({
-    //         url: url + '/prevShortMonth',
-    //         success: function (data) {
-    //             requestCallback.addCallbackToQueue(true, function () {
-    //                 $('.short-previous-text').html(data);
-    //                 console.log(data);
-    //             });
-    //         }
-    //     });
-    // });
     $('.calendarpage').on('click', '#next-month', function (e) {
         e.preventDefault();
         ajaxIsLoading();
@@ -291,6 +235,7 @@ $(document).ready(function () {
                 },
                 complete: function(){
                     ajaxFinishedLoading();
+                    applyFilter();
                 }
             });
         }
@@ -370,8 +315,8 @@ $(document).ready(function () {
             requestsCompleted = options.requestsCompleted || 0;
             callBacks = [];
             var fireCallbacks = function () {
-                //alert("we're all complete");
                 ajaxFinishedLoading();
+                applyFilter();
                 for (var i = 0; i < callBacks.length; i++) callBacks[i]();
             };
             if (options.singleCallback) callBacks.push(options.singleCallback);
@@ -406,6 +351,83 @@ $(document).ready(function () {
     ajaxFinishedLoading();
 
 });
+/***
+ *
+ * FILTER jQuery
+ */
+var FilterTagsHolder = $('.RealTagsHolder'),
+    FilterModal = $('#FilterModal'),
+    currentTagArray = [],
+    event = $('.event-btn');
+
+$(FilterModal).modal({
+    backdrop: false,
+    show:false,
+    label:false
+});
+
+$(FilterTagsHolder).select2({
+    placeholder: "Filter..."
+});
+
+$(FilterTagsHolder).on('select2:select', function(){
+    currentTags();
+    //console.log(currentTagArray);
+    applyFilter();
+    $(this).addClass('Filter-Selected')
+});
+
+$(FilterTagsHolder).on('select2:unselect', function(){
+    currentTags();
+    //console.log(currentTagArray);
+    applyFilter();
+});
+
+$(FilterTagsHolder).on('select2:open', function(){
+
+});
+
+$(FilterTagsHolder).on('select2:closing', function(){
+
+});
+
+function currentTags(){
+    var TagData = $(FilterTagsHolder).select2('data');
+    currentTagArray = [];
+    $.each(TagData, function( key, value ){
+        currentTagArray.push(value.text);
+    });
+}
+function applyFilter(){
+    if(currentTagArray.length !== 0){
+        $('.event-btn').each(function(){
+            var eventItem = this;
+            var eventTags = $(this).attr('data-tag');
+
+            if($.inArray(eventTags, currentTagArray) !== -1){
+                //console.log('WE have found ONE');
+                $(this).removeClass('fully-hide-event');
+                $(this).removeClass('hide-event');
+                $(this).addClass('show-event');
+
+            } else {
+                //console.log('Not found');
+                $(this).addClass('hide-event');
+                $(this).removeClass('show-event');
+                setTimeout(function () {
+                    console.log('INTERESTING');
+                    $(eventItem).addClass('fully-hide-event');
+                }, 1200);
+            }
+        });
+    } else {
+        $('.event-btn').each(function(){
+            $(this).removeClass('fully-hide-event');
+            $(this).removeClass('hide-event');
+            $(this).addClass('show-event');
+        });
+    }
+}
 
 
 
