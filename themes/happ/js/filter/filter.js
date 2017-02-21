@@ -33,31 +33,24 @@ function currentTags(){
         currentTagArray.push(value.text);
     });
 }
-
 function applyFilter(){
     // $.each(event, function(index, value){
     //     console.log('div' + index + ':' + $(this).attr('eid'));
     // });
-    var myCount=0;
+    console.log(currentTagArray);
     $('.event-btn').each(function(){
-       //console.log($(this).attr('data-tag'));
+
         var eventTags = $(this).attr('data-tag');
-        // seperate eventTags string by delimeter | then do array loop
-        if(!$.inArray(eventTags, currentTagArray)){
+
+        if($.inArray(eventTags, currentTagArray) !== -1){
             console.log('WE have found ONE');
             $(this).removeClass('hide-event');
             $(this).addClass('show-event');
         } else {
+            console.log('Not found');
             $(this).addClass('hide-event');
             $(this).removeClass('show-event');
         }
-        //console.log(eventTags + myCount++);
-
     });
 
 }
-
-
-// var array = string.split('|');
-
-
