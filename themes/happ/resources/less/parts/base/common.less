@@ -85,17 +85,24 @@ body {
 }
 
 .hide-event {
-  //display: none;
   visibility: hidden;
   opacity: 0;
   transition: visibility 1s, opacity .70s linear;
 }
 
 .show-event {
-  //display: none;
+  display: block;
   visibility: visible;
   opacity: 1;
+  height: auto;
   transition: visibility 1s, opacity .70s linear;
+}
+
+.fully-hide-event {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity .70s linear;
+  display: none;
 }
 
 .modal-backdrop {

@@ -18,22 +18,23 @@ $(FilterTagsHolder).select2({
 
 $(FilterTagsHolder).on('select2:select', function(){
     currentTags();
-    console.log(currentTagArray);
+    //console.log(currentTagArray);
     applyFilter();
     $(this).addClass('Filter-Selected')
 });
 
 $(FilterTagsHolder).on('select2:unselect', function(){
     currentTags();
-    console.log(currentTagArray);
+    //console.log(currentTagArray);
+    applyFilter();
 });
 
 $(FilterTagsHolder).on('select2:open', function(){
-    $(this).addClass('picking-filter-tags');
+
 });
 
 $(FilterTagsHolder).on('select2:closing', function(){
-    $(this).removeClass('picking-filter-tags');
+
 });
 
 function currentTags(){
@@ -47,20 +48,36 @@ function applyFilter(){
     // $.each(event, function(index, value){
     //     console.log('div' + index + ':' + $(this).attr('eid'));
     // });
-    console.log(currentTagArray);
-    $('.event-btn').each(function(){
+    //console.log(currentTagArray);
+    if(currentTagArray.length !== 0){
+        $('.event-btn').each(function(){
+            var eventItem = this;
+            var eventTags = $(this).attr('data-tag');
 
-        var eventTags = $(this).attr('data-tag');
+            if($.inArray(eventTags, currentTagArray) !== -1){
+                //console.log('WE have found ONE');
+                $(this).removeClass('fully-hide-event');
+                $(this).removeClass('hide-event');
+                $(this).addClass('show-event');
 
-        if($.inArray(eventTags, currentTagArray) !== -1){
-            console.log('WE have found ONE');
+            } else {
+                //console.log('Not found');
+                $(this).addClass('hide-event');
+                $(this).removeClass('show-event');
+                setTimeout(function () {
+                    console.log('INTERESTING');
+                    $(eventItem).addClass('fully-hide-event');
+                }, 1200);
+            }
+        });
+    } else {
+        $('.event-btn').each(function(){
+            $(this).removeClass('fully-hide-event');
             $(this).removeClass('hide-event');
             $(this).addClass('show-event');
-        } else {
-            console.log('Not found');
-            $(this).addClass('hide-event');
-            $(this).removeClass('show-event');
-        }
-    });
+        });
+    }
+
+
 
 }

@@ -34,9 +34,7 @@
 <body class="$ClassName.LowerCase">
     $Message
     $SessionMessage
-<div class="ajax-page-load ajax-is-loading">
-    <div class="ajax-loader"><div class="ajax-load-icon"><div class="ajax-load-message">Loading data...</div> </div> </div>
-</div>
+
 
 
 <div class="container-fluid" id="site-wrapper">

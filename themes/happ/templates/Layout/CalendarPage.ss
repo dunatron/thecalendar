@@ -1,6 +1,9 @@
 <%--<% include TopBar %>--%>
 
 <%-- Calendar nav is casuing the geolocation not to work--%>
+<div class="ajax-page-load ajax-is-loading">
+    <div class="ajax-loader"><div class="ajax-load-icon"><div class="ajax-load-message">Loading data...</div> </div> </div>
+</div>
 <% include CalendarNav %>
 
 
