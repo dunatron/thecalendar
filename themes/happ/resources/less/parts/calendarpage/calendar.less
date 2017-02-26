@@ -103,21 +103,33 @@
                    }
 
                  }
+                 .number-wrap {
+                   height: 60px;
+                   @media @min880 {
+                     position: fixed;
+                     height: 40px;
+                     width: 40px;
+                     z-index: 99999;
+                   }
+                 }
                  .day-number {
                    color: fade(@color-dcc-blue, 100%);
-                   font-size: 24px;
-                   height: 30px;
-                   width: 30px;
+                   font-size: 36px;
+                   height: 60px;
+                   width:60px;
 
                    text-align: center;
                    padding: 0;
                    z-index: 50;
                    @media @min880 {
-                     font-size: 19px;
-                     position: fixed;
+                     font-size: 26px;
+                     height: 40px;
+                     width:40px;
+                     position: absolute;
+                     top: -10px;
                      background-color: rgba(255,255,255,0.95);
-                     border: 1px solid @c_orange_light_1;
-                     border-radius: 30px;
+                     border: none;
+                     border-radius: 0;
                    }
 
                  }

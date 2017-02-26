@@ -403,7 +403,7 @@ class CalendarPage_Controller extends Page_Controller
         for ($list_day = 1; $list_day <= $days_in_month; $list_day++):
             $calendar .= '<div class="day-square">';
             $calendar .= '<div class="tron-inner-square">';
-            $calendar .= '<span class="day-number" style="">' . $list_day . '</span>';
+            $calendar .= '<div class="number-wrap"><span class="day-number" style="">' . $list_day . '</span></div>';
 
 
             $events = $this->getEvents();
@@ -430,7 +430,7 @@ class CalendarPage_Controller extends Page_Controller
             }
             $sqDate = $year . '-' . $month . '-' . $convertday;
 
-            $calendar .= '<div class="opaque-head"></div>';
+            //$calendar .= '<div class="opaque-head"></div>';
             $calendar .= '<div class="events-day-wrapper">';
             foreach ($events as $e) {
 
@@ -438,7 +438,7 @@ class CalendarPage_Controller extends Page_Controller
                     /**
                      * Begin event button build
                      */
-                    $calendar .= '<div class="event-btn show-event" data-toggle="modal" data-target="#ApprovedEventModal" lat="' . $e->LocationLat . '" lon="' . $e->LocationLon . '" radius="' . $e->LocationRadius . '" EID="' . $e->ID . '" data-tag="' .$e->EventTags . '" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
+                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#ApprovedEventModal" lat="' . $e->LocationLat . '" lon="' . $e->LocationLon . '" radius="' . $e->LocationRadius . '" EID="' . $e->ID . '" data-tag="' .$e->EventTags . '" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
                 } else {
                     continue;
                 }
