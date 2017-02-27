@@ -494,7 +494,7 @@ $(document).ready(function () {
                 width   : 0,
                 scale    : 1.2,
                 origin : 'bottom', // bottom, left , top right
-                viewFactor: 0.5
+                viewFactor: 0.3
             };
 
             window.sr = ScrollReveal();
