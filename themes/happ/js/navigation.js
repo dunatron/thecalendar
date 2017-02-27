@@ -481,9 +481,32 @@ $(document).ready(function () {
 
     function happEventReveal(){
         // Scroll Reveal | https://github.com/jlmakes/scrollreveal
-        window.sr = ScrollReveal({duration: 750});
-        sr.reveal('.event-btn');
+
+        if($(window).width() <= 880) {
+            // if smaller or equal
+            // window.sr = ScrollReveal({duration: 750});
+            // sr.reveal('.event-btn');
+            var mobileEventReveal = {
+                delay    : 200,
+                distance : '90px',
+                easing   : 'ease-in-out',
+                rotate   : { z: -10 }, // x y z
+                width   : 0,
+                scale    : 1.2,
+                origin : 'bottom' // bottom, left , top right
+            };
+
+            window.sr = ScrollReveal();
+            sr.reveal('.event-btn', mobileEventReveal);
+        } else {
+            // if larger
+
+        }
     }
+
+    $(window).resize(function() {
+
+    }).resize(); // This will simulate a resize to trigger the initial run.
 
     ajaxFinishedLoading();
 
