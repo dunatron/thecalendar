@@ -487,8 +487,8 @@ $(document).ready(function () {
             // window.sr = ScrollReveal({duration: 750});
             // sr.reveal('.event-btn');
             var mobileEventReveal = {
-                delay    : 200,
-                distance : '90px',
+                delay    : 100,
+                distance : '140px', //90 original
                 easing   : 'ease-in-out',
                 rotate   : { z: -10 }, // x y z
                 width   : 0,
