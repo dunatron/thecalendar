@@ -493,7 +493,8 @@ $(document).ready(function () {
                 rotate   : { z: -10 }, // x y z
                 width   : 0,
                 scale    : 1.2,
-                origin : 'bottom' // bottom, left , top right
+                origin : 'bottom', // bottom, left , top right
+                viewFactor: 0.5
             };
 
             window.sr = ScrollReveal();
