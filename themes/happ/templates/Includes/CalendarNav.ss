@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="nav-bar-wrapper row">
+    <div class="nav-bar-wrapper row" style="background-color: {$SiteConfig.ClientColor};">
 
 
         <div class="logos-wrapper">

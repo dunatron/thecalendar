@@ -28,6 +28,19 @@
         .pac-container {
             z-index: 99999;
         }
+        .event-btn {
+            background-color: {$SiteConfig.EventBackgroundColor} !important;
+        }
+        .event-btn:hover {
+            background-color: {$SiteConfig.EventBackgroundHoverColor} !important;
+        }
+        .event-btn:hover.happ_e_button {
+            color: {$LetterHoverColor} !important;
+        }
+        .happ_e_button {
+            color: {$LetterColor} !important;
+        }
+
     </style>
 </head>
 

@@ -334,6 +334,9 @@ class CalendarPage_Controller extends Page_Controller
     function draw_calendar($m = '', $y = '')
     {
 
+        // $config is used for setting inline style colors
+        $config = SiteConfig::current_site_config();
+
         $m = Session::get('Month'); // $var = 3 from init function
         $y = Session::get('Year');
 
@@ -383,7 +386,7 @@ class CalendarPage_Controller extends Page_Controller
         $dates_array = array();
         /* table headings */
         $headings = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-        $calendar .= '<div class="fc-head"><div>' . implode('</div><div>', $headings) . '</div></div>';
+        $calendar .= '<div class="fc-head" style="background-color: '.$config->SecondBarColor.';"><div>' . implode('</div><div>', $headings) . '</div></div>';
         /* days and weeks vars now ... */
         /* start body fc-body */
         $calendar .= '<div class="fc-body">';
@@ -438,7 +441,7 @@ class CalendarPage_Controller extends Page_Controller
                     /**
                      * Begin event button build
                      */
-                    $calendar .= '<div class="event-btn" data-toggle="modal" data-target="#ApprovedEventModal" lat="' . $e->LocationLat . '" lon="' . $e->LocationLon . '" radius="' . $e->LocationRadius . '" EID="' . $e->ID . '" data-tag="' .$e->EventTags . '" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
+                    $calendar .= '<div class="event-btn"  data-toggle="modal" data-target="#ApprovedEventModal" lat="' . $e->LocationLat . '" lon="' . $e->LocationLon . '" radius="' . $e->LocationRadius . '" EID="' . $e->ID . '" data-tag="' .$e->EventTags . '" ><a  class="happ_e_button">' . $e->EventTitle . '</a></div>';
                 } else {
                     continue;
                 }

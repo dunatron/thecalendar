@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         meta: {
-            banner: '/*Samdog Design Limited | Copyright 2015*/'
+            banner: '/*Happ Design Limited | Copyright 2017*/'
         },
         uglify: {
             my_task: {
