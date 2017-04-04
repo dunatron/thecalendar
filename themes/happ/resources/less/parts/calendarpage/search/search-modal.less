@@ -10,6 +10,10 @@
     width: 100%;
     border: none;
 
+    @media @min865 {
+      padding: 8%;
+    }
+
     .modal-content {
       border-radius: 0;
       height: 100%;
@@ -33,6 +37,7 @@
         }
         @import "search-form.less";
       }
+
     }
 
     .modal-body {
@@ -62,19 +67,50 @@
           transform-style: preserve-3d;
           padding:0 0 30px 0;
           border-bottom: 1px solid @c_basic_grey;
-          .title {
-            font-size: 22px;
+          display: block;
+
+          img {
+            padding: 20px 0;
+            flex-basis: 140px;
+            width: 100%;
+            @media @min865 {
+              width: 30%;
+              padding: 20px 20px 20px 0;
+              display: inline-block;
+              float: left;
+            }
           }
-          .date {
-            font-size: 16px;
-            padding-left: 15px;
+          .search-event-content {
+            width: 100%;
+            @media @min865 {
+              width: 70%;
+              float: left;
+              display: inline-block;
+            }
+            .title {
+              font-size: 22px;
+            }
+            .date {
+              font-size: 16px;
+              display: block;
+              padding: 10px 0;
+            }
+            .venue {
+              font-size: 16px;
+              display: block;
+              padding: 0 0 10px 0;
+            }
+            .whats-happ-symbol {
+              color: @c_orange_main;
+            }
+            .event-btn {
+              width: 190px;
+              height: 40px;
+              text-align: center;
+              padding: 10px;
+            }
           }
-          .event-btn {
-            width: 190px;
-            height: 40px;
-            text-align: center;
-            padding: 10px;
-          }
+
         }
         .result-item.animate {
           transform: translateZ(400px) translateY(300px) rotateX(-90deg);
@@ -98,6 +134,9 @@
     @media @min865 {
       height: 60px;
       //top:10px;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
 }
