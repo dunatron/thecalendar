@@ -28,6 +28,18 @@
         .pac-container {
             z-index: 99999;
         }
+        .nav-bar-wrapper {
+            background-color: {$SiteConfig.ClientColor} !important;
+        }
+        .add-event {
+            background-color: {$SiteConfig.ClientColor} !important;
+        }
+        .search-event {
+            background-color: {$SiteConfig.ClientColor} !important;
+        }
+        .filter-events {
+            background-color: {$SiteConfig.ClientColor} !important;
+        }
         .event-btn {
             background-color: {$SiteConfig.EventBackgroundColor} !important;
         }
@@ -40,6 +52,7 @@
         .happ_e_button {
             color: {$LetterColor} !important;
         }
+
 
     </style>
 </head>
