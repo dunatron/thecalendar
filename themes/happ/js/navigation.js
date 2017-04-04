@@ -490,9 +490,9 @@ $(document).ready(function () {
                 delay    : 100,
                 distance : '140px', //90 original
                 easing   : 'ease-in-out',
-                rotate   : { z: -10 }, // x y z
+                //rotate   : { z: -10 }, // x y z
                 width   : 0,
-                scale    : 1.2,
+                scale    : 0.8,
                 origin : 'bottom', // bottom, left , top right
                 viewFactor: 0.3
             };
