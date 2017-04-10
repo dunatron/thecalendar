@@ -392,7 +392,11 @@ $(document).ready(function(){
                                 animateLetA2(function() {
                                     animateLetP(function() {
                                         animateLetP2(function() {
-                                            fillColor()
+                                            fillColor(function(){
+                                                if ($(window).width() < 880) {
+                                                    animateToDay('.current-day');
+                                                }
+                                            })
                                         })
                                     })
                                 })
@@ -405,7 +409,7 @@ $(document).ready(function(){
     });
 
 
-    function fillColor(){
+    function fillColor(callback){
         orangeBoxPath.style.fill = 'FF6633';
 
         // WHATS
@@ -431,7 +435,20 @@ $(document).ready(function(){
         letPPath.style.stroke = 'none';
         letP2Path.style.stroke = 'none';
 
+        setTimeout(function () {
+            callback();
+        }, H_timeout);
+
     }
+
+    function animateToDay(menuItem) {
+        var NavbarHeight = 300;
+        $('html, body').animate({
+            scrollTop: $(menuItem).offset().top - NavbarHeight
+        }, 1000);
+    }
+
+
 
     /**
      * Calculate polygon lengths
