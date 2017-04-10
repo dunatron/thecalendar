@@ -137,6 +137,15 @@ class PullEventFindaEventsAdvanced extends BuildTask
 
             }else {
                 //continue;
+                $deleteOldImages = $this->DeleteOldFindaImages($newEvent->ID);
+                var_dump($deleteOldImages);
+                var_dump('<br/>');
+                // Store New Images
+                $images = $event->images->images;
+                $eventID = $newEvent->ID;
+                // ToDo create check if is new image. If not dont run store images function
+                //$storeImage = $this->storeEventImage($images, $eventID);
+                $this->storeEventImage($images, $eventID);
             }
         }
     }
@@ -275,6 +284,20 @@ class PullEventFindaEventsAdvanced extends BuildTask
         return;
     }
 
+    public function DeleteOldFindaImages($eventID)
+    {
+        $oldImages = EventFindaImage::get()->filter(array(
+            'EventID'   =>  $eventID
+        ));
+
+        foreach ($oldImages as $image)
+        {
+            $image->delete();
+        }
+
+        return 'Associated Images Deleted';
+    }
+
     /*
      * Check if image exists via header, i.e it wont download the file
      */
@@ -330,9 +353,11 @@ class PullEventFindaEventsAdvanced extends BuildTask
      */
     public function dynaQuery($count)
     {
+        $expireDate = date('Y-m-d', strtotime(date('Y-m-d')." -1 month"));
         $addOffset = $count * 20;
         $rawQuery = $this->apiURL();
-        $query = $rawQuery .= '&offset=' . $addOffset;
+        $query = $rawQuery .= '&offset=' . $addOffset . '&created_since=' . $expireDate;
+        //$query = $rawQuery .= '&offset=' . $addOffset;
         return $query;
     }
 
