@@ -17,6 +17,7 @@ class HappSiteConfig extends DataExtension
         'LetterHoverColor'  =>  'Varchar(20)',
         'CurrentDayColor'   =>  'Varchar(20)',
         'CurrentDayBackground'  =>  'Varchar(20)',
+        'MenuIconColors'    =>  'Varchar(20)'
     );
 
     private static $has_one = array(
@@ -36,6 +37,10 @@ class HappSiteConfig extends DataExtension
         // SecondBarColor
         $fields->addFieldToTab('Root.Colors',
             TextField::create('SecondBarColor', 'second bar containing the days')
+                ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
+        // MenuIconColors
+        $fields->addFieldToTab('Root.Colors',
+            TextField::create('MenuIconColors', 'Color for the menu Icons, search, add, filter')
                 ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
         // EventBackgroundColor
         $fields->addFieldToTab('Root.Colors',

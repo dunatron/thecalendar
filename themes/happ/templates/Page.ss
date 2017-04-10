@@ -57,6 +57,9 @@
             background-color: {$SiteConfig.CurrentDayBackground} !important;
             color: {$SiteConfig.CurrentDayColor} !important;
         }
+        .search-svg {
+            fill: {$SiteConfig.MenuIconColors} !important;
+        }
 
 
     </style>
