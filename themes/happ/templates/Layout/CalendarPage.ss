@@ -6,6 +6,8 @@
 </div>
 <% include CalendarNav %>
 
+$getTodaysMonth
+
 
 <div class="container-calendar-wrapper">
 

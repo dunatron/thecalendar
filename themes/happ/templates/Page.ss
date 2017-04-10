@@ -53,6 +53,10 @@
             color: {$LetterColor} !important;
         }
 
+        .current-day {
+            background-color: {$SiteConfig.ClientColor} !important;
+        }
+
 
     </style>
 </head>

@@ -170,6 +170,21 @@ class CalendarPage_Controller extends Page_Controller
         return $var;
     }
 
+    public function getTodaysMonth()
+    {
+        $today = date('m', strtotime(date('Y-m-d')));
+        return $today;
+    }
+
+    /**
+     * Day of the month without leading zeros
+     */
+    public function getTodaysday()
+    {
+        $today = date('j', strtotime(date('Y-m-d')));
+        return $today;
+    }
+
     public function currentMonthName()
     {
         $mthNum = Session::get('Month'); // month session variable1
@@ -334,11 +349,18 @@ class CalendarPage_Controller extends Page_Controller
     function draw_calendar($m = '', $y = '')
     {
 
+        $MonthIsToday = false;
+
         // $config is used for setting inline style colors
         $config = SiteConfig::current_site_config();
 
         $m = Session::get('Month'); // $var = 3 from init function
         $y = Session::get('Year');
+
+        if($m == $this->getTodaysMonth())
+        {
+            $MonthIsToday = true;
+        }
 
         $cmonth = $m;
         $cyear = $y;
@@ -406,8 +428,13 @@ class CalendarPage_Controller extends Page_Controller
         for ($list_day = 1; $list_day <= $days_in_month; $list_day++):
             $calendar .= '<div class="day-square">';
             $calendar .= '<div class="tron-inner-square">';
-            $calendar .= '<div class="number-wrap"><span class="day-number" style="">' . $list_day . '</span></div>';
-
+            if(($MonthIsToday == true) && ($list_day == $this->getTodaysday()))
+            {
+                $calendar .= '<div class="number-wrap"><span class="day-number current-day" style="">' . $list_day . '</span></div>';
+            }
+            else {
+                $calendar .= '<div class="number-wrap"><span class="day-number" style="">' . $list_day . '</span></div>';
+            }
 
             $events = $this->getEvents();
             if ($list_day == 1) {
