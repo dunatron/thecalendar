@@ -14,7 +14,9 @@ class HappSiteConfig extends DataExtension
         'EventBackgroundColor' => 'Varchar(20)',
         'EventBackgroundHoverColor' => 'Varchar(20)',
         'LetterColor'   =>  'Varchar(20)',
-        'LetterHoverColor'  =>  'Varchar(20)'
+        'LetterHoverColor'  =>  'Varchar(20)',
+        'CurrentDayColor'   =>  'Varchar(20)',
+        'CurrentDayBackground'  =>  'Varchar(20)',
     );
 
     private static $has_one = array(
@@ -50,6 +52,14 @@ class HappSiteConfig extends DataExtension
         // LetterHoverColor
         $fields->addFieldToTab('Root.Colors',
             TextField::create('LetterHoverColor', 'Letter Hover Color for the events')
+                ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
+        // CurrentDayColor
+        $fields->addFieldToTab('Root.Colors',
+            TextField::create('CurrentDayColor', 'Current Day number color')
+                ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
+        // CurrentDayBackground
+        $fields->addFieldToTab('Root.Colors',
+            TextField::create('CurrentDayBackground', 'Background color for the current day')
                 ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
 
         // Logos

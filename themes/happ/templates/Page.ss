@@ -54,7 +54,8 @@
         }
 
         .current-day {
-            background-color: {$SiteConfig.ClientColor} !important;
+            background-color: {$SiteConfig.CurrentDayBackground} !important;
+            color: {$SiteConfig.CurrentDayColor} !important;
         }
 
 
