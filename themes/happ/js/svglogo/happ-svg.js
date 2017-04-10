@@ -442,7 +442,7 @@ $(document).ready(function(){
     }
 
     function animateToDay(menuItem) {
-        var NavbarHeight = 0;
+        var NavbarHeight = 20;
         $('html, body').animate({
             scrollTop: $(menuItem).offset().top - NavbarHeight
         }, 2000);
