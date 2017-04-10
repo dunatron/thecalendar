@@ -53,7 +53,8 @@
                 <div class="search-event">
                     <a data-toggle="modal" data-target="#SearchModal">
                         <%--<span>Search</span>--%>
-                        <img src="$ThemeDir/svg/menu/search_icon.svg"/>
+                        <%--<img src="$ThemeDir/svg/menu/search_icon.svg"/>--%>
+                        $getSearchSVG
                     </a>
                 </div>
                 <div class="filter-events">

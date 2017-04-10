@@ -223,4 +223,11 @@ class Page_Controller extends ContentController {
 
     }
 
+    public function getSearchSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents($theme .'/svg/menu/search_icon.svg');
+        //return file_get_contents('/Applications/MAMP/htdocs/home/calendar/themes/happ/svg/menu/search_icon.svg');// for Local MAMP development
+    }
+
 }
