@@ -445,7 +445,7 @@ $(document).ready(function(){
         var NavbarHeight = 300;
         $('html, body').animate({
             scrollTop: $(menuItem).offset().top - NavbarHeight
-        }, 1000);
+        }, 2000);
     }
 
 
