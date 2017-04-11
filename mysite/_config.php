@@ -62,5 +62,6 @@ Solr::configure_server(array(
     'indexstore' => array(
         'mode' => 'file',
         'path' => BASE_PATH . '/.solr'
-    )
+    ),
+    'port'  =>  '8983'
 ));

@@ -241,7 +241,7 @@ class Page_Controller extends ContentController {
         );
         $results = $index->search($query,-1,9000, $params); // third param is the amount of results in one go -1 not working. I think 9000 is a good base ;) ;) ;)
 
-        $results->spellcheck;
+        //$results->spellcheck;
 
         $ResultsList = ArrayList::create();
 
