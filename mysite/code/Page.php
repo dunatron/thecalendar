@@ -226,7 +226,7 @@ class Page_Controller extends ContentController {
 
     public function searchHappEvents($data, $form='')
     {
-        error_log(var_export($data, true));
+        //error_log(var_export($data, true));
         $Search = '';
 //        if (isset($data['Search']))
 //        {
