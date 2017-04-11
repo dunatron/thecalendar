@@ -240,9 +240,9 @@ class Page_Controller extends ContentController {
         $params = array(
             'hl'    =>  'true'
         );
-        $results = $index->search($query,-1,9000, $params); // third param is the amount of results in one go -1 not working. I think 9000 is a good base ;) ;) ;)
+        $results = $index->search($query,-1,50, $params); // third param is the amount of results in one go -1 not working. I think 9000 is a good base ;) ;) ;)
 
-        //$results->spellcheck;
+        $results->spellcheck;
 
         $ResultsList = ArrayList::create();
 
@@ -255,6 +255,10 @@ class Page_Controller extends ContentController {
         $data = ArrayData::create(array(
             'Results'   =>  $ResultsList,
             'KeyWord'   =>  $data['Search'],
+        ));
+
+        $ResultsList->sort(array(
+            ('ABS(UNIX_TIMESTAMP() - UNIX_TIMESTAMP(EventDate))')
         ));
 
         echo $data->renderWith('Search_Results');
