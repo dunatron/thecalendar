@@ -232,11 +232,11 @@ class Page_Controller extends ContentController {
 //        {
 //            $Search = $data['Search'];
 //        }
-        if(isset($_POST['Search'])){
-            $Search = $_POST['Search'];
-        }else {
-            $Search ='You searched for nothing';
-        }
+//        if(isset($_POST['Search'])){
+//            $Search = $_POST['Search'];
+//        }else {
+//            $Search ='You searched for nothing';
+//        }
         $index = new HappIndex();
         $query = new SearchQuery();
         $query->inClass('Event');
