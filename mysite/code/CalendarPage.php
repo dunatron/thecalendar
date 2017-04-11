@@ -10,9 +10,9 @@ class CalendarPage extends Page
 {
     private static $db = array();
 
-//    private static $has_one = array(
-//        'ClientLogo' => 'Image'
-//    );
+    private static $has_one = array(
+        'ClientLogo' => 'Image'
+    );
 
     private static $has_many = array();
     private static $can_be_root = true;
