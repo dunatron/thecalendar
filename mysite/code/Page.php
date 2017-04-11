@@ -257,8 +257,6 @@ class Page_Controller extends ContentController {
             'KeyWord'   =>  $data['Search'],
         ));
 
-        $ResultsList->sort('EventDate', 'ABS(UNIX_TIMESTAMP() - UNIX_TIMESTAMP(EventDate))');
-
         echo $data->renderWith('Search_Results');
         //return $this->owner->customise($data)->renderWith('Search_Results');
     }
