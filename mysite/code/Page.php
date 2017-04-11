@@ -13,7 +13,8 @@ class Page_Controller extends ContentController {
 	private static $allowed_actions = array (
         'HappEventForm', 
         'HappSearchForm',
-        'searchHappEvents'
+        'searchHappEvents',
+        'goSearch'
 	);
 
     public function HappEventForm()
@@ -193,7 +194,7 @@ class Page_Controller extends ContentController {
             $searchField
         );
         $actions = FieldList::create(
-            FormAction::create('searchHappEvents', 'Search')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'searchHappEvents')
+            FormAction::create('goSearch', 'Search')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'goSearch')
         );
 
         $form = Form::create($this, 'HappSearchForm', $fields, $actions)->addExtraClass('happ-search-form');
@@ -223,11 +224,58 @@ class Page_Controller extends ContentController {
 
     }
 
+    public function goSearch($data, $form, SS_HTTPRequest $request)
+    {
+        $keyword = '';
+        if (isset($data['keyword']))
+        {
+            $keyword = $data['keyword'];
+        }
+        $index = new HappIndex();
+        $query = new SearchQuery();
+        $query->search($keyword);
+
+
+        $params = array(
+            'hl'    =>  'true'
+        );
+        $results = $index->search($query,-1,9000, $params); // third param is the amount of results in one go -1 not working. I think 9000 is a good base ;) ;) ;)
+
+        $results->spellcheck;
+
+        $ResultsList = ArrayList::create();
+
+        foreach ($results->Matches as $r)
+        {
+            {
+                $ResultsList->add($r);
+            }
+        }
+        $data = ArrayData::create(array(
+            'Results'   =>  $ResultsList,
+            'KeyWord'   =>  $data['Search'],
+        ));
+
+        return $this->owner->customise($data)->renderWith('Search_Results');
+    }
+
     public function getSearchSVG()
     {
         $theme = $this->ThemeDir();
         return file_get_contents('../'.$theme.'/svg/menu/search_icon.svg');
         //return file_get_contents('/Applications/MAMP/htdocs/home/calendar/themes/happ/svg/menu/search_icon.svg');// for Local MAMP development
+    }
+
+    public function getAddEventSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../'.$theme.'/svg/menu/add_event_icon_1.svg');
+    }
+
+    public function getFilterSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../'.$theme.'/svg/menu/filter_icon_1.svg');
     }
 
 }

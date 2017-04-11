@@ -47,7 +47,8 @@
                     <%-- Add Event --%>
                     <a data-toggle="modal" data-target="#AddHappEventModal">
                         <%--<span>Add event</span>--%>
-                        <img src="$ThemeDir/svg/menu/add_event_icon_1.svg"/>
+                        <%--<img src="$ThemeDir/svg/menu/add_event_icon_1.svg"/>--%>
+                        $getAddEventSVG
                     </a>
                 </div>
                 <div class="search-event">
@@ -61,7 +62,8 @@
                     <%-- Add Event --%>
                     <a data-toggle="modal" data-target="#FilterModal">
                         <%--<span>Filter</span>--%>
-                        <img src="$ThemeDir/svg/menu/filter_icon_1.svg"/>
+                        <%--<img src="$ThemeDir/svg/menu/filter_icon_1.svg"/>--%>
+                        $getFilterSVG
                     </a>
                 </div>
             </div>
