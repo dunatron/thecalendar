@@ -19,6 +19,14 @@ class Event extends DataObject {
         )
     );
 
+    public function Link($action = 'show') {
+        return Controller::join_links('my-controller', $action, $this->ID);
+    }
+
+    public function getShowInSearch() {
+        return 1;
+    }
+
     private static $has_one = array();
 
     private static $has_many = array(
