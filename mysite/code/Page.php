@@ -189,7 +189,7 @@ class Page_Controller extends ContentController {
 	}
 
     public function HappSearchForm() {
-        $searchField = TextField::create('keyword', 'Keyword search')->setAttribute('placeholder', 'Key-word search...');
+        $searchField = TextField::create('Search', 'Keyword search')->setAttribute('placeholder', 'Key-word search...');
         $fields = FieldList::create(
             $searchField
         );
@@ -226,14 +226,14 @@ class Page_Controller extends ContentController {
 
     public function goSearch($data, $form, SS_HTTPRequest $request)
     {
-        $keyword = '';
-        if (isset($data['keyword']))
+        $Search = '';
+        if (isset($data['Search']))
         {
-            $keyword = $data['keyword'];
+            $keyword = $data['Search'];
         }
         $index = new HappIndex();
         $query = new SearchQuery();
-        $query->search($keyword);
+        $query->search($Search);
 
 
         $params = array(
