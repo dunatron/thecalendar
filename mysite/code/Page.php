@@ -227,10 +227,15 @@ class Page_Controller extends ContentController {
     public function searchHappEvents($data, $form='')
     {
         error_log(var_export($data, true));
-        $Search = 'savage';
-        if (isset($data['Search']))
-        {
-            $Search = $data['Search'];
+        $Search = '';
+//        if (isset($data['Search']))
+//        {
+//            $Search = $data['Search'];
+//        }
+        if(isset($_POST['Search'])){
+            $Search = $_POST['Search'];
+        }else {
+            $Search ='You searched for nothing';
         }
         $index = new HappIndex();
         $query = new SearchQuery();
