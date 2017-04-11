@@ -224,7 +224,7 @@ class Page_Controller extends ContentController {
 //
 //    }
 
-    public function searchHappEvents($data, $form, SS_HTTPRequest $request)
+    public function searchHappEvents($data, $form)
     {
         $Search = '';
         if (isset($data['Search']))
