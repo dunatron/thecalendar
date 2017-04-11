@@ -233,6 +233,7 @@ class Page_Controller extends ContentController {
         }
         $index = new HappIndex();
         $query = new SearchQuery();
+        $query->inClass('Event');
         $query->search($Search);
 
 
