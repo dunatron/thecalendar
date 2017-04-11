@@ -232,8 +232,8 @@ class Page_Controller extends ContentController {
 //        {
 //            $Search = $data['Search'];
 //        }
-        if(isset($_POST['Search'])){
-            $Search = $_POST['Search'];
+        if(isset($_POST['Keyword'])){
+            $Search = $_POST['Keyword'];
         }else {
             $Search ='You searched for nothing';
         }
