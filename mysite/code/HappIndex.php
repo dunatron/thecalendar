@@ -13,8 +13,9 @@ class HappIndex extends SolrIndex {
         // $this->addFulltextField('Title');
         // $this->addFulltextField('Content');
         $this->addClass('Event');
-
         $this->addAllFulltextFields();
+        $this->addStoredField('EventTitle');
+        $this->addStoredField('EventDescription');
         $this->addFilterField('ShowInSearch');
     }
 }
