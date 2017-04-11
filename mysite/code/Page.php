@@ -194,37 +194,37 @@ class Page_Controller extends ContentController {
             $searchField
         );
         $actions = FieldList::create(
-            FormAction::create('goSearch', 'Search')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'goSearch')
+            FormAction::create('searchHappEvents', 'Search')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'searchHappEvents')
         );
 
         $form = Form::create($this, 'HappSearchForm', $fields, $actions)->addExtraClass('happ-search-form');
         return $form;
     }
 
-    public function searchHappEvents() {
-        if(isset($_POST['Keyword'])){
-            $keyword = $_POST['Keyword'];
-        }else {
-            $keyword ='You searched for nothing';
-        }
+//    public function searchHappEvents() {
+//        if(isset($_POST['Keyword'])){
+//            $keyword = $_POST['Keyword'];
+//        }else {
+//            $keyword ='You searched for nothing';
+//        }
+//
+//        $events = Event::get()
+//            ->where('EventApproved', 'TRUE')
+//            ->filter(array(
+//                'SearchFields:fulltext' => $keyword
+//            ))
+//            ->sort('ABS(UNIX_TIMESTAMP() - UNIX_TIMESTAMP(EventDate))');
+//
+//        $data = ArrayData::create(array(
+//            'Keyword'   =>  $keyword,
+//            'Results'  =>  $events,
+//        ));
+//
+//        echo $data->renderWith('Search_Results');
+//
+//    }
 
-        $events = Event::get()
-            ->where('EventApproved', 'TRUE')
-            ->filter(array(
-                'SearchFields:fulltext' => $keyword
-            ))
-            ->sort('ABS(UNIX_TIMESTAMP() - UNIX_TIMESTAMP(EventDate))');
-
-        $data = ArrayData::create(array(
-            'Keyword'   =>  $keyword,
-            'Results'  =>  $events,
-        ));
-
-        echo $data->renderWith('Search_Results');
-
-    }
-
-    public function goSearch($data, $form, SS_HTTPRequest $request)
+    public function searchHappEvents($data, $form, SS_HTTPRequest $request)
     {
         $Search = '';
         if (isset($data['Search']))
@@ -257,7 +257,8 @@ class Page_Controller extends ContentController {
             'KeyWord'   =>  $data['Search'],
         ));
 
-        return $this->owner->customise($data)->renderWith('Search_Results');
+        echo $data->renderWith('Search_Results');
+        //return $this->owner->customise($data)->renderWith('Search_Results');
     }
 
     public function getSearchSVG()
