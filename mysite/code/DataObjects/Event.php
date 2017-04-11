@@ -74,7 +74,6 @@ class Event extends DataObject {
         'IsEventFindaEvent' =>  'Boolean',
         'EventFindaID'  =>  'Int',
         'EventFindaURL' =>  'Text',
-        '_versionedstage'   =>  'Text'
     );
 
     private static $searchable_fields = array(

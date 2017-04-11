@@ -15,12 +15,12 @@
         <% end_if %>
 
         <div class="search-event-content">
-            <h1 class="title">$EventTitle
+            <h1 class="title">$EventTitle.ContextSummary(300)
                 <span class="date">$StartTime.Nice $EventDate.Day $EventDate.Long</span>
                 <span class="venue"><span class="whats-happ-symbol">@ </span>{$EventVenue}</span>
             </h1>
             <%--<p><span></span>$BiographicalNotes.ContextSummary(500, 0,1,1, '...', '...')</p>--%>
-            <p>$EventDescription.ContextSummary</p>
+            <p>$EventDescription.ContextSummary(300)</p>
 
             <%--<div class="event-btn happ_e_button show-event" data-toggle="modal"--%>
             <%--data-target="#ApprovedEventModal"--%>
