@@ -81,13 +81,13 @@ $(document).ready(function () {
 
         var browserurl =   window.location.href,
             url = browserurl +'home',
-            Keyword = $('#Form_HappSearchForm_keyword').val();
+            keyword = $('#Form_HappSearchForm_keyword').val();
 
         //alert(url);
         $.ajax({
             type:"POST",
             url: url + '/searchHappEvents',
-            data: {Keyword:Keyword},
+            data: {Keyword:keyword},
             success: function (response) {
                 $('.search-results-wrapper').html(response);
                 console.log(response);

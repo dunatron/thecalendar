@@ -189,7 +189,7 @@ class Page_Controller extends ContentController {
 	}
 
     public function HappSearchForm() {
-        $searchField = TextField::create('Keyword', 'Keyword search')->setAttribute('placeholder', 'Key-word search...');
+        $searchField = TextField::create('keyword', 'Keyword search')->setAttribute('placeholder', 'Key-word search...');
         $fields = FieldList::create(
             $searchField
         );
@@ -226,17 +226,14 @@ class Page_Controller extends ContentController {
 
     public function searchHappEvents($data, $form='')
     {
-        //error_log(var_export($data, true));
         $Search = '';
-//        if (isset($data['Search']))
-//        {
-//            $Search = $data['Search'];
-//        }
-//        if(isset($_POST['Keyword'])){
-//            $Search = $_POST['Keyword'];
-//        }else {
-//            $Search ='You searched for nothing';
-//        }
+        if (isset($data['Keyword']))
+        {
+            $Search = $data['Keyword'];
+        }
+
+        //error_log(var_export($data['Keyword'], true));
+
         $index = new HappIndex();
         $query = new SearchQuery();
         $query->inClass('Event');
@@ -260,7 +257,7 @@ class Page_Controller extends ContentController {
         }
         $searchData = ArrayData::create(array(
             'Results'   =>  $ResultsList,
-            'KeyWord'   =>  $data['Search'],
+            'KeyWord'   =>  $data['Keyword'],
         ));
 
         echo $searchData->renderWith('Search_Results');
