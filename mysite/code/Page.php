@@ -229,7 +229,7 @@ class Page_Controller extends ContentController {
         $Search = '';
         if (isset($data['Search']))
         {
-            $keyword = $data['Search'];
+            $Search = $data['Search'];
         }
         $index = new HappIndex();
         $query = new SearchQuery();
