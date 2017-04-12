@@ -15,7 +15,7 @@
         <% end_if %>
 
         <div class="search-event-content">
-            <h1 class="title">$EventTitle.ContextSummary(300)
+            <h1 class="title">$EventTitle
                 <span class="date">$StartTime.Nice $EventDate.Day $EventDate.Long</span>
                 <span class="venue"><span class="whats-happ-symbol">@ </span>{$EventVenue}</span>
             </h1>
