@@ -23,19 +23,24 @@
 
 .happ_modal_header() {
   padding: 0;
+  background-color: #000;
+  border-bottom: none;
   .close-btn {
     float: right;
-    background-color: @color-happ-orange;
+    position: absolute;
+    right:0;
+    top:0;
+    background-color: #000;
     &:hover {
       cursor: pointer;
     }
   }
   .modal-title {
-    padding: 30px 30px 20px 30px;
+    padding: 30px;
     font-family: @happ_base_ff;
-    font-size: 24px;
-    color: @color-happ-orange;
-    text-align: left;
+    font-size: 30px;
+    color: #FFF;
+    text-align: center;
   }
 }
 

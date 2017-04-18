@@ -57,7 +57,12 @@
             background-color: {$SiteConfig.CurrentDayBackground} !important;
             color: {$SiteConfig.CurrentDayColor} !important;
         }
+
+        /* Modal SVG COLORS */
         .search-svg {
+            fill: {$SiteConfig.MenuIconColors} !important;
+        }
+        .location-svg {
             fill: {$SiteConfig.MenuIconColors} !important;
         }
 
