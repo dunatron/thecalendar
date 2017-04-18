@@ -87,7 +87,7 @@ class PullEventFindaEventsAdvanced extends BuildTask
             // Finish Time
             $newEvent->FinishTime = $event->datetime_end;
             $newEvent->IsFree = $event->is_free;
-            if($event->booking_web_site->url)
+            if(!empty($event->booking_web_site->url))
             {
                 $newEvent->BookingWebsite = $event->booking_web_site->url;
             }
