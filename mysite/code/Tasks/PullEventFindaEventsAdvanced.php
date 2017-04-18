@@ -86,7 +86,7 @@ class PullEventFindaEventsAdvanced extends BuildTask
             $newEvent->StartTime = $event->datetime_start;
             // Finish Time
             $newEvent->FinishTime = $event->datetime_end;
-
+            $newEvent->IsFree = $event->is_free;
             // Try store website if we have one. (just get the first site)
             if (!empty($event->web_sites->web_sites)) {
                 $newEvent->TicketWebsite = $event->web_sites->web_sites[0]->url;

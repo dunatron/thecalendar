@@ -26,10 +26,11 @@
             <% else %>
                 {$getTicketSVG} <span class="ticket-price">From ${$MinPrice} - ${$MaxPrice}<% if $TicketWebsite %><a href="$TicketWebsite" class="buy-ticket-btn">$getTicketSVG Buy Tickets</a><% end_if %></span>
             <% end_if %>
-        <% else %>
+        <% else_if $IsFree == 1 %>
             {$getTicketSVG} <span class="ticket-price">Free <% if $TicketWebsite %><a href="$TicketWebsite" class="buy-ticket-btn">$getTicketSVG Buy Tickets</a><% end_if %></span>
+        <% else %>
+            {$getTicketSVG} <span class="ticket-price">See website for tickets <% if $TicketWebsite %><a href="$TicketWebsite" class="buy-ticket-btn">$getTicketSVG Buy Tickets</a><% end_if %></span>
         <% end_if %>
-
     </div>
     <%-- Restriction --%>
     <div class="restriction-strip">

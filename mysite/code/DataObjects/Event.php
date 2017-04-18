@@ -67,6 +67,7 @@ class Event extends DataObject {
         'FinishTime' => 'Time',
         'EventApproved' => 'Boolean',
         'EventTags' => 'Text',
+        'IsFree'    =>  'Boolean',
         'TicketWebsite' => 'Text',
         'TicketPhone' => 'Varchar(30)',
         'Restriction' => 'Text',
