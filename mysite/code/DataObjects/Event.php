@@ -68,6 +68,7 @@ class Event extends DataObject {
         'EventApproved' => 'Boolean',
         'EventTags' => 'Text',
         'IsFree'    =>  'Boolean',
+        'BookingWebsite'    =>  'Text',
         'TicketWebsite' => 'Text',
         'TicketPhone' => 'Varchar(30)',
         'Restriction' => 'Text',
@@ -129,6 +130,10 @@ class Event extends DataObject {
         // Ticket phone
         $fields->addFieldToTab('Root.Main', TextField::create('TicketPhone', 'Ticket Phone')
             ->setDescription('Number to call to buy tickets'));
+
+        // BookingWebsite
+        $fields->addFieldToTab('Root.Main', TextField::create('BookingWebsite', 'Booking Website URL')
+            ->setDescription('Booking website URL'));
 
         // EventDescription
         $fields->addFieldToTab('Root.Main', HtmlEditorField::create('EventDescription', 'Description')

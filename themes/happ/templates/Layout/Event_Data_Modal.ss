@@ -29,11 +29,12 @@
                     href="$TicketWebsite" target="_blank" class="buy-ticket-btn">$getTicketSVG Buy Tickets</a><% end_if %></span>
             <% end_if %>
         <% else_if $IsFree == 1 %>
-            {$getTicketSVG} <span class="ticket-price">Free <% if $TicketWebsite %><a href="$TicketWebsite" target="_blank"
+            {$getTicketSVG} <span class="ticket-price">Free <% if $TicketWebsite %><a href="$BookingWebsite" target="_blank"
                                                                                       class="buy-ticket-btn">$getTicketSVG
             Website Info</a><% end_if %></span>
         <% else %>
             {$getTicketSVG} <span class="ticket-price">
+            BookingWebsite
             <% if $TicketWebsite %>
                 See website<a href="$TicketWebsite" target="_blank" class="buy-ticket-btn">$getTicketSVG Buy Tickets</a>
             <% else %>

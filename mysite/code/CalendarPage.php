@@ -149,6 +149,7 @@ class CalendarPage_Controller extends Page_Controller
             'FinishTime'    =>  $finishTimeFormat,
             'StartToFinishTime' =>  $StartToFinishTime,
             'IsFree'    =>  $HappEvent->IsFree,
+            'BookingWebsite'    =>  $HappEvent->BookingWebsite,
             'TicketWebsite' =>  $HappEvent->TicketWebsite,
             'TicketPhone'   =>  $HappEvent->TicketPhone,
             'EventFindaURL' =>  $HappEvent->EventFindaURL,
