@@ -22,6 +22,6 @@
     <% end_if %>
 <% else %>
     <% loop $EventImages %>
-        <img src="$URL" style="width: 100%;" class="img-responsive"/>
+        <img src="$URL" style="width: 100%;" class="img-responsive solo-event-image"/>
     <% end_loop %>
 <% end_if %>

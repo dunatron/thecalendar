@@ -70,6 +70,10 @@
         .calendar-svg,.clock-svg,.ticket-svg,.restrict-svg {
             fill: {$SiteConfig.EventModalIcoColors} !important;
         }
+        .solo-event-image {
+            border-bottom: 1px solid #000;
+            border-top: 1px solid #000;
+        }
 
     </style>
 </head>
