@@ -1,0 +1,53 @@
+.ticket-restrict-strip {
+  border-bottom: @color-border;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  .ticket-strip {
+    padding: 5px;
+    border-right: @color-border;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    .ticket-svg {
+      height: 30px;
+      padding-right: 20px;
+    }
+    .ticket-price {
+      font-size: 20px;
+      flex-grow: 2;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      align-content: center;
+    }
+    .buy-ticket-btn {
+      font-size: 11px;
+      padding: 2px 5px;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      border: @color-border;
+      .ticket-svg {
+        height: 20px;
+        padding-right: 5px;
+      }
+    }
+  }
+  .restriction-strip {
+    padding: 5px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    .restrict-svg {
+      height: 30px;
+      padding-right: 20px;
+    }
+    .restriction-type {
+      font-size: 20px;
+    }
+  }
+}

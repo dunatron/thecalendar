@@ -5,18 +5,23 @@
     width: auto;
     .modal-content {
       border-radius: 0;
+      box-shadow: none;
+      border: 2px solid #000;
       .modal-header {
         .happ_modal_header();
       }
       .modal-body {
         overflow: hidden;
         max-height: none;
+        padding: 0;
+        box-shadow: none;
+        border: none;
         @import "parts/location-strip";
         @import "parts/date-time-strip";
         @import "parts/image-strip";
-        @import "parts/ticket-strip";
-        @import "parts/restriction-strip";
+        @import "parts/ticket-restrict-strip";
         @import "parts/description-strip";
+        @import "parts/event-map";
       }
       .modal-footer {
 

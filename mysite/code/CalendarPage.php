@@ -120,7 +120,7 @@ class CalendarPage_Controller extends Page_Controller
         $finishTime = new DateTime($HappEvent->FinishTime);
         $finishTimeFormat = $finishTime->format('h:i a');
 
-        $StartToFinishTime = $startTimeFormat . '-' . $finishTimeFormat;
+        $StartToFinishTime = $startTimeFormat . ' - ' . $finishTimeFormat;
 
         $data = new ArrayData(array(
             'EventTitle'  =>  $HappEvent->EventTitle,
