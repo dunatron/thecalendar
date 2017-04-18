@@ -98,7 +98,7 @@ $(document).ready(function(){
         maxSlides: 10,
         slideWidth: 700,
         captions: true,
-        adaptiveHeight: false,
+        adaptiveHeight: true,
         pager: false,
         responsive: true
     };
