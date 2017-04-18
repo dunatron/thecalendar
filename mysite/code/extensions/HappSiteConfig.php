@@ -17,7 +17,9 @@ class HappSiteConfig extends DataExtension
         'LetterHoverColor'  =>  'Varchar(20)',
         'CurrentDayColor'   =>  'Varchar(20)',
         'CurrentDayBackground'  =>  'Varchar(20)',
-        'MenuIconColors'    =>  'Varchar(20)'
+        'MenuIconColors'    =>  'Varchar(20)',
+        'ModalLocationColor'    =>  'Varchar(20)',
+        'EventModalIcoColors'   =>  'Varchar(20)'
     );
 
     private static $has_one = array(
@@ -65,6 +67,14 @@ class HappSiteConfig extends DataExtension
         // CurrentDayBackground
         $fields->addFieldToTab('Root.Colors',
             TextField::create('CurrentDayBackground', 'Background color for the current day')
+                ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
+        // ModalLocationColor
+        $fields->addFieldToTab('Root.EventModalColors',
+            TextField::create('ModalLocationColor', 'Color For the Location Icon on the event modal')
+                ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
+        // EventModalIcoColors
+        $fields->addFieldToTab('Root.EventModalColors',
+            TextField::create('EventModalIcoColors', 'Color for the icons on the event modal')
                 ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
 
         // Logos

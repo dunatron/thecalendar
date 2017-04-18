@@ -58,14 +58,18 @@
             color: {$SiteConfig.CurrentDayColor} !important;
         }
 
-        /* Modal SVG COLORS */
-        .search-svg {
-            fill: {$SiteConfig.MenuIconColors} !important;
-        }
-        .location-svg {
+        /* Menu Icon Colors */
+        .search-svg,.add-event-svg,.filter-svg {
             fill: {$SiteConfig.MenuIconColors} !important;
         }
 
+        /* Event Modal SVG COLORS */
+        .location-svg {
+            fill: {$SiteConfig.ModalLocationColor} !important;
+        }
+        .calendar-svg,.clock-svg,.ticket-svg,.restrict-svg {
+            fill: {$SiteConfig.EventModalIcoColors} !important;
+        }
 
     </style>
 </head>
