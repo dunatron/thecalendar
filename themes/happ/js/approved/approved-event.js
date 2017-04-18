@@ -96,7 +96,7 @@ $(document).ready(function(){
         nextText: 'Next',
         prevText: 'Prev',
         maxSlides: 1,
-        slideWidth: 0,
+        slideWidth: 700,
         captions: true,
         adaptiveHeight: true,
         pager: false,
