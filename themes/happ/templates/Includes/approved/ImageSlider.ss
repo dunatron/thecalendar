@@ -9,7 +9,9 @@
             <% end_loop %>
         </ul>
     <% else %>
-        <img src="$URL" style="width: 100%;" class="img-responsive"/>
+        <% loop $EventFindaImages %>
+            <img src="$URL" style="width: 100%;" class="img-responsive"/>
+        <% end_loop %>
     <% end_if %>
 
 <% else_if $EventImages %>
