@@ -8,7 +8,7 @@
         </ul>
     <% else %>
         <% loop $EventFindaImages %>
-            <img src="$URL" style="width: 100%;" class="img-responsive"/>
+            <img src="$URL" style="width: 100%;" class="img-responsive solo-event-image"/>
         <% end_loop %>
     <% end_if %>
 <%-- If no Event Finda Images assuming its created internal and may have its own images in the file system --%>
