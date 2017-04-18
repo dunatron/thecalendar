@@ -5,7 +5,7 @@
     <% if $EventFindaImages.Count >= 2 %>
         <ul class="event-image-bxslider">
             <% loop $EventFindaImages %>
-                <li><img src="$URL" style="width: 100%;"/></li>
+                <li><img src="$URL" style="width: 100%;" class="img-responsive"/></li>
             <% end_loop %>
         </ul>
     <% else %>
