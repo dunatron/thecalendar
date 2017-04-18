@@ -35,7 +35,7 @@
         <% else %>
             {$getTicketSVG} <span class="ticket-price">
             <% if $TicketWebsite %>
-                See website for tickets <a href="$TicketWebsite" class="buy-ticket-btn">$getTicketSVG Buy Tickets</a>
+                See website<a href="$TicketWebsite" class="buy-ticket-btn">$getTicketSVG Buy Tickets</a>
             <% else %>
                 No Ticket Info
             <% end_if %></span>
