@@ -10,7 +10,8 @@
 		"silverstripe/timepickerfield": "^1.0",
 		"silverstripe/tagfield": "^1.3",
 		"silverstripe/fulltextsearch-localsolr": "dev-master",
-		"silverstripe/fulltextsearch": "^2.3"
+		"silverstripe/fulltextsearch": "^2.3",
+		"ext-sqlite" : "*"
 	},
 	"require-dev": {
 		"phpunit/PHPUnit": "~3.7"

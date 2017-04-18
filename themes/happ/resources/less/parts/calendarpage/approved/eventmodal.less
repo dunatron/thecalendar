@@ -11,54 +11,12 @@
       .modal-body {
         overflow: hidden;
         max-height: none;
-        .event-assocData {
-          .description-strip {
-            padding: 10px 0;
-
-          }
-          .location-strip {
-            padding: 10px 0;
-            p {
-              display: inline-block;
-            }
-            .venue-text {
-              margin-right: 30px;
-            }
-            .location-text {
-
-            }
-          }
-          .date-strip {
-            padding: 10px 0;
-            p {
-              display: inline-block;
-            }
-            .start-time {
-              margin-right: 30px;
-            }
-            .finish-time {
-              margin-right: 30px;
-            }
-            .date {
-
-            }
-
-          }
-          .extras-strip {
-            padding: 10px 0;
-
-          }
-        }
-        .head-text {
-          font-family: @font_Gustan;
-        }
-        .event-img {
-          width: 100%;
-          padding: 10px 0 0 0;
-        }
-        #eventMap1 {
-          margin-top: 20px;
-        }
+        @import "parts/location-strip";
+        @import "parts/date-time-strip";
+        @import "parts/image-strip";
+        @import "parts/ticket-strip";
+        @import "parts/restriction-strip";
+        @import "parts/description-strip";
       }
       .modal-footer {
 

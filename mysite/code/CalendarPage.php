@@ -120,6 +120,8 @@ class CalendarPage_Controller extends Page_Controller
         $finishTime = new DateTime($HappEvent->FinishTime);
         $finishTimeFormat = $finishTime->format('h:i a');
 
+        $StartToFinishTime = $startTimeFormat . '-' . $finishTimeFormat;
+
         $data = new ArrayData(array(
             'EventTitle'  =>  $HappEvent->EventTitle,
             'EventDescription'  => $HappEvent->EventDescription,
@@ -128,6 +130,7 @@ class CalendarPage_Controller extends Page_Controller
             'EventDate' =>  $dateFormat,
             'StartTime' =>  $startTimeFormat,
             'FinishTime'    =>  $finishTimeFormat,
+            'StartToFinishTime' =>  $StartToFinishTime,
             'TicketWebsite' =>  $HappEvent->TicketWebsite,
             'TicketPhone'   =>  $HappEvent->TicketPhone,
             'EventFindaURL' =>  $HappEvent->EventFindaURL,
@@ -135,7 +138,8 @@ class CalendarPage_Controller extends Page_Controller
             'EventFindaImages'  =>  $findaImages
 
         ));
-        echo $data->renderWith('Tron_data');
+        return $this->owner->customise($data)->renderWith('Event_Data_Modal');
+        //echo $data->renderWith('Event_Data_Modal');
     }
 
     public function resetApprovedModal()

@@ -160,6 +160,7 @@ class Page_Controller extends ContentController {
         Requirements::clear();
         Requirements::css($this->ThemeDir() . "/css/base-styles.css");
         Requirements::css($this->ThemeDir() . "/css/select2/select2.min.css");
+        Requirements::css($this->ThemeDir() . "/css/bxslider/jquery.bxslider.min.css");
         Requirements::set_write_js_to_body(false);
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
@@ -186,6 +187,8 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() . "/js/timepicker/time-picker.js");
         // Filter | using select2
         //Requirements::javascript($this->ThemeDir() . "/js/filter/filter.js");
+        // Bx slider
+        Requirements::javascript($this->ThemeDir() . "/js/bxslider/jquery.bxslider.min.js");
 	}
 
     public function HappSearchForm() {
@@ -281,6 +284,42 @@ class Page_Controller extends ContentController {
     {
         $theme = $this->ThemeDir();
         return file_get_contents('../'.$theme.'/svg/menu/filter_icon_1.svg');
+    }
+
+    // SVG
+    // Clock SVG
+    public function getClockSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../'.$theme.'/svg/clock.svg');
+    }
+
+    // Ticket SVG
+    public function getTicketSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../'.$theme.'/svg/ticket.svg');
+    }
+
+    // Restrict SVG
+    public function getRestrictSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../'.$theme.'/svg/restrict.svg');
+    }
+
+    // Location SVG
+    public function getLocationSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../'.$theme.'/svg/location.svg');
+    }
+
+    // Calendar SVG
+    public function getCalendarSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../'.$theme.'/svg/calendar.svg');
     }
 
 }
