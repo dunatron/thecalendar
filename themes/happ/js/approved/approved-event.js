@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 
 // Onclick(event) get attributes e.g. assign lat on lon back on controller
-// and thats it set this stuff on the controller
+// and that's it set this stuff on the controller
     var url = window.location.href;
 // MAINURL = url + "home/TronsGrandTest";
     MAINURL = url + 'home';
@@ -55,7 +55,7 @@ $(document).ready(function(){
                 $('.event-assocData').html(response);
             },
             complete: function () {
-                setupbxSlider();
+                setupBxSlider();
             }
         });
         // Modal Dialog control | reference
@@ -103,7 +103,7 @@ $(document).ready(function(){
         responsive: true
     };
 
-    function setupbxSlider() {
+    function setupBxSlider() {
         if (window.jQuery === undefined) window.$ = window.jQuery = jQuery;
         $('.event-image-bxslider').bxSlider(sliderOptions);
     }

@@ -111,6 +111,21 @@ class CalendarPage_Controller extends Page_Controller
 
             $assocImages = $HappEvent->EventImages();
             $findaImages = $HappEvent->EventFindaImages();
+            $tickets = $HappEvent->Tickets();
+        }
+
+
+        $priceArr = array();
+        $minPrice = Null;
+        $maxPrice = Null;
+        foreach ($tickets as $ticket)
+        {
+            array_push($priceArr, $ticket->TicPrice);
+        }
+        if ($priceArr)
+        {
+            $minPrice = min($priceArr);
+            $maxPrice = max($priceArr);
         }
         $date = new DateTime($HappEvent->EventDate);
 //        $dateFormat = $date->format('Y-m-d H:i:s');
@@ -128,6 +143,8 @@ class CalendarPage_Controller extends Page_Controller
             'EventVenue'    =>  $HappEvent->EventVenue,
             'LocationText'  =>  $HappEvent->LocationText,
             'EventDate' =>  $dateFormat,
+            'MinPrice'  =>  $minPrice,
+            'MaxPrice'  =>  $maxPrice,
             'StartTime' =>  $startTimeFormat,
             'FinishTime'    =>  $finishTimeFormat,
             'StartToFinishTime' =>  $StartToFinishTime,
@@ -136,7 +153,6 @@ class CalendarPage_Controller extends Page_Controller
             'EventFindaURL' =>  $HappEvent->EventFindaURL,
             'EventImages'  => $assocImages,
             'EventFindaImages'  =>  $findaImages
-
         ));
         return $this->owner->customise($data)->renderWith('Event_Data_Modal');
         //echo $data->renderWith('Event_Data_Modal');

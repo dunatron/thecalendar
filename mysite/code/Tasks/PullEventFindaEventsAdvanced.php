@@ -92,7 +92,22 @@ class PullEventFindaEventsAdvanced extends BuildTask
                 $newEvent->TicketWebsite = $event->web_sites->web_sites[0]->url;
             }
 
+
+
             $newEvent->write(); // Must write event before we store image(or we dont know the events id)
+
+            // Try add tickets for event if we have them
+            if ($event->ticket_types)
+            {
+                foreach ($event->ticket_types->ticket_types as $ticket)
+                {
+                    $newTicket = Ticket::create();
+                    $newTicket->EventID = $newEvent->ID;
+                    $newTicket->TicType = $ticket->name;
+                    $newTicket->TicPrice = $ticket->price;
+                    $newTicket->write();
+                }
+            }
 
             /**
              * Run only when event is new to our db
