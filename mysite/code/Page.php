@@ -229,6 +229,7 @@ class Page_Controller extends ContentController {
 
     public function searchHappEvents($data, $form='')
     {
+        //https://github.com/silverstripe/silverstripe-fulltextsearch/blob/master/docs/en/Solr.md
         $Search = '';
         if (isset($data['Keyword']))
         {
@@ -240,6 +241,9 @@ class Page_Controller extends ContentController {
         $index = new HappIndex();
         $query = new SearchQuery();
         $query->inClass('Event');
+
+        $query->exclude('Date', new SearchQuery_Range('Date', '*'));
+
         $query->search($Search);
 
 
@@ -258,6 +262,12 @@ class Page_Controller extends ContentController {
                 $ResultsList->add($r);
             }
         }
+
+        $sortedList = $ResultsList->sort('EventDate');
+
+        error_log(var_export($sortedList, true));
+
+
         $searchData = ArrayData::create(array(
             'Results'   =>  $ResultsList,
             'KeyWord'   =>  $data['Keyword'],
