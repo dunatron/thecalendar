@@ -7,10 +7,13 @@ class HappIndex extends SolrIndex {
         $this->addClass('Event');
         $this->addAllFulltextFields();
         $this->addStoredField('EventTitle');
+        $this->addStoredField('LocationText');
         $this->addStoredField('EventDescription');
 
-        $this->addBoostedField('EventTitle', null, array(), 1.5);
-//		$this->setFieldBoosting('Event_SearchBoost', 2);
+        $this->addBoostedField('EventTitle', null, array(), 3);
+        $this->addBoostedField('LocationText', null, array(), 2);
+        $this->addBoostedField('EventDescription', null, array(), 1.5);
+		//$this->setFieldBoosting('Event_SearchBoost', 2);
 
     }
 }
