@@ -5,7 +5,7 @@ class HappIndex extends SolrIndex {
     {
         //https://github.com/silverstripe/silverstripe-fulltextsearch/blob/master/docs/en/Solr.md
         $this->addClass('Event');
-        $this->addAllFulltextFields();
+        $this->addAllFulltextFields('EventTitle');
         $this->addStoredField('EventTitle');
         $this->addStoredField('EventDescription');
 
