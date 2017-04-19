@@ -67,6 +67,7 @@ class PullEventFindaEventsAdvanced extends BuildTask
 
             $newEvent->EventTitle = $event->name;
             $newEvent->EventFindaURL = $event->url;
+            $newEvent->BookingWebsite = $event->url;
             $newEvent->EventDescription = $event->description;
             $newEvent->CalendarPageID = 1;
             $newEvent->EventApproved = 1;
@@ -87,10 +88,7 @@ class PullEventFindaEventsAdvanced extends BuildTask
             // Finish Time
             $newEvent->FinishTime = $event->datetime_end;
             $newEvent->IsFree = $event->is_free;
-            if($event->booking_web_site->url)
-            {
-                $newEvent->BookingWebsite = $event->booking_web_site->url;
-            }
+
             // Try store website if we have one. (just get the first site)
             if (!empty($event->web_sites->web_sites)) {
                 $newEvent->TicketWebsite = $event->web_sites->web_sites[0]->url;
