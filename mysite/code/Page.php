@@ -222,7 +222,7 @@ class Page_Controller extends ContentController
             $advancedEnd
         );
         $actions = FieldList::create(
-            FormAction::create('searchHappEvents', 'Search')->addExtraClass('happ_btn')->setAttribute('id', 'searchHappEvents')
+            FormAction::create('searchHappEvents', 'Search')->addExtraClass('happ_btn')->setAttribute('id', 'falseSearchHappEvents')
         );
 
         $form = Form::create($this, 'HappSearchForm', $fields, $actions)->addExtraClass('happ-search-form');

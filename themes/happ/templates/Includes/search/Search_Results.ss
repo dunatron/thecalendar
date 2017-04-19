@@ -1,7 +1,6 @@
 <%--<h1 class="keyword-searched">Results for "$Keyword"</h1>--%>
 <% loop $Results %>
     <div class="result-item">
-
         <% if $EventImages %>
             <% loop $EventImages.Limit(1) %>
                 <img src="$URL" class="img-responsive">
@@ -19,23 +18,8 @@
                 <span class="date">$StartTime.Nice $EventDate.Day $EventDate.Long</span>
                 <span class="venue"><span class="whats-happ-symbol">@ </span>{$EventVenue}</span>
             </h1>
-            <%--<p><span></span>$BiographicalNotes.ContextSummary(500, 0,1,1, '...', '...')</p>--%>
-            <%--<p>$EventDescription.ContextSummary(300)</p>--%>
             <p>$EventDescription.ContextSummary(300, {$KeyWord}, 1, 1, '...', '...')</p>
 
-            <%--ContextSummary($characters = 500, $string = false, $striphtml = true, $highlight = true,--%>
-            <%--$prefix = "... ", $suffix = "...")--%>
-            <%--<p>$Excerpt</p>--%>
-
-
-            <%--<div class="event-btn happ_e_button show-event" data-toggle="modal"--%>
-            <%--data-target="#ApprovedEventModal"--%>
-            <%--lat="$LocationLat"--%>
-            <%--lon="$LocationLon"--%>
-            <%--eid="$ID"--%>
-            <%--data-tag="Tags to come g"--%>
-            <%-->View More--%>
-            <%--</div>--%>
             <div class="event-btn show-event"
                  data-toggle="modal"
                  data-target="#ApprovedEventModal"

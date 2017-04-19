@@ -1,3 +1,32 @@
 #Form_HappSearchForm {
+  // Keyword field
+  #Form_HappSearchForm_keyword_Holder {
+    height: 60px;
+    padding: 0 60px;
+    label {
+      display: none;
+    }
+    #Form_HappSearchForm_keyword {
+      height: 60px;
+      width: 100%;
+      padding: 0 10px;
+      font-size: 20px;
+      outline: none;
+      &:hover, &:focus {
+        outline: none !important;
+      }
+    }
+  }
 
+  // Advanced Search Toggle Button
+  #advancedToggle {
+    width: 100%;
+    min-height: 40px;
+    height: 60px;
+  }
+
+  // False search needs to hide
+  .Actions {
+    display: none;
+  }
 }

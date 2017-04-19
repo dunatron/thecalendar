@@ -1,10 +1,12 @@
 <div id="SearchModal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-head">
-                <img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">
-            </div>
+            <%--<div class="modal-head">--%>
+
+            <%--</div>--%>
             <div class="modal-body">
+                <img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">
+                <div class="search-btn" id="searchHappEvents">$getSearchSVG</div>
                 <div class="search-wrapper">
                     $HappSearchForm
                 </div>
