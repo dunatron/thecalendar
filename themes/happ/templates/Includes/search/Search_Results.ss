@@ -21,6 +21,8 @@
             </h1>
             <%--<p><span></span>$BiographicalNotes.ContextSummary(500, 0,1,1, '...', '...')</p>--%>
             <p>$EventDescription.ContextSummary(300)</p>
+            <%--<p>$Excerpt</p>--%>
+
 
             <%--<div class="event-btn happ_e_button show-event" data-toggle="modal"--%>
             <%--data-target="#ApprovedEventModal"--%>

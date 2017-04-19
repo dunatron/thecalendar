@@ -27,19 +27,8 @@
     .modal-head {
       height: 60px;
       position: relative;
-      .search-wrapper {
-        padding-left: 60px;
-        height: 60px;
-        border: none;
-        @media @min865 {
-          padding-left: 60px;
-          height: 60px;
-          border: none;
-        }
-        @import "search-form.less";
-      }
-
     }
+
 
     .modal-body {
       height: 100%;
@@ -54,6 +43,7 @@
         padding: 30px 30px 60px 30px;
         background-color: rgba(255,255,255, 0.95);
       }
+      @import "search-form.less";
       .search-results-wrapper {
         perspective: 1300px;
         @media @min865 {

@@ -81,21 +81,28 @@ $(document).ready(function () {
 
         var browserurl =   window.location.href,
             url = browserurl +'home',
-            keyword = $('#Form_HappSearchForm_keyword').val();
+            keyword = $('#Form_HappSearchForm_keyword').val(),
+            pastFuture  = $('input[name=PastOrFuture]:checked').val();
 
         //alert(url);
         $.ajax({
             type:"POST",
             url: url + '/searchHappEvents',
-            data: {Keyword:keyword},
+            data: {Keyword:keyword, PastFuture:pastFuture},
             success: function (response) {
                 $('.search-results-wrapper').html(response);
-                console.log(response);
             },
             complete: function(){
                 ajaxFinishedLoading();
             }
         });
+    });
+
+    /**
+     * for some reason was submitting the form
+     */
+    $('#advancedToggle').on('click', function(e){
+        e.preventDefault();
     });
 
     $(searchModal).on('shown.bs.modal', function () {
@@ -120,7 +127,7 @@ $(document).ready(function () {
 
             success: function (response) {
                 $('.fc-calendar-container').html(response);
-                console.log(response);
+
             },
             complete: function(){
                 doMonth();
@@ -133,7 +140,6 @@ $(document).ready(function () {
                 url: url + '/currentMonthName',
                 success: function (response) {
                     $('.theMonth').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doYear();
@@ -147,7 +153,6 @@ $(document).ready(function () {
                 url: url + '/currentYear',
                 success: function (response) {
                     $('.theYear').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doNextMonth();
@@ -161,7 +166,6 @@ $(document).ready(function () {
                 url: url + '/nextShortMonth',
                 success: function (response) {
                     $('.short-next-text').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doPrevMonth();
@@ -175,7 +179,6 @@ $(document).ready(function () {
                 url: url + '/prevShortMonth',
                 success: function (response) {
                     $('.short-previous-text').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     ajaxFinishedLoading();
@@ -197,7 +200,6 @@ $(document).ready(function () {
 
             success: function (response) {
                 $('.fc-calendar-container').html(response);
-                console.log(response);
             },
             complete: function(){
                 doMonth();
@@ -210,7 +212,6 @@ $(document).ready(function () {
                 url: url + '/currentMonthName',
                 success: function (response) {
                     $('.theMonth').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doYear();
@@ -224,7 +225,6 @@ $(document).ready(function () {
                 url: url + '/currentYear',
                 success: function (response) {
                     $('.theYear').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doNextMonth();
@@ -238,7 +238,6 @@ $(document).ready(function () {
                 url: url + '/nextShortMonth',
                 success: function (response) {
                     $('.short-next-text').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doPrevMonth();
@@ -252,7 +251,6 @@ $(document).ready(function () {
                 url: url + '/prevShortMonth',
                 success: function (response) {
                     $('.short-previous-text').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     ajaxFinishedLoading();
@@ -276,7 +274,6 @@ $(document).ready(function () {
 
             success: function (response) {
                 $('.fc-calendar-container').html(response);
-                console.log(response);
             },
             complete: function(){
                 doMonth();
@@ -289,7 +286,6 @@ $(document).ready(function () {
                 url: url + '/currentMonthName',
                 success: function (response) {
                     $('.theMonth').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doYear();
@@ -303,7 +299,6 @@ $(document).ready(function () {
                 url: url + '/currentYear',
                 success: function (response) {
                     $('.theYear').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doNextMonth();
@@ -317,7 +312,6 @@ $(document).ready(function () {
                 url: url + '/nextShortMonth',
                 success: function (response) {
                     $('.short-next-text').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     doPrevMonth();
@@ -331,7 +325,6 @@ $(document).ready(function () {
                 url: url + '/prevShortMonth',
                 success: function (response) {
                     $('.short-previous-text').html(response);
-                    console.log(response);
                 },
                 complete: function(){
                     ajaxFinishedLoading();
@@ -437,7 +430,6 @@ $(document).ready(function () {
         });
     }
     function applyFilter(){
-        console.log(currentTagArray);
         if(currentTagArray.length !== 0){
             $('.event-btn').each(function(){
                 var eventItem = this;
@@ -454,7 +446,6 @@ $(document).ready(function () {
                     $(this).addClass('hide-event');
                     $(this).removeClass('show-event');
                     setTimeout(function () {
-                        console.log('INTERESTING');
                         $(eventItem).addClass('fully-hide-event');
                     }, 800);
                 }

@@ -65,7 +65,6 @@ function applyFilter(){
                 $(this).addClass('hide-event');
                 $(this).removeClass('show-event');
                 setTimeout(function () {
-                    console.log('INTERESTING');
                     $(eventItem).addClass('fully-hide-event');
                 }, 1200);
             }
