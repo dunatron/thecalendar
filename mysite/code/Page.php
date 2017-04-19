@@ -1,30 +1,32 @@
 <?php
-class Page extends SiteTree {
 
-	private static $db = array(
-	);
+class Page extends SiteTree
+{
 
-	private static $has_one = array(
-	);
+    private static $db = array();
+
+    private static $has_one = array();
 
 }
-class Page_Controller extends ContentController {
 
-	private static $allowed_actions = array (
-        'HappEventForm', 
+class Page_Controller extends ContentController
+{
+
+    private static $allowed_actions = array(
+        'HappEventForm',
         'HappSearchForm',
         'searchHappEvents',
         'goSearch'
-	);
+    );
 
     public function HappEventForm()
     {
         // Details Fields
         $detailsStart = LiteralField::create('DetailsStart', '<div id="details-step" class="form-step">');
-        $title  = TextField::create('EventTitle', 'Title of the Event');
-        $desc   = TextareaField::create('EventDescription', 'description of the event');
+        $title = TextField::create('EventTitle', 'Title of the Event');
+        $desc = TextareaField::create('EventDescription', 'description of the event');
         $ticket = CheckboxField::create('HasTickets', 'Check if event has tickets')->setAttribute('id', 'hasTickets');
-        $tags   = MultiValueCheckboxField::create(
+        $tags = MultiValueCheckboxField::create(
             'EventTags',
             'Check relevant Tags',
             Tag::get()->map('ID', 'Title')->toArray(),
@@ -117,9 +119,8 @@ class Page_Controller extends ContentController {
         );
 
 
-
         $actions = new FieldList(
-             FormAction::create('processHappEvent', 'Submit')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'submitHappEvent')
+            FormAction::create('processHappEvent', 'Submit')->addExtraClass('field-hidden happ_btn')->setAttribute('id', 'submitHappEvent')
         );
 
         $actions->push(
@@ -130,12 +131,13 @@ class Page_Controller extends ContentController {
         return $form;
     }
 
-    public function processHappEvent($data, $form) {
+    public function processHappEvent($data, $form)
+    {
 
         $tagIDS = [];
         $tags = $data['EventTags'];
 
-        foreach ($tags as $key => $value){
+        foreach ($tags as $key => $value) {
             array_push($tagIDS, $value);
         }
         $tagsAsString = implode(",", $tagIDS);
@@ -155,15 +157,16 @@ class Page_Controller extends ContentController {
         return $this->redirectBack();
     }
 
-	public function init() {
-		parent::init();
+    public function init()
+    {
+        parent::init();
         Requirements::clear();
         Requirements::css($this->ThemeDir() . "/css/base-styles.css");
         Requirements::css($this->ThemeDir() . "/css/select2/select2.min.css");
         Requirements::css($this->ThemeDir() . "/css/bxslider/jquery.bxslider.min.css");
         Requirements::set_write_js_to_body(false);
-		// You can include any CSS or JS required by your project here.
-		// See: http://doc.silverstripe.org/framework/en/reference/requirements
+        // You can include any CSS or JS required by your project here.
+        // See: http://doc.silverstripe.org/framework/en/reference/requirements
 //        Requirements::css($this->ThemeDir() . "/css/calendar.css");
         Requirements::javascript($this->ThemeDir() . "/js/jquery-1.10.2.min.js");
         Requirements::javascript($this->ThemeDir() . "/js/bootstrap-3.0.3.min.js");
@@ -189,24 +192,32 @@ class Page_Controller extends ContentController {
         //Requirements::javascript($this->ThemeDir() . "/js/filter/filter.js");
         // Bx slider
         Requirements::javascript($this->ThemeDir() . "/js/bxslider/jquery.bxslider.min.js");
-	}
+    }
 
-    public function HappSearchForm() {
+    public function HappSearchForm()
+    {
         $searchField = TextField::create('keyword', 'Keyword search')->setAttribute('placeholder', 'Key-word search...');
 
         $collapseAdvancedToggle = LiteralField::create('AdvancedToggle', '<button data-toggle="collapse" data-target="#demo" id="advancedToggle">Advanced Search</button>');
-        $advancedStart = LiteralField::create('advancedStart','<div id="demo" class="collapse">');
+        $advancedStart = LiteralField::create('advancedStart', '<div id="demo" class="collapse">');
 
-        $pastOrFuture   = OptionsetField::create('PastOrFuture', 'Select Past or Future filter', array(
-            "1" =>  "Past",
-            "2" =>  "Future"
+        $pastOrFuture = OptionsetField::create('PastOrFuture', 'Select Past or Future filter', array(
+            "1" => "Past",
+            "2" => "Future"
         ), $value = 2);
+
+        $prioritiseTextOrDate = OptionsetField::create('DateOrText', 'prioritise keyword or closest date', array(
+            "1" => "Date",
+            "2" => "Keyword"
+        ), $value = 2);
+
         $advancedEnd = LiteralField::create('advancedEnd', '</div>');
         $fields = FieldList::create(
             $searchField,
             $collapseAdvancedToggle,
             $advancedStart,
             $pastOrFuture,
+            $prioritiseTextOrDate,
             $advancedEnd
         );
         $actions = FieldList::create(
@@ -240,33 +251,28 @@ class Page_Controller extends ContentController {
 //
 //    }
 
-    public function searchHappEvents($data, $form='')
+    public function searchHappEvents($data, $form = '')
     {
         //https://github.com/silverstripe/silverstripe-fulltextsearch/blob/master/docs/en/Solr.md
         $Search = '';
         $PastFutureQuery = 'EventDate:LessThan';
-        $PastFutureDate = date('Y-m-d', strtotime(date('Y-m-d')." -1 day"));
+        $PastFutureDate = date('Y-m-d', strtotime(date('Y-m-d') . " -1 day"));
 
-        if (isset($data['Keyword']))
-        {
+        if (isset($data['Keyword'])) {
             $Search = $data['Keyword'];
         }
         /**
          * For excluding events based on advanced search results
          */
-        if (isset($data['PastFuture']))
-        {
-            $yesterday = date('Y-m-d', strtotime(date('Y-m-d')." -1 day"));
+        if (isset($data['PastFuture'])) {
+            $yesterday = date('Y-m-d', strtotime(date('Y-m-d') . " -1 day"));
             $today = date('Y-m-d', strtotime(date('Y-m-d')));
             // exclude past events
-            if ($data['PastFuture'] == 2)
-            {
+            if ($data['PastFuture'] == 2) {
                 $PastFutureQuery = 'EventDate:LessThan';
                 $PastFutureDate = $yesterday;
-            }
-            // exclude events greater than today
-            elseif ($data['PastFuture'] == 1)
-            {
+            } // exclude events greater than today
+            elseif ($data['PastFuture'] == 1) {
                 $PastFutureQuery = 'EventDate:GreaterThan';
                 $PastFutureDate = $today;
             }
@@ -281,25 +287,21 @@ class Page_Controller extends ContentController {
 
         $query->search($Search);
 
-
         $params = array(
-            'hl'    =>  'true'
+            'hl' => 'true'
         );
-        $results = $index->search($query,-1,20, $params); // third param is the amount of results in one go -1 not working. I think 9000 is a good base ;) ;) ;)
+        $results = $index->search($query, -1, 20, $params); // third param is the amount of results in one go -1 not working. I think 9000 is a good base ;) ;) ;)
 
         $results->spellcheck;
 
         $ResultsList = ArrayList::create();
         $resultsIDArr = array();
-        foreach ($results->Matches as $r)
-        {
+        foreach ($results->Matches as $r) {
             {
                 $ResultsList->add($r);
                 array_push($resultsIDArr, $r->ID);
             }
         }
-
-
 
         /**
          * Get events based on array of ids {$resultsIDArr} generated by results.
@@ -309,18 +311,33 @@ class Page_Controller extends ContentController {
             ->byIDs($resultsIDArr)
             ->where('EventApproved', 'TRUE')
             ->exclude(array(
-                $PastFutureQuery =>  $PastFutureDate
+                $PastFutureQuery => $PastFutureDate
             ))
             ->sort('ABS(UNIX_TIMESTAMP() - UNIX_TIMESTAMP(EventDate))');
 
+        $finalResults = $events;
 
-//        error_log(var_export($ResultsList, true));
-//        error_log('================');
-//        error_log(var_export($events, true));
+        /**
+         * Determine what results set to use
+         */
+        if (isset($data['DateOrText'])) {
+            // prioritise closest dates at the top
+            if ($data['DateOrText'] == 1) {
+                $finalResults = $events;
+            } // prioritise keyword at the top
+            elseif ($data['DateOrText'] == 2) {
+                $finalResults = $events = Event::get()
+                    ->byIDs($resultsIDArr)
+                    ->where('EventApproved', 'TRUE')
+                    ->exclude(array(
+                        $PastFutureQuery => $PastFutureDate
+                    ));
+            }
+        }
 
         $searchData = ArrayData::create(array(
-            'Results'   =>  $events,
-            'KeyWord'   =>  $data['Keyword'],
+            'Results' => $finalResults,
+            'KeyWord' => $data['Keyword'],
         ));
 
         echo $searchData->renderWith('Search_Results');
@@ -330,20 +347,20 @@ class Page_Controller extends ContentController {
     public function getSearchSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/menu/search_icon.svg');
+        return file_get_contents('../' . $theme . '/svg/menu/search_icon.svg');
         //return file_get_contents('/Applications/MAMP/htdocs/home/calendar/themes/happ/svg/menu/search_icon.svg');// for Local MAMP development
     }
 
     public function getAddEventSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/menu/add_event_icon_1.svg');
+        return file_get_contents('../' . $theme . '/svg/menu/add_event_icon_1.svg');
     }
 
     public function getFilterSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/menu/filter_icon_1.svg');
+        return file_get_contents('../' . $theme . '/svg/menu/filter_icon_1.svg');
     }
 
     // SVG
@@ -351,35 +368,35 @@ class Page_Controller extends ContentController {
     public function getClockSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/clock.svg');
+        return file_get_contents('../' . $theme . '/svg/clock.svg');
     }
 
     // Ticket SVG
     public function getTicketSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/ticket.svg');
+        return file_get_contents('../' . $theme . '/svg/ticket.svg');
     }
 
     // Restrict SVG
     public function getRestrictSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/restrict.svg');
+        return file_get_contents('../' . $theme . '/svg/restrict.svg');
     }
 
     // Location SVG
     public function getLocationSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/location.svg');
+        return file_get_contents('../' . $theme . '/svg/location.svg');
     }
 
     // Calendar SVG
     public function getCalendarSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../'.$theme.'/svg/calendar.svg');
+        return file_get_contents('../' . $theme . '/svg/calendar.svg');
     }
 
 }

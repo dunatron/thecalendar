@@ -83,12 +83,13 @@ $(document).ready(function () {
             url = browserurl +'home',
             keyword = $('#Form_HappSearchForm_keyword').val(),
             pastFuture  = $('input[name=PastOrFuture]:checked').val();
+            dateOrText  = $('input[name=DateOrText]:checked').val();
 
         //alert(url);
         $.ajax({
             type:"POST",
             url: url + '/searchHappEvents',
-            data: {Keyword:keyword, PastFuture:pastFuture},
+            data: {Keyword:keyword, PastFuture:pastFuture, DateOrText:dateOrText},
             success: function (response) {
                 $('.search-results-wrapper').html(response);
             },
