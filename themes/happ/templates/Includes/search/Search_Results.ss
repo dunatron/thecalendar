@@ -20,7 +20,11 @@
                 <span class="venue"><span class="whats-happ-symbol">@ </span>{$EventVenue}</span>
             </h1>
             <%--<p><span></span>$BiographicalNotes.ContextSummary(500, 0,1,1, '...', '...')</p>--%>
-            <p>$EventDescription.ContextSummary(300)</p>
+            <%--<p>$EventDescription.ContextSummary(300)</p>--%>
+            <p>$EventDescription.ContextSummary(300, {$KeyWord}, 1, 1, '...', '...')</p>
+
+            <%--ContextSummary($characters = 500, $string = false, $striphtml = true, $highlight = true,--%>
+            <%--$prefix = "... ", $suffix = "...")--%>
             <%--<p>$Excerpt</p>--%>
 
 
