@@ -50,7 +50,7 @@
             color: {$SiteConfig.LetterHoverColor} !important;
         }
         .happ_e_button {
-            color: {$$iteConfig.LetterColor} !important;
+            color: {$SiteConfig.LetterColor} !important;
         }
 
         .current-day {
