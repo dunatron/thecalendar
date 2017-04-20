@@ -11,6 +11,8 @@ class HappSiteConfig extends DataExtension
     private static $db = array(
         'ClientColor' => 'Varchar(20)',
         'SecondBarColor' => 'Varchar(20)',
+        'MonthTxtColor' =>  'Varchar(20)',
+        'MonthArrowsColor' =>  'Varchar(20)',
         'EventBackgroundColor' => 'Varchar(20)',
         'EventBackgroundHoverColor' => 'Varchar(20)',
         'LetterColor'   =>  'Varchar(20)',
@@ -51,6 +53,14 @@ class HappSiteConfig extends DataExtension
         // SecondBarColor
         $fields->addFieldToTab('Root.Colors',
             TextField::create('SecondBarColor', 'second bar containing the days')
+                ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
+        // MonthTxtColor
+        $fields->addFieldToTab('Root.Colors',
+            TextField::create('MonthTxtColor', 'Month Text color for top bar')
+                ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
+        // MonthArrowsColor
+        $fields->addFieldToTab('Root.Colors',
+            TextField::create('MonthArrowsColor', 'Month Arrows Indicator Color')
                 ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
         // MenuIconColors
         $fields->addFieldToTab('Root.Colors',
