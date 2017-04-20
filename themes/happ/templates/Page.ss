@@ -46,7 +46,7 @@
         .event-btn:hover {
             background-color: {$SiteConfig.EventBackgroundHoverColor} !important;
         }
-        .event-btn:hover.happ_e_button {
+        .event-btn:hover .happ_e_button {
             color: {$SiteConfig.LetterHoverColor} !important;
         }
         .happ_e_button {
