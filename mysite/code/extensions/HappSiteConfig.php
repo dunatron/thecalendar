@@ -88,7 +88,7 @@ class HappSiteConfig extends DataExtension
                 ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
         // AddEventHeaderTxtColor
         $fields->addFieldToTab('Root.AddEventModalColors',
-            TextField::create('AddEventHeaderTxtColor', 'Background Color for the header strip')
+            TextField::create('AddEventHeaderTxtColor', 'Text color for the header strip')
                 ->setDescription('Please enter rgb or hex value as varchar e.g #425968 or rgba(66,89,104)'));
         // AddCloseBGColor
         $fields->addFieldToTab('Root.AddEventModalColors',

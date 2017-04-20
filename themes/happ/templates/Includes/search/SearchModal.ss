@@ -1,4 +1,4 @@
-<div id="SearchModal" class="modal">
+<div id="SearchModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <%--<div class="modal-head">--%>
