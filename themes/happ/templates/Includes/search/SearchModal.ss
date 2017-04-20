@@ -5,7 +5,10 @@
 
             <%--</div>--%>
             <div class="modal-body">
-                <img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">
+                <%--<img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">--%>
+                <div class="close-search-btn"  data-dismiss="modal" aria-label="Close">
+                    $getCloseSVG
+                </div>
                 <div class="search-btn" id="searchHappEvents">$getSearchSVG</div>
                 <div class="search-wrapper">
                     $HappSearchForm

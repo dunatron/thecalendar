@@ -2,9 +2,12 @@
 <div class="modal fade toggle-fade" id="ApprovedEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header event-modal-header">
                 <%--<button type="button" class="close" ><span aria-hidden="true">&times;</span></button>--%>
-                <img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">
+                <%--<img class="close-btn" src="$ThemeDir/svg/close.svg"data-dismiss="modal" aria-label="Close">--%>
+                <div class="close-add-btn" data-dismiss="modal" aria-label="Close">
+                    $getCloseSVG
+                </div>
                 <div class="modal-title">
                     <%--<h1>EventTitle AJAX REPLACE</h1>--%>
                 </div>

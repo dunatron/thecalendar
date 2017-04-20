@@ -92,12 +92,17 @@ $(document).ready(function () {
             data: {Keyword:keyword, PastFuture:pastFuture, DateOrText:dateOrText},
             success: function (response) {
                 $('.search-results-wrapper').html(response);
+                collapseAdvancedSearch()
             },
             complete: function(){
                 ajaxFinishedLoading();
             }
         });
     });
+
+    function collapseAdvancedSearch() {
+        $('#advancedSearch').collapse('hide')
+    }
 
     /**
      * for some reason was submitting the form

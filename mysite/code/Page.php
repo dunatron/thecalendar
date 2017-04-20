@@ -198,8 +198,8 @@ class Page_Controller extends ContentController
     {
         $searchField = TextField::create('keyword', 'Keyword search')->setAttribute('placeholder', 'Key-word search...');
 
-        $collapseAdvancedToggle = LiteralField::create('AdvancedToggle', '<button data-toggle="collapse" data-target="#demo" id="advancedToggle">Advanced Search</button>');
-        $advancedStart = LiteralField::create('advancedStart', '<div id="demo" class="collapse">');
+        $collapseAdvancedToggle = LiteralField::create('AdvancedToggle', '<button data-toggle="collapse" data-target="#advancedSearch" id="advancedToggle">Advanced Search</button>');
+        $advancedStart = LiteralField::create('advancedStart', '<div id="advancedSearch" class="collapse">');
 
         $pastOrFuture = OptionsetField::create('PastOrFuture', 'Select Past or Future filter', array(
             "1" => "Past",
@@ -402,6 +402,13 @@ class Page_Controller extends ContentController
     {
         $theme = $this->ThemeDir();
         return file_get_contents('../' . $theme . '/svg/calendar.svg');
+    }
+
+    // Close SVG
+    public function getCloseSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../' . $theme . '/svg/close.svg');
     }
 
 }

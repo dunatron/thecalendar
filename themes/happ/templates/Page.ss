@@ -64,6 +64,12 @@
         }
 
         /* Event Modal SVG COLORS */
+        .event-modal-header {
+            background-color: {$SiteConfig.EventHeaderBGColor} !important;
+        }
+        .event-modal-header .modal-title {
+            color: {$SiteConfig.EventHeaderTxtColor} !important;
+        }
         .location-svg {
             fill: {$SiteConfig.ModalLocationColor} !important;
         }
@@ -74,6 +80,41 @@
             border-bottom: 1px solid #000;
             border-top: 1px solid #000;
         }
+        .close-event-btn {
+            background-color: {$SiteConfig.AddCloseBGColor} !important;
+        }
+        .close-event-btn .close-svg {
+            fill: {$SiteConfig.AddCloseIcoColor} !important;
+        }
+
+        /* Search Modal Colors */
+        .close-search-btn {
+            background-color: {$SiteConfig.SearchCloseBGColor} !important;
+        }
+        .close-search-btn .close-svg {
+            fill: {$SiteConfig.SearchCloseIcoColor} !important;
+        }
+        .search-btn {
+            background-color: {$SiteConfig.SearchBtnBGColor} !important;
+        }
+        .search-btn .search-svg {
+            fill: {$SiteConfig.SearchBtnIcoColor} !important;
+        }
+
+        /* Add Event Modal Colors */
+        .add-event-header {
+            background-color: {$SiteConfig.AddEventHeaderBGColor} !important;
+        }
+        .add-event-header .modal-title {
+            color: {$SiteConfig.AddEventHeaderTxtColor} !important;
+        }
+        .close-add-btn {
+            background-color: {$SiteConfig.SearchCloseBGColor} !important;
+        }
+        .close-add-btn .close-svg {
+            fill: {$SiteConfig.SearchCloseIcoColor} !important;
+        }
+
 
     </style>
 </head>
