@@ -47,10 +47,10 @@
             background-color: {$SiteConfig.EventBackgroundHoverColor} !important;
         }
         .event-btn:hover.happ_e_button {
-            color: {$LetterHoverColor} !important;
+            color: {$SiteConfig.LetterHoverColor} !important;
         }
         .happ_e_button {
-            color: {$LetterColor} !important;
+            color: {$$iteConfig.LetterColor} !important;
         }
 
         .current-day {
